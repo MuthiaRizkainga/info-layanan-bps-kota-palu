@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informasi Layanan BPS Kota Palu</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      background-color: #005baa;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #003f7f;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      color: #555;
+    }
+
+    /* SECTION */
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #005baa;
+    }
+
+    footer {
+      background-color: #003f7f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE TEXT */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+    <nav>
+  <div class="logo">BPS Kota Palu</div>
+  <div>
+    <a href="index.html">Beranda</a>
+    <a href="layanan.html">Jenis Layanan</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Informasi Layanan</h1>
+  <p>Menyediakan informasi resmi mengenai layanan statistik dan pelayanan publik di BPS Kota Palu.</p>
+  <a href="layanan.html" class="button">Lihat Jenis Layanan</a>
+</section>
+
+<div class="container">
+  <div class="cards">
+
+    <div class="card">
+      <h3>Layanan Data Statistik</h3>
+      <p>Penyediaan data statistik resmi untuk kebutuhan penelitian, akademik, dan umum.</p>
+    </div>
+
+    <div class="card">
+      <h3>Permohonan Data</h3>
+      <p>Prosedur pengajuan permintaan data sesuai dengan ketentuan yang berlaku.</p>
+    </div>
+
+    <div class="card">
+      <h3>Pelayanan PPID</h3>
+      <p>Layanan informasi publik berdasarkan regulasi keterbukaan informasi.</p>
+    </div>
+
+    <div class="card">
+      <h3>Konsultasi Statistik</h3>
+      <p>Konsultasi terkait interpretasi dan pemanfaatan data statistik.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © 2026 BPS Kota Palu | Senin–Jumat 08.00–16.00 WITA
+</footer>
+
+</body>
+</html>
