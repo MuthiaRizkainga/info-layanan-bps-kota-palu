@@ -4,150 +4,378 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Informasi Layanan BPS Kota Palu</title>
-
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bps-blue: #005baa;
+      --bps-dark: #003f7f;
+      --bps-light: #e8f1fb;
+      --bps-accent: #f4a700;
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #f4f6f9;
-      line-height: 1.6;
     }
 
-    /* NAVBAR */
-    nav {
-      background-color: #005baa;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      flex-wrap: wrap;
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background-color: var(--bps-blue) !important;
+      box-shadow: 0 2px 12px rgba(0,91,170,0.3);
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
     }
 
-    /* HERO */
+    .navbar-brand span {
+      color: var(--bps-accent);
+    }
+
+    .nav-link {
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--bps-accent) !important;
+    }
+
+    /* ===== HERO ===== */
     .hero {
-      text-align: center;
-      padding: 60px 20px;
-      background: white;
+      background: linear-gradient(135deg, var(--bps-dark) 0%, var(--bps-blue) 60%, #1a7fd4 100%);
+      color: white;
+      padding: 90px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -60px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
     }
 
     .hero h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-      color: #003f7f;
+      font-weight: 800;
+      font-size: 2.6rem;
+      margin-bottom: 16px;
     }
 
     .hero p {
-      max-width: 600px;
-      margin: auto;
-      color: #555;
+      font-size: 1.05rem;
+      opacity: 0.85;
+      max-width: 540px;
+      margin: 0 auto 28px;
     }
 
-    /* SECTION */
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
+    .btn-hero {
+      background-color: var(--bps-accent);
+      color: #003f7f;
+      font-weight: 700;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.25s;
+      display: inline-block;
+      border: none;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    .btn-hero:hover {
+      background-color: #ffc107;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(244,167,0,0.45);
     }
 
-    .card {
+    /* ===== SECTION TITLE ===== */
+    .section-title {
+      font-weight: 800;
+      color: var(--bps-dark);
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+
+    .section-divider {
+      width: 50px;
+      height: 4px;
+      background: var(--bps-accent);
+      border-radius: 4px;
+      margin: 0 auto 40px;
+    }
+
+    /* ===== CARDS ===== */
+    .service-card {
       background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      transition: 0.3s;
+      border-radius: 14px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+      transition: all 0.3s ease;
+      height: 100%;
+      border: 1px solid rgba(0,91,170,0.08);
+      position: relative;
+      overflow: hidden;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--bps-blue);
+      border-radius: 4px 0 0 4px;
     }
 
-    .card h3 {
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,91,170,0.15);
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--bps-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.5rem;
+      color: var(--bps-blue);
+    }
+
+    .service-card h5 {
+      font-weight: 700;
+      color: var(--bps-dark);
       margin-bottom: 10px;
-      color: #005baa;
+      font-size: 1.05rem;
     }
 
-    footer {
-      background-color: #003f7f;
-      color: white;
+    .service-card p {
+      color: #666;
+      font-size: 0.92rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== STATS BAR ===== */
+    .stats-bar {
+      background: white;
+      border-top: 1px solid #e8edf5;
+      border-bottom: 1px solid #e8edf5;
+    }
+
+    .stat-item {
       text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      font-size: 14px;
+      padding: 30px 20px;
     }
 
-    /* RESPONSIVE TEXT */
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 22px;
-      }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--bps-blue);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .stat-divider {
+      border-right: 1px solid #e0e7f0;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--bps-dark);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.88rem;
+    }
+
+    footer a {
+      color: var(--bps-accent);
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.9rem; }
+      .stat-divider { border-right: none; border-bottom: 1px solid #e0e7f0; }
     }
   </style>
 </head>
-
 <body>
 
-    <nav>
-  <div class="logo">BPS Kota Palu</div>
-  <div>
-    <a href="index.html">Beranda</a>
-    <a href="layanan.html">Jenis Layanan</a>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-bar-chart-fill me-2"></i>BPS <span>Kota Palu</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">
+              <i class="bi bi-house-fill me-1"></i>Beranda
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="layanan.html">
+              <i class="bi bi-grid-fill me-1"></i>Jenis Layanan
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero text-center">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="mb-3">
+        <span class="badge bg-warning text-dark fw-semibold px-3 py-2 rounded-pill" style="font-size:0.8rem;">
+          <i class="bi bi-patch-check-fill me-1"></i> Layanan Resmi Pemerintah
+        </span>
+      </div>
+      <h1>Informasi Layanan<br><span style="color: var(--bps-accent);">BPS Kota Palu</span></h1>
+      <p>Menyediakan informasi resmi mengenai layanan statistik dan pelayanan publik di Badan Pusat Statistik Kota Palu.</p>
+      <a href="layanan.html" class="btn-hero">
+        <i class="bi bi-grid-fill me-2"></i>Lihat Jenis Layanan
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="row g-0">
+        <div class="col-6 col-md-3 stat-divider">
+          <div class="stat-item">
+            <div class="stat-number">4+</div>
+            <div class="stat-label">Jenis Layanan</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 stat-divider">
+          <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Hari Kerja</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 stat-divider">
+          <div class="stat-item">
+            <div class="stat-number">8 Jam</div>
+            <div class="stat-label">Jam Operasional</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">WITA</div>
+            <div class="stat-label">Zona Waktu</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</nav>
 
-<section class="hero">
-  <h1>Informasi Layanan</h1>
-  <p>Menyediakan informasi resmi mengenai layanan statistik dan pelayanan publik di BPS Kota Palu.</p>
-  <a href="layanan.html" class="button">Lihat Jenis Layanan</a>
-</section>
+  <!-- LAYANAN CARDS -->
+  <section class="py-5 mt-2">
+    <div class="container">
+      <div class="text-center mb-2">
+        <h2 class="section-title">Layanan Kami</h2>
+      </div>
+      <div class="section-divider"></div>
 
-<div class="container">
-  <div class="cards">
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="service-card">
+            <div class="card-icon">
+              <i class="bi bi-database-fill"></i>
+            </div>
+            <h5>Layanan Data Statistik</h5>
+            <p>Penyediaan data statistik resmi untuk kebutuhan penelitian, akademik, dan umum.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="service-card">
+            <div class="card-icon">
+              <i class="bi bi-file-earmark-text-fill"></i>
+            </div>
+            <h5>Permohonan Data</h5>
+            <p>Prosedur pengajuan permintaan data sesuai dengan ketentuan yang berlaku.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="service-card">
+            <div class="card-icon">
+              <i class="bi bi-person-badge-fill"></i>
+            </div>
+            <h5>Pelayanan PPID</h5>
+            <p>Layanan informasi publik berdasarkan regulasi keterbukaan informasi.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="service-card">
+            <div class="card-icon">
+              <i class="bi bi-chat-dots-fill"></i>
+            </div>
+            <h5>Konsultasi Statistik</h5>
+            <p>Konsultasi terkait interpretasi dan pemanfaatan data statistik.</p>
+          </div>
+        </div>
+      </div>
 
-    <div class="card">
-      <h3>Layanan Data Statistik</h3>
-      <p>Penyediaan data statistik resmi untuk kebutuhan penelitian, akademik, dan umum.</p>
+      <div class="text-center mt-5">
+        <a href="layanan.html" class="btn btn-outline-primary px-4 py-2 fw-semibold rounded-pill">
+          Lihat Semua Layanan <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Permohonan Data</h3>
-      <p>Prosedur pengajuan permintaan data sesuai dengan ketentuan yang berlaku.</p>
+  <!-- FOOTER -->
+  <footer class="py-4 mt-3">
+    <div class="container text-center">
+      <div class="mb-1">
+        <i class="bi bi-bar-chart-fill me-2" style="color:var(--bps-accent);"></i>
+        <strong class="text-white">BPS Kota Palu</strong>
+      </div>
+      <p class="mb-0">© 2026 Badan Pusat Statistik Kota Palu &nbsp;|&nbsp;
+        <i class="bi bi-clock me-1"></i> Senin–Jumat, 08.00–16.00 WITA
+      </p>
     </div>
+  </footer>
 
-    <div class="card">
-      <h3>Pelayanan PPID</h3>
-      <p>Layanan informasi publik berdasarkan regulasi keterbukaan informasi.</p>
-    </div>
-
-    <div class="card">
-      <h3>Konsultasi Statistik</h3>
-      <p>Konsultasi terkait interpretasi dan pemanfaatan data statistik.</p>
-    </div>
-
-  </div>
-</div>
-
-<footer>
-  © 2026 BPS Kota Palu | Senin–Jumat 08.00–16.00 WITA
-</footer>
-
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
