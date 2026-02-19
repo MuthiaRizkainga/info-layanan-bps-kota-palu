@@ -4,51 +4,387 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jenis Layanan - BPS Kota Palu</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bps-blue: #005baa;
+      --bps-dark: #003f7f;
+      --bps-light: #e8f1fb;
+      --bps-accent: #f4a700;
+    }
 
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f4f6f9;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background-color: var(--bps-blue) !important;
+      box-shadow: 0 2px 12px rgba(0,91,170,0.3);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .navbar-brand span {
+      color: var(--bps-accent);
+    }
+
+    .nav-link {
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--bps-accent) !important;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--bps-dark) 0%, var(--bps-blue) 60%, #1a7fd4 100%);
+      color: white;
+      padding: 70px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero h1 {
+      font-weight: 800;
+      font-size: 2.3rem;
+    }
+
+    /* Breadcrumb in hero */
+    .hero-breadcrumb a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .hero-breadcrumb a:hover { color: var(--bps-accent); }
+    .hero-breadcrumb span {
+      color: var(--bps-accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .hero-breadcrumb .sep { color: rgba(255,255,255,0.4); margin: 0 8px; }
+
+    /* ===== LAYANAN LIST ===== */
+    .layanan-card {
+      background: white;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,91,170,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .layanan-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--bps-blue), var(--bps-accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+
+    .layanan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(0,91,170,0.15);
+    }
+
+    .layanan-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .layanan-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--bps-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      color: var(--bps-blue);
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .layanan-card h4 {
+      font-weight: 700;
+      color: var(--bps-dark);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .layanan-card p {
+      color: #666;
+      font-size: 0.93rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .layanan-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: linear-gradient(135deg, var(--bps-blue), var(--bps-dark));
+      border-radius: 16px;
+      color: white;
+      padding: 36px 32px;
+    }
+
+    .info-box h5 {
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .info-item i {
+      color: var(--bps-accent);
+      font-size: 1.1rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .info-item span {
+      font-size: 0.92rem;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title { font-weight: 800; color: var(--bps-dark); font-size: 1.6rem; }
+    .section-divider {
+      width: 50px; height: 4px;
+      background: var(--bps-accent);
+      border-radius: 4px;
+      margin-bottom: 32px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--bps-dark);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
 <body>
 
-<nav>
-  <div><strong>BPS Kota Palu</strong></div>
-  <div>
-    <a href="index.html">Beranda</a>
-    <a href="layanan.html">Jenis Layanan</a>
-  </div>
-</nav>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-bar-chart-fill me-2"></i>BPS <span>Kota Palu</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="bi bi-house-fill me-1"></i>Beranda
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="layanan.html">
+              <i class="bi bi-grid-fill me-1"></i>Jenis Layanan
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-<section class="hero">
-  <h1>Jenis Layanan</h1>
-  <p>Informasi detail mengenai layanan yang tersedia di BPS Kota Palu.</p>
-</section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="hero-breadcrumb mb-3">
+        <a href="index.html"><i class="bi bi-house me-1"></i>Beranda</a>
+        <span class="sep">/</span>
+        <span>Jenis Layanan</span>
+      </div>
+      <h1>Jenis Layanan</h1>
+      <p style="opacity:0.82; max-width:500px; font-size:1rem;">
+        Informasi lengkap mengenai layanan yang tersedia di BPS Kota Palu untuk masyarakat umum.
+      </p>
+    </div>
+  </section>
 
-<div class="container">
+  <!-- KONTEN UTAMA -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
 
-  <div class="card">
-    <h3>Layanan Data Statistik</h3>
-    <p>Data statistik resmi tersedia melalui publikasi, website resmi, dan pelayanan langsung di kantor.</p>
-  </div>
+        <!-- KIRI: Daftar Layanan -->
+        <div class="col-lg-8">
+          <h2 class="section-title mb-1">Daftar Layanan</h2>
+          <div class="section-divider"></div>
 
-  <div class="card">
-    <h3>Permohonan Data Khusus</h3>
-    <p>Permintaan data tertentu dapat diajukan secara resmi dengan mengikuti prosedur dan ketentuan yang berlaku.</p>
-  </div>
+          <div class="d-flex flex-column gap-4">
 
-  <div class="card">
-    <h3>Pelayanan PPID</h3>
-    <p>Layanan informasi publik sesuai dengan Undang-Undang Keterbukaan Informasi Publik.</p>
-  </div>
+            <!-- Layanan 1 -->
+            <div class="layanan-card">
+              <div class="d-flex align-items-start gap-3">
+                <div class="layanan-icon">
+                  <i class="bi bi-database-fill"></i>
+                </div>
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                    <h4 class="mb-0">Layanan Data Statistik</h4>
+                    <span class="badge bg-success layanan-badge">Tersedia</span>
+                  </div>
+                  <p>Data statistik resmi tersedia melalui publikasi, website resmi, dan pelayanan langsung di kantor. Mencakup data kependudukan, ekonomi, sosial, dan berbagai bidang statistik lainnya.</p>
+                </div>
+              </div>
+            </div>
 
-  <div class="card">
-    <h3>Jam Operasional</h3>
-    <p>Senin – Jumat, 08.00 – 16.00 WITA</p>
-  </div>
+            <!-- Layanan 2 -->
+            <div class="layanan-card">
+              <div class="d-flex align-items-start gap-3">
+                <div class="layanan-icon">
+                  <i class="bi bi-file-earmark-arrow-up-fill"></i>
+                </div>
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                    <h4 class="mb-0">Permohonan Data Khusus</h4>
+                    <span class="badge bg-primary layanan-badge">Permohonan</span>
+                  </div>
+                  <p>Permintaan data tertentu dapat diajukan secara resmi dengan mengikuti prosedur dan ketentuan yang berlaku. Pengajuan dapat dilakukan secara langsung maupun melalui formulir online.</p>
+                </div>
+              </div>
+            </div>
 
-</div>
+            <!-- Layanan 3 -->
+            <div class="layanan-card">
+              <div class="d-flex align-items-start gap-3">
+                <div class="layanan-icon">
+                  <i class="bi bi-person-badge-fill"></i>
+                </div>
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                    <h4 class="mb-0">Pelayanan PPID</h4>
+                    <span class="badge bg-info text-dark layanan-badge">Informasi Publik</span>
+                  </div>
+                  <p>Layanan informasi publik sesuai dengan Undang-Undang Keterbukaan Informasi Publik. Masyarakat berhak memperoleh informasi yang transparan dari lembaga pemerintah.</p>
+                </div>
+              </div>
+            </div>
 
-<footer>
-  © 2026 BPS Kota Palu
-</footer>
+            <!-- Layanan 4 -->
+            <div class="layanan-card">
+              <div class="d-flex align-items-start gap-3">
+                <div class="layanan-icon">
+                  <i class="bi bi-chat-dots-fill"></i>
+                </div>
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                    <h4 class="mb-0">Konsultasi Statistik</h4>
+                    <span class="badge bg-warning text-dark layanan-badge">Konsultasi</span>
+                  </div>
+                  <p>Layanan konsultasi langsung dengan petugas BPS mengenai interpretasi data statistik, metodologi survei, serta pemanfaatan data untuk keperluan riset dan akademik.</p>
+                </div>
+              </div>
+            </div>
 
+          </div>
+        </div>
+
+        <!-- KANAN: Info Box -->
+        <div class="col-lg-4">
+          <div class="sticky-top" style="top: 80px;">
+            <div class="info-box mb-4">
+              <h5><i class="bi bi-clock-fill me-2" style="color:var(--bps-accent);"></i>Jam Operasional</h5>
+              <div class="info-item">
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Senin – Jumat</span>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-alarm-fill"></i>
+                <span>08.00 – 16.00 WITA</span>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-x-circle-fill"></i>
+                <span>Sabtu, Minggu & Hari Libur Nasional: Tutup</span>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3 p-4 shadow-sm border">
+              <h6 class="fw-bold mb-3" style="color:var(--bps-dark);">
+                <i class="bi bi-geo-alt-fill me-2" style="color:var(--bps-blue);"></i>Informasi Kontak
+              </h6>
+              <p class="mb-2" style="font-size:0.88rem; color:#555;">
+                <i class="bi bi-building me-2 text-primary"></i>Badan Pusat Statistik Kota Palu
+              </p>
+              <p class="mb-2" style="font-size:0.88rem; color:#555;">
+                <i class="bi bi-globe me-2 text-primary"></i>
+                <a href="https://palukota.bps.go.id" target="_blank" class="text-decoration-none text-primary">palukota.bps.go.id</a>
+              </p>
+              <p class="mb-0" style="font-size:0.88rem; color:#555;">
+                <i class="bi bi-envelope-fill me-2 text-primary"></i>bps7271@bps.go.id
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4 mt-2">
+    <div class="container text-center">
+      <div class="mb-1">
+        <i class="bi bi-bar-chart-fill me-2" style="color:var(--bps-accent);"></i>
+        <strong class="text-white">BPS Kota Palu</strong>
+      </div>
+      <p class="mb-0">© 2026 Badan Pusat Statistik Kota Palu &nbsp;|&nbsp;
+        <i class="bi bi-clock me-1"></i> Senin–Jumat, 08.00–16.00 WITA
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
