@@ -469,25 +469,40 @@
   <div class="section-box">
     <h4 class="section-title">Jangka Waktu Pelayanan</h4>
 
-    <strong>Layanan dengan Kunjungan Langsung</strong>
-    <ul>
-      <li>Pengguna layanan akan dilayani maksimal 10 (sepuluh) menit sejak pengguna layanan pada antrian sebelumnya selesai</li>
-    </ul>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+      <div style="padding: 25px; background: linear-gradient(135deg, rgba(0, 91, 170, 0.08), transparent); border-radius: 12px; border-left: 5px solid var(--bps-blue);">
+        <div style="display: flex; align-items: center; margin-bottom: 12px;">
+          <i class="bi bi-building" style="font-size: 1.5rem; color: var(--bps-blue); margin-right: 12px;"></i>
+          <strong style="color: var(--bps-dark); font-size: 1.05rem;">Kunjungan Langsung</strong>
+        </div>
+        <p style="margin: 0; color: #555; font-size: 0.95rem; line-height: 1.6;">
+          Pengguna layanan akan dilayani <strong>maksimal 10 (sepuluh) menit</strong> sejak pengguna layanan pada antrian sebelumnya selesai
+        </p>
+      </div>
 
-    <strong>Layanan dengan Cara Online</strong>
-    <ul>
-      <li>Pengguna layanan akan dilayani maksimal 10 (sepuluh) hari kerja setelah permintaan jelas dan persyaratan pelayanan lengkap</li>
-    </ul>
+      <div style="padding: 25px; background: linear-gradient(135deg, rgba(244, 167, 0, 0.08), transparent); border-radius: 12px; border-left: 5px solid var(--bps-accent);">
+        <div style="display: flex; align-items: center; margin-bottom: 12px;">
+          <i class="bi bi-globe" style="font-size: 1.5rem; color: var(--bps-accent); margin-right: 12px;"></i>
+          <strong style="color: var(--bps-dark); font-size: 1.05rem;">Layanan Online</strong>
+        </div>
+        <p style="margin: 0; color: #555; font-size: 0.95rem; line-height: 1.6;">
+          Pengguna layanan akan dilayani <strong>maksimal 10 (sepuluh) hari kerja</strong> setelah permintaan jelas dan persyaratan pelayanan lengkap
+        </p>
+      </div>
+    </div>
   </div>
 
   <!-- BIAYA -->
   <div class="section-box">
     <h4 class="section-title">Biaya/Tarif</h4>
-    <div style="padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), transparent); border-radius: 8px; border-left: 4px solid #4caf50;">
-      <p style="margin: 0; font-weight: 700; color: #2e7d32; font-size: 1.1rem;">
-        <i class="bi bi-info-circle me-2"></i>Berbayar
-      </p>
-      <p style="margin: 8px 0 0 0; color: #555; font-size: 0.9rem;">Sesuai Peraturan Pemerintah Nomor 13 Tahun 2024 tentang jenis dan tarif atas jenis penerimaan negara bukan pajak yang berlaku pada Badan Pusat Statistik</p>
+    <div style="padding: 25px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), transparent); border-radius: 12px; border-left: 5px solid #4caf50;">
+      <div style="display: flex; align-items: flex-start;">
+        <i class="bi bi-info-circle" style="font-size: 1.5rem; color: #4caf50; margin-right: 12px; margin-top: 3px;"></i>
+        <div>
+          <p style="margin: 0 0 8px 0; font-weight: 700; color: #2e7d32; font-size: 1.05rem;">Berbayar</p>
+          <p style="margin: 0; color: #555; font-size: 0.95rem; line-height: 1.6;">Sesuai Peraturan Pemerintah Nomor 13 Tahun 2024 tentang jenis dan tarif atas jenis penerimaan negara bukan pajak yang berlaku pada Badan Pusat Statistik</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -495,19 +510,24 @@
   <div class="section-box">
     <h4 class="section-title">Produk Pelayanan</h4>
     
-    <strong>Layanan dengan Cara Kunjungan Langsung</strong>
-    <ul>
-      <li>Publikasi elektronik</li>
-      <li>Data mikro lengkap/fullset</li>
-      <li>Peta digital wilkerstat</li>
-    </ul>
-
-    <strong>Layanan dengan Cara Online</strong>
-    <ul>
-      <li>Publikasi elektronik</li>
-      <li>Data mikro lengkap/fullset atau sebagian/sesuai variable dan/atau wilayah yang dipilih</li>
-      <li>Peta digital wilkerstat</li>
-    </ul>
+    <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px;">
+      <div style="padding: 25px; background: linear-gradient(135deg, rgba(0, 91, 170, 0.08), transparent); border-radius: 12px; border-left: 5px solid var(--bps-blue);">
+        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+          <i class="bi bi-gift" style="font-size: 1.5rem; color: var(--bps-blue); margin-right: 12px;"></i>
+          <strong style="color: var(--bps-dark); font-size: 1.05rem;">Hasil Layanan yang Diberikan</strong>
+        </div>
+        <ul style="margin: 0; padding-left: 0; list-style: none; font-size: 0.95rem; color: #555; line-height: 2;">
+          <li style="padding-left: 28px; position: relative; margin-bottom: 12px;">
+            <i class="bi bi-check-circle-fill" style="position: absolute; left: 0; color: var(--bps-blue); font-size: 1.2rem;"></i>
+            <strong>Layanan dengan cara kunjungan langsung:</strong> Publikasi elektronik, Data mikro lengkap/fullset, Peta digital wilkerstat
+          </li>
+          <li style="padding-left: 28px; position: relative; margin-bottom: 0;">
+            <i class="bi bi-check-circle-fill" style="position: absolute; left: 0; color: var(--bps-blue); font-size: 1.2rem;"></i>
+            <strong>Layanan dengan cara online:</strong> Publikasi elektronik, Data mikro lengkap/fullset atau sebagian/sesuai variable dan/atau wilayah yang dipilih, Peta digital wilkerstat
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <!-- CATATAN -->
