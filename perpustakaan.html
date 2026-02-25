@@ -57,19 +57,19 @@
     .flowchart-title {
       font-weight: 700;
       color: white;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       margin-bottom: 25px;
       padding: 15px 20px;
       border-radius: 8px;
       text-align: center;
     }
 
-    .flowchart-title.tercetak {
-      background: linear-gradient(135deg, var(--bps-blue), rgba(0, 91, 170, 0.7));
+    .flowchart-title.langsung {
+      background: linear-gradient(135deg, #0056b3, #003f7f);
     }
 
-    .flowchart-title.digital {
-      background: linear-gradient(135deg, var(--bps-accent), rgba(244, 167, 0, 0.7));
+    .flowchart-title.online {
+      background: linear-gradient(135deg, var(--bps-accent), #ff9800);
     }
 
     /* Flowchart Container */
@@ -113,6 +113,11 @@
       box-shadow: 0 2px 8px rgba(0, 91, 170, 0.3);
     }
 
+    .flowchart-title.online ~ .flowchart-visual .step-number {
+      background: var(--bps-accent);
+      box-shadow: 0 2px 8px rgba(244, 167, 0, 0.3);
+    }
+
     .step-icon-box {
       width: 110px;
       height: 110px;
@@ -127,6 +132,10 @@
       box-shadow: 0 2px 8px rgba(0, 91, 170, 0.1);
     }
 
+    .flowchart-title.online ~ .flowchart-visual .step-icon-box {
+      border-color: var(--bps-accent);
+    }
+
     .step-item:hover .step-icon-box {
       transform: translateY(-8px);
       box-shadow: 0 6px 16px rgba(0, 91, 170, 0.2);
@@ -137,6 +146,10 @@
       font-size: 3.5rem;
       color: var(--bps-blue);
       line-height: 1;
+    }
+
+    .flowchart-title.online ~ .flowchart-visual .step-icon {
+      color: var(--bps-accent);
     }
 
     .step-label {
@@ -158,43 +171,13 @@
       height: 130px;
     }
 
+    .flowchart-title.online ~ .flowchart-visual .step-arrow {
+      color: var(--bps-accent);
+    }
+
     @keyframes arrowBounce {
       0%, 100% { transform: translateX(0); }
       50% { transform: translateX(8px); }
-    }
-
-    /* Decision node */
-    .step-item.decision .step-icon-box {
-      border-color: var(--bps-accent);
-      background: rgba(244, 167, 0, 0.05);
-    }
-
-    .step-item.decision .step-icon {
-      color: var(--bps-accent);
-    }
-
-    .decision-branch {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-
-    .decision-yes {
-      background: rgba(76, 175, 80, 0.2);
-      color: #2e7d32;
-      padding: 3px 8px;
-      border-radius: 4px;
-      border: 1px solid #4caf50;
-    }
-
-    .decision-no {
-      background: rgba(244, 167, 0, 0.2);
-      color: var(--bps-accent);
-      padding: 3px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--bps-accent);
     }
 
     /* End node */
@@ -222,7 +205,7 @@
       border-left: 4px solid var(--bps-blue);
     }
 
-    .service-option.digital {
+    .service-option.online {
       border-left-color: var(--bps-accent);
     }
 
@@ -249,15 +232,29 @@
     }
 
     .option-list li::before {
-      content: "▸";
+      content: "✓";
       position: absolute;
       left: 0;
       color: var(--bps-blue);
       font-weight: bold;
     }
 
-    .service-option.digital .option-list li::before {
+    .service-option.online .option-list li::before {
       color: var(--bps-accent);
+    }
+
+    .sub-step {
+      background: white;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-top: 8px;
+      border-left: 3px solid var(--bps-blue);
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .service-option.online .sub-step {
+      border-left-color: var(--bps-accent);
     }
 
     /* Responsive */
@@ -308,7 +305,7 @@
 <section class="hero-detail">
   <div class="container">
     <h1 class="fw-bold">Pelayanan Perpustakaan</h1>
-    <p>Layanan konsultasi data, metadata, dan klasifikasi statistik</p>
+    <p>Layanan perpustakaan digital dan tercetak untuk akses informasi statistik</p>
   </div>
 </section>
 
@@ -325,7 +322,7 @@
       <li>Pengguna layanan mengisi buku tamu</li>
     </ul>
 
-    <strong>2. Online</strong>
+    <strong>2. Layanan Online</strong>
     <ul>
       <li>Pengguna layanan memiliki alamat email yang masih aktif</li>
       <li>Pengguna layanan memiliki akun pada portal pst.bps.go.id</li>
@@ -336,10 +333,10 @@
   <div class="section-box">
     <h4 class="section-title">B. SOP - Alur Pelayanan</h4>
 
-    <!-- LANGKAH AWAL -->
+    <!-- ============ LAYANAN KUNJUNGAN LANGSUNG ============ -->
     <div class="sop-flowchart">
-      <div class="flowchart-title tercetak">
-        <i class="bi bi-arrow-right me-2"></i>Langkah Awal - Akses Layanan Perpustakaan
+      <div class="flowchart-title langsung">
+        <i class="bi bi-building me-2"></i>Layanan 1: Kunjungan Langsung ke Kantor
       </div>
 
       <div class="flowchart-visual">
@@ -349,7 +346,7 @@
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-person-walking"></i></div>
           </div>
-          <div class="step-label">Akses Layanan<br>Perpustakaan PST BPS</div>
+          <div class="step-label">Datang ke Kantor<br>PST BPS</div>
         </div>
 
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
@@ -376,90 +373,57 @@
 
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
 
-        <!-- Step 4 DECISION -->
-        <div class="step-item decision">
+        <!-- Step 4 - Pilih Jenis Layanan -->
+        <div class="step-item">
           <div class="step-number">4</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-question-circle"></i></div>
           </div>
-          <div class="step-label">Pilih Jenis<br>Layanan</div>
-          <div class="decision-branch">
-            <div class="decision-yes">Tercetak</div>
-            <div class="decision-no">Digital</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LAYANAN PERPUSTAKAAN TERCETAK -->
-    <div class="sop-flowchart">
-      <div class="flowchart-title tercetak">
-        <i class="bi bi-book-fill me-2"></i>Alur 1: Layanan Perpustakaan Tercetak
-      </div>
-
-      <div class="flowchart-visual">
-        <!-- Step 4a.1 -->
-        <div class="step-item">
-          <div class="step-number">4a.1</div>
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-file-earmark-richtext"></i></div>
-          </div>
-          <div class="step-label">Baca Pustaka<br>Hardcopy di Ruang</div>
+          <div class="step-label">Pilih Jenis<br>Pustaka</div>
         </div>
 
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
 
-        <!-- Step 4a.2 -->
-        <div class="step-item end-node">
-          <div class="step-number">4a.2</div>
+        <!-- Step 5a - Baca Pustaka -->
+        <div class="step-item">
+          <div class="step-number">5</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-book-half"></i></div>
+          </div>
+          <div class="step-label">Baca Pustaka<br>(Tercetak/Digital)</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 6 - Gunakan Pemindai -->
+        <div class="step-item">
+          <div class="step-number">6</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-scanner"></i></div>
           </div>
-          <div class="step-label">Gunakan Alat<br>Pemindai Mandiri</div>
-        </div>
-      </div>
-
-      <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 30px;">
-        <i class="bi bi-check-circle me-2"></i>SELESAI
-      </div>
-
-      <!-- Detail Layanan Tercetak -->
-      <div class="service-options">
-        <div class="service-option">
-          <div class="option-title"><i class="bi bi-book-fill me-2" style="color: var(--bps-blue);"></i>Detail Layanan Perpustakaan Tercetak:</div>
-          <ul class="option-list">
-            <li>Pengguna layanan membaca pustaka hardcopy pada ruang layanan perpustakaan tercetak</li>
-            <li>Pengguna layanan dapat memanfaatkan alat pemindai secara mandiri</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- LAYANAN PERPUSTAKAAN DIGITAL -->
-    <div class="sop-flowchart">
-      <div class="flowchart-title digital">
-        <i class="bi bi-laptop me-2"></i>Alur 2: Layanan Perpustakaan Digital
-      </div>
-
-      <div class="flowchart-visual">
-        <!-- Step 4b.1 -->
-        <div class="step-item">
-          <div class="step-number">4b.1</div>
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-cloud-arrow-down"></i></div>
-          </div>
-          <div class="step-label">Baca Pustaka<br>Softcopy di Portal</div>
+          <div class="step-label">Gunakan Alat<br>Pemindai (Opsional)</div>
         </div>
 
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
 
-        <!-- Step 4b.2 -->
-        <div class="step-item end-node">
-          <div class="step-number">4b.2</div>
+        <!-- Step 7 - Rating -->
+        <div class="step-item">
+          <div class="step-number">7</div>
           <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+            <div class="step-icon"><i class="bi bi-star"></i></div>
           </div>
-          <div class="step-label">Minta Softcopy<br>via Form</div>
+          <div class="step-label">Berikan Rating<br>Pelayanan</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 8 - Selesai -->
+        <div class="step-item end-node">
+          <div class="step-number">8</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+          </div>
+          <div class="step-label">Selesai<br>Akses Layanan</div>
         </div>
       </div>
 
@@ -467,79 +431,195 @@
         <i class="bi bi-check-circle me-2"></i>SELESAI
       </div>
 
-      <!-- Detail Layanan Digital -->
+      <!-- Detail Layanan Langsung -->
       <div class="service-options">
-        <div class="service-option digital">
-          <div class="option-title"><i class="bi bi-laptop me-2" style="color: var(--bps-accent);"></i>Detail Layanan Perpustakaan Digital:</div>
+        <div class="service-option">
+          <div class="option-title"><i class="bi bi-building me-2" style="color: #0056b3;"></i>Prosedur Kunjungan Langsung:</div>
           <ul class="option-list">
-            <li>Pengguna layanan membaca pustaka softcopy pada portal pst.bps.go.id</li>
-            <li>Pengguna layanan dapat memperoleih pustaka softcopy dengan cara mengisi form permintaan dan mengirim pustaka softcopy melalui portal pst.bps.go.id</li>
+            <li>Kunjungi kantor PST BPS secara langsung</li>
+            <li>Isi buku tamu dengan data pribadi Anda</li>
+            <li>Letakkan tas/barang berharga di loker yang disediakan</li>
+            <li>Pilih jenis pustaka yang ingin dibaca (tercetak atau digital)</li>
+            <li>Baca dan pelajari pustaka sesuai kebutuhan Anda</li>
+            <li>Jika ingin, gunakan alat pemindai untuk membuat salinan</li>
+            <li>Berikan penilaian/rating terhadap kualitas layanan</li>
+            <li>Selesaikan akses dan keluar dari layanan</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- LANGKAH AKHIR -->
-    <div class="sop-flowchart" style="margin-top: 40px;">
-      <div class="flowchart-title tercetak">
-        <i class="bi bi-arrow-right me-2"></i>Langkah Akhir - Selesai Akses Layanan
+    <!-- ============ LAYANAN ONLINE ============ -->
+    <div class="sop-flowchart">
+      <div class="flowchart-title online">
+        <i class="bi bi-laptop me-2"></i>Layanan 2: Akses Online via Portal
       </div>
 
       <div class="flowchart-visual">
+        <!-- Step 1 -->
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-globe"></i></div>
+          </div>
+          <div class="step-label">Akses Portal<br>pst.bps.go.id</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 2 -->
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-person-badge"></i></div>
+          </div>
+          <div class="step-label">Login/Registrasi<br>Akun Anda</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 3 -->
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-search"></i></div>
+          </div>
+          <div class="step-label">Cari/Search<br>Pustaka yang Diinginkan</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 4 -->
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+          </div>
+          <div class="step-label">Baca Pustaka<br>Softcopy</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
         <!-- Step 5 -->
         <div class="step-item">
           <div class="step-number">5</div>
           <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-star"></i></div>
+            <div class="step-icon"><i class="bi bi-cloud-download"></i></div>
           </div>
-          <div class="step-label">Berikan Rating<br>Kualitas Pelayanan</div>
+          <div class="step-label">Download Softcopy<br>(jika tersedia)</div>
         </div>
 
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
 
         <!-- Step 6 -->
-        <div class="step-item end-node">
+        <div class="step-item">
           <div class="step-number">6</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-earmark-text"></i></div>
+          </div>
+          <div class="step-label">Watermark Otomatis<br>pada Unduhan</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 7 -->
+        <div class="step-item">
+          <div class="step-number">7</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-star"></i></div>
+          </div>
+          <div class="step-label">Berikan Rating<br>Pelayanan</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 8 -->
+        <div class="step-item end-node">
+          <div class="step-number">8</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-check-circle"></i></div>
           </div>
-          <div class="step-label">Selesai Akses<br>Layanan Perpustakaan</div>
+          <div class="step-label">Selesai<br>Akses Layanan</div>
         </div>
       </div>
 
       <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 30px;">
-        <i class="bi bi-check-circle me-2"></i>LAYANAN SELESAI
+        <i class="bi bi-check-circle me-2"></i>SELESAI
+      </div>
+
+      <!-- Detail Layanan Online -->
+      <div class="service-options">
+        <div class="service-option online">
+          <div class="option-title"><i class="bi bi-laptop me-2" style="color: var(--bps-accent);"></i>Prosedur Layanan Online:</div>
+          <ul class="option-list">
+            <li>
+              Akses portal perpustakaan melalui pst.bps.go.id
+              <div class="sub-step">Buka website dan pilih menu perpustakaan</div>
+            </li>
+            <li>
+              Lakukan login atau registrasi akun
+              <div class="sub-step">Jika belum punya akun, daftar terlebih dahulu dengan email aktif</div>
+            </li>
+            <li>
+              Cari/search pustaka sesuai kebutuhan Anda
+              <div class="sub-step">Gunakan fitur pencarian dengan kata kunci atau browsing kategori</div>
+            </li>
+            <li>
+              Baca pustaka softcopy langsung di portal
+              <div class="sub-step">Akses dokumen dalam format digital</div>
+            </li>
+            <li>
+              Download pustaka softcopy untuk disimpan
+              <div class="sub-step">Tersedia untuk pustaka yang diizinkan untuk diunduh</div>
+            </li>
+            <li>
+              Berkas otomatis mendapatkan watermark (cap air)
+              <div class="sub-step">Watermark diterapkan untuk melindungi hak cipta dan identitas pembaca</div>
+            </li>
+            <li>
+              Berikan penilaian/rating kualitas pelayanan
+              <div class="sub-step">Setiap saran dan masukan sangat membantu kami</div>
+            </li>
+            <li>
+              Selesaikan akses layanan online
+              <div class="sub-step">Anda dapat mengakses kembali kapan saja 24/7</div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <!-- RINGKASAN TEKS LENGKAP -->
-    <hr style="margin: 30px 0; border-color: var(--bps-light);">
-    <h5 style="color: var(--bps-dark); font-weight: 700; margin-bottom: 15px;">Ringkasan Prosedur Lengkap</h5>
+    <!-- RINGKASAN PERBANDINGAN -->
+    <hr style="margin: 40px 0; border-color: var(--bps-light);">
+    <h5 style="color: var(--bps-dark); font-weight: 700; margin-bottom: 20px;">📊 Perbandingan Kedua Layanan</h5>
 
-    <strong>1. Pengguna layanan mengakses layanan perpustakaan dengan mengunjungi unit PST BPS</strong><br><br>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="padding: 20px; background: rgba(0, 91, 170, 0.05); border-radius: 8px; border-left: 4px solid #0056b3;">
+        <h6 style="color: #0056b3; font-weight: 700; margin-bottom: 15px;">
+          <i class="bi bi-building me-2"></i>Kunjungan Langsung
+        </h6>
+        <ul style="font-size: 0.9rem; list-style: none; padding: 0;">
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: #0056b3;"></i>Baca di tempat (tercetak/digital)</li>
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: #0056b3;"></i>Bisa scan dokumen sendiri</li>
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: #0056b3;"></i>Jam kerja: Sen-Jum 08:00-16:00</li>
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: #0056b3;"></i>Konsultasi langsung dengan petugas</li>
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: #0056b3;"></i>Gratis tanpa biaya</li>
+        </ul>
+      </div>
 
-    <strong>2. Pengguna layanan mengisi buku tamu</strong><br><br>
-
-    <strong>3. Pengguna layanan meletakkan tas pada loker</strong><br><br>
-
-    <strong>4. Pengguna layanan mengakses layanan perpustakaan berikut:</strong>
-    <div style="margin-top: 10px; margin-left: 20px;">
-      <strong>a. Layanan Perpustakaan Tercetak</strong>
-      <ol style="margin-top: 8px;">
-        <li>Pengguna layanan membaca pustaka hardcopy pada ruang layanan perpustakaan tercetak</li>
-        <li>Pengguna layanan dapat memanfaatkan alat pemindai secara mandiri</li>
-      </ol>
-
-      <strong style="margin-top: 15px;">b. Layanan Perpustakaan Digital</strong>
-      <ol style="margin-top: 8px;">
-        <li>Pengguna layanan membaca pustaka softcopy pada portal pst.bps.go.id</li>
-        <li>Pengguna layanan dapat memperoleih pustaka softcopy dengan cara mengisi form permintaan dan mengirim pustaka softcopy melalui portal pst.bps.go.id</li>
-      </ol>
+      <div style="padding: 20px; background: rgba(244, 167, 0, 0.05); border-radius: 8px; border-left: 4px solid var(--bps-accent);">
+        <h6 style="color: var(--bps-accent); font-weight: 700; margin-bottom: 15px;">
+          <i class="bi bi-laptop me-2"></i>Layanan Online
+        </h6>
+        <ul style="font-size: 0.9rem; list-style: none; padding: 0;">
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: var(--bps-accent);"></i>Akses 24/7 dari mana saja</li>
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: var(--bps-accent);"></i>Download dokumen lengkap</li>
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: var(--bps-accent);"></i>Watermark otomatis</li>
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: var(--bps-accent);"></i>Perlu registrasi akun</li>
+          <li style="margin-bottom: 10px;"><i class="bi bi-check-circle me-2" style="color: var(--bps-accent);"></i>Gratis tanpa biaya</li>
+        </ul>
+      </div>
     </div>
-
-    <strong style="margin-top: 20px;">5. Pengguna layanan memberikan penilaian/rating terhadap kualitas pelayanan perpustakaan dan publikasi</strong><br><br>
-
-    <strong>6. Pengguna layanan selesai mengakses layanan perpustakaan</strong>
   </div>
 
   <!-- JANGKA WAKTU -->
@@ -548,14 +628,16 @@
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
       <div style="padding: 15px; background: rgba(0, 91, 170, 0.05); border-radius: 8px;">
-        <strong style="color: var(--bps-blue);"><i class="bi bi-building me-2"></i>Kunjungan Langsung</strong>
-        <p style="margin: 10px 0 0 0; color: #333;">Waktu layanan: Senin - Jumat 08:00-16:00 WIT</p>
-        <p style="margin: 5px 0 0 0; color: #333;">Maksimal <strong>10 menit</strong> untuk persiapan</p>
+        <strong style="color: #0056b3;"><i class="bi bi-building me-2"></i>Kunjungan Langsung</strong>
+        <p style="margin: 10px 0 0 0; color: #333;">Waktu layanan: <strong>Senin - Jumat</strong></p>
+        <p style="margin: 5px 0 0 0; color: #333;">Jam: <strong>08:00 - 16:00 WIT</strong></p>
+        <p style="margin: 5px 0 0 0; color: #333;">Persiapan: <strong>Maksimal 10 menit</strong></p>
       </div>
       <div style="padding: 15px; background: rgba(244, 167, 0, 0.05); border-radius: 8px;">
-        <strong style="color: var(--bps-accent);"><i class="bi bi-globe me-2"></i>Layanan Online</strong>
-        <p style="margin: 10px 0 0 0; color: #333;">Aksesibel <strong>24/7</strong> melalui portal</p>
-        <p style="margin: 5px 0 0 0; color: #333;">Respons permintaan <strong>maksimal 3 hari kerja</strong></p>
+        <strong style="color: var(--bps-accent);"><i class="bi bi-laptop me-2"></i>Layanan Online</strong>
+        <p style="margin: 10px 0 0 0; color: #333;">Aksesibilitas: <strong>24/7 (Sepanjang waktu)</strong></p>
+        <p style="margin: 5px 0 0 0; color: #333;">Dari: <strong>Mana saja (online)</strong></p>
+        <p style="margin: 5px 0 0 0; color: #333;">Download: <strong>Instan</strong></p>
       </div>
     </div>
   </div>
@@ -567,7 +649,7 @@
       <p style="margin: 0; font-weight: 700; color: #2e7d32; font-size: 1.1rem;">
         <i class="bi bi-check-circle me-2"></i>Tidak Dipungut Biaya
       </p>
-      <p style="margin: 8px 0 0 0; color: #555; font-size: 0.9rem;">Semua layanan perpustakaan disediakan secara gratis untuk publik</p>
+      <p style="margin: 8px 0 0 0; color: #555; font-size: 0.9rem;">Semua layanan perpustakaan (kunjungan langsung maupun online) disediakan secara GRATIS untuk seluruh masyarakat</p>
     </div>
   </div>
 
@@ -576,10 +658,14 @@
     <h4 class="section-title">E. Produk Pelayanan</h4>
     <div style="padding: 15px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-blue);">
       <p style="margin: 0; color: var(--bps-dark);">
-        <strong><i class="bi bi-file-earmark-check me-2" style="color: var(--bps-accent);"></i>Jasa Layanan Perpustakaan</strong>
+        <strong><i class="bi bi-file-earmark-check me-2" style="color: var(--bps-accent);"></i>Jasa Layanan Perpustakaan Terpadu</strong>
       </p>
       <p style="margin: 10px 0 0 0; color: #666; font-size: 0.9rem;">
-        Layanan perpustakaan tercetak dan digital untuk akses informasi data, metadata, dan klasifikasi statistik dari BPS
+        ✓ Akses pustaka tercetak dan digital<br>
+        ✓ Download dokumen dengan watermark<br>
+        ✓ Pencarian informasi data statistik BPS<br>
+        ✓ Akses 24/7 melalui portal online<br>
+        ✓ Konsultasi dengan petugas (kunjungan langsung)
       </p>
     </div>
   </div>
