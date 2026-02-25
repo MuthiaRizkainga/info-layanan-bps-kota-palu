@@ -1,1 +1,595 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pelayanan Perpustakaan - BPS Kota Palu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+  <style>
+    :root {
+      --bps-blue: #005baa;
+      --bps-dark: #003f7f;
+      --bps-light: #e8f1fb;
+      --bps-accent: #f4a700;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f4f6f9;
+    }
+
+    .navbar { background-color: var(--bps-blue) !important; }
+
+    .hero-detail {
+      background: linear-gradient(135deg, var(--bps-dark), var(--bps-blue));
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-weight: 700;
+      color: var(--bps-dark);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    /* ===== FLOWCHART VISUAL STYLES ===== */
+    .sop-flowchart {
+      margin-top: 30px;
+    }
+
+    .flowchart-title {
+      font-weight: 700;
+      color: white;
+      font-size: 1.05rem;
+      margin-bottom: 25px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .flowchart-title.tercetak {
+      background: linear-gradient(135deg, var(--bps-blue), rgba(0, 91, 170, 0.7));
+    }
+
+    .flowchart-title.digital {
+      background: linear-gradient(135deg, var(--bps-accent), rgba(244, 167, 0, 0.7));
+    }
+
+    /* Flowchart Container */
+    .flowchart-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, rgba(0, 91, 170, 0.03), rgba(244, 167, 0, 0.03));
+      border-radius: 12px;
+    }
+
+    /* Step Item */
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      min-width: 130px;
+    }
+
+    .step-number {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background: var(--bps-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0, 91, 170, 0.3);
+    }
+
+    .step-icon-box {
+      width: 110px;
+      height: 110px;
+      background: white;
+      border: 2px solid var(--bps-blue);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 91, 170, 0.1);
+    }
+
+    .step-item:hover .step-icon-box {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 16px rgba(0, 91, 170, 0.2);
+      border-color: var(--bps-accent);
+    }
+
+    .step-icon {
+      font-size: 3.5rem;
+      color: var(--bps-blue);
+      line-height: 1;
+    }
+
+    .step-label {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--bps-dark);
+      line-height: 1.4;
+    }
+
+    /* Arrow between steps */
+    .step-arrow {
+      font-size: 2rem;
+      color: var(--bps-blue);
+      font-weight: bold;
+      animation: arrowBounce 1.5s infinite;
+      display: flex;
+      align-items: flex-end;
+      height: 130px;
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+    }
+
+    /* Decision node */
+    .step-item.decision .step-icon-box {
+      border-color: var(--bps-accent);
+      background: rgba(244, 167, 0, 0.05);
+    }
+
+    .step-item.decision .step-icon {
+      color: var(--bps-accent);
+    }
+
+    .decision-branch {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .decision-yes {
+      background: rgba(76, 175, 80, 0.2);
+      color: #2e7d32;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #4caf50;
+    }
+
+    .decision-no {
+      background: rgba(244, 167, 0, 0.2);
+      color: var(--bps-accent);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--bps-accent);
+    }
+
+    /* End node */
+    .step-item.end-node .step-icon-box {
+      border-color: #4caf50;
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    .step-item.end-node .step-icon {
+      color: #4caf50;
+    }
+
+    /* Sub-options untuk Layanan Perpustakaan */
+    .service-options {
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 2px solid var(--bps-light);
+    }
+
+    .service-option {
+      background: var(--bps-light);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--bps-blue);
+    }
+
+    .service-option.digital {
+      border-left-color: var(--bps-accent);
+    }
+
+    .option-title {
+      font-weight: 700;
+      color: var(--bps-dark);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .option-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    .option-list li {
+      color: #555;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .option-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--bps-blue);
+      font-weight: bold;
+    }
+
+    .service-option.digital .option-list li::before {
+      color: var(--bps-accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .flowchart-visual {
+        flex-direction: column;
+      }
+
+      .step-arrow {
+        transform: rotate(90deg);
+        height: auto;
+        width: 50px;
+      }
+
+      .step-icon-box {
+        width: 90px;
+        height: 90px;
+      }
+
+      .step-icon {
+        font-size: 2.5rem;
+      }
+
+      .step-label {
+        font-size: 0.8rem;
+      }
+    }
+
+    footer {
+      background-color: var(--bps-dark);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-arrow-left me-2"></i> Kembali
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-detail">
+  <div class="container">
+    <h1 class="fw-bold">Pelayanan Perpustakaan</h1>
+    <p>Layanan konsultasi data, metadata, dan klasifikasi statistik</p>
+  </div>
+</section>
+
+<div class="container py-5">
+
+  <!-- PERSYARATAN -->
+  <div class="section-box">
+    <h4 class="section-title">A. Persyaratan</h4>
+
+    <strong>1. Kunjungan Langsung</strong>
+    <ul>
+      <li>Pengguna layanan berkunjung ke unit Pelayanan Statistik Terpadu (PST) BPS</li>
+      <li>Pengguna layanan memiliki alamat email yang masih aktif</li>
+      <li>Pengguna layanan mengisi buku tamu</li>
+    </ul>
+
+    <strong>2. Online</strong>
+    <ul>
+      <li>Pengguna layanan memiliki alamat email yang masih aktif</li>
+      <li>Pengguna layanan memiliki akun pada portal pst.bps.go.id</li>
+    </ul>
+  </div>
+
+  <!-- SOP DENGAN VISUAL FLOWCHART -->
+  <div class="section-box">
+    <h4 class="section-title">B. SOP - Alur Pelayanan</h4>
+
+    <!-- LANGKAH AWAL -->
+    <div class="sop-flowchart">
+      <div class="flowchart-title tercetak">
+        <i class="bi bi-arrow-right me-2"></i>Langkah Awal - Akses Layanan Perpustakaan
+      </div>
+
+      <div class="flowchart-visual">
+        <!-- Step 1 -->
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-person-walking"></i></div>
+          </div>
+          <div class="step-label">Akses Layanan<br>Perpustakaan PST BPS</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 2 -->
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-book"></i></div>
+          </div>
+          <div class="step-label">Isi Buku Tamu</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 3 -->
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-safe"></i></div>
+          </div>
+          <div class="step-label">Letakkan Tas<br>di Loker</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 4 DECISION -->
+        <div class="step-item decision">
+          <div class="step-number">4</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-question-circle"></i></div>
+          </div>
+          <div class="step-label">Pilih Jenis<br>Layanan</div>
+          <div class="decision-branch">
+            <div class="decision-yes">Tercetak</div>
+            <div class="decision-no">Digital</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYANAN PERPUSTAKAAN TERCETAK -->
+    <div class="sop-flowchart">
+      <div class="flowchart-title tercetak">
+        <i class="bi bi-book-fill me-2"></i>Alur 1: Layanan Perpustakaan Tercetak
+      </div>
+
+      <div class="flowchart-visual">
+        <!-- Step 4a.1 -->
+        <div class="step-item">
+          <div class="step-number">4a.1</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-earmark-richtext"></i></div>
+          </div>
+          <div class="step-label">Baca Pustaka<br>Hardcopy di Ruang</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 4a.2 -->
+        <div class="step-item end-node">
+          <div class="step-number">4a.2</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-scanner"></i></div>
+          </div>
+          <div class="step-label">Gunakan Alat<br>Pemindai Mandiri</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 30px;">
+        <i class="bi bi-check-circle me-2"></i>SELESAI
+      </div>
+
+      <!-- Detail Layanan Tercetak -->
+      <div class="service-options">
+        <div class="service-option">
+          <div class="option-title"><i class="bi bi-book-fill me-2" style="color: var(--bps-blue);"></i>Detail Layanan Perpustakaan Tercetak:</div>
+          <ul class="option-list">
+            <li>Pengguna layanan membaca pustaka hardcopy pada ruang layanan perpustakaan tercetak</li>
+            <li>Pengguna layanan dapat memanfaatkan alat pemindai secara mandiri</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYANAN PERPUSTAKAAN DIGITAL -->
+    <div class="sop-flowchart">
+      <div class="flowchart-title digital">
+        <i class="bi bi-laptop me-2"></i>Alur 2: Layanan Perpustakaan Digital
+      </div>
+
+      <div class="flowchart-visual">
+        <!-- Step 4b.1 -->
+        <div class="step-item">
+          <div class="step-number">4b.1</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-cloud-arrow-down"></i></div>
+          </div>
+          <div class="step-label">Baca Pustaka<br>Softcopy di Portal</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 4b.2 -->
+        <div class="step-item end-node">
+          <div class="step-number">4b.2</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+          </div>
+          <div class="step-label">Minta Softcopy<br>via Form</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 30px;">
+        <i class="bi bi-check-circle me-2"></i>SELESAI
+      </div>
+
+      <!-- Detail Layanan Digital -->
+      <div class="service-options">
+        <div class="service-option digital">
+          <div class="option-title"><i class="bi bi-laptop me-2" style="color: var(--bps-accent);"></i>Detail Layanan Perpustakaan Digital:</div>
+          <ul class="option-list">
+            <li>Pengguna layanan membaca pustaka softcopy pada portal pst.bps.go.id</li>
+            <li>Pengguna layanan dapat memperoleih pustaka softcopy dengan cara mengisi form permintaan dan mengirim pustaka softcopy melalui portal pst.bps.go.id</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- LANGKAH AKHIR -->
+    <div class="sop-flowchart" style="margin-top: 40px;">
+      <div class="flowchart-title tercetak">
+        <i class="bi bi-arrow-right me-2"></i>Langkah Akhir - Selesai Akses Layanan
+      </div>
+
+      <div class="flowchart-visual">
+        <!-- Step 5 -->
+        <div class="step-item">
+          <div class="step-number">5</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-star"></i></div>
+          </div>
+          <div class="step-label">Berikan Rating<br>Kualitas Pelayanan</div>
+        </div>
+
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+
+        <!-- Step 6 -->
+        <div class="step-item end-node">
+          <div class="step-number">6</div>
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+          </div>
+          <div class="step-label">Selesai Akses<br>Layanan Perpustakaan</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 30px;">
+        <i class="bi bi-check-circle me-2"></i>LAYANAN SELESAI
+      </div>
+    </div>
+
+    <!-- RINGKASAN TEKS LENGKAP -->
+    <hr style="margin: 30px 0; border-color: var(--bps-light);">
+    <h5 style="color: var(--bps-dark); font-weight: 700; margin-bottom: 15px;">Ringkasan Prosedur Lengkap</h5>
+
+    <strong>1. Pengguna layanan mengakses layanan perpustakaan dengan mengunjungi unit PST BPS</strong><br><br>
+
+    <strong>2. Pengguna layanan mengisi buku tamu</strong><br><br>
+
+    <strong>3. Pengguna layanan meletakkan tas pada loker</strong><br><br>
+
+    <strong>4. Pengguna layanan mengakses layanan perpustakaan berikut:</strong>
+    <div style="margin-top: 10px; margin-left: 20px;">
+      <strong>a. Layanan Perpustakaan Tercetak</strong>
+      <ol style="margin-top: 8px;">
+        <li>Pengguna layanan membaca pustaka hardcopy pada ruang layanan perpustakaan tercetak</li>
+        <li>Pengguna layanan dapat memanfaatkan alat pemindai secara mandiri</li>
+      </ol>
+
+      <strong style="margin-top: 15px;">b. Layanan Perpustakaan Digital</strong>
+      <ol style="margin-top: 8px;">
+        <li>Pengguna layanan membaca pustaka softcopy pada portal pst.bps.go.id</li>
+        <li>Pengguna layanan dapat memperoleih pustaka softcopy dengan cara mengisi form permintaan dan mengirim pustaka softcopy melalui portal pst.bps.go.id</li>
+      </ol>
+    </div>
+
+    <strong style="margin-top: 20px;">5. Pengguna layanan memberikan penilaian/rating terhadap kualitas pelayanan perpustakaan dan publikasi</strong><br><br>
+
+    <strong>6. Pengguna layanan selesai mengakses layanan perpustakaan</strong>
+  </div>
+
+  <!-- JANGKA WAKTU -->
+  <div class="section-box">
+    <h4 class="section-title">C. Jangka Waktu Pelayanan</h4>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="padding: 15px; background: rgba(0, 91, 170, 0.05); border-radius: 8px;">
+        <strong style="color: var(--bps-blue);"><i class="bi bi-building me-2"></i>Kunjungan Langsung</strong>
+        <p style="margin: 10px 0 0 0; color: #333;">Waktu layanan: Senin - Jumat 08:00-16:00 WIT</p>
+        <p style="margin: 5px 0 0 0; color: #333;">Maksimal <strong>10 menit</strong> untuk persiapan</p>
+      </div>
+      <div style="padding: 15px; background: rgba(244, 167, 0, 0.05); border-radius: 8px;">
+        <strong style="color: var(--bps-accent);"><i class="bi bi-globe me-2"></i>Layanan Online</strong>
+        <p style="margin: 10px 0 0 0; color: #333;">Aksesibel <strong>24/7</strong> melalui portal</p>
+        <p style="margin: 5px 0 0 0; color: #333;">Respons permintaan <strong>maksimal 3 hari kerja</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIAYA -->
+  <div class="section-box">
+    <h4 class="section-title">D. Biaya / Tarif</h4>
+    <div style="padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), transparent); border-radius: 8px; border-left: 4px solid #4caf50;">
+      <p style="margin: 0; font-weight: 700; color: #2e7d32; font-size: 1.1rem;">
+        <i class="bi bi-check-circle me-2"></i>Tidak Dipungut Biaya
+      </p>
+      <p style="margin: 8px 0 0 0; color: #555; font-size: 0.9rem;">Semua layanan perpustakaan disediakan secara gratis untuk publik</p>
+    </div>
+  </div>
+
+  <!-- PRODUK -->
+  <div class="section-box">
+    <h4 class="section-title">E. Produk Pelayanan</h4>
+    <div style="padding: 15px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-blue);">
+      <p style="margin: 0; color: var(--bps-dark);">
+        <strong><i class="bi bi-file-earmark-check me-2" style="color: var(--bps-accent);"></i>Jasa Layanan Perpustakaan</strong>
+      </p>
+      <p style="margin: 10px 0 0 0; color: #666; font-size: 0.9rem;">
+        Layanan perpustakaan tercetak dan digital untuk akses informasi data, metadata, dan klasifikasi statistik dari BPS
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="py-4 text-center">
+  © 2026 BPS Kota Palu
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
