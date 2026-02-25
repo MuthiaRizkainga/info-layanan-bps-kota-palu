@@ -42,44 +42,175 @@
       font-weight: 700;
       color: var(--bps-dark);
       margin-bottom: 15px;
+      font-size: 1.3rem;
     }
 
-    /* FLOWCHART */
-    .flowchart {
-      margin-top: 30px;
+    ul {
+      padding-left: 18px;
+    }
+
+    /* FLOWCHART STYLES */
+    .flowchart-container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 30px 0;
+      background: linear-gradient(135deg, rgba(0, 91, 170, 0.02), rgba(244, 167, 0, 0.02));
+      border-radius: 12px;
+      padding: 40px 20px;
     }
 
-    .flow-start, .flow-end {
-      background: var(--bps-accent);
-      color: white;
-      padding: 10px 25px;
-      border-radius: 50px;
+    .flowchart-branch {
+      flex: 1;
+      min-width: 280px;
+      max-width: 380px;
+    }
+
+    .branch-title {
+      text-align: center;
       font-weight: 700;
-      margin-bottom: 20px;
+      color: var(--bps-dark);
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      padding: 12px;
+      background: var(--bps-light);
+      border-left: 4px solid var(--bps-accent);
+      border-radius: 6px;
     }
 
-    .flow-step {
+    .flowchart-step {
       background: white;
-      border-left: 5px solid var(--bps-blue);
-      padding: 15px 20px;
+      border: 2px solid var(--bps-blue);
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      width: 100%;
-      max-width: 500px;
-      font-weight: 600;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      padding: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 91, 170, 0.1);
     }
 
-    .flow-arrow {
-      font-size: 20px;
+    .flowchart-step:hover {
+      box-shadow: 0 6px 16px rgba(0, 91, 170, 0.2);
+      transform: translateY(-4px);
+      border-color: var(--bps-accent);
+    }
+
+    .flowchart-step.decision {
+      border-color: var(--bps-accent);
+      background: linear-gradient(135deg, rgba(244, 167, 0, 0.05), transparent);
+    }
+
+    .flowchart-step.decision::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px dashed var(--bps-accent);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    .step-icon {
+      font-size: 2.5rem;
       color: var(--bps-blue);
-      margin-bottom: 15px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .flowchart-step.decision .step-icon {
+      color: var(--bps-accent);
+    }
+
+    .step-number {
+      display: inline-block;
+      background: var(--bps-blue);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 28px;
+      position: absolute;
+      top: -14px;
+      right: 15px;
+    }
+
+    .step-text {
+      font-weight: 600;
+      color: var(--bps-dark);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .arrow {
+      text-align: center;
+      font-size: 1.5rem;
+      color: var(--bps-blue);
+      margin: -10px 0;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .decision-branch {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .decision-yes, .decision-no {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .decision-yes {
+      background: rgba(76, 175, 80, 0.1);
+      color: #2e7d32;
+      border: 1px solid #4caf50;
+    }
+
+    .decision-no {
+      background: rgba(244, 167, 0, 0.1);
+      color: var(--bps-accent);
+      border: 1px solid var(--bps-accent);
+    }
+
+    .flowchart-end {
+      background: linear-gradient(135deg, var(--bps-blue), var(--bps-dark));
+      color: white;
+      border: 2px solid var(--bps-dark);
+      margin-top: 25px;
+    }
+
+    .flowchart-end .step-icon {
+      color: white;
+    }
+
+    .flowchart-end .step-text {
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .flowchart-container {
+        gap: 30px;
+      }
+
+      .flowchart-step {
+        padding: 15px;
+      }
+
+      .step-icon {
+        font-size: 2rem;
+      }
     }
 
     footer {
@@ -91,6 +222,7 @@
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
   <div class="container">
     <a class="navbar-brand" href="index.html">
@@ -99,6 +231,7 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero-detail">
   <div class="container">
     <h1 class="fw-bold">Pelayanan Konsultasi Statistik</h1>
@@ -108,110 +241,233 @@
 
 <div class="container py-5">
 
-  <!-- SOP -->
+  <!-- PERSYARATAN -->
   <div class="section-box">
-    <h4 class="section-title">B. Standar Operasional Prosedur (SOP)</h4>
+    <h4 class="section-title">A. Persyaratan</h4>
 
-    <h6 class="fw-bold mt-4">1. Kunjungan Langsung</h6>
+    <strong>1. Kunjungan Langsung</strong>
+    <ul>
+      <li>Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</li>
+      <li>Memiliki alamat email aktif</li>
+      <li>Mengisi buku tamu</li>
+      <li>Mengajukan permintaan konsultasi statistik kepada petugas</li>
+    </ul>
 
-    <div class="flowchart">
+    <strong>2. Online</strong>
+    <ul>
+      <li>Memiliki akun pada portal pst.bps.go.id</li>
+      <li>Mengajukan permintaan konsultasi melalui portal pst.bps.go.id</li>
+    </ul>
+  </div>
 
-      <div class="flow-start">
-        <i class="bi bi-play-fill"></i> MULAI
+  <!-- SOP FLOWCHART SECTION -->
+  <div class="section-box">
+    <h4 class="section-title">B. SOP - Alur Pelayanan</h4>
+
+    <div class="flowchart-container">
+      <!-- LEFT BRANCH: KUNJUNGAN LANGSUNG -->
+      <div class="flowchart-branch">
+        <div class="branch-title">
+          <i class="bi bi-building me-2" style="color: var(--bps-accent);"></i>
+          Kunjungan Langsung
+        </div>
+
+        <div class="flowchart-step">
+          <div class="step-number">1</div>
+          <div class="step-icon"><i class="bi bi-building"></i></div>
+          <div class="step-text">Berkunjung ke Unit PST BPS</div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step">
+          <div class="step-number">2</div>
+          <div class="step-icon"><i class="bi bi-book"></i></div>
+          <div class="step-text">Mengisi Buku Tamu</div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step">
+          <div class="step-number">3</div>
+          <div class="step-icon"><i class="bi bi-ticket-perforated"></i></div>
+          <div class="step-text">Mengambil Nomor Antrian</div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step">
+          <div class="step-number">4</div>
+          <div class="step-icon"><i class="bi bi-hourglass-split"></i></div>
+          <div class="step-text">Menunggu Giliran<br><small style="font-weight: 400; color: #666;">Maks. 10 menit</small></div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step">
+          <div class="step-number">5</div>
+          <div class="step-icon"><i class="bi bi-chat-dots"></i></div>
+          <div class="step-text">Konsultasi dengan Petugas</div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step flowchart-end">
+          <div class="step-icon"><i class="bi bi-file-earmark-check"></i></div>
+          <div class="step-text">Menerima Informasi Statistik</div>
+        </div>
       </div>
 
-      <div class="flow-step">
-        <i class="bi bi-building"></i>
-        Mengunjungi Unit Pelayanan Terpadu Statistik (PST)
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
+      <!-- RIGHT BRANCH: ONLINE -->
+      <div class="flowchart-branch">
+        <div class="branch-title">
+          <i class="bi bi-globe me-2" style="color: var(--bps-accent);"></i>
+          Layanan Online
+        </div>
 
-      <div class="flow-step">
-        <i class="bi bi-pencil-square"></i>
-        Mengisi Buku Tamu
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
+        <div class="flowchart-step">
+          <div class="step-number">1</div>
+          <div class="step-icon"><i class="bi bi-globe"></i></div>
+          <div class="step-text">Akses Portal<br><small style="font-weight: 400; color: #666;">pst.bps.go.id</small></div>
+        </div>
 
-      <div class="flow-step">
-        <i class="bi bi-ticket-perforated"></i>
-        Mengambil Nomor Antrian
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
 
-      <div class="flow-step">
-        <i class="bi bi-hourglass-split"></i>
-        Menunggu Sesuai Nomor Antrian
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
+        <div class="flowchart-step">
+          <div class="step-number">2</div>
+          <div class="step-icon"><i class="bi bi-search"></i></div>
+          <div class="step-text">Cari Informasi yang Dibutuhkan</div>
+        </div>
 
-      <div class="flow-step">
-        <i class="bi bi-chat-dots"></i>
-        Menyampaikan Konsultasi kepada Petugas
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
 
-      <div class="flow-step">
-        <i class="bi bi-graph-up"></i>
-        Petugas Memberikan Informasi Statistik
-      </div>
+        <div class="flowchart-step decision">
+          <div class="step-number">3</div>
+          <div class="step-icon"><i class="bi bi-question-circle"></i></div>
+          <div class="step-text">Informasi Ditemukan?</div>
+          <div class="decision-branch">
+            <div class="decision-yes">✓ Ya</div>
+            <div class="decision-no">✗ Tidak</div>
+          </div>
+        </div>
 
-      <div class="flow-end mt-3">
-        <i class="bi bi-check-circle-fill"></i> SELESAI
-      </div>
+        <div style="text-align: center; color: var(--bps-accent); font-weight: 600; font-size: 0.85rem; margin: 10px 0;">
+          ↓ Jika Tidak
+        </div>
 
+        <div class="flowchart-step">
+          <div class="step-number">4</div>
+          <div class="step-icon"><i class="bi bi-file-text"></i></div>
+          <div class="step-text">Buat Transaksi Konsultasi</div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step">
+          <div class="step-number">5</div>
+          <div class="step-icon"><i class="bi bi-send"></i></div>
+          <div class="step-text">Ajukan Konsultasi<br><small style="font-weight: 400; color: #666;">Maks. 3 hari kerja</small></div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step">
+          <div class="step-number">6</div>
+          <div class="step-icon"><i class="bi bi-chat-left-text"></i></div>
+          <div class="step-text">Petugas Memberikan Informasi</div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step">
+          <div class="step-number">7</div>
+          <div class="step-icon"><i class="bi bi-star"></i></div>
+          <div class="step-text">Berikan Rating Pelayanan</div>
+        </div>
+
+        <div class="arrow"><i class="bi bi-arrow-down"></i></div>
+
+        <div class="flowchart-step flowchart-end">
+          <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+          <div class="step-text">Konsultasi Selesai</div>
+        </div>
+      </div>
     </div>
 
-    <hr class="my-5">
+    <!-- SOP TEXT DETAILS -->
+    <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid var(--bps-light);">
+      <h5 style="color: var(--bps-dark); font-weight: 700; margin-bottom: 20px;">Detail Prosedur</h5>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div style="padding: 20px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-blue);">
+          <h6 style="color: var(--bps-dark); font-weight: 700; margin-bottom: 12px;">
+            <i class="bi bi-building me-2" style="color: var(--bps-blue);"></i>Kunjungan Langsung
+          </h6>
+          <ul style="font-size: 0.9rem; margin-bottom: 0;">
+            <li>Datang langsung ke kantor PST BPS</li>
+            <li>Isi buku tamu dengan lengkap</li>
+            <li>Ambil nomor antrian</li>
+            <li>Tunggu sesuai urutan antrian (maks 10 menit)</li>
+            <li>Sampaikan kebutuhan konsultasi</li>
+            <li>Terima informasi dari petugas</li>
+          </ul>
+        </div>
 
-    <h6 class="fw-bold">2. Online</h6>
-
-    <div class="flowchart">
-
-      <div class="flow-start">
-        <i class="bi bi-play-fill"></i> MULAI
+        <div style="padding: 20px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-accent);">
+          <h6 style="color: var(--bps-dark); font-weight: 700; margin-bottom: 12px;">
+            <i class="bi bi-globe me-2" style="color: var(--bps-accent);"></i>Layanan Online
+          </h6>
+          <ul style="font-size: 0.9rem; margin-bottom: 0;">
+            <li>Masuk ke portal pst.bps.go.id</li>
+            <li>Cari informasi yang diinginkan</li>
+            <li>Jika tidak ada, buat konsultasi baru</li>
+            <li>Isi formulir konsultasi lengkap</li>
+            <li>Tunggu respons (maks 3 hari kerja)</li>
+            <li>Berikan rating untuk layanan</li>
+          </ul>
+        </div>
       </div>
-
-      <div class="flow-step">
-        <i class="bi bi-globe"></i>
-        Mengakses Portal pst.bps.go.id
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
-
-      <div class="flow-step">
-        <i class="bi bi-search"></i>
-        Mencari Informasi yang Dibutuhkan
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
-
-      <div class="flow-step">
-        <i class="bi bi-file-earmark-plus"></i>
-        Jika Tidak Ditemukan → Membuat Transaksi Konsultasi
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
-
-      <div class="flow-step">
-        <i class="bi bi-send"></i>
-        Mengajukan Konsultasi
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
-
-      <div class="flow-step">
-        <i class="bi bi-person-check"></i>
-        Petugas Memberikan Informasi
-      </div>
-      <div class="flow-arrow"><i class="bi bi-arrow-down"></i></div>
-
-      <div class="flow-step">
-        <i class="bi bi-star"></i>
-        Memberikan Rating Pelayanan
-      </div>
-
-      <div class="flow-end mt-3">
-        <i class="bi bi-check-circle-fill"></i> SELESAI
-      </div>
-
     </div>
+  </div>
 
+  <!-- JANGKA WAKTU -->
+  <div class="section-box">
+    <h4 class="section-title">C. Jangka Waktu Pelayanan</h4>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="padding: 15px; background: rgba(0, 91, 170, 0.05); border-radius: 8px;">
+        <strong style="color: var(--bps-blue);"><i class="bi bi-building me-2"></i>Kunjungan Langsung</strong>
+        <p style="margin: 10px 0 0 0; color: #333;">Maksimal <strong>10 menit</strong> setelah antrian sebelumnya selesai</p>
+      </div>
+      <div style="padding: 15px; background: rgba(244, 167, 0, 0.05); border-radius: 8px;">
+        <strong style="color: var(--bps-accent);"><i class="bi bi-globe me-2"></i>Layanan Online</strong>
+        <p style="margin: 10px 0 0 0; color: #333;">Maksimal <strong>3 hari kerja</strong> (otomatis tertutup jika tidak ada respons)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIAYA -->
+  <div class="section-box">
+    <h4 class="section-title">D. Biaya / Tarif</h4>
+    <div style="padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), transparent); border-radius: 8px; border-left: 4px solid #4caf50;">
+      <p style="margin: 0; font-weight: 700; color: #2e7d32; font-size: 1.1rem;">
+        <i class="bi bi-check-circle me-2"></i>Tidak Dipungut Biaya
+      </p>
+      <p style="margin: 8px 0 0 0; color: #555; font-size: 0.9rem;">Semua layanan konsultasi statistik disediakan secara gratis untuk publik</p>
+    </div>
+  </div>
+
+  <!-- PRODUK -->
+  <div class="section-box">
+    <h4 class="section-title">E. Produk Pelayanan</h4>
+    <div style="padding: 15px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-blue);">
+      <p style="margin: 0; color: var(--bps-dark);">
+        <strong><i class="bi bi-file-earmark-check me-2" style="color: var(--bps-accent);"></i>Jasa Konsultasi Statistik</strong>
+      </p>
+      <p style="margin: 10px 0 0 0; color: #666; font-size: 0.9rem;">
+        Konsultasi informasi data, metadata, dan klasifikasi statistik dari berbagai sumber data resmi BPS
+      </p>
+    </div>
   </div>
 
 </div>
