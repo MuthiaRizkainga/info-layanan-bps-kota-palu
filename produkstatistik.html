@@ -1,1 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pelayanan Produk Statistik Berbayar - BPS Kota Palu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+  <style>
+    :root {
+      --bps-blue: #005baa;
+      --bps-dark: #003f7f;
+      --bps-light: #e8f1fb;
+      --bps-accent: #f4a700;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f4f6f9;
+    }
+
+    .navbar { background-color: var(--bps-blue) !important; }
+
+    .hero-detail {
+      background: linear-gradient(135deg, var(--bps-dark), var(--bps-blue));
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-weight: 700;
+      color: var(--bps-dark);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    /* ===== FLOWCHART VISUAL STYLES ===== */
+    .sop-flowchart {
+      margin-top: 30px;
+    }
+
+    .flowchart-title {
+      font-weight: 700;
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .flowchart-title.langsung {
+      background: linear-gradient(135deg, #0056b3, #003f7f);
+    }
+
+    .flowchart-title.online {
+      background: linear-gradient(135deg, var(--bps-accent), #ff9800);
+    }
+
+    /* Flowchart Container */
+    .flowchart-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, rgba(0, 91, 170, 0.03), rgba(244, 167, 0, 0.03));
+      border-radius: 12px;
+    }
+
+    /* Step Item */
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      min-width: 130px;
+    }
+
+    .step-icon-box {
+      width: 110px;
+      height: 110px;
+      background: white;
+      border: 2px solid var(--bps-blue);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 91, 170, 0.1);
+    }
+
+    .flowchart-title.online ~ .flowchart-visual .step-icon-box {
+      border-color: var(--bps-accent);
+    }
+
+    .step-item:hover .step-icon-box {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 16px rgba(0, 91, 170, 0.2);
+      border-color: var(--bps-accent);
+    }
+
+    .step-icon {
+      font-size: 3.5rem;
+      color: var(--bps-blue);
+      line-height: 1;
+    }
+
+    .flowchart-title.online ~ .flowchart-visual .step-icon {
+      color: var(--bps-accent);
+    }
+
+    .step-label {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--bps-dark);
+      line-height: 1.4;
+    }
+
+    /* Arrow between steps */
+    .step-arrow {
+      font-size: 2rem;
+      color: var(--bps-blue);
+      font-weight: bold;
+      animation: arrowBounce 1.5s infinite;
+      display: flex;
+      align-items: flex-end;
+      height: 130px;
+    }
+
+    .flowchart-title.online ~ .flowchart-visual .step-arrow {
+      color: var(--bps-accent);
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+    }
+
+    /* End node */
+    .step-item.end-node .step-icon-box {
+      border-color: #4caf50;
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    .step-item.end-node .step-icon {
+      color: #4caf50;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .flowchart-visual {
+        flex-direction: column;
+      }
+
+      .step-arrow {
+        transform: rotate(90deg);
+        height: auto;
+        width: 50px;
+      }
+
+      .step-icon-box {
+        width: 90px;
+        height: 90px;
+      }
+
+      .step-icon {
+        font-size: 2.5rem;
+      }
+
+      .step-label {
+        font-size: 0.8rem;
+      }
+    }
+
+    footer {
+      background-color: var(--bps-dark);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-arrow-left me-2"></i> Kembali
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-detail">
+  <div class="container">
+    <h1 class="fw-bold">Pelayanan Produk Statistik Berbayar</h1>
+    <p>Layanan penjualan produk statistik (publikasi elektronik, data mikro, dan peta digital)</p>
+  </div>
+</section>
+
+<div class="container py-5">
+
+  <!-- PERSYARATAN -->
+  <div class="section-box">
+    <h4 class="section-title">Persyaratan</h4>
+
+    <strong>Layanan dengan Kunjungan Langsung</strong>
+    <ul>
+      <li>Pengguna layanan berkunjung ke Unit pelayanan statistik terpadu (PST) BPS</li>
+      <li>Pengguna layanan memiliki alamat email yang masih aktif</li>
+      <li>Pengguna layanan mengisi buku tamu</li>
+      <li>Pengguna layanan mengajukan permintaan layanan penjualan produk statistik (Publikasi elektronik, data mikro dan/atau peta digital wilayah kerja statistik) kepada petugas</li>
+      <li>Pengguna layanan menyetujui syarat penjualan produk statistik yaitu format, biaya dan media elektronik sesuai dengan perkembangan teknologi informasi</li>
+      <li>Khusus penjualan data mikro dan/atau peta digital wilayah kerja statistik (wilkerstat), pengguna layanan menyetujui dan menyerahkan abstraksi pengguna data dan surat perjanjian penggunaan data/SPPD</li>
+    </ul>
+
+    <strong>Layanan dengan Cara Online</strong>
+    <ul>
+      <li>Pengguna layanan memiliki akun pada portal pst.bps.go.id</li>
+      <li>Pengguna layanan memiliki NPWP yang masih aktif bagi pengguna layanan dengan segmentasi swasta</li>
+      <li>Pengguna layanan mengajukan permintaan layanan penjualan produk statistik (Publikasi elektronik, data mikro dan/atau peta digital wilkerstat) melalui portal pst.bps.go.id</li>
+      <li>Pengguna layanan menyetujui surat penjualan produk statistik yaitu format, biaya, dan media elektronik sesuai dengan perkembangan teknologi informasi</li>
+      <li>Khusus penjualan data mikro dan/atau peta digital wilkerstat, pengguna layanan menyetujui dan menyerahkan abstraksi penggunaan data dan surat perjanjian penggunaan DATA/SPPD</li>
+    </ul>
+  </div>
+
+  <!-- SOP DENGAN VISUAL FLOWCHART -->
+  <div class="section-box">
+    <h4 class="section-title">SOP</h4>
+
+    <!-- ============ LAYANAN KUNJUNGAN LANGSUNG ============ -->
+    <div class="sop-flowchart">
+      <div class="flowchart-title langsung">
+        <i class="bi bi-building me-2"></i>Layanan dengan Kunjungan Langsung
+      </div>
+
+      <!-- LANGKAH AWAL -->
+      <div style="text-align: center; font-weight: 700; color: var(--bps-dark); margin-bottom: 20px; font-size: 0.95rem;">Langkah Awal</div>
+      <div class="flowchart-visual">
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-person-walking"></i></div>
+          </div>
+          <div class="step-label">Berkunjung ke<br>PST BPS</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-book"></i></div>
+          </div>
+          <div class="step-label">Isi Buku<br>Tamu</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-ticket-perforated"></i></div>
+          </div>
+          <div class="step-label">Ambil Nomor<br>Antrian</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-hourglass-split"></i></div>
+          </div>
+          <div class="step-label">Tunggu Giliran<br>(Maks 10 min)</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-chat-dots"></i></div>
+          </div>
+          <div class="step-label">Ajukan Permintaan<br>Produk</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-earmark-text"></i></div>
+          </div>
+          <div class="step-label">Petugas Sampaikan<br>Ketentuan & Tarif</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+          </div>
+          <div class="step-label">Setujui Ketentuan<br>& Dokumen</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-search"></i></div>
+          </div>
+          <div class="step-label">Petugas Periksa<br>Kelengkapan Dokumen</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-receipt"></i></div>
+          </div>
+          <div class="step-label">Petugas Buat<br>Invoice</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-eye"></i></div>
+          </div>
+          <div class="step-label">Pengguna Cek<br>Invoice & Data</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-package"></i></div>
+          </div>
+          <div class="step-label">Petugas Siapkan<br>Produk</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-credit-card"></i></div>
+          </div>
+          <div class="step-label">Pengguna Bayar<br>via Kode Billing</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-pen"></i></div>
+          </div>
+          <div class="step-label">Pengguna<br>Tandatangani SPPD</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-check"></i></div>
+          </div>
+          <div class="step-label">Bendahara Buat<br>Kuitansi</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-cloud-download"></i></div>
+          </div>
+          <div class="step-label">Pengguna Unduh<br>Produk</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-check"></i></div>
+          </div>
+          <div class="step-label">Pengguna Cek<br>Kuitansi & Produk</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-tools"></i></div>
+          </div>
+          <div class="step-label">Petugas Tindaklanjuti<br>Perbaikan</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-star"></i></div>
+          </div>
+          <div class="step-label">Pengguna Beri<br>Rating</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item end-node">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+          </div>
+          <div class="step-label">Selesai<br>Layanan</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 30px;">
+        <i class="bi bi-check-circle me-2"></i>SELESAI
+      </div>
+
+      <!-- Detail Kunjungan Langsung -->
+      <div style="margin-top: 25px; padding: 20px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-blue);">
+        <strong style="color: var(--bps-dark); display: block; margin-bottom: 12px;">Detail Prosedur Kunjungan Langsung:</strong>
+        <ol style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
+          <li>Pengguna layanan mengakses layanan penjualan produk statistik dengan mengunjungi unit PST BPS</li>
+          <li>Pengguna layanan mengisi buku tamu</li>
+          <li>Pengguna layanan mengambil nomor antrian</li>
+          <li>Pengguna layanan menunggu waktu dilayani sesuai nomor antrian</li>
+          <li>Pengguna layanan menyampaikan permintaan layanan penjualan produk statistik kepada petugas</li>
+          <li>Petugas menyampaikan ketentuan tentang jenis dan tarif atas jenis penerimaan negara bukan pajak (PNBP) dan/atau dokumen yang harus dipenuhi berkaitan dengan permintaan pengguna layanan</li>
+          <li>Pengguna layanan menyetujui ketentuan PNBP dan/atau memberikan dokumen yang harus dipenuhi berkaitan dengan permintaannya</li>
+          <li>Petugas memeriksa kelengkapan dan kesesuaian dokumen yang diberikan dengan permintaan pengguna layanan</li>
+          <li>Petugas membuat dan memberikan invoice dan/atau contoh data untuk data mikro serta dokumen perjanjian penggunaan data mikro dan/atau peta digital wilkerstat kepada pengguna layanan</li>
+          <li>Pengguna layanan melakukan pengecekan terhadap invoice, contoh data untuk data mikro dan dokumen perjanjian</li>
+          <li>Petugas menyiapkan produk statistik yang diminta pengguna layanan</li>
+          <li>Pengguna layanan melakukan pembayaran menggunakan kode billing sesuai invoice</li>
+          <li>Khusus layanan penjualan data mikro dan/atau peta digital wilkerstat, pengguna menandatangani dan menyerahkan dokumen perjanjian penggunaan data kepada petugas</li>
+          <li>Bendahara membuat dan memberikan kuitansi pembelian produk statistik kepada pengguna layanan</li>
+          <li>Pengguna layanan mengunduh produk statistik melalui portal pst.bps.go.id</li>
+          <li>Pengguna layanan melakukan pengecekan terhadap kuitansi dan produk statistik yang diterima, jika terdapat ketidaksesuaian maka dapat mengajukan permintaan perbaikan kepada petugas</li>
+          <li>Petugas memeriksa dan menindaklanjuti permintaan perbaikan serta memberikan hasil pemeriksaan/perbaikan kepada pengguna layanan</li>
+          <li>Pengguna layanan selesai mengakses layanan penjualan produk statistik dan memberikan penilaian/rating terhadap kualitas pelayanan penjualan produk statistik</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ============ LAYANAN ONLINE ============ -->
+    <div class="sop-flowchart">
+      <div class="flowchart-title online">
+        <i class="bi bi-laptop me-2"></i>Layanan dengan Cara Online
+      </div>
+
+      <div class="flowchart-visual">
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-globe"></i></div>
+          </div>
+          <div class="step-label">Akses Portal<br>pst.bps.go.id</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-earmark-text"></i></div>
+          </div>
+          <div class="step-label">Akses Ketentuan<br>Jenis & Tarif</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+          </div>
+          <div class="step-label">Pilih Produk<br>Statistik</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-pencil-square"></i></div>
+          </div>
+          <div class="step-label">Lengkapi<br>Formulir Permintaan</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-pdf"></i></div>
+          </div>
+          <div class="step-label">Isi Abstraksi<br>& SPPD</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-search"></i></div>
+          </div>
+          <div class="step-label">Petugas Verifikasi<br>Data</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-package"></i></div>
+          </div>
+          <div class="step-label">Petugas Siapkan<br>Produk</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-receipt"></i></div>
+          </div>
+          <div class="step-label">Petugas Buat<br>Invoice</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-eye"></i></div>
+          </div>
+          <div class="step-label">Pengguna Cek<br>Invoice & Data</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-tools"></i></div>
+          </div>
+          <div class="step-label">Petugas Tindaklanjuti<br>Perbaikan</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-credit-card"></i></div>
+          </div>
+          <div class="step-label">Pengguna Bayar<br>(Billing/Transfer)</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-pen"></i></div>
+          </div>
+          <div class="step-label">Pengguna Tandatangani<br>& Unggah SPPD</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-check"></i></div>
+          </div>
+          <div class="step-label">Bendahara Verifikasi<br>Pembayaran</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-file-check"></i></div>
+          </div>
+          <div class="step-label">Bendahara Kirim<br>Kuitansi</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-cloud-download"></i></div>
+          </div>
+          <div class="step-label">Petugas Kirim<br>Produk</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-check"></i></div>
+          </div>
+          <div class="step-label">Pengguna Cek<br>Kuitansi & Produk</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-tools"></i></div>
+          </div>
+          <div class="step-label">Petugas Tindaklanjuti<br>Perbaikan</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-star"></i></div>
+          </div>
+          <div class="step-label">Pengguna Beri<br>Rating</div>
+        </div>
+        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
+        <div class="step-item end-node">
+          <div class="step-icon-box">
+            <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+          </div>
+          <div class="step-label">Selesai<br>Layanan</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 30px;">
+        <i class="bi bi-check-circle me-2"></i>SELESAI
+      </div>
+
+      <!-- Detail Online -->
+      <div style="margin-top: 25px; padding: 20px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-accent);">
+        <strong style="color: var(--bps-dark); display: block; margin-bottom: 12px;">Detail Prosedur Layanan Online:</strong>
+        <ol style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
+          <li>Pengguna layanan mengakses layanan penjualan produk statistik melalui portal pst.bps.go.id</li>
+          <li>Pengguna layanan mengakses ketentuan tentang jenis dan tarif atas jenis penerimaan negara bukan pajak (PNBP) data/atau dokumen yang harus dipenuhi berkaitan dengan permintaan penggunaan layanan</li>
+          <li>Pengguna layanan memilih produk statistik yang akan diminta</li>
+          <li>Pengguna layanan melengkapi formulir permintaan yang harus dipenuhi berkaitan dengan jenis produk</li>
+          <li>Khusus layanan penjualan data mikro dan/atau peta digital wilkerstat, pengguna layanan mengisi abstraksi Pengguna data dan surat perjanjian pengguna data</li>
+          <li>Khusus layanan penjualan data mikro dan/atau peta digital wilkerstat, petugas memverifikasi kesesuaian isian abstraksi dengan permintaan pengguna layanan</li>
+          <li>Petugas menyiapkan produk statistik yang dipilih pengguna layanan</li>
+          <li>Petugas membuat dan mengirimkan invoice dan/atau peta digital wilkerstat kepada pengguna layanan</li>
+          <li>Pengguna layanan melakukan pengecekan terhadap: Invoice, Contoh data dan dokumen perjanjian penggunaan data yang diterima untuk layanan penjualan data mikro, Dokumen perjanjian penggunaan data yang diterima untuk layanan penjualan data mikro, Jika terdapat ketidaksesuaian maka dapat mengajukan permintaan perbaikan</li>
+          <li>Petugas memeriksa dan menindaklanjuti permintaan perbaikan serta memberikan hasil pemeriksaan/perbaikan kepada pengguna layanan</li>
+          <li>Pengguna layanan melakukan pembayaran sesuai invoice melalui: Kode billing bila berdomisil di dalam negeri, Transfer via bank ke rekening bendahara penerimaan BPS, kemudian mengirimkan bukti pembayaran melalui portal pst.bps.go.id bila berdomisili di luar negeri</li>
+          <li>Pengguna layanan menandatangani kemudian: Mengunggah dokumen perjanjian penggunaan data melalui portal pst.bps.go.id bila menggunakan dokumen elektronik, Mengirimkan dokumen perjanjian penggunaan data ke alamat: direktur Diseminasi Statistik, Badan pusat Statistik JL.Dr.Sutomo No.6-8 Jakarta 10710, bila menggunakan dokumen tercetak</li>
+          <li>Bendahara melakukan verifikasi bukti pembayaran yang diterima dari pengguna layanan berdomisili di luar negeri</li>
+          <li>Bendahara membuat dan mengirimkan kuitansi pembelian produk statistik kepada pengguna layanan melalui portal pst.bps.go.id</li>
+          <li>Petugas mengirimkan produk statistik kepada pengguna layanan melalui portal pst.bps.go.id</li>
+          <li>Pengguna layanan melakukan pengecekan terhadap kuitansi dan produk statistik yang diterima, jika terdapat ketidaksesuaian maka dapat mengajukan permintaan perbaikan melalui portal pst.bps.go.id</li>
+          <li>Petugas memeriksa dan menindaklanjuti permintaan perbaikan serta mengirimkan hasil pemeriksaan/perbaikan kepada pengguna layanan</li>
+          <li>Pengguna layanan selesai mengakses layanan dan memberikan penilaian/rating terhadap kualitas pelayanan penjualan produk statistik</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- JANGKA WAKTU PELAYANAN -->
+  <div class="section-box">
+    <h4 class="section-title">Jangka Waktu Pelayanan</h4>
+
+    <strong>Layanan dengan Kunjungan Langsung</strong>
+    <ul>
+      <li>Pengguna layanan akan dilayani maksimal 10 (sepuluh) menit sejak pengguna layanan pada antrian sebelumnya selesai</li>
+    </ul>
+
+    <strong>Layanan dengan Cara Online</strong>
+    <ul>
+      <li>Pengguna layanan akan dilayani maksimal 10 (sepuluh) hari kerja setelah permintaan jelas dan persyaratan pelayanan lengkap</li>
+    </ul>
+  </div>
+
+  <!-- BIAYA -->
+  <div class="section-box">
+    <h4 class="section-title">Biaya/Tarif</h4>
+    <div style="padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), transparent); border-radius: 8px; border-left: 4px solid #4caf50;">
+      <p style="margin: 0; font-weight: 700; color: #2e7d32; font-size: 1.1rem;">
+        <i class="bi bi-info-circle me-2"></i>Berbayar
+      </p>
+      <p style="margin: 8px 0 0 0; color: #555; font-size: 0.9rem;">Sesuai Peraturan Pemerintah Nomor 13 Tahun 2024 tentang jenis dan tarif atas jenis penerimaan negara bukan pajak yang berlaku pada Badan Pusat Statistik</p>
+    </div>
+  </div>
+
+  <!-- PRODUK PELAYANAN -->
+  <div class="section-box">
+    <h4 class="section-title">Produk Pelayanan</h4>
+    
+    <strong>Layanan dengan Cara Kunjungan Langsung</strong>
+    <ul>
+      <li>Publikasi elektronik</li>
+      <li>Data mikro lengkap/fullset</li>
+      <li>Peta digital wilkerstat</li>
+    </ul>
+
+    <strong>Layanan dengan Cara Online</strong>
+    <ul>
+      <li>Publikasi elektronik</li>
+      <li>Data mikro lengkap/fullset atau sebagian/sesuai variable dan/atau wilayah yang dipilih</li>
+      <li>Peta digital wilkerstat</li>
+    </ul>
+  </div>
+
+  <!-- CATATAN -->
+  <div class="section-box" style="background: rgba(255, 193, 7, 0.05); border-left: 4px solid #FFC107;">
+    <h4 class="section-title" style="color: #F57F17;">Catatan Penting</h4>
+    <ul style="font-size: 0.9rem;">
+      <li>Invoice berlaku sampai dengan 1 bulan setelah dibuat</li>
+      <li>Biaya pengiriman hardcopy kuitansi dan publikasi tercetak ditanggung oleh pengguna layanan, kecuali untuk pengiriman perbaikan</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer class="py-4 text-center">
+  © 2026 BPS Kota Palu
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
