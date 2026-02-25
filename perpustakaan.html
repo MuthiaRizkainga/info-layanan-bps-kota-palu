@@ -190,73 +190,6 @@
       color: #4caf50;
     }
 
-    /* Sub-options untuk Layanan Perpustakaan */
-    .service-options {
-      margin-top: 25px;
-      padding-top: 25px;
-      border-top: 2px solid var(--bps-light);
-    }
-
-    .service-option {
-      background: var(--bps-light);
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border-left: 4px solid var(--bps-blue);
-    }
-
-    .service-option.online {
-      border-left-color: var(--bps-accent);
-    }
-
-    .option-title {
-      font-weight: 700;
-      color: var(--bps-dark);
-      margin-bottom: 12px;
-      font-size: 0.95rem;
-    }
-
-    .option-list {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      font-size: 0.85rem;
-      line-height: 1.8;
-    }
-
-    .option-list li {
-      color: #555;
-      margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .option-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--bps-blue);
-      font-weight: bold;
-    }
-
-    .service-option.online .option-list li::before {
-      color: var(--bps-accent);
-    }
-
-    .sub-step {
-      background: white;
-      padding: 12px 16px;
-      border-radius: 6px;
-      margin-top: 8px;
-      border-left: 3px solid var(--bps-blue);
-      font-size: 0.85rem;
-      color: #555;
-    }
-
-    .service-option.online .sub-step {
-      border-left-color: var(--bps-accent);
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
       .flowchart-visual {
@@ -336,7 +269,7 @@
     <!-- ============ LAYANAN KUNJUNGAN LANGSUNG ============ -->
     <div class="sop-flowchart">
       <div class="flowchart-title langsung">
-        <i class="bi bi-building me-2"></i>Layanan 1: Kunjungan Langsung
+        <i class="bi bi-building me-2"></i>1) Layanan dengan Kunjungan Langsung
       </div>
 
       <div class="flowchart-visual">
@@ -431,43 +364,38 @@
         <i class="bi bi-check-circle me-2"></i>SELESAI
       </div>
 
-      <!-- Detail Layanan Langsung -->
-      <div class="service-options">
-        <div class="service-option">
-          <div class="option-title"><i class="bi bi-building me-2" style="color: #0056b3;"></i>1. Layanan dengan Kunjungan Langsung:</div>
-          <ol style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
-            <li>Pengguna layanan mengakses layanan perpustakaan dengan mengunjungi unit PST BPS</li>
-            <li>Pengguna layanan mengisi buku tamu</li>
-            <li>Pengguna layanan meletakkan tas pada loker</li>
-            <li>Pengguna layanan mengakses layanan perpustakaan berikut:</li>
-          </ol>
+      <!-- Detail Kunjungan Langsung -->
+      <div style="margin-top: 25px; padding: 20px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-blue);">
+        <strong style="color: var(--bps-dark); display: block; margin-bottom: 12px;">Detail Prosedur Kunjungan Langsung:</strong>
+        <ol style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
+          <li>Pengguna layanan mengakses layanan perpustakaan dengan mengunjungi unit PST BPS.</li>
+          <li>Pengguna layanan mengisi buku tamu</li>
+          <li>Pengguna layanan meletakkan tas pada loker</li>
+          <li>Pengguna layanan mengakses layanan perpustakaan berikut:
+            <div style="margin-top: 10px; margin-left: 20px;">
+              <strong style="font-size: 0.85rem;">a. Layanan Perpustakaan Tercetak</strong>
+              <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.8rem;">
+                <li>Pengguna layanan membaca Pustaka hardcopy pada ruang layanan perpustakaan tercetak.</li>
+                <li>Pengguna layanan dapat memanfaatkan alat pemindai secara mandiri.</li>
+              </ol>
 
-          <div style="margin-top: 15px; margin-left: 20px;">
-            <strong style="color: var(--bps-dark); font-size: 0.9rem;">a. Layanan Perpustakaan Tercetak</strong>
-            <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
-              <li>Pengguna layanan membaca Pustaka hardcopy pada ruang layanan perpustakaan tercetak</li>
-              <li>Pengguna layanan dapat memanfaatkan alat pemindai secara mandiri</li>
-            </ol>
-
-            <strong style="color: var(--bps-dark); font-size: 0.9rem; margin-top: 12px; display: block;">b. Layanan Perpustakaan Digital</strong>
-            <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
-              <li>Pengguna layanan membaca Pustaka softcopy pada portal pst.bps.go.id</li>
-              <li>Pengguna layanan bisa memperoleh Pustaka softcopy pada portal pst.bps.go.id</li>
-            </ol>
-          </div>
-
-          <ol style="margin: 15px 0 0 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;" start="5">
-            <li>Pengguna layanan memberikan penilaian/rating terhadap kualitas pelayanan perpustakaan dan publikasi</li>
-            <li>Pengguna layanan selesai mengakses layanan perpustakaan</li>
-          </ol>
-        </div>
+              <strong style="font-size: 0.85rem; margin-top: 12px; display: block;">b. Layanan Perpustakaan Digital</strong>
+              <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.8rem;">
+                <li>Pengguna layanan membaca Pustaka softcopy pada portal pst.bps.go.id</li>
+                <li>Pengguna layanan bisa memperoleh Pustaka softcopy pada portal pst.bps.go.id</li>
+              </ol>
+            </div>
+          </li>
+          <li>Pengguna layanan memberikan penilaian / rating terhadap kualitas pelayanan perpustakaan dan publikasi.</li>
+          <li>Pengguna layanan selesai mengakses layanan perpustakaan.</li>
+        </ol>
       </div>
     </div>
 
     <!-- ============ LAYANAN ONLINE ============ -->
     <div class="sop-flowchart">
       <div class="flowchart-title online">
-        <i class="bi bi-laptop me-2"></i>Layanan 2: Akses Online
+        <i class="bi bi-laptop me-2"></i>2) Layanan dengan Cara Online
       </div>
 
       <div class="flowchart-visual">
@@ -551,25 +479,23 @@
         <i class="bi bi-check-circle me-2"></i>SELESAI
       </div>
 
-      <!-- Detail Layanan Online -->
-      <div class="service-options">
-        <div class="service-option online">
-          <div class="option-title"><i class="bi bi-laptop me-2" style="color: var(--bps-accent);"></i>2. Layanan dengan Cara Online:</div>
-          <ol style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
-            <li>Pengguna layanan mengakses layanan perpustakaan melalui portal pst.bps.go.id</li>
-            <li>Pengguna layanan melakukan registrasi</li>
-            <li>Pengguna layanan mencari/searching Pustaka yang dibutuhkan</li>
-            <li>Pengguna layanan membaca Pustaka softcopy</li>
-            <li>Pengguna layanan bisa memperoleh Pustaka softcopy berwatermark melalui menu unduh</li>
-            <li>Pengguna layanan memberikan penilaian/rating terhadap kualitas pelayanan perpustakaan</li>
-            <li>Pengguna layanan selesai mengakses layanan perpustakaan</li>
-          </ol>
-        </div>
+      <!-- Detail Online -->
+      <div style="margin-top: 25px; padding: 20px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-accent);">
+        <strong style="color: var(--bps-dark); display: block; margin-bottom: 12px;">Detail Prosedur Layanan Online:</strong>
+        <ol style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
+          <li>Pengguna layanan mengakses layanan perpustakaan melalui portal pst.bps.go.id.</li>
+          <li>Pengguna layanan melakukan registrasi.</li>
+          <li>Pengguna layanan mencari / searching Pustaka yang dibutuhkan.</li>
+          <li>Pengguna layanan membaca Pustaka softcopy</li>
+          <li>Pengguna layanan bisa memperoleh Pustaka softcopy berwatermark melalui menu unduh</li>
+          <li>Pengguna layanan memberikan penilaian /rating terhadap kualitas pelayanan perpustakaan.</li>
+          <li>Pengguna layanan selesai mengakses layanan perpustakaan.</li>
+        </ol>
       </div>
     </div>
   </div>
 
-  <!-- JANGKA WAKTU -->
+  <!-- JANGKA WAKTU PELAYANAN -->
   <div class="section-box">
     <h4 class="section-title">C. Jangka Waktu Pelayanan</h4>
 
@@ -594,7 +520,7 @@
     </div>
   </div>
 
-  <!-- PRODUK -->
+  <!-- PRODUK PELAYANAN -->
   <div class="section-box">
     <h4 class="section-title">E. Produk Pelayanan</h4>
     
