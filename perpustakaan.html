@@ -94,30 +94,6 @@
       min-width: 130px;
     }
 
-    .step-number {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background: var(--bps-blue);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 0.9rem;
-      z-index: 10;
-      box-shadow: 0 2px 8px rgba(0, 91, 170, 0.3);
-    }
-
-    .flowchart-title.online ~ .flowchart-visual .step-number {
-      background: var(--bps-accent);
-      box-shadow: 0 2px 8px rgba(244, 167, 0, 0.3);
-    }
-
     .step-icon-box {
       width: 110px;
       height: 110px;
@@ -275,31 +251,21 @@
       <!-- LANGKAH AWAL -->
       <div style="text-align: center; font-weight: 700; color: var(--bps-dark); margin-bottom: 20px; font-size: 0.95rem;">Langkah Awal</div>
       <div class="flowchart-visual">
-        <!-- Step 1 -->
         <div class="step-item">
-          <div class="step-number">1</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-person-walking"></i></div>
           </div>
           <div class="step-label">Berkunjung ke<br>PST BPS</div>
         </div>
-
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-        <!-- Step 2 -->
         <div class="step-item">
-          <div class="step-number">2</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-book"></i></div>
           </div>
           <div class="step-label">Isi Buku<br>Tamu</div>
         </div>
-
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-        <!-- Step 3 -->
         <div class="step-item">
-          <div class="step-number">3</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-safe"></i></div>
           </div>
@@ -310,47 +276,34 @@
       <!-- PILIHAN JENIS PUSTAKA -->
       <div style="text-align: center; font-weight: 700; color: var(--bps-dark); margin: 30px 0 20px 0; font-size: 0.95rem;">Pilih Jenis Pustaka</div>
 
-      <!-- CABANG 1: PERPUSTAKAAN TERCETAK -->
+      <!-- CABANG A: PERPUSTAKAAN TERCETAK -->
       <div style="margin-bottom: 40px;">
         <div style="text-align: center; background: linear-gradient(135deg, #0056b3, #003f7f); color: white; padding: 12px; border-radius: 6px; font-weight: 700; margin-bottom: 20px; font-size: 0.95rem;">
-          <i class="bi bi-book-fill me-2"></i>Perpustakaan Tercetak
+          <i class="bi bi-book-fill me-2"></i>a. Perpustakaan Tercetak
         </div>
         <div class="flowchart-visual">
-          <!-- Step 4a.1 -->
           <div class="step-item">
-            <div class="step-number">4a</div>
             <div class="step-icon-box">
               <div class="step-icon"><i class="bi bi-book-half"></i></div>
             </div>
             <div class="step-label">Baca Pustaka<br>Hardcopy</div>
           </div>
-
           <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-          <!-- Step 4a.2 -->
           <div class="step-item">
-            <div class="step-number">4a</div>
             <div class="step-icon-box">
               <div class="step-icon"><i class="bi bi-scanner"></i></div>
             </div>
             <div class="step-label">Gunakan Pemindai<br>(Opsional)</div>
           </div>
-
           <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-          <!-- Rating & Selesai -->
           <div class="step-item">
-            <div class="step-number">5</div>
             <div class="step-icon-box">
               <div class="step-icon"><i class="bi bi-star"></i></div>
             </div>
             <div class="step-label">Berikan Rating<br>Pelayanan</div>
           </div>
-
           <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
           <div class="step-item end-node">
-            <div class="step-number">6</div>
             <div class="step-icon-box">
               <div class="step-icon"><i class="bi bi-check-circle"></i></div>
             </div>
@@ -362,58 +315,41 @@
         </div>
       </div>
 
-      <!-- CABANG 2: PERPUSTAKAAN DIGITAL -->
+      <!-- CABANG B: PERPUSTAKAAN DIGITAL -->
       <div style="margin-bottom: 30px;">
         <div style="text-align: center; background: linear-gradient(135deg, var(--bps-accent), #ff9800); color: white; padding: 12px; border-radius: 6px; font-weight: 700; margin-bottom: 20px; font-size: 0.95rem;">
-          <i class="bi bi-laptop me-2"></i>Perpustakaan Digital
+          <i class="bi bi-laptop me-2"></i>b. Perpustakaan Digital
         </div>
         <div class="flowchart-visual">
-          <!-- Step 4b.1 -->
           <div class="step-item">
-            <div class="step-number">4b</div>
             <div class="step-icon-box">
               <div class="step-icon" style="color: var(--bps-accent);"><i class="bi bi-cloud"></i></div>
             </div>
             <div class="step-label">Akses Portal<br>pst.bps.go.id</div>
           </div>
-
           <div class="step-arrow" style="color: var(--bps-accent);"><i class="bi bi-arrow-right"></i></div>
-
-          <!-- Step 4b.2 -->
           <div class="step-item">
-            <div class="step-number">b</div>
             <div class="step-icon-box" style="border-color: var(--bps-accent);">
               <div class="step-icon" style="color: var(--bps-accent);"><i class="bi bi-file-earmark-pdf"></i></div>
             </div>
             <div class="step-label">Baca Pustaka<br>Softcopy</div>
           </div>
-
           <div class="step-arrow" style="color: var(--bps-accent);"><i class="bi bi-arrow-right"></i></div>
-
-          <!-- Step 4b.3 -->
           <div class="step-item">
-            <div class="step-number">4b</div>
             <div class="step-icon-box" style="border-color: var(--bps-accent);">
               <div class="step-icon" style="color: var(--bps-accent);"><i class="bi bi-cloud-download"></i></div>
             </div>
             <div class="step-label">Peroleh Softcopy<br>Berwatermark</div>
           </div>
-
           <div class="step-arrow" style="color: var(--bps-accent);"><i class="bi bi-arrow-right"></i></div>
-
-          <!-- Rating & Selesai -->
           <div class="step-item">
-            <div class="step-number">5</div>
             <div class="step-icon-box">
               <div class="step-icon"><i class="bi bi-star"></i></div>
             </div>
             <div class="step-label">Berikan Rating<br>Pelayanan</div>
           </div>
-
           <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
           <div class="step-item end-node">
-            <div class="step-number">6</div>
             <div class="step-icon-box">
               <div class="step-icon"><i class="bi bi-check-circle"></i></div>
             </div>
@@ -464,75 +400,49 @@
       </div>
 
       <div class="flowchart-visual">
-        <!-- Step 1 -->
         <div class="step-item">
-          <div class="step-number">1</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-globe"></i></div>
           </div>
           <div class="step-label">Akses Portal<br>pst.bps.go.id</div>
         </div>
-
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-        <!-- Step 2 -->
         <div class="step-item">
-          <div class="step-number">2</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-person-badge"></i></div>
           </div>
           <div class="step-label">Registrasi<br>Akun</div>
         </div>
-
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-        <!-- Step 3 -->
         <div class="step-item">
-          <div class="step-number">3</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-search"></i></div>
           </div>
           <div class="step-label">Cari/Search<br>Pustaka</div>
         </div>
-
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-        <!-- Step 4 -->
         <div class="step-item">
-          <div class="step-number">4</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-file-earmark-pdf"></i></div>
           </div>
           <div class="step-label">Baca Pustaka<br>Softcopy</div>
         </div>
-
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-        <!-- Step 5 -->
         <div class="step-item">
-          <div class="step-number">5</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-cloud-download"></i></div>
           </div>
           <div class="step-label">Download Softcopy<br>Berwatermark</div>
         </div>
-
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-        <!-- Step 6 -->
         <div class="step-item">
-          <div class="step-number">6</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-star"></i></div>
           </div>
           <div class="step-label">Berikan Rating<br>Pelayanan</div>
         </div>
-
         <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-
-        <!-- Step 7 -->
         <div class="step-item end-node">
-          <div class="step-number">7</div>
           <div class="step-icon-box">
             <div class="step-icon"><i class="bi bi-check-circle"></i></div>
           </div>
