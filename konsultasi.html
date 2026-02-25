@@ -48,6 +48,37 @@
       padding-left: 18px;
     }
 
+    /* FLOWCHART STYLE */
+    .flowchart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 25px;
+    }
+
+    .flow-step {
+      background: white;
+      border: 2px solid var(--bps-blue);
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      color: var(--bps-dark);
+      text-align: center;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 30px;
+      background: var(--bps-blue);
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+    }
+
     footer {
       background-color: var(--bps-dark);
       color: rgba(255,255,255,0.8);
@@ -109,6 +140,18 @@
       <li>Petugas memberikan informasi statistik</li>
     </ul>
 
+    <!-- FLOWCHART KUNJUNGAN LANGSUNG -->
+    <div class="flowchart">
+      <div class="flow-step">Mengunjungi Unit PST BPS</div>
+      <div class="flow-step">Mengisi Buku Tamu</div>
+      <div class="flow-step">Mengambil Nomor Antrian</div>
+      <div class="flow-step">Menunggu Sesuai Nomor Antrian</div>
+      <div class="flow-step">Menyampaikan Konsultasi</div>
+      <div class="flow-step">Petugas Memberikan Informasi Statistik</div>
+    </div>
+
+    <br><br>
+
     <strong>2. Online</strong>
     <ul>
       <li>Mengakses portal pst.bps.go.id</li>
@@ -118,6 +161,17 @@
       <li>Petugas memberikan informasi</li>
       <li>Memberikan rating pelayanan</li>
     </ul>
+
+    <!-- FLOWCHART ONLINE -->
+    <div class="flowchart">
+      <div class="flow-step">Mengakses Portal pst.bps.go.id</div>
+      <div class="flow-step">Mencari Informasi yang Dibutuhkan</div>
+      <div class="flow-step">Jika Tidak Ditemukan → Membuat Transaksi</div>
+      <div class="flow-step">Mengajukan Konsultasi</div>
+      <div class="flow-step">Petugas Memberikan Informasi</div>
+      <div class="flow-step">Memberikan Rating Pelayanan</div>
+    </div>
+
   </div>
 
   <!-- JANGKA WAKTU -->
