@@ -45,14 +45,10 @@
       font-size: 1.3rem;
     }
 
-    ul {
-      padding-left: 18px;
-    }
+    ul { padding-left: 18px; }
 
-    /* ===== FLOWCHART VISUAL STYLES ===== */
-    .sop-flowchart {
-      margin-top: 30px;
-    }
+    /* ===== FLOWCHART HEADER TITLE ===== */
+    .sop-flowchart { margin-top: 30px; }
 
     .flowchart-title {
       font-weight: 700;
@@ -63,133 +59,112 @@
       border-radius: 8px;
       text-align: center;
     }
+    .flowchart-title.langsung { background: linear-gradient(135deg, #0056b3, #003f7f); }
+    .flowchart-title.online   { background: linear-gradient(135deg, var(--bps-accent), #ff9800); }
 
-    .flowchart-title.langsung {
-      background: linear-gradient(135deg, #0056b3, #003f7f);
-    }
-
-    .flowchart-title.online {
-      background: linear-gradient(135deg, var(--bps-accent), #ff9800);
-    }
-
-    /* Flowchart Container */
-    .flowchart-visual {
-      display: flex;
+    /* ===== SNAKE GRID FLOWCHART — FULLY RESPONSIVE ===== */
+    .snake-grid {
+      display: grid;
+      gap: 0;
+      margin: 16px 0;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-      padding: 30px 20px;
-      background: linear-gradient(135deg, rgba(0, 91, 170, 0.03), rgba(244, 167, 0, 0.03));
-      border-radius: 12px;
+      justify-items: center;
+      width: 100%;
     }
+    .snake-3 { grid-template-columns: 1fr 32px 1fr 32px 1fr; }
+    .snake-4 { grid-template-columns: 1fr 32px 1fr 32px 1fr 40px 1fr; }
 
-    /* Step Item */
-    .step-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      min-width: 130px;
-    }
-
-    .step-icon-box {
-      width: 110px;
-      height: 110px;
-      background: white;
+    .sg-box {
       border: 2px solid var(--bps-blue);
-      border-radius: 12px;
+      border-radius: 10px;
+      padding: 12px 6px 10px;
+      text-align: center;
+      background: white;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,91,170,0.08);
+      transition: all 0.25s;
+      box-sizing: border-box;
+    }
+    .sg-box:hover {
+      box-shadow: 0 6px 16px rgba(0,91,170,0.16);
+      transform: translateY(-3px);
+    }
+    .sg-end {
+      background: linear-gradient(135deg, var(--bps-blue), var(--bps-dark)) !important;
+      border-color: var(--bps-dark) !important;
+    }
+    .sg-decision {
+      border: 2px dashed var(--bps-accent) !important;
+      background: linear-gradient(135deg, rgba(244,167,0,0.04), white) !important;
+    }
+    .sg-icon {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      color: var(--bps-blue);
+      display: block;
+      margin-bottom: 5px;
+    }
+    .sg-label {
+      font-weight: 600;
+      color: var(--bps-dark);
+      font-size: clamp(0.6rem, 1.8vw, 0.78rem);
+      line-height: 1.3;
+    }
+    .sg-arr {
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+      color: var(--bps-blue);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 91, 170, 0.1);
+      width: 100%;
+    }
+    .sg-down {
+      flex-direction: column;
+      align-self: stretch;
+      justify-content: center;
+      padding: 2px 0;
+    }
+    .sg-empty { width: 100%; }
+
+    /* Flowchart visual wrapper */
+    .flowchart-visual {
+      margin-bottom: 20px;
+      padding: 20px 16px;
+      background: linear-gradient(135deg, rgba(0,91,170,0.03), rgba(244,167,0,0.03));
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    .flowchart-title.online ~ .flowchart-visual .step-icon-box {
-      border-color: var(--bps-accent);
-    }
-
-    .step-item:hover .step-icon-box {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 16px rgba(0, 91, 170, 0.2);
-      border-color: var(--bps-accent);
-    }
-
-    .step-icon {
-      font-size: 3.5rem;
-      color: var(--bps-blue);
-      line-height: 1;
-    }
-
-    .flowchart-title.online ~ .flowchart-visual .step-icon {
-      color: var(--bps-accent);
-    }
-
-    .step-label {
+    /* SELESAI badge */
+    .fc-selesai {
       text-align: center;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--bps-dark);
-      line-height: 1.4;
+      color: #4caf50;
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
     }
 
-    /* Arrow between steps */
-    .step-arrow {
-      font-size: 2rem;
-      color: var(--bps-blue);
-      font-weight: bold;
-      animation: arrowBounce 1.5s infinite;
+    /* Sub-layanan card inside detail */
+    .sub-layanan {
+      background: white;
+      border: 1px solid #e0eaf5;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 10px;
+    }
+    .sub-layanan-title {
+      font-weight: 700;
+      color: var(--bps-dark);
+      font-size: 0.88rem;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      height: auto;
+      gap: 6px;
     }
 
-    .flowchart-title.online ~ .flowchart-visual .step-arrow {
-      color: var(--bps-accent);
-    }
-
-    @keyframes arrowBounce {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(6px); }
-    }
-
-    /* End node */
-    .step-item.end-node .step-icon-box {
-      border-color: #4caf50;
-      background: rgba(76, 175, 80, 0.1);
-    }
-
-    .step-item.end-node .step-icon {
-      color: #4caf50;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .flowchart-visual {
-        flex-direction: column;
-      }
-
-      .step-arrow {
-        transform: rotate(90deg);
-        height: auto;
-        width: 50px;
-      }
-
-      .step-icon-box {
-        width: 90px;
-        height: 90px;
-      }
-
-      .step-icon {
-        font-size: 2.5rem;
-      }
-
-      .step-label {
-        font-size: 0.8rem;
-      }
+    @media (max-width: 480px) {
+      .section-box { padding: 18px 14px; }
+      .snake-3 { grid-template-columns: 1fr 24px 1fr 24px 1fr; }
+      .snake-4 { grid-template-columns: 1fr 22px 1fr 22px 1fr 30px 1fr; }
     }
 
     footer {
@@ -214,7 +189,7 @@
 <section class="hero-detail">
   <div class="container">
     <h1 class="fw-bold">Pelayanan Perpustakaan</h1>
-    <p>Layanan akses pustaka tercetak dan digital untuk informasi statistik BPS</p>
+    <p>Layanan akses pustaka tercetak dan digital BPS Kota Palu</p>
   </div>
 </section>
 
@@ -225,308 +200,260 @@
     <h4 class="section-title">Persyaratan</h4>
 
     <strong>Layanan dengan Kunjungan Langsung</strong>
-    <ul>
+    <ul class="mt-1">
       <li>Pengguna layanan berkunjung ke unit Pelayanan Statistik Terpadu (PST) BPS</li>
       <li>Pengguna layanan memiliki alamat email yang masih aktif</li>
       <li>Pengguna layanan mengisi buku tamu</li>
     </ul>
 
     <strong>Layanan dengan Cara Online</strong>
-    <ul>
+    <ul class="mt-1 mb-0">
       <li>Pengguna layanan memiliki alamat email yang masih aktif</li>
       <li>Pengguna layanan memiliki akun pada portal pst.bps.go.id</li>
     </ul>
   </div>
 
-  <!-- SOP DENGAN VISUAL FLOWCHART -->
+  <!-- SOP -->
   <div class="section-box">
     <h4 class="section-title">SOP</h4>
 
-    <!-- ============ LAYANAN KUNJUNGAN LANGSUNG ============ -->
+    <!-- ══════════════════════════════════════
+         FLOWCHART 1 : KUNJUNGAN LANGSUNG
+         Row1 (L→R): Berkunjung → Isi Buku → Simpan Tas
+         Turn ↓ kanan
+         Row2 (R→L): Selesai ← Rating ← Akses Layanan
+    ══════════════════════════════════════ -->
     <div class="sop-flowchart">
       <div class="flowchart-title langsung">
         <i class="bi bi-building me-2"></i>Layanan dengan Kunjungan Langsung
       </div>
 
-      <!-- LANGKAH AWAL -->
-      <div style="text-align: center; font-weight: 700; color: var(--bps-dark); margin-bottom: 20px; font-size: 0.95rem;">Langkah Awal</div>
       <div class="flowchart-visual">
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-person-walking"></i></div>
+        <div class="snake-grid snake-3">
+          <!-- ROW 1 -->
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-building"></i></span>
+            <div class="sg-label">Kunjungi<br>PST BPS</div>
           </div>
-          <div class="step-label">Berkunjung ke<br>PST BPS</div>
-        </div>
-        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-book"></i></div>
+          <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-book"></i></span>
+            <div class="sg-label">Isi Buku<br>Tamu</div>
           </div>
-          <div class="step-label">Isi Buku<br>Tamu</div>
-        </div>
-        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-safe"></i></div>
+          <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-bag"></i></span>
+            <div class="sg-label">Simpan Tas<br>di Loker</div>
           </div>
-          <div class="step-label">Letakkan Tas<br>di Loker</div>
-        </div>
-      </div>
 
-      <!-- PILIHAN JENIS PUSTAKA -->
-      <div style="text-align: center; font-weight: 700; color: var(--bps-dark); margin: 30px 0 20px 0; font-size: 0.95rem;">Pilih Jenis Pustaka</div>
+          <!-- ROW 2: turn ↓ di kanan -->
+          <div class="sg-empty"></div><div class="sg-empty"></div>
+          <div class="sg-empty"></div><div class="sg-empty"></div>
+          <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
 
-      <!-- CABANG A: PERPUSTAKAAN TERCETAK -->
-      <div style="margin-bottom: 40px;">
-        <div style="text-align: center; background: linear-gradient(135deg, #0056b3, #003f7f); color: white; padding: 12px; border-radius: 6px; font-weight: 700; margin-bottom: 20px; font-size: 0.95rem;">
-          <i class="bi bi-book-fill me-2"></i>a. Perpustakaan Tercetak
-        </div>
-        <div class="flowchart-visual">
-          <div class="step-item">
-            <div class="step-icon-box">
-              <div class="step-icon"><i class="bi bi-book-half"></i></div>
-            </div>
-            <div class="step-label">Baca Pustaka<br>Hardcopy</div>
+          <!-- ROW 3: R→L -->
+          <div class="sg-box sg-end">
+            <span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span>
+            <div class="sg-label" style="color:white;">Selesai<br>Layanan</div>
           </div>
-          <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="step-item">
-            <div class="step-icon-box">
-              <div class="step-icon"><i class="bi bi-scan"></i></div>
-            </div>
-            <div class="step-label">Gunakan Pemindai<br>(Opsional)</div>
+          <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-star"></i></span>
+            <div class="sg-label">Beri<br>Rating</div>
           </div>
-          <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="step-item">
-            <div class="step-icon-box">
-              <div class="step-icon"><i class="bi bi-star"></i></div>
-            </div>
-            <div class="step-label">Berikan Rating<br>Pelayanan</div>
-          </div>
-          <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="step-item end-node">
-            <div class="step-icon-box">
-              <div class="step-icon"><i class="bi bi-check-circle"></i></div>
-            </div>
-            <div class="step-label">Selesai<br>Akses Layanan</div>
+          <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-journal-bookmarks"></i></span>
+            <div class="sg-label">Akses<br>Layanan Pustaka</div>
           </div>
         </div>
-        <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 20px;">
-          <i class="bi bi-check-circle me-2"></i>SELESAI
-        </div>
-      </div>
+      </div><!-- end flowchart-visual -->
 
-      <!-- CABANG B: PERPUSTAKAAN DIGITAL -->
-      <div style="margin-bottom: 30px;">
-        <div style="text-align: center; background: linear-gradient(135deg, var(--bps-accent), #ff9800); color: white; padding: 12px; border-radius: 6px; font-weight: 700; margin-bottom: 20px; font-size: 0.95rem;">
-          <i class="bi bi-laptop me-2"></i>b. Perpustakaan Digital
-        </div>
-        <div class="flowchart-visual">
-          <div class="step-item">
-            <div class="step-icon-box">
-              <div class="step-icon" style="color: var(--bps-accent);"><i class="bi bi-cloud"></i></div>
-            </div>
-            <div class="step-label">Akses Portal<br>pst.bps.go.id</div>
-          </div>
-          <div class="step-arrow" style="color: var(--bps-accent);"><i class="bi bi-arrow-right"></i></div>
-          <div class="step-item">
-            <div class="step-icon-box" style="border-color: var(--bps-accent);">
-              <div class="step-icon" style="color: var(--bps-accent);"><i class="bi bi-file-earmark-pdf"></i></div>
-            </div>
-            <div class="step-label">Baca Pustaka<br>Softcopy</div>
-          </div>
-          <div class="step-arrow" style="color: var(--bps-accent);"><i class="bi bi-arrow-right"></i></div>
-          <div class="step-item">
-            <div class="step-icon-box" style="border-color: var(--bps-accent);">
-              <div class="step-icon" style="color: var(--bps-accent);"><i class="bi bi-cloud-download"></i></div>
-            </div>
-            <div class="step-label">Peroleh Softcopy<br>Berwatermark</div>
-          </div>
-          <div class="step-arrow" style="color: var(--bps-accent);"><i class="bi bi-arrow-right"></i></div>
-          <div class="step-item">
-            <div class="step-icon-box">
-              <div class="step-icon"><i class="bi bi-star"></i></div>
-            </div>
-            <div class="step-label">Berikan Rating<br>Pelayanan</div>
-          </div>
-          <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="step-item end-node">
-            <div class="step-icon-box">
-              <div class="step-icon"><i class="bi bi-check-circle"></i></div>
-            </div>
-            <div class="step-label">Selesai<br>Akses Layanan</div>
-          </div>
-        </div>
-        <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 20px;">
-          <i class="bi bi-check-circle me-2"></i>SELESAI
-        </div>
-      </div>
+      <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
 
-      <!-- Detail Kunjungan Langsung -->
-      <div style="margin-top: 25px; padding: 20px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-blue);">
-        <strong style="color: var(--bps-dark); display: block; margin-bottom: 12px;">Detail Prosedur Kunjungan Langsung:</strong>
-        <ol style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
-          <li>Pengguna layanan mengakses layanan perpustakaan dengan mengunjungi unit PST BPS.</li>
+      <!-- Detail Prosedur Langsung -->
+      <div style="padding:20px;background:var(--bps-light);border-radius:8px;border-left:4px solid var(--bps-blue);">
+        <strong style="color:var(--bps-dark);display:block;margin-bottom:12px;">Detail Prosedur Kunjungan Langsung:</strong>
+        <ol style="margin:0;padding-left:20px;font-size:0.85rem;line-height:1.8;color:#555;">
+          <li>Pengguna layanan mengakses layanan perpustakaan dengan mengunjungi unit PST BPS</li>
           <li>Pengguna layanan mengisi buku tamu</li>
           <li>Pengguna layanan meletakkan tas pada loker</li>
-          <li>Pengguna layanan mengakses layanan perpustakaan berikut:
-            <div style="margin-top: 10px; margin-left: 20px;">
-              <strong style="font-size: 0.85rem;">a. Layanan Perpustakaan Tercetak</strong>
-              <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.8rem;">
-                <li>Pengguna layanan membaca Pustaka hardcopy pada ruang layanan perpustakaan tercetak.</li>
-                <li>Pengguna layanan dapat memanfaatkan alat pemindai secara mandiri.</li>
-              </ol>
+          <li>Pengguna layanan mengakses layanan perpustakaan:</li>
+        </ol>
 
-              <strong style="font-size: 0.85rem; margin-top: 12px; display: block;">b. Layanan Perpustakaan Digital</strong>
-              <ol style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.8rem;">
-                <li>Pengguna layanan membaca Pustaka softcopy pada portal pst.bps.go.id</li>
-                <li>Pengguna layanan bisa memperoleh Pustaka softcopy pada portal pst.bps.go.id</li>
-              </ol>
+        <!-- Sub-layanan: Tercetak & Digital -->
+        <div style="padding-left:20px;margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="sub-layanan">
+            <div class="sub-layanan-title">
+              <i class="bi bi-file-earmark-text" style="color:var(--bps-blue);"></i>
+              a. Perpustakaan Tercetak
             </div>
-          </li>
-          <li>Pengguna layanan memberikan penilaian / rating terhadap kualitas pelayanan perpustakaan dan publikasi.</li>
-          <li>Pengguna layanan selesai mengakses layanan perpustakaan.</li>
+            <ol style="margin:0;padding-left:16px;font-size:0.82rem;line-height:1.7;color:#555;">
+              <li>Membaca pustaka hardcopy pada ruang layanan perpustakaan tercetak</li>
+              <li>Dapat memanfaatkan alat pemindai secara mandiri</li>
+            </ol>
+          </div>
+          <div class="sub-layanan">
+            <div class="sub-layanan-title">
+              <i class="bi bi-laptop" style="color:var(--bps-accent);"></i>
+              b. Perpustakaan Digital
+            </div>
+            <ol style="margin:0;padding-left:16px;font-size:0.82rem;line-height:1.7;color:#555;">
+              <li>Membaca pustaka softcopy pada portal pst.bps.go.id</li>
+              <li>Memperoleh pustaka softcopy pada portal pst.bps.go.id</li>
+            </ol>
+          </div>
+        </div>
+
+        <ol style="margin:8px 0 0 0;padding-left:20px;font-size:0.85rem;line-height:1.8;color:#555;" start="5">
+          <li>Pengguna layanan memberikan penilaian/rating terhadap kualitas pelayanan perpustakaan</li>
+          <li>Pengguna layanan selesai mengakses layanan perpustakaan</li>
         </ol>
       </div>
-    </div>
+    </div><!-- end sop-flowchart langsung -->
 
-    <!-- ============ LAYANAN ONLINE ============ -->
+    <!-- ══════════════════════════════════════
+         FLOWCHART 2 : LAYANAN ONLINE
+         Row1 (L→R): Akses Portal → Registrasi → Cari Pustaka → Baca/Unduh
+         Turn ↓ kanan
+         Row2 (R→L): Selesai ← Rating ← Unduh Softcopy ← Baca Softcopy
+    ══════════════════════════════════════ -->
     <div class="sop-flowchart">
       <div class="flowchart-title online">
-        <i class="bi bi-laptop me-2"></i>Layanan dengan Cara Online
+        <i class="bi bi-globe me-2"></i>Layanan dengan Cara Online
       </div>
 
       <div class="flowchart-visual">
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-globe"></i></div>
+        <div class="snake-grid snake-4">
+          <!-- ROW 1 -->
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-globe"></i></span>
+            <div class="sg-label">Akses<br>Portal</div>
           </div>
-          <div class="step-label">Akses Portal<br>pst.bps.go.id</div>
-        </div>
-        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-person-badge"></i></div>
+          <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-person-plus"></i></span>
+            <div class="sg-label">Registrasi<br>Akun</div>
           </div>
-          <div class="step-label">Registrasi<br>Akun</div>
-        </div>
-        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-search"></i></div>
+          <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-search"></i></span>
+            <div class="sg-label">Cari<br>Pustaka</div>
           </div>
-          <div class="step-label">Cari/Search<br>Pustaka</div>
-        </div>
-        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+          <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-book-half"></i></span>
+            <div class="sg-label">Baca<br>Softcopy</div>
           </div>
-          <div class="step-label">Baca Pustaka<br>Softcopy</div>
-        </div>
-        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-cloud-download"></i></div>
-          </div>
-          <div class="step-label">Download Softcopy<br>Berwatermark</div>
-        </div>
-        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-        <div class="step-item">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-star"></i></div>
-          </div>
-          <div class="step-label">Berikan Rating<br>Pelayanan</div>
-        </div>
-        <div class="step-arrow"><i class="bi bi-arrow-right"></i></div>
-        <div class="step-item end-node">
-          <div class="step-icon-box">
-            <div class="step-icon"><i class="bi bi-check-circle"></i></div>
-          </div>
-          <div class="step-label">Selesai<br>Akses Layanan</div>
-        </div>
-      </div>
 
-      <div style="text-align: center; color: #4caf50; font-weight: 700; margin-bottom: 30px;">
-        <i class="bi bi-check-circle me-2"></i>SELESAI
-      </div>
+          <!-- ROW 2: turn ↓ di kanan -->
+          <div class="sg-empty"></div><div class="sg-empty"></div>
+          <div class="sg-empty"></div><div class="sg-empty"></div>
+          <div class="sg-empty"></div><div class="sg-empty"></div>
+          <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
 
-      <!-- Detail Online -->
-      <div style="margin-top: 25px; padding: 20px; background: var(--bps-light); border-radius: 8px; border-left: 4px solid var(--bps-accent);">
-        <strong style="color: var(--bps-dark); display: block; margin-bottom: 12px;">Detail Prosedur Layanan Online:</strong>
-        <ol style="margin: 0; padding-left: 20px; font-size: 0.85rem; line-height: 1.8; color: #555;">
-          <li>Pengguna layanan mengakses layanan perpustakaan melalui portal pst.bps.go.id.</li>
-          <li>Pengguna layanan melakukan registrasi.</li>
-          <li>Pengguna layanan mencari / searching Pustaka yang dibutuhkan.</li>
-          <li>Pengguna layanan membaca Pustaka softcopy</li>
-          <li>Pengguna layanan bisa memperoleh Pustaka softcopy berwatermark melalui menu unduh</li>
-          <li>Pengguna layanan memberikan penilaian /rating terhadap kualitas pelayanan perpustakaan.</li>
-          <li>Pengguna layanan selesai mengakses layanan perpustakaan.</li>
+          <!-- ROW 3: R→L -->
+          <div class="sg-box sg-end">
+            <span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span>
+            <div class="sg-label" style="color:white;">Selesai<br>Layanan</div>
+          </div>
+          <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-star"></i></span>
+            <div class="sg-label">Beri<br>Rating</div>
+          </div>
+          <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-download"></i></span>
+            <div class="sg-label">Unduh Softcopy<br>Berwatermark</div>
+          </div>
+          <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+          <div class="sg-box">
+            <span class="sg-icon"><i class="bi bi-file-earmark-pdf"></i></span>
+            <div class="sg-label">Peroleh<br>Pustaka</div>
+          </div>
+        </div>
+      </div><!-- end flowchart-visual -->
+
+      <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
+
+      <!-- Detail Prosedur Online -->
+      <div style="padding:20px;background:var(--bps-light);border-radius:8px;border-left:4px solid var(--bps-accent);">
+        <strong style="color:var(--bps-dark);display:block;margin-bottom:12px;">Detail Prosedur Layanan Online:</strong>
+        <ol style="margin:0;padding-left:20px;font-size:0.85rem;line-height:1.8;color:#555;">
+          <li>Pengguna layanan mengakses layanan perpustakaan melalui portal pst.bps.go.id</li>
+          <li>Pengguna layanan melakukan registrasi</li>
+          <li>Pengguna layanan mencari/searching pustaka yang dibutuhkan</li>
+          <li>Pengguna layanan membaca pustaka softcopy</li>
+          <li>Pengguna layanan dapat memperoleh pustaka softcopy berwatermark melalui menu unduh</li>
+          <li>Pengguna layanan memberikan penilaian/rating terhadap kualitas pelayanan perpustakaan</li>
+          <li>Pengguna layanan selesai mengakses layanan perpustakaan</li>
         </ol>
       </div>
-    </div>
-  </div>
+    </div><!-- end sop-flowchart online -->
 
-  <!-- JANGKA WAKTU PELAYANAN -->
+  </div><!-- end section-box SOP -->
+
+  <!-- JANGKA WAKTU -->
   <div class="section-box">
     <h4 class="section-title">Jangka Waktu Pelayanan</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-      <div style="padding: 25px; background: linear-gradient(135deg, rgba(0, 91, 170, 0.08), transparent); border-radius: 12px; border-left: 5px solid var(--bps-blue);">
-        <div style="display: flex; align-items: center; margin-bottom: 12px;">
-          <i class="bi bi-building" style="font-size: 1.5rem; color: var(--bps-blue); margin-right: 12px;"></i>
-          <strong style="color: var(--bps-dark); font-size: 1.05rem;">Kunjungan Langsung</strong>
+      <div style="padding:25px;background:linear-gradient(135deg,rgba(0,91,170,0.08),transparent);border-radius:12px;border-left:5px solid var(--bps-blue);">
+        <div style="display:flex;align-items:center;margin-bottom:12px;">
+          <i class="bi bi-building" style="font-size:1.5rem;color:var(--bps-blue);margin-right:12px;"></i>
+          <strong style="color:var(--bps-dark);font-size:1.05rem;">Kunjungan Langsung</strong>
         </div>
-        <p style="margin: 0; color: #555; font-size: 0.95rem; line-height: 1.6;">
-          <strong>Pustaka hardcopy dan softcopy berwatermark</strong>
+        <p style="margin:0;color:#555;font-size:0.95rem;line-height:1.6;">
+          Pustaka <strong>hardcopy</strong> dan <strong>softcopy berwatermark</strong> tersedia langsung saat kunjungan
         </p>
       </div>
 
-      <div style="padding: 25px; background: linear-gradient(135deg, rgba(244, 167, 0, 0.08), transparent); border-radius: 12px; border-left: 5px solid var(--bps-accent);">
-        <div style="display: flex; align-items: center; margin-bottom: 12px;">
-          <i class="bi bi-globe" style="font-size: 1.5rem; color: var(--bps-accent); margin-right: 12px;"></i>
-          <strong style="color: var(--bps-dark); font-size: 1.05rem;">Layanan Online</strong>
+      <div style="padding:25px;background:linear-gradient(135deg,rgba(244,167,0,0.08),transparent);border-radius:12px;border-left:5px solid var(--bps-accent);">
+        <div style="display:flex;align-items:center;margin-bottom:12px;">
+          <i class="bi bi-globe" style="font-size:1.5rem;color:var(--bps-accent);margin-right:12px;"></i>
+          <strong style="color:var(--bps-dark);font-size:1.05rem;">Layanan Online</strong>
         </div>
-        <p style="margin: 0; color: #555; font-size: 0.95rem; line-height: 1.6;">
-          Pengguna layanan dapat langsung mencari pustaka yang dibutuhkan secara mandiri setelah registrasi pada portal pst.bps.go.id
+        <p style="margin:0;color:#555;font-size:0.95rem;line-height:1.6;">
+          Pengguna dapat langsung mencari pustaka secara mandiri setelah <strong>registrasi</strong> pada portal pst.bps.go.id
         </p>
       </div>
+
     </div>
   </div>
 
   <!-- BIAYA -->
   <div class="section-box">
     <h4 class="section-title">Biaya/Tarif</h4>
-    <div style="padding: 25px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), transparent); border-radius: 12px; border-left: 5px solid #4caf50;">
-      <div style="display: flex; align-items: center;">
-        <i class="bi bi-check-circle" style="font-size: 1.5rem; color: #4caf50; margin-right: 12px;"></i>
+    <div style="padding:25px;background:linear-gradient(135deg,rgba(76,175,80,0.08),transparent);border-radius:12px;border-left:5px solid #4caf50;">
+      <div style="display:flex;align-items:flex-start;">
+        <i class="bi bi-check-circle" style="font-size:1.5rem;color:#4caf50;margin-right:12px;margin-top:3px;"></i>
         <div>
-          <p style="margin: 0; font-weight: 700; color: #2e7d32; font-size: 1.05rem;">Tidak Dipungut Biaya</p>
+          <p style="margin:0 0 8px 0;font-weight:700;color:#2e7d32;font-size:1.05rem;">Tidak Dipungut Biaya</p>
+          <p style="margin:0;color:#555;font-size:0.95rem;line-height:1.6;">Semua layanan perpustakaan disediakan secara gratis untuk publik</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PRODUK PELAYANAN -->
+  <!-- PRODUK -->
   <div class="section-box">
     <h4 class="section-title">Produk Pelayanan</h4>
-    
-    <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px;">
-      <div style="padding: 25px; background: linear-gradient(135deg, rgba(0, 91, 170, 0.08), transparent); border-radius: 12px; border-left: 5px solid var(--bps-blue);">
-        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-          <i class="bi bi-gift" style="font-size: 1.5rem; color: var(--bps-blue); margin-right: 12px;"></i>
-          <strong style="color: var(--bps-dark); font-size: 1.05rem;">Hasil Layanan yang Diberikan</strong>
-        </div>
-        <ul style="margin: 0; padding-left: 0; list-style: none; font-size: 0.95rem; color: #555; line-height: 2;">
-          <li style="padding-left: 28px; position: relative; margin-bottom: 12px;">
-            <i class="bi bi-check-circle-fill" style="position: absolute; left: 0; color: var(--bps-blue); font-size: 1.2rem;"></i>
-            <strong>Layanan dengan cara kunjungan langsung:</strong> Pustaka hardcopy dan softcopy berwatermark
-          </li>
-          <li style="padding-left: 28px; position: relative; margin-bottom: 0;">
-            <i class="bi bi-check-circle-fill" style="position: absolute; left: 0; color: var(--bps-blue); font-size: 1.2rem;"></i>
-            <strong>Layanan dengan cara online:</strong> Pustaka softcopy berwatermark
-          </li>
-        </ul>
+    <div style="padding:25px;background:linear-gradient(135deg,rgba(0,91,170,0.08),transparent);border-radius:12px;border-left:5px solid var(--bps-blue);margin-top:20px;">
+      <div style="display:flex;align-items:center;margin-bottom:15px;">
+        <i class="bi bi-gift" style="font-size:1.5rem;color:var(--bps-blue);margin-right:12px;"></i>
+        <strong style="color:var(--bps-dark);font-size:1.05rem;">Hasil Layanan yang Diberikan</strong>
       </div>
+      <ul style="margin:0;padding-left:0;list-style:none;font-size:0.95rem;color:#555;line-height:2;">
+        <li style="padding-left:28px;position:relative;margin-bottom:8px;">
+          <i class="bi bi-check-circle-fill" style="position:absolute;left:0;color:var(--bps-blue);font-size:1.2rem;"></i>
+          <strong>Layanan Kunjungan Langsung:</strong> Pustaka hardcopy dan softcopy berwatermark
+        </li>
+        <li style="padding-left:28px;position:relative;">
+          <i class="bi bi-check-circle-fill" style="position:absolute;left:0;color:var(--bps-blue);font-size:1.2rem;"></i>
+          <strong>Layanan Online:</strong> Pustaka softcopy berwatermark melalui portal pst.bps.go.id
+        </li>
+      </ul>
     </div>
   </div>
 
