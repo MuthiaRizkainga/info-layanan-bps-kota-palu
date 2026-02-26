@@ -1,220 +1,298 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flowchart PST BPS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pelayanan Konsultasi Statistik - BPS Kota Palu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root {
+      --bps-blue: #005baa;
+      --bps-dark: #003f7f;
+      --bps-light: #e8f1fb;
+      --bps-accent: #f4a700;
+    }
 
-<style>
-:root {
-  --bps-blue: #004a99;
-  --bps-orange: #ff6600;
-}
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f4f6f9;
+    }
 
-body {
-  background: #f4f6f9;
-  font-family: 'Segoe UI', sans-serif;
-  padding: 40px 20px;
-}
+    .navbar { background-color: var(--bps-blue) !important; }
 
-.section-title {
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.8rem;
-  margin-bottom: 40px;
-  color: var(--bps-blue);
-}
+    .hero-detail {
+      background: linear-gradient(135deg, var(--bps-dark), var(--bps-blue));
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
 
-.flowchart-label {
-  font-weight: 600;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  color: var(--bps-orange);
-  text-align: center;
-}
+    .section-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      margin-bottom: 25px;
+    }
 
-.flowchart-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 60px;
-}
+    .section-title {
+      font-weight: 700;
+      color: var(--bps-dark);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
 
-.flowchart-zigzag-grid {
-  display: grid;
-  grid-template-columns: auto 50px auto 50px auto;
-  grid-template-rows: auto 50px auto;
-  align-items: center;
-}
+    ul { padding-left: 18px; }
 
-.flowchart-step {
-  background: white;
-  padding: 15px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  text-align: center;
-  min-width: 160px;
-}
+    /* ===== FLOWCHART ZIGZAG STYLE ===== */
 
-.flowchart-step .step-icon {
-  font-size: 1.6rem;
-  margin-bottom: 8px;
-  color: var(--bps-blue);
-}
+    .flowchart-label {
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 25px 0 15px 0;
+      color: var(--bps-blue);
+      text-align: center;
+    }
 
-.flowchart-step.flowchart-end {
-  border: 2px solid var(--bps-orange);
-}
+    .flowchart-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
 
-.flowchart-arrow,
-.flowchart-down-arrow {
-  text-align: center;
-  font-size: 1.6rem;
-  color: var(--bps-blue);
-}
+    .flowchart-zigzag-grid {
+      display: grid;
+      grid-template-columns: auto 50px auto 50px auto;
+      grid-template-rows: auto 50px auto;
+      align-items: center;
+    }
 
-.flowchart-down-arrow {
-  grid-column: 5;
-  grid-row: 2;
-}
-</style>
+    .flowchart-step {
+      background: white;
+      border: 2px solid var(--bps-blue);
+      border-radius: 12px;
+      padding: 15px 20px;
+      text-align: center;
+      min-width: 150px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .step-icon {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      color: var(--bps-blue);
+    }
+
+    .step-text {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--bps-dark);
+    }
+
+    .flowchart-arrow,
+    .flowchart-down-arrow {
+      text-align: center;
+      font-size: 1.6rem;
+      color: var(--bps-blue);
+    }
+
+    .flowchart-down-arrow {
+      grid-column: 5;
+      grid-row: 2;
+    }
+
+    .flowchart-end {
+      background: linear-gradient(135deg, var(--bps-blue), var(--bps-dark));
+      color: white;
+      border: 2px solid var(--bps-dark);
+    }
+
+    .flowchart-end .step-icon,
+    .flowchart-end .step-text {
+      color: white;
+    }
+
+    footer {
+      background-color: var(--bps-dark);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="bi bi-arrow-left me-2"></i> Kembali
+    </a>
+  </div>
+</nav>
 
-<h2 class="section-title">Alur Pelayanan PST BPS</h2>
+<section class="hero-detail">
+  <div class="container">
+    <h1 class="fw-bold">Pelayanan Konsultasi Statistik</h1>
+    <p>Layanan konsultasi data, metadata, dan klasifikasi statistik</p>
+  </div>
+</section>
 
-<!-- ================== KUNJUNGAN LANGSUNG ================== -->
+<div class="container py-5">
 
-<div class="flowchart-label">
-  <i class="bi bi-building me-2"></i>
-  Layanan dengan Kunjungan Langsung
-</div>
+  <!-- PERSYARATAN -->
+  <div class="section-box">
+    <h4 class="section-title">Persyaratan</h4>
+    <strong>Layanan dengan Kunjungan Langsung</strong>
+    <ul>
+      <li>Berkunjung ke unit PST BPS</li>
+      <li>Memiliki alamat email aktif</li>
+      <li>Mengisi buku tamu</li>
+      <li>Mengajukan permintaan konsultasi statistik kepada petugas</li>
+    </ul>
 
-<div class="flowchart-container">
-  <div class="flowchart-zigzag-grid">
+    <strong>Layanan dengan Cara Online</strong>
+    <ul>
+      <li>Memiliki akun pada portal pst.bps.go.id</li>
+      <li>Mengajukan permintaan konsultasi melalui portal</li>
+    </ul>
+  </div>
 
-    <div class="flowchart-step" style="grid-column:1;grid-row:1;">
-      <div class="step-icon"><i class="bi bi-building"></i></div>
-      Berkunjung ke<br>PST BPS
+  <!-- SOP -->
+  <div class="section-box">
+    <h4 class="section-title">SOP</h4>
+
+    <!-- KUNJUNGAN LANGSUNG -->
+    <div class="flowchart-label">
+      <i class="bi bi-building me-2"></i>Layanan dengan Kunjungan Langsung
     </div>
 
-    <div class="flowchart-arrow" style="grid-column:2;grid-row:1;">
-      <i class="bi bi-arrow-right"></i>
+    <div class="flowchart-container">
+      <div class="flowchart-zigzag-grid">
+
+        <div class="flowchart-step" style="grid-column:1;grid-row:1;">
+          <div class="step-icon"><i class="bi bi-building"></i></div>
+          <div class="step-text">Berkunjung ke<br>PST BPS</div>
+        </div>
+
+        <div class="flowchart-arrow" style="grid-column:2;grid-row:1;">
+          <i class="bi bi-arrow-right"></i>
+        </div>
+
+        <div class="flowchart-step" style="grid-column:3;grid-row:1;">
+          <div class="step-icon"><i class="bi bi-book"></i></div>
+          <div class="step-text">Isi Buku<br>Tamu</div>
+        </div>
+
+        <div class="flowchart-arrow" style="grid-column:4;grid-row:1;">
+          <i class="bi bi-arrow-right"></i>
+        </div>
+
+        <div class="flowchart-step" style="grid-column:5;grid-row:1;">
+          <div class="step-icon"><i class="bi bi-ticket-perforated"></i></div>
+          <div class="step-text">Ambil Nomor<br>Antrian</div>
+        </div>
+
+        <div class="flowchart-down-arrow">
+          <i class="bi bi-arrow-down"></i>
+        </div>
+
+        <div class="flowchart-step" style="grid-column:5;grid-row:3;">
+          <div class="step-icon"><i class="bi bi-hourglass-split"></i></div>
+          <div class="step-text">Tunggu<br>Giliran</div>
+        </div>
+
+        <div class="flowchart-arrow" style="grid-column:4;grid-row:3;">
+          <i class="bi bi-arrow-left"></i>
+        </div>
+
+        <div class="flowchart-step" style="grid-column:3;grid-row:3;">
+          <div class="step-icon"><i class="bi bi-chat-dots"></i></div>
+          <div class="step-text">Konsultasi<br>Petugas</div>
+        </div>
+
+        <div class="flowchart-arrow" style="grid-column:2;grid-row:3;">
+          <i class="bi bi-arrow-left"></i>
+        </div>
+
+        <div class="flowchart-step flowchart-end" style="grid-column:1;grid-row:3;">
+          <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+          <div class="step-text">Selesai<br>Layanan</div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="flowchart-step" style="grid-column:3;grid-row:1;">
-      <div class="step-icon"><i class="bi bi-book"></i></div>
-      Isi Buku<br>Tamu
+    <!-- ONLINE -->
+    <div class="flowchart-label">
+      <i class="bi bi-globe me-2"></i>Layanan Secara Online
     </div>
 
-    <div class="flowchart-arrow" style="grid-column:4;grid-row:1;">
-      <i class="bi bi-arrow-right"></i>
-    </div>
+    <div class="flowchart-container">
+      <div class="flowchart-zigzag-grid">
 
-    <div class="flowchart-step" style="grid-column:5;grid-row:1;">
-      <div class="step-icon"><i class="bi bi-ticket-perforated"></i></div>
-      Ambil Nomor<br>Antrian
-    </div>
+        <div class="flowchart-step" style="grid-column:1;grid-row:1;">
+          <div class="step-icon"><i class="bi bi-globe"></i></div>
+          <div class="step-text">Akses<br>Portal</div>
+        </div>
 
-    <div class="flowchart-down-arrow">
-      <i class="bi bi-arrow-down"></i>
-    </div>
+        <div class="flowchart-arrow" style="grid-column:2;grid-row:1;">
+          <i class="bi bi-arrow-right"></i>
+        </div>
 
-    <div class="flowchart-step" style="grid-column:5;grid-row:3;">
-      <div class="step-icon"><i class="bi bi-hourglass-split"></i></div>
-      Tunggu<br>Giliran
-    </div>
+        <div class="flowchart-step" style="grid-column:3;grid-row:1;">
+          <div class="step-icon"><i class="bi bi-search"></i></div>
+          <div class="step-text">Cari<br>Informasi</div>
+        </div>
 
-    <div class="flowchart-arrow" style="grid-column:4;grid-row:3;">
-      <i class="bi bi-arrow-left"></i>
-    </div>
+        <div class="flowchart-arrow" style="grid-column:4;grid-row:1;">
+          <i class="bi bi-arrow-right"></i>
+        </div>
 
-    <div class="flowchart-step" style="grid-column:3;grid-row:3;">
-      <div class="step-icon"><i class="bi bi-chat-dots"></i></div>
-      Konsultasi<br>Petugas
-    </div>
+        <div class="flowchart-step" style="grid-column:5;grid-row:1;">
+          <div class="step-icon"><i class="bi bi-question-circle"></i></div>
+          <div class="step-text">Informasi<br>Ditemukan?</div>
+        </div>
 
-    <div class="flowchart-arrow" style="grid-column:2;grid-row:3;">
-      <i class="bi bi-arrow-left"></i>
-    </div>
+        <div class="flowchart-down-arrow">
+          <i class="bi bi-arrow-down"></i>
+        </div>
 
-    <div class="flowchart-step flowchart-end" style="grid-column:1;grid-row:3;">
-      <div class="step-icon"><i class="bi bi-check-circle"></i></div>
-      Selesai<br>Layanan
+        <div class="flowchart-step" style="grid-column:5;grid-row:3;">
+          <div class="step-icon"><i class="bi bi-send"></i></div>
+          <div class="step-text">Ajukan<br>Konsultasi</div>
+        </div>
+
+        <div class="flowchart-arrow" style="grid-column:4;grid-row:3;">
+          <i class="bi bi-arrow-left"></i>
+        </div>
+
+        <div class="flowchart-step" style="grid-column:3;grid-row:3;">
+          <div class="step-icon"><i class="bi bi-chat-left-text"></i></div>
+          <div class="step-text">Terima<br>Informasi</div>
+        </div>
+
+        <div class="flowchart-arrow" style="grid-column:2;grid-row:3;">
+          <i class="bi bi-arrow-left"></i>
+        </div>
+
+        <div class="flowchart-step flowchart-end" style="grid-column:1;grid-row:3;">
+          <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+          <div class="step-text">Selesai<br>Layanan</div>
+        </div>
+
+      </div>
     </div>
 
   </div>
-</div>
-
-<!-- ================== ONLINE ================== -->
-
-<div class="flowchart-label">
-  <i class="bi bi-globe me-2"></i>
-  Layanan Secara Online
-</div>
-
-<div class="flowchart-container">
-  <div class="flowchart-zigzag-grid">
-
-    <div class="flowchart-step" style="grid-column:1;grid-row:1;">
-      <div class="step-icon"><i class="bi bi-globe"></i></div>
-      Akses<br>Portal
-    </div>
-
-    <div class="flowchart-arrow" style="grid-column:2;grid-row:1;">
-      <i class="bi bi-arrow-right"></i>
-    </div>
-
-    <div class="flowchart-step" style="grid-column:3;grid-row:1;">
-      <div class="step-icon"><i class="bi bi-search"></i></div>
-      Cari<br>Informasi
-    </div>
-
-    <div class="flowchart-arrow" style="grid-column:4;grid-row:1;">
-      <i class="bi bi-arrow-right"></i>
-    </div>
-
-    <div class="flowchart-step" style="grid-column:5;grid-row:1;">
-      <div class="step-icon"><i class="bi bi-question-circle"></i></div>
-      Informasi<br>Ditemukan?
-    </div>
-
-    <div class="flowchart-down-arrow">
-      <i class="bi bi-arrow-down"></i>
-    </div>
-
-    <div class="flowchart-step" style="grid-column:5;grid-row:3;">
-      <div class="step-icon"><i class="bi bi-send"></i></div>
-      Ajukan<br>Konsultasi
-    </div>
-
-    <div class="flowchart-arrow" style="grid-column:4;grid-row:3;">
-      <i class="bi bi-arrow-left"></i>
-    </div>
-
-    <div class="flowchart-step" style="grid-column:3;grid-row:3;">
-      <div class="step-icon"><i class="bi bi-chat-left-text"></i></div>
-      Terima<br>Informasi
-    </div>
-
-    <div class="flowchart-arrow" style="grid-column:2;grid-row:3;">
-      <i class="bi bi-arrow-left"></i>
-    </div>
-
-    <div class="flowchart-step flowchart-end" style="grid-column:1;grid-row:3;">
-      <div class="step-icon"><i class="bi bi-check-circle"></i></div>
-      Selesai<br>Layanan
-    </div>
-
-  </div>
-</div>
 
 </div>
 
+<footer class="py-4 text-center">
+  © 2026 BPS Kota Palu
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
