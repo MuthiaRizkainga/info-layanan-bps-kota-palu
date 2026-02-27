@@ -7,264 +7,99 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --bps-blue: #005baa;
-      --bps-dark: #003f7f;
-      --bps-light: #e8f1fb;
-      --bps-accent: #f4a700;
-    }
+    :root { --bps-blue:#005baa; --bps-dark:#003f7f; --bps-light:#e8f1fb; --bps-accent:#f4a700; }
+    body { font-family:'Plus Jakarta Sans',sans-serif; background:#f4f6f9; }
+    .navbar { background-color:var(--bps-blue)!important; padding:0; min-height:56px; }
+    .btn-back { display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.35);border-radius:10px;color:#fff;font-size:1.15rem;text-decoration:none;transition:background .2s,border-color .2s,transform .15s;margin:8px 0; }
+    .btn-back:hover { background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.6);color:#fff;transform:translateX(-2px); }
+    .hero-detail { background:linear-gradient(135deg,var(--bps-dark),var(--bps-blue));color:white;padding:60px 20px;text-align:center; }
+    @media(max-width:576px){.hero-detail{padding:40px 16px;}}
+    .section-box { background:white;padding:30px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.06);margin-bottom:25px; }
+    @media(max-width:480px){.section-box{padding:18px 14px;}}
+    .section-title { font-weight:700;color:var(--bps-dark);margin-bottom:15px;font-size:1.3rem; }
+    ul { padding-left:18px; }
+    .sop-flowchart { margin-top:30px; }
+    .flowchart-title { font-weight:700;color:white;font-size:1.1rem;margin-bottom:20px;padding:15px 20px;border-radius:8px;text-align:center; }
+    .flowchart-title.langsung { background:linear-gradient(135deg,#0056b3,#003f7f); }
+    .flowchart-title.online { background:linear-gradient(135deg,var(--bps-accent),#ff9800); }
 
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f4f6f9;
+    /* ── CORE FLOWCHART ── */
+    .fc-grid {
+      display:grid;
+      grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr 26px 1fr;
+      grid-auto-rows:auto;
+      align-items:center;
+      row-gap:0;
+      column-gap:0;
+      padding:16px 12px;
+      background:linear-gradient(135deg,rgba(0,91,170,.03),rgba(244,167,0,.03));
+      border-radius:12px;
+      margin-bottom:14px;
     }
+    .fc-grid.cols4 { grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr; }
+    .fc-grid.cols3 { grid-template-columns:1fr 26px 1fr 26px 1fr; }
 
-    /* ===== NAVBAR ===== */
-    .navbar {
-      background-color: var(--bps-blue) !important;
-      padding: 0;
-      min-height: 56px;
+    .fc-box {
+      border:2px solid var(--bps-blue);border-radius:10px;
+      padding:10px 5px 9px;text-align:center;background:white;
+      box-shadow:0 2px 8px rgba(0,91,170,.08);transition:transform .2s,box-shadow .2s;
     }
+    .fc-box:hover { transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,91,170,.16); }
+    .fc-box.end { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark))!important;border-color:var(--bps-dark)!important; }
+    .fc-icon { display:block;font-size:clamp(1.1rem,2.8vw,1.65rem);color:var(--bps-blue);margin-bottom:4px;line-height:1; }
+    .fc-label { font-weight:600;color:var(--bps-dark);font-size:clamp(.54rem,1.55vw,.73rem);line-height:1.3; }
+    .fc-harr { display:flex;align-items:center;justify-content:center;color:var(--bps-blue);font-size:clamp(.75rem,2vw,1.1rem); }
 
-    .btn-back {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,0.15);
-      border: 1.5px solid rgba(255,255,255,0.35);
-      border-radius: 10px;
-      color: #fff;
-      font-size: 1.15rem;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s;
-      margin: 8px 0;
+    /* Turn row: spans ALL columns, fixed tight height */
+    .fc-turn {
+      grid-column:1/-1;
+      display:flex;
+      height:20px;
+      align-items:center;
+      color:var(--bps-blue);
+      font-size:clamp(.8rem,2vw,1.05rem);
     }
-    .btn-back:hover {
-      background: rgba(255,255,255,0.28);
-      border-color: rgba(255,255,255,0.6);
-      color: #fff;
-      transform: translateX(-2px);
-    }
+    .fc-turn.r { justify-content:flex-end;padding-right:1px; }
+    .fc-turn.l { justify-content:flex-start;padding-left:1px; }
 
-    /* ===== HERO ===== */
-    .hero-detail {
-      background: linear-gradient(135deg, var(--bps-dark), var(--bps-blue));
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
+    .fc-selesai { text-align:center;color:#4caf50;font-weight:700;margin-bottom:20px;font-size:.95rem; }
+    .sop-steps { padding:20px;background:var(--bps-light);border-radius:8px;border-left:4px solid var(--bps-blue); }
+    .sop-steps.online-border { border-left-color:var(--bps-accent); }
+    .sop-steps strong.sop-steps-title { color:var(--bps-dark);display:block;margin-bottom:12px; }
+    .sop-steps ol { margin:0;padding-left:20px;font-size:.85rem;line-height:1.9;color:#555; }
+    .jw-card { padding:25px;border-radius:12px;border-left:5px solid var(--bps-blue);background:linear-gradient(135deg,rgba(0,91,170,.08),transparent); }
+    .product-card { border:2px solid var(--bps-blue);border-radius:12px;padding:20px;background:white;transition:all .25s;height:100%; }
+    .product-card:hover { box-shadow:0 6px 20px rgba(0,91,170,.15);transform:translateY(-4px); }
+    .product-card-icon { width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:14px;background:rgba(0,91,170,.1);color:var(--bps-blue); }
+    @media(max-width:480px){
+      .fc-grid { grid-template-columns:1fr 16px 1fr 16px 1fr 16px 1fr 16px 1fr; padding:10px 8px; }
+      .fc-grid.cols4 { grid-template-columns:1fr 16px 1fr 16px 1fr 16px 1fr; }
+      .fc-grid.cols3 { grid-template-columns:1fr 16px 1fr 16px 1fr; }
     }
-    @media (max-width: 576px) { .hero-detail { padding: 40px 16px; } }
-
-    /* ===== SECTION BOX ===== */
-    .section-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-      margin-bottom: 25px;
-    }
-    @media (max-width: 480px) { .section-box { padding: 18px 14px; } }
-
-    .section-title {
-      font-weight: 700;
-      color: var(--bps-dark);
-      margin-bottom: 15px;
-      font-size: 1.3rem;
-    }
-
-    ul { padding-left: 18px; }
-
-    /* ===== FLOWCHART ===== */
-    .sop-flowchart { margin-top: 30px; }
-
-    .flowchart-title {
-      font-weight: 700;
-      color: white;
-      font-size: 1.1rem;
-      margin-bottom: 25px;
-      padding: 15px 20px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    .flowchart-title.langsung { background: linear-gradient(135deg, #0056b3, #003f7f); }
-    .flowchart-title.online   { background: linear-gradient(135deg, var(--bps-accent), #ff9800); }
-
-    /* ===== SNAKE GRID ===== */
-    .snake-grid {
-      display: grid;
-      gap: 0;
-      margin: 16px 0;
-      align-items: center;
-      justify-items: center;
-      width: 100%;
-    }
-
-    .sg-box {
-      border: 2px solid var(--bps-blue);
-      border-radius: 10px;
-      padding: 12px 6px 10px;
-      text-align: center;
-      background: white;
-      width: 100%;
-      box-shadow: 0 2px 8px rgba(0,91,170,0.08);
-      transition: all 0.25s;
-      box-sizing: border-box;
-    }
-    .sg-box:hover {
-      box-shadow: 0 6px 16px rgba(0,91,170,0.16);
-      transform: translateY(-3px);
-    }
-    .sg-end {
-      background: linear-gradient(135deg, var(--bps-blue), var(--bps-dark)) !important;
-      border-color: var(--bps-dark) !important;
-    }
-    .sg-icon {
-      font-size: clamp(1.2rem, 2.8vw, 1.7rem);
-      color: var(--bps-blue);
-      display: block;
-      margin-bottom: 5px;
-    }
-    .sg-label {
-      font-weight: 600;
-      color: var(--bps-dark);
-      font-size: clamp(0.56rem, 1.6vw, 0.74rem);
-      line-height: 1.3;
-    }
-    .sg-arr {
-      font-size: clamp(0.85rem, 2.2vw, 1.25rem);
-      color: var(--bps-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-    .sg-down {
-      flex-direction: column;
-      align-self: stretch;
-      justify-content: center;
-      padding: 2px 0;
-    }
-    .sg-empty { width: 100%; }
-
-    /* Flowchart wrapper */
-    .flowchart-visual {
-      margin-bottom: 20px;
-      padding: 20px 16px;
-      background: linear-gradient(135deg, rgba(0,91,170,0.03), rgba(244,167,0,0.03));
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .fc-selesai {
-      text-align: center;
-      color: #4caf50;
-      font-weight: 700;
-      margin-bottom: 25px;
-      font-size: 0.95rem;
-    }
-
-    /* ===== SOP DETAIL BOX ===== */
-    .sop-steps {
-      padding: 20px;
-      background: var(--bps-light);
-      border-radius: 8px;
-      border-left: 4px solid var(--bps-blue);
-    }
-    .sop-steps.online-border { border-left-color: var(--bps-accent); }
-    .sop-steps strong.sop-steps-title {
-      color: var(--bps-dark);
-      display: block;
-      margin-bottom: 12px;
-    }
-    .sop-steps ol {
-      margin: 0;
-      padding-left: 20px;
-      font-size: 0.85rem;
-      line-height: 1.9;
-      color: #555;
-    }
-
-    /* ===== JANGKA WAKTU ===== */
-    .jw-card {
-      padding: 25px;
-      border-radius: 12px;
-      border-left: 5px solid var(--bps-blue);
-      background: linear-gradient(135deg, rgba(0,91,170,0.08), transparent);
-    }
-
-    /* ===== PRODUCT CARDS ===== */
-    .product-card {
-      border: 2px solid var(--bps-blue);
-      border-radius: 12px;
-      padding: 20px;
-      background: white;
-      transition: all 0.25s;
-      height: 100%;
-    }
-    .product-card:hover {
-      box-shadow: 0 6px 20px rgba(0,91,170,0.15);
-      transform: translateY(-4px);
-    }
-    .product-card-icon {
-      width: 48px; height: 48px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 14px;
-      background: rgba(0,91,170,0.1);
-      color: var(--bps-blue);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 575px) {
-      .sg-icon { font-size: 1.1rem; }
-    }
-
-    footer {
-      background-color: var(--bps-dark);
-      color: rgba(255,255,255,0.8);
-      font-size: 0.85rem;
-    }
+    footer { background-color:var(--bps-dark);color:rgba(255,255,255,.8);font-size:.85rem; }
   </style>
 </head>
 <body>
-
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-  <div class="container">
-    <a class="btn-back" href="index.html" title="Kembali">
-      <i class="bi bi-arrow-left"></i>
-    </a>
-  </div>
+  <div class="container"><a class="btn-back" href="index.html" title="Kembali"><i class="bi bi-arrow-left"></i></a></div>
 </nav>
-
-<!-- HERO -->
 <section class="hero-detail">
   <div class="container">
     <h1 class="fw-bold">Pelayanan Rekomendasi Kegiatan Statistik</h1>
     <p class="mb-0">Surat rekomendasi kelayakan penyelenggaraan kegiatan statistik sektoral</p>
   </div>
 </section>
-
 <div class="container py-5">
 
-  <!-- ===== PERSYARATAN ===== -->
+  <!-- PERSYARATAN -->
   <div class="section-box">
     <h4 class="section-title">Persyaratan</h4>
-
     <div class="row g-4">
-      <!-- Langsung -->
       <div class="col-md-6">
-        <div style="background:linear-gradient(135deg,rgba(0,91,170,0.06),transparent);border-radius:12px;border-top:4px solid var(--bps-blue);padding:22px 20px;height:100%;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-            <i class="bi bi-building" style="font-size:1.4rem;color:var(--bps-blue);"></i>
-            <strong style="color:var(--bps-dark);font-size:1rem;">Kunjungan Langsung</strong>
-          </div>
-          <ul style="font-size:0.875rem;line-height:1.9;color:#444;margin:0;">
+        <div style="background:linear-gradient(135deg,rgba(0,91,170,.06),transparent);border-radius:12px;border-top:4px solid var(--bps-blue);padding:22px 20px;height:100%;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><i class="bi bi-building" style="font-size:1.4rem;color:var(--bps-blue);"></i><strong style="color:var(--bps-dark);font-size:1rem;">Kunjungan Langsung</strong></div>
+          <ul style="font-size:.875rem;line-height:1.9;color:#444;margin:0;">
             <li>Berkunjung ke Unit PST BPS</li>
             <li>Memiliki alamat e-mail serta nomor handphone aktif yang terhubung dengan WhatsApp</li>
             <li>Mengisi buku tamu</li>
@@ -272,15 +107,10 @@
           </ul>
         </div>
       </div>
-
-      <!-- Online -->
       <div class="col-md-6">
-        <div style="background:linear-gradient(135deg,rgba(244,167,0,0.06),transparent);border-radius:12px;border-top:4px solid var(--bps-accent);padding:22px 20px;height:100%;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-            <i class="bi bi-globe" style="font-size:1.4rem;color:var(--bps-accent);"></i>
-            <strong style="color:var(--bps-dark);font-size:1rem;">Layanan Online</strong>
-          </div>
-          <ul style="font-size:0.875rem;line-height:1.9;color:#444;margin:0;">
+        <div style="background:linear-gradient(135deg,rgba(244,167,0,.06),transparent);border-radius:12px;border-top:4px solid var(--bps-accent);padding:22px 20px;height:100%;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><i class="bi bi-globe" style="font-size:1.4rem;color:var(--bps-accent);"></i><strong style="color:var(--bps-dark);font-size:1rem;">Layanan Online</strong></div>
+          <ul style="font-size:.875rem;line-height:1.9;color:#444;margin:0;">
             <li>Memiliki alamat e-mail serta nomor handphone aktif yang terhubung dengan WhatsApp</li>
             <li>Memiliki akun pada portal <strong>pst.bps.go.id</strong></li>
             <li>Mengajukan permintaan layanan rekomendasi kegiatan statistik melalui portal pst.bps.go.id</li>
@@ -290,96 +120,58 @@
     </div>
   </div>
 
-  <!-- ===== SOP ===== -->
+  <!-- SOP -->
   <div class="section-box">
     <h4 class="section-title">SOP</h4>
 
-    <!-- ---- FLOWCHART: KUNJUNGAN LANGSUNG ---- -->
+    <!-- FLOWCHART LANGSUNG -->
     <div class="sop-flowchart">
-      <div class="flowchart-title langsung">
-        <i class="bi bi-building me-2"></i>Layanan dengan Kunjungan Langsung
+      <div class="flowchart-title langsung"><i class="bi bi-building me-2"></i>Layanan dengan Kunjungan Langsung</div>
+      <div class="fc-grid">
+        <!-- ROW 1 → -->
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-building"></i></span><div class="fc-label">Berkunjung<br>ke PST BPS</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-book"></i></span><div class="fc-label">Isi Buku<br>Tamu</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-ticket-perforated"></i></span><div class="fc-label">Ambil Nomor<br>Antrian</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-hourglass-split"></i></span><div class="fc-label">Tunggu<br>Giliran</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-chat-dots"></i></span><div class="fc-label">Sampaikan<br>Permintaan</div></div>
+        <!-- TURN ↓ kanan -->
+        <div class="fc-turn r"><i class="bi bi-arrow-down"></i></div>
+        <!-- ROW 2 ← -->
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-person-plus"></i></span><div class="fc-label">Buat Akun<br>&amp; Login Portal</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-headset"></i></span><div class="fc-label">Petugas Bantu<br>Akses Portal</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-file-earmark-text"></i></span><div class="fc-label">Berikan<br>Formulir</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-search"></i></span><div class="fc-label">Bantu Cari<br>Referensi</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-send-plus"></i></span><div class="fc-label">Dampingi<br>Pengajuan</div></div>
+        <!-- TURN ↓ kiri -->
+        <div class="fc-turn l"><i class="bi bi-arrow-down"></i></div>
+        <!-- ROW 3 → -->
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-clipboard-check"></i></span><div class="fc-label">Periksa<br>Rancangan</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-people"></i></span><div class="fc-label">Evaluasi<br>Bersama Tim</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-pencil-square"></i></span><div class="fc-label">Susun Naskah<br>Rekomendasi</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-patch-check"></i></span><div class="fc-label">Pengesahan<br>Direktur</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-envelope-check"></i></span><div class="fc-label">Kirim Surat<br>via Portal</div></div>
+        <!-- TURN ↓ kanan -->
+        <div class="fc-turn r"><i class="bi bi-arrow-down"></i></div>
+        <!-- ROW 4 ← partial -->
+        <div class="fc-box end"><span class="fc-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="fc-label" style="color:white;">Selesai<br>Layanan</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
+        <div style="grid-column:span 5;"></div>
+        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-star"></i></span><div class="fc-label">Beri<br>Rating</div></div>
       </div>
-
-      <!--
-        Row 1 (5 steps): Berkunjung → Isi Buku → Ambil Antrian → Tunggu → Sampaikan
-        Row 2 (turn):                                                              ↓
-        Row 3 (5 steps L): Buat Akun ← Bantu Akses ← Berikan Formulir ← Bantu Cari ← Bantu Ajukan
-        Row 4 (turn): ↓
-        Row 5 (5 steps): Periksa → Evaluasi → Susun Naskah → Pengesahan → Kirim Surat
-        Row 6 (turn):                                                              ↓
-        Row 7 (end L): Selesai ← Rating
-      -->
-
-      <!-- ROW 1: 5 boxes -->
-      <div class="snake-grid" style="grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr 26px 1fr;">
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-building"></i></span><div class="sg-label">Berkunjung<br>ke PST BPS</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-book"></i></span><div class="sg-label">Isi Buku<br>Tamu</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-ticket-perforated"></i></span><div class="sg-label">Ambil Nomor<br>Antrian</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-hourglass-split"></i></span><div class="sg-label">Tunggu<br>Giliran</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-chat-dots"></i></span><div class="sg-label">Sampaikan<br>Permintaan</div></div>
-
-        <!-- turn ↓ col 5 -->
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-
-        <!-- ROW 3: L direction -->
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-plus"></i></span><div class="sg-label">Buat Akun<br>& Login Portal</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-headset"></i></span><div class="sg-label">Petugas Bantu<br>Akses Portal</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-file-earmark-text"></i></span><div class="sg-label">Berikan<br>Formulir</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Bantu Cari<br>Referensi</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-plus"></i></span><div class="sg-label">Dampingi<br>Pengajuan</div></div>
-
-        <!-- turn ↓ col 1 -->
-        <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-
-        <!-- ROW 5: R direction -->
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard-check"></i></span><div class="sg-label">Periksa<br>Rancangan</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-people"></i></span><div class="sg-label">Evaluasi<br>Bersama Tim</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Susun Naskah<br>Rekomendasi</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-patch-check"></i></span><div class="sg-label">Pengesahan<br>Direktur</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-check"></i></span><div class="sg-label">Kirim Surat<br>via Portal</div></div>
-
-        <!-- turn ↓ col 5 -->
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-
-        <!-- ROW 7: end L -->
-        <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-        <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-star"></i></span><div class="sg-label">Beri<br>Rating</div></div>
-      </div>
-
-      <div class="fc-selesai mt-2"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
-
+      <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
       <div class="sop-steps">
         <strong class="sop-steps-title">Detail Prosedur Kunjungan Langsung:</strong>
         <ol>
@@ -404,74 +196,41 @@
       </div>
     </div>
 
-    <!-- ---- FLOWCHART: LAYANAN ONLINE ---- -->
+    <!-- FLOWCHART ONLINE -->
     <div class="sop-flowchart" style="margin-top:36px;">
-      <div class="flowchart-title online">
-        <i class="bi bi-globe me-2"></i>Layanan dengan Cara Online
+      <div class="flowchart-title online"><i class="bi bi-globe me-2"></i>Layanan dengan Cara Online</div>
+      <div class="fc-grid">
+        <!-- ROW 1 → -->
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-globe"></i></span><div class="fc-label">Akses<br>Portal</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-person-check"></i></span><div class="fc-label">Login<br>Portal</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-search"></i></span><div class="fc-label">Cari<br>Referensi</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-send-plus"></i></span><div class="fc-label">Ajukan<br>Rekomendasi</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-clipboard-check"></i></span><div class="fc-label">Periksa<br>Rancangan</div></div>
+        <!-- TURN ↓ kanan -->
+        <div class="fc-turn r"><i class="bi bi-arrow-down"></i></div>
+        <!-- ROW 2 ← partial -->
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-pencil-square"></i></span><div class="fc-label">Susun Naskah<br>Rekomendasi</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
+        <div style="grid-column:span 5;"></div>
+        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-people"></i></span><div class="fc-label">Evaluasi<br>Bersama Tim</div></div>
+        <!-- TURN ↓ kiri -->
+        <div class="fc-turn l"><i class="bi bi-arrow-down"></i></div>
+        <!-- ROW 3 → partial -->
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-patch-check"></i></span><div class="fc-label">Pengesahan<br>Direktur</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-envelope-check"></i></span><div class="fc-label">Kirim Surat<br>via Portal</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box"><span class="fc-icon"><i class="bi bi-star"></i></span><div class="fc-label">Beri<br>Rating</div></div>
+        <div class="fc-harr"><i class="bi bi-arrow-right"></i></div>
+        <div class="fc-box end"><span class="fc-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="fc-label" style="color:white;">Selesai<br>Layanan</div></div>
+        <div style="grid-column:span 2;"></div>
       </div>
-
-      <!--
-        Row 1: Akses Portal → Login → Cari Referensi → Ajukan → Periksa
-        Row 2 (turn): ↓ col 5
-        Row 3 L: Selesai ← Rating ← Kirim Surat ← Pengesahan ← Susun Naskah
-        Row 4 (turn): ↓ col 5 → no, actually evaluasi goes up; let's do:
-        Actually: evaluasi is step 6 which comes after periksa step 5.
-        Let row 3 L: Evaluasi ← (from Periksa via turn)
-        and then row 4 R: Susun → Pengesahan → Kirim → Rating → Selesai
-      -->
-
-      <!-- Row 1: 5 steps R -->
-      <div class="snake-grid" style="grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr 26px 1fr;">
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-globe"></i></span><div class="sg-label">Akses<br>Portal</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-check"></i></span><div class="sg-label">Login<br>Portal</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Cari<br>Referensi</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-plus"></i></span><div class="sg-label">Ajukan<br>Rekomendasi</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard-check"></i></span><div class="sg-label">Periksa<br>Rancangan</div></div>
-
-        <!-- turn ↓ col 5 -->
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-
-        <!-- ROW 3: L -->
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Susun Naskah<br>Rekomendasi</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-        <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-people"></i></span><div class="sg-label">Evaluasi<br>Bersama Tim</div></div>
-
-        <!-- turn ↓ col 1 -->
-        <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div><div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-
-        <!-- ROW 5: R -->
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-patch-check"></i></span><div class="sg-label">Pengesahan<br>Direktur</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-check"></i></span><div class="sg-label">Kirim Surat<br>via Portal</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box"><span class="sg-icon"><i class="bi bi-star"></i></span><div class="sg-label">Beri<br>Rating</div></div>
-        <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-        <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
-        <div class="sg-empty"></div>
-        <div class="sg-empty"></div>
-      </div>
-
-      <div class="fc-selesai mt-2"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
-
+      <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
       <div class="sop-steps online-border">
         <strong class="sop-steps-title">Detail Prosedur Layanan Online:</strong>
         <ol>
@@ -489,9 +248,9 @@
         </ol>
       </div>
     </div>
-  </div><!-- end SOP section-box -->
+  </div>
 
-  <!-- ===== JANGKA WAKTU ===== -->
+  <!-- JANGKA WAKTU -->
   <div class="section-box">
     <h4 class="section-title">Jangka Waktu Pelayanan</h4>
     <div style="margin-top:20px;">
@@ -500,63 +259,49 @@
           <i class="bi bi-clock-history" style="font-size:1.6rem;color:var(--bps-blue);margin-top:2px;flex-shrink:0;"></i>
           <div>
             <strong style="color:var(--bps-dark);font-size:1.05rem;display:block;margin-bottom:8px;">Notifikasi Hasil Pemeriksaan</strong>
-            <p style="margin:0;color:#555;font-size:0.92rem;line-height:1.75;">
-              Pengguna layanan akan menerima notifikasi melalui <strong>e-mail</strong> serta <strong>WhatsApp</strong> tentang hasil pemeriksaan formulir rekomendasi kegiatan statistik sektoral maksimal <strong>14 (empat belas) hari kerja</strong> sejak berkas dinyatakan lengkap dan jelas oleh BPS di portal pst.bps.go.id.
-            </p>
+            <p style="margin:0;color:#555;font-size:.92rem;line-height:1.75;">Pengguna layanan akan menerima notifikasi melalui <strong>e-mail</strong> serta <strong>WhatsApp</strong> tentang hasil pemeriksaan formulir rekomendasi kegiatan statistik sektoral maksimal <strong>14 (empat belas) hari kerja</strong> sejak berkas dinyatakan lengkap dan jelas oleh BPS di portal pst.bps.go.id.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== BIAYA ===== -->
+  <!-- BIAYA -->
   <div class="section-box">
     <h4 class="section-title">Biaya / Tarif</h4>
-    <div style="padding:25px;background:linear-gradient(135deg,rgba(76,175,80,0.08),transparent);border-radius:12px;border-left:5px solid #4caf50;">
+    <div style="padding:25px;background:linear-gradient(135deg,rgba(76,175,80,.08),transparent);border-radius:12px;border-left:5px solid #4caf50;">
       <div style="display:flex;align-items:flex-start;gap:14px;">
         <i class="bi bi-check-circle" style="font-size:1.6rem;color:#4caf50;margin-top:2px;flex-shrink:0;"></i>
         <div>
           <p style="margin:0 0 6px 0;font-weight:700;color:#2e7d32;font-size:1.05rem;">Tidak Dipungut Biaya</p>
-          <p style="margin:0;color:#555;font-size:0.92rem;line-height:1.7;">Layanan rekomendasi kegiatan statistik disediakan secara gratis untuk publik.</p>
+          <p style="margin:0;color:#555;font-size:.92rem;line-height:1.7;">Layanan rekomendasi kegiatan statistik disediakan secara gratis untuk publik.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== PRODUK PELAYANAN ===== -->
+  <!-- PRODUK -->
   <div class="section-box">
     <h4 class="section-title">Produk Pelayanan</h4>
     <div class="row g-4 mt-1">
-
       <div class="col-md-6">
         <div class="product-card h-100">
           <div class="product-card-icon"><i class="bi bi-lightbulb"></i></div>
-          <div style="font-weight:700;color:var(--bps-dark);margin-bottom:6px;">Saran, Masukan & Rekomendasi</div>
-          <div style="font-size:0.85rem;color:#666;line-height:1.7;">
-            Saran, masukan, pertimbangan, solusi, dan rekomendasi terhadap penyelenggaraan kegiatan statistik yang diajukan oleh instansi/lembaga.
-          </div>
+          <div style="font-weight:700;color:var(--bps-dark);margin-bottom:6px;">Saran, Masukan &amp; Rekomendasi</div>
+          <div style="font-size:.85rem;color:#666;line-height:1.7;">Saran, masukan, pertimbangan, solusi, dan rekomendasi terhadap penyelenggaraan kegiatan statistik yang diajukan oleh instansi/lembaga.</div>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="product-card h-100">
           <div class="product-card-icon"><i class="bi bi-file-earmark-check"></i></div>
           <div style="font-weight:700;color:var(--bps-dark);margin-bottom:6px;">Surat Rekomendasi Kegiatan Statistik Sektoral</div>
-          <div style="font-size:0.85rem;color:#666;line-height:1.7;">
-            Surat resmi yang berisi kelayakan pelaksanaan kegiatan statistik sektoral, disahkan oleh Direktur Diseminasi Statistik BPS.
-          </div>
+          <div style="font-size:.85rem;color:#666;line-height:1.7;">Surat resmi yang berisi kelayakan pelaksanaan kegiatan statistik sektoral, disahkan oleh Direktur Diseminasi Statistik BPS.</div>
         </div>
       </div>
-
     </div>
   </div>
-
-</div><!-- /container -->
-
-<footer class="py-4 text-center">
-  © 2026 BPS Kota Palu
-</footer>
-
+</div>
+<footer class="py-4 text-center">© 2026 BPS Kota Palu</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
