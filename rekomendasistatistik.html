@@ -524,7 +524,7 @@
 <!-- SUPABASE CONFIG -->
 <script>
   const SUPABASE_URL = 'https://rljhayfmfsrdtpmlqltp.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_U0HLP86ICTpsprYSLOyHeg_7Isb3i9F';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsamhheWZtZnNyZHRwbWxxbHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMzc5NTcsImV4cCI6MjA4NzkxMzk1N30.1Iyu5DYkQyqnmu9eLT1Kcf7ybOI4V4-bXHr7b7NyR7c';
   // Ganti nilai JENIS_LAYANAN sesuai halaman masing-masing
   const JENIS_LAYANAN = 'Pelayanan Rekomendasi Kegiatan Statistik';
 </script>
@@ -922,7 +922,8 @@
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'x-upsert': 'false'
+          'Content-Type': dokumen.type,
+          'x-upsert': 'true'
         },
         body: dokumen
       });
