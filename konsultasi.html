@@ -925,7 +925,8 @@
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'x-upsert': 'false'
+          'Content-Type': dokumen.type,
+          'x-upsert': 'true'
         },
         body: dokumen
       });
