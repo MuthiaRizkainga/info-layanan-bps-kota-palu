@@ -357,9 +357,8 @@
         <!-- ROW 4 ← partial: Selesai di kiri, Beri Rating di kanan -->
         <div class="fc-box end"><span class="fc-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="fc-label" style="color:white;">Selesai<br>Layanan</div></div>
         <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
-        <div style="grid-column: span 5;"></div>
-        <div class="fc-harr"><i class="bi bi-arrow-left"></i></div>
         <div class="fc-box"><span class="fc-icon"><i class="bi bi-star"></i></span><div class="fc-label">Beri<br>Rating</div></div>
+        <div style="grid-column: span 6;"></div>
       </div>
 
       <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
@@ -934,7 +933,8 @@
 
       // 2. Simpan data pengajuan ke database
       const nomorTiket = generateTiket();
-      const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/pengajuan`, {
+      const insertRes = await fetch(`${SUPABASE_URL}/res
+      t/v1/pengajuan`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
