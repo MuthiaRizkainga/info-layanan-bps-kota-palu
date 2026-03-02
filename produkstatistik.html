@@ -990,6 +990,13 @@
             <div class="result-row"><span class="result-label">Instansi</span><span class="result-value" id="res-instansi">-</span></div>
             <div class="result-row"><span class="result-label">Tanggal Pengajuan</span><span class="result-value" id="res-tanggal">-</span></div>
             <div class="result-row"><span class="result-label">Deskripsi</span><span class="result-value" id="res-deskripsi">-</span></div>
+            <div id="res-hasil-box" style="display:none;margin-top:16px;padding:16px;background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:10px;border:1.5px solid #a5d6a7;">
+              <p style="margin:0 0 10px 0;font-weight:700;color:#2e7d32;font-size:0.9rem;"><i class="bi bi-check-circle-fill me-2"></i>Data Tersedia</p>
+              <p style="margin:0 0 12px 0;font-size:0.82rem;color:#555;">Petugas BPS telah mengupload data yang Anda minta.</p>
+              <a id="res-hasil-link" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#2e7d32;color:white;padding:9px 20px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.85rem;">
+                <i class="bi bi-download"></i> Download Data
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1192,6 +1199,13 @@
       badge.textContent = d.status;
       badge.className = 'status-badge ' + (statusMap[d.status] || 'status-menunggu');
 
+      const hasilBox = document.getElementById('res-hasil-box');
+      if (d.url_hasil) {
+        document.getElementById('res-hasil-link').href = d.url_hasil;
+        hasilBox.style.display = 'block';
+      } else {
+        hasilBox.style.display = 'none';
+      }
       resultCard.classList.add('show');
 
     } catch (err) {
