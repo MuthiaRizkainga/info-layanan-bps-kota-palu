@@ -922,7 +922,7 @@
     try {
       // 1. Upload dokumen ke Supabase Storage
       const fileExt = dokumen.name.split('.').pop();
-      const fileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const fileName = `rekomendasi/${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
 
       const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/dokumen/${fileName}`, {
         method: 'POST',
