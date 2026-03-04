@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     :root {
       --bps-blue: #005baa;
@@ -97,6 +98,19 @@
       padding: 6px 18px; border-radius: 50px; transition: all 0.2s; display: inline-block;
     }
     .btn-detail:hover { background: var(--bps-blue); color: white; }
+
+    /* STATISTIK PUBLIK */
+    .statistik-section { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 18px rgba(0,0,0,0.07); border: 1px solid rgba(0,91,170,0.08); }
+    .stat-pub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+    .stat-pub-card { background: #f8fafd; border-radius: 12px; padding: 20px; border: 1px solid #e0eaf5; }
+    .stat-pub-card h6 { font-weight: 700; color: var(--bps-dark); font-size: 0.88rem; margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+    .stat-pub-card h6 i { color: var(--bps-blue); }
+    .chart-wrap-pub { position: relative; height: 200px; }
+    .stat-highlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+    .stat-highlight { background: linear-gradient(135deg, var(--bps-blue), var(--bps-dark)); border-radius: 12px; padding: 20px; text-align: center; color: white; }
+    .stat-highlight .num { font-size: 2rem; font-weight: 800; line-height: 1; }
+    .stat-highlight .lbl { font-size: 0.75rem; opacity: 0.85; margin-top: 4px; }
+    @media (max-width: 576px) { .stat-pub-grid { grid-template-columns: 1fr; } .stat-highlight-grid { grid-template-columns: 1fr; } }
 
     /* FOOTER */
     footer { background-color: var(--bps-dark); color: rgba(255,255,255,0.8); font-size: 0.88rem; }
@@ -238,6 +252,45 @@
     </div>
   </section>
 
+  <!-- STATISTIK PENGUNJUNG -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-2">
+        <h2 class="section-title">Statistik Pengunjung Layanan</h2>
+        <p style="color:#888; font-size:0.92rem; margin-top:6px;">Data agregat pengguna layanan BPS Kota Palu</p>
+      </div>
+      <div class="section-divider"></div>
+      <div class="statistik-section">
+        <!-- Highlight numbers -->
+        <div class="stat-highlight-grid">
+          <div class="stat-highlight">
+            <div class="num" id="pub-total">-</div>
+            <div class="lbl">Total Pengajuan</div>
+          </div>
+          <div class="stat-highlight" style="background: linear-gradient(135deg, #f4a700, #e09000);">
+            <div class="num" id="pub-kategori-top">-</div>
+            <div class="lbl">Kategori Terbanyak</div>
+          </div>
+          <div class="stat-highlight" style="background: linear-gradient(135deg, #2e7d32, #1b5e20);">
+            <div class="num" id="pub-kab-top">-</div>
+            <div class="lbl">Asal Daerah Terbanyak</div>
+          </div>
+        </div>
+        <!-- Charts -->
+        <div class="stat-pub-grid">
+          <div class="stat-pub-card">
+            <h6><i class="bi bi-pie-chart-fill"></i> Kategori Pengguna</h6>
+            <div class="chart-wrap-pub"><canvas id="pub-chart-kategori"></canvas></div>
+          </div>
+          <div class="stat-pub-card">
+            <h6><i class="bi bi-mortarboard-fill"></i> Tingkat Pendidikan</h6>
+            <div class="chart-wrap-pub"><canvas id="pub-chart-pendidikan"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="py-4 mt-3">
     <div class="container text-center">
@@ -252,8 +305,70 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const SUPABASE_URL = 'https://rljhayfmfsrdtpmlqltp.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsamhheWZtZnNyZHRwbWxxbHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMzc5NTcsImV4cCI6MjA4NzkxMzk1N30.1Iyu5DYkQyqnmu9eLT1Kcf7ybOI4V4-bXHr7b7NyR7c';
+  
+    async function loadStatistik() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/pengajuan?select=kategori_pengguna,tingkat_pendidikan,kabupaten_kota`, {
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+        });
+        const data = await res.json();
+        if (!data || data.length === 0) return;
+  
+        // Highlight numbers
+        document.getElementById('pub-total').textContent = data.length;
+  
+        const kategoriCount = {};
+        data.forEach(d => { if (d.kategori_pengguna) kategoriCount[d.kategori_pengguna] = (kategoriCount[d.kategori_pengguna] || 0) + 1; });
+        const topKategori = Object.entries(kategoriCount).sort((a,b) => b[1]-a[1])[0];
+        if (topKategori) document.getElementById('pub-kategori-top').textContent = topKategori[0].split('/')[0].trim();
+  
+        const kabCount = {};
+        data.forEach(d => { if (d.kabupaten_kota) kabCount[d.kabupaten_kota] = (kabCount[d.kabupaten_kota] || 0) + 1; });
+        const topKab = Object.entries(kabCount).sort((a,b) => b[1]-a[1])[0];
+        if (topKab) document.getElementById('pub-kab-top').textContent = topKab[0];
+  
+        const accents = ['#005baa','#f4a700','#e05c2a','#2e7d32','#7b1fa2','#0097a7','#c62828'];
+        const bpsBlues = ['#005baa','#1a7fd4','#4da3e8','#003f7f','#7ec0f5','#c8dff5','#002d5a'];
+  
+        // Chart kategori
+        new Chart(document.getElementById('pub-chart-kategori'), {
+          type: 'doughnut',
+          data: {
+            labels: Object.keys(kategoriCount),
+            datasets: [{ data: Object.values(kategoriCount), backgroundColor: accents, borderWidth: 2 }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12 } } }
+          }
+        });
+  
+        // Chart pendidikan
+        const pendidikanCount = {};
+        data.forEach(d => { if (d.tingkat_pendidikan) pendidikanCount[d.tingkat_pendidikan] = (pendidikanCount[d.tingkat_pendidikan] || 0) + 1; });
+        new Chart(document.getElementById('pub-chart-pendidikan'), {
+          type: 'doughnut',
+          data: {
+            labels: Object.keys(pendidikanCount),
+            datasets: [{ data: Object.values(pendidikanCount), backgroundColor: bpsBlues, borderWidth: 2 }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12 } } }
+          }
+        });
+  
+      } catch (err) { console.log('Statistik tidak tersedia'); }
+    }
+  
+    loadStatistik();
+  </script>
 </body>
 </html>
+
 
 
 
