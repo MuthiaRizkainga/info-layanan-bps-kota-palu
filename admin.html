@@ -453,10 +453,92 @@
     .toast-msg.show { display: flex; }
     .toast-msg.error { background: #c62828; }
 
-    @media (max-width: 768px) {
-      .dashboard-body { padding: 16px; }
-      .admin-navbar { padding: 0 16px; }
+    /* MODAL DETAIL */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
+
+    .modal-overlay.show { display: flex; }
+
+    .modal-box {
+      background: white;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+    }
+
+    .modal-head {
+      padding: 20px 24px;
+      border-bottom: 1px solid #f0f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-head h5 { font-weight: 800; color: var(--bps-dark); margin: 0; font-size: 1rem; }
+
+    .btn-close-modal {
+      background: #f4f6f9;
+      border: none;
+      border-radius: 8px;
+      width: 32px; height: 32px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #888;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .btn-close-modal:hover { background: #e0eaf5; color: var(--bps-dark); }
+
+    .modal-body { padding: 24px; }
+
+    .detail-section { margin-bottom: 20px; }
+    .detail-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .detail-item { display: flex; flex-direction: column; gap: 3px; }
+    .detail-label { font-size: 0.75rem; color: #aaa; font-weight: 600; }
+    .detail-value { font-size: 0.88rem; color: #333; font-weight: 500; }
+
+    .detail-full { grid-column: 1 / -1; }
+
+    .btn-detail-row {
+      background: var(--bps-light);
+      border: none;
+      border-radius: 7px;
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--bps-blue);
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-detail-row:hover { background: var(--bps-blue); color: white; }
   </style>
 </head>
 <body>
@@ -550,11 +632,11 @@
               <th>No. Tiket</th>
               <th>Nama</th>
               <th>Jenis Layanan</th>
-              <th>Instansi</th>
               <th>Tanggal</th>
               <th>Dok. Syarat</th>
               <th>Hasil Data</th>
               <th>Status</th>
+              <th>Detail</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -565,6 +647,113 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- MODAL DETAIL -->
+<div class="modal-overlay" id="modal-detail" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h5><i class="bi bi-person-lines-fill me-2" style="color:var(--bps-blue);"></i>Detail Pengajuan</h5>
+      <button class="btn-close-modal" onclick="closeModal()"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="detail-section">
+        <div class="detail-section-title">Info Tiket</div>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Nomor Tiket</span>
+            <span class="detail-value" id="md-tiket" style="color:var(--bps-blue);font-weight:700;">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Status</span>
+            <span id="md-status">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Jenis Layanan</span>
+            <span class="detail-value" id="md-layanan">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Tanggal Pengajuan</span>
+            <span class="detail-value" id="md-tanggal">-</span>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border-color:#f0f4f8;">
+
+      <div class="detail-section">
+        <div class="detail-section-title">Data Pribadi</div>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Nama Lengkap</span>
+            <span class="detail-value" id="md-nama">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Email</span>
+            <span class="detail-value" id="md-email">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">No. Telepon</span>
+            <span class="detail-value" id="md-telepon">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Instansi / Universitas</span>
+            <span class="detail-value" id="md-instansi">-</span>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border-color:#f0f4f8;">
+
+      <div class="detail-section">
+        <div class="detail-section-title">Data Demografis</div>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Jenis Kelamin</span>
+            <span class="detail-value" id="md-jk">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Usia</span>
+            <span class="detail-value" id="md-usia">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Kategori Pengguna</span>
+            <span class="detail-value" id="md-kategori">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Tingkat Pendidikan</span>
+            <span class="detail-value" id="md-pendidikan">-</span>
+          </div>
+          <div class="detail-item detail-full">
+            <span class="detail-label">Kabupaten / Kota</span>
+            <span class="detail-value" id="md-kabkota">-</span>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border-color:#f0f4f8;">
+
+      <div class="detail-section">
+        <div class="detail-section-title">Keperluan & Dokumen</div>
+        <div class="detail-grid">
+          <div class="detail-item detail-full">
+            <span class="detail-label">Deskripsi Kebutuhan</span>
+            <span class="detail-value" id="md-deskripsi" style="line-height:1.6;">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Dokumen Syarat</span>
+            <span class="detail-value" id="md-dokumen">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Hasil Data</span>
+            <span class="detail-value" id="md-hasil">-</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -635,7 +824,7 @@
   // ===== LOAD DATA =====
   async function loadData() {
     const tbody = document.getElementById('table-body');
-    tbody.innerHTML = '<tr class="loading-row"><td colspan="8"><i class="bi bi-arrow-repeat"></i> Memuat data...</td></tr>';
+    tbody.innerHTML = '<tr class="loading-row"><td colspan="9"><i class="bi bi-arrow-repeat"></i> Memuat data...</td></tr>';
 
     const filterStatus = document.getElementById('filter-status').value;
     const filterLayanan = document.getElementById('filter-layanan').value;
@@ -694,7 +883,6 @@
             <div style="font-size:0.78rem;color:#aaa;">${d.email}</div>
           </td>
           <td><span style="font-size:0.82rem;">${layananShort}</span></td>
-          <td style="font-size:0.82rem;">${d.instansi || '-'}</td>
           <td style="font-size:0.82rem;white-space:nowrap;">${tgl}</td>
           <td>
             ${d.url_dokumen
@@ -704,6 +892,13 @@
           </td>
           <td>${hasilCell}</td>
           <td><span class="badge-status ${badgeClass}">${d.status}</span></td>
+          <td>
+            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+              <button class="btn-detail-row" onclick='showDetail(${JSON.stringify(d).replace(/'/g, "&#39;")})'>
+                <i class="bi bi-eye"></i> Detail
+              </button>
+            </div>
+          </td>
           <td>
             <div style="display:flex;gap:6px;align-items:center;">
               <select class="status-select" id="sel-${d.id}">
@@ -783,6 +978,51 @@
     toast.className = 'toast-msg show' + (isError ? ' error' : '');
     setTimeout(() => toast.classList.remove('show'), 3000);
   }
+
+  // ===== MODAL DETAIL =====
+  function showDetail(d) {
+    const statusMap = {
+      'Menunggu Verifikasi': 'badge-menunggu',
+      'Sedang Diproses': 'badge-diproses',
+      'Selesai': 'badge-selesai',
+      'Ditolak': 'badge-ditolak'
+    };
+
+    document.getElementById('md-tiket').textContent = d.nomor_tiket;
+    document.getElementById('md-layanan').textContent = d.jenis_layanan;
+    document.getElementById('md-tanggal').textContent = new Date(d.created_at).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    document.getElementById('md-nama').textContent = d.nama;
+    document.getElementById('md-email').textContent = d.email;
+    document.getElementById('md-telepon').textContent = d.no_telepon || '-';
+    document.getElementById('md-instansi').textContent = d.instansi || '-';
+    document.getElementById('md-jk').textContent = d.jenis_kelamin || '-';
+    document.getElementById('md-usia').textContent = d.usia ? d.usia + ' tahun' : '-';
+    document.getElementById('md-kategori').textContent = d.kategori_pengguna || '-';
+    document.getElementById('md-pendidikan').textContent = d.tingkat_pendidikan || '-';
+    document.getElementById('md-kabkota').textContent = d.kabupaten_kota || '-';
+    document.getElementById('md-deskripsi').textContent = d.deskripsi || '-';
+
+    const badge = document.getElementById('md-status');
+    badge.innerHTML = `<span class="badge-status ${statusMap[d.status] || 'badge-menunggu'}">${d.status}</span>`;
+
+    const dokEl = document.getElementById('md-dokumen');
+    dokEl.innerHTML = d.url_dokumen
+      ? `<a href="${d.url_dokumen}" target="_blank" style="color:var(--bps-blue);font-weight:600;font-size:0.85rem;"><i class="bi bi-file-earmark-arrow-down me-1"></i>Lihat Dokumen</a>`
+      : '-';
+
+    const hasilEl = document.getElementById('md-hasil');
+    hasilEl.innerHTML = d.url_hasil
+      ? `<a href="${d.url_hasil}" target="_blank" style="color:#2e7d32;font-weight:600;font-size:0.85rem;"><i class="bi bi-download me-1"></i>Download Data</a>`
+      : '<span style="color:#aaa;">Belum diupload</span>';
+
+    document.getElementById('modal-detail').classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('modal-detail').classList.remove('show');
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   // ===== UPLOAD HASIL DATA =====
   let currentUploadId = null;
