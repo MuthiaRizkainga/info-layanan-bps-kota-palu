@@ -21,15 +21,16 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f0f4f9; display: flex; flex-direction: column; }
 
     /* ======= NAVBAR ======= */
-    .navbar { background-color: var(--bps-blue) !important; padding: 0; min-height: 56px; }
+    .navbar { background-color: var(--bps-blue) !important; padding: 0; min-height: 56px; position: relative; }
     .btn-back {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px;
+      width: 36px; height: 36px;
       background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35);
-      border-radius: 10px; color: #fff; font-size: 1.15rem; text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s; margin: 8px 0;
+      border-radius: 8px; color: #fff; font-size: 1rem; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      position: absolute; top: 50%; left: 16px; transform: translateY(-50%);
     }
-    .btn-back:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); color: #fff; transform: translateX(-2px); }
+    .btn-back:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); color: #fff; transform: translateY(-50%) translateX(-2px); }
 
     /* ======= PAGE WRAPPER ======= */
     .page-wrapper { display: flex; flex: 1; overflow: hidden; height: calc(100vh - 56px); }
@@ -94,6 +95,7 @@
     .syarat-card-header { display: flex; align-items: center; gap: 10px; padding: 13px 16px; }
     .syarat-card-header.blue { background: var(--bps-blue); }
     .syarat-card-header.gold { background: var(--bps-accent); }
+    .syarat-card-header.green { background: linear-gradient(135deg, #2e7d32, #388e3c); }
     .syarat-card-header .sh-icon { width: 30px; height: 30px; border-radius: 7px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: white; flex-shrink: 0; }
     .syarat-card-header.gold .sh-icon { color: var(--bps-dark); }
     .syarat-card-header .sh-title { font-weight: 700; font-size: 0.87rem; color: white; }
@@ -283,10 +285,6 @@
       <div class="sb-group-label">Pengajuan</div>
       <button class="sb-link" onclick="showPanel('ajukan',this)">
         <i class="bi bi-send sb-ico"></i> Ajukan Layanan
-        <i class="bi bi-chevron-right sb-arr"></i>
-      </button>
-      <button class="sb-link" onclick="showPanel('cekstatus',this)">
-        <i class="bi bi-search sb-ico"></i> Cek Status Tiket
         <i class="bi bi-chevron-right sb-arr"></i>
       </button>
     </div>
@@ -493,10 +491,11 @@
             </div>
           </div>
           <div class="section-body">
+            <!-- PERUBAHAN: hapus grid-column: 1 / -1, biarkan card dalam syarat-grid biasa (bersampingan) -->
             <div class="syarat-grid">
-              <div class="syarat-card" style="grid-column: 1 / -1;">
-                <div class="syarat-card-header" style="background: linear-gradient(135deg, #2e7d32, #388e3c);">
-                  <div class="sh-icon"><i class="bi bi-currency-dollar"></i></div>
+              <div class="syarat-card">
+                <div class="syarat-card-header green">
+                  <div class="sh-icon"><i class="bi bi-cash-coin"></i></div>
                   <span class="sh-title">Tarif Layanan</span>
                 </div>
                 <div class="syarat-card-body">
@@ -508,23 +507,10 @@
                   </ul>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="section-box">
-          <div class="section-head">
-            <div class="section-head-icon"><i class="bi bi-gift"></i></div>
-            <div>
-              <p class="section-head-title">Produk Pelayanan</p>
-              <p class="section-head-sub">Hasil layanan yang diberikan kepada pengguna</p>
-            </div>
-          </div>
-          <div class="section-body">
-            <div class="syarat-grid">
-              <div class="syarat-card" style="grid-column: 1 / -1;">
+              <div class="syarat-card">
                 <div class="syarat-card-header blue">
                   <div class="sh-icon"><i class="bi bi-gift"></i></div>
-                  <span class="sh-title">Hasil Layanan yang Diberikan</span>
+                  <span class="sh-title">Produk Pelayanan</span>
                 </div>
                 <div class="syarat-card-body">
                   <ul class="syarat-num-list">
