@@ -138,31 +138,11 @@
     .sop-steps strong.sop-steps-title { color:var(--bps-dark); display:block; margin-bottom:10px; font-size:0.84rem; }
     .sop-steps ol { margin:0; padding-left:18px; font-size:0.81rem; line-height:2; color:#555; }
 
-    /* ======= JANGKA WAKTU ======= */
-    .jw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .jw-card { border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.07); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .jw-header { display: flex; align-items: center; gap: 10px; padding: 13px 16px; }
-    .jw-header.blue { background: var(--bps-blue); }
-    .jw-header.gold { background: var(--bps-accent); }
-    .jw-header .jw-icon { width: 30px; height: 30px; border-radius: 7px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: white; flex-shrink: 0; }
-    .jw-header.gold .jw-icon { color: var(--bps-dark); }
-    .jw-header .jw-title { font-weight: 700; font-size: 0.87rem; color: white; }
-    .jw-header.gold .jw-title { color: var(--bps-dark); }
-    .jw-body { padding: 18px 16px; background: #fafcff; }
-    .jw-body.gold-body { background: #fffdf5; }
-    .jw-time { font-size: 1.7rem; font-weight: 800; color: var(--bps-blue); line-height: 1; margin-bottom: 6px; }
-    .jw-time.gold-time { color: #b87800; }
-    .jw-desc { font-size: 0.79rem; color: #666; line-height: 1.55; }
-
     /* ======= BIAYA & PRODUK ======= */
     .free-badge { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg,#e8f5e9,#f1f8e9); border: 1.5px solid #a5d6a7; border-radius: 10px; padding: 16px 20px; }
     .free-badge-icon { font-size: 1.8rem; color: #4caf50; flex-shrink: 0; }
     .free-badge-title { font-weight: 700; color: #2e7d32; font-size: 0.95rem; margin-bottom: 3px; }
     .free-badge-sub { font-size: 0.79rem; color: #555; }
-    .produk-item { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; background: var(--bps-light); border-left: 4px solid var(--bps-blue); }
-    .produk-item-icon { font-size: 1.2rem; color: var(--bps-blue); flex-shrink: 0; margin-top: 1px; }
-    .produk-item-title { font-weight: 700; color: var(--bps-dark); font-size: 0.88rem; margin-bottom: 4px; }
-    .produk-item-desc { font-size: 0.79rem; color: #555; line-height: 1.6; }
 
     /* ======= PENGAJUAN FORM ======= */
     .pengajuan-section { background:white; border-radius:14px; padding:30px; box-shadow:0 2px 14px rgba(0,0,0,0.07); border:1px solid rgba(0,91,170,0.08); }
@@ -221,6 +201,11 @@
     .rating-done-text { font-weight:700; color:#2e7d32; font-size:0.88rem; }
     .rating-done-sub { font-size:0.75rem; color:#555; margin-top:4px; }
 
+    /* ======= SCROLL ANCHOR OFFSET ======= */
+    .scroll-anchor {
+      scroll-margin-top: 80px;
+    }
+
     /* ======= FOOTER ======= */
     footer { background-color:var(--bps-dark); color:rgba(255,255,255,0.8); font-size:0.85rem; flex-shrink:0; }
 
@@ -244,7 +229,6 @@
       .hero-cta { font-size: 0.88rem; padding: 11px 24px; }
       .content-area { padding: 14px 14px 40px; }
       .syarat-grid { grid-template-columns: 1fr; }
-      .jw-grid { grid-template-columns: 1fr; }
       .snake-3 { grid-template-columns: 1fr 22px 1fr 22px 1fr; }
       .snake-4 { grid-template-columns: 1fr 18px 1fr 18px 1fr 22px 1fr; }
       .sg-label { font-size: clamp(0.52rem, 1.5vw, 0.68rem); }
@@ -374,19 +358,19 @@
     </div>
     <div class="sb-group">
       <div class="sb-group-label">Informasi Layanan</div>
-      <button class="sb-link active" onclick="showPanel('persyaratan',this)">
+      <button class="sb-link active" onclick="scrollToSection('section-persyaratan', this)">
         <i class="bi bi-clipboard-check sb-ico"></i> Persyaratan
         <i class="bi bi-chevron-right sb-arr"></i>
       </button>
-      <button class="sb-link" onclick="showPanel('sop',this)">
+      <button class="sb-link" onclick="scrollToSection('section-sop', this)">
         <i class="bi bi-diagram-3 sb-ico"></i> SOP &amp; Prosedur
         <i class="bi bi-chevron-right sb-arr"></i>
       </button>
-      <button class="sb-link" onclick="showPanel('jangka',this)">
+      <button class="sb-link" onclick="scrollToSection('section-jangka', this)">
         <i class="bi bi-clock sb-ico"></i> Jangka Waktu
         <i class="bi bi-chevron-right sb-arr"></i>
       </button>
-      <button class="sb-link" onclick="showPanel('biaya',this)">
+      <button class="sb-link" onclick="scrollToSection('section-biaya', this)">
         <i class="bi bi-tag sb-ico"></i> Biaya &amp; Produk
         <i class="bi bi-chevron-right sb-arr"></i>
       </button>
@@ -402,7 +386,7 @@
   </aside>
 
   <!-- MAIN AREA -->
-  <div class="main-area">
+  <div class="main-area" id="main-area">
 
     <!-- HERO -->
     <section class="hero-detail">
@@ -410,7 +394,7 @@
         <div class="hero-badge"><i class="bi bi-patch-check-fill"></i> Layanan Resmi Pemerintah</div>
         <h1 class="hero-title">Pelayanan Konsultasi Statistik</h1>
         <p class="hero-sub">Layanan Konsultasi data, metadata, dan klasifikasi statistik</p>
-        <a class="hero-cta" href="#" onclick="showPanel('persyaratan', document.querySelector('.sb-link')); return false;">
+        <a class="hero-cta" href="#" onclick="scrollToSection('section-persyaratan', document.querySelector('.sb-link')); return false;">
           <i class="bi bi-grid-fill"></i> Jelajahi Informasi Layanan
         </a>
       </div>
@@ -418,183 +402,185 @@
 
     <div class="content-area">
 
-      <!-- ===== PANEL: PERSYARATAN ===== -->
-      <div id="panel-persyaratan" class="content-panel active">
-        <div class="section-box">
-          <div class="section-head">
-            <div class="section-head-icon"><i class="bi bi-clipboard-check"></i></div>
-            <div>
-              <p class="section-head-title">Persyaratan</p>
-              <p class="section-head-sub">Ketentuan yang diperlukan untuk mengakses layanan</p>
-            </div>
-          </div>
-          <div class="section-body">
-            <div class="syarat-grid">
-              <div class="syarat-card">
-                <div class="syarat-card-header blue">
-                  <div class="sh-icon"><i class="bi bi-building"></i></div>
-                  <span class="sh-title">Kunjungan Langsung</span>
-                </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li><span class="syarat-num">1</span><span>Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</span></li>
-                    <li><span class="syarat-num">2</span><span>Memiliki alamat email aktif</span></li>
-                    <li><span class="syarat-num">3</span><span>Mengisi buku tamu</span></li>
-                    <li><span class="syarat-num">4</span><span>Mengajukan permintaan konsultasi statistik kepada petugas</span></li>
-                  </ul>
-                </div>
+      <!-- ===== PANEL: INFORMASI LAYANAN (gabungan) ===== -->
+      <div id="panel-info" class="content-panel active">
+
+        <!-- PERSYARATAN -->
+        <div id="section-persyaratan" class="scroll-anchor">
+          <div class="section-box">
+            <div class="section-head">
+              <div class="section-head-icon"><i class="bi bi-clipboard-check"></i></div>
+              <div>
+                <p class="section-head-title">Persyaratan</p>
+                <p class="section-head-sub">Ketentuan yang diperlukan untuk mengakses layanan</p>
               </div>
-              <div class="syarat-card">
-                <div class="syarat-card-header gold">
-                  <div class="sh-icon"><i class="bi bi-globe" style="color:var(--bps-dark);"></i></div>
-                  <span class="sh-title">Layanan Online</span>
+            </div>
+            <div class="section-body">
+              <div class="syarat-grid">
+                <div class="syarat-card">
+                  <div class="syarat-card-header blue">
+                    <div class="sh-icon"><i class="bi bi-building"></i></div>
+                    <span class="sh-title">Kunjungan Langsung</span>
+                  </div>
+                  <div class="syarat-card-body">
+                    <ul class="syarat-num-list">
+                      <li><span class="syarat-num">1</span><span>Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</span></li>
+                      <li><span class="syarat-num">2</span><span>Memiliki alamat email aktif</span></li>
+                      <li><span class="syarat-num">3</span><span>Mengisi buku tamu</span></li>
+                      <li><span class="syarat-num">4</span><span>Mengajukan permintaan konsultasi statistik kepada petugas</span></li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="syarat-card-body gold-body">
-                  <ul class="syarat-num-list">
-                    <li><span class="syarat-num gold-num">1</span><span>Memiliki akun pada portal <strong>pst.bps.go.id</strong></span></li>
-                    <li><span class="syarat-num gold-num">2</span><span>Mengajukan permintaan konsultasi melalui portal pst.bps.go.id</span></li>
-                  </ul>
+                <div class="syarat-card">
+                  <div class="syarat-card-header gold">
+                    <div class="sh-icon"><i class="bi bi-globe" style="color:var(--bps-dark);"></i></div>
+                    <span class="sh-title">Layanan Online</span>
+                  </div>
+                  <div class="syarat-card-body gold-body">
+                    <ul class="syarat-num-list">
+                      <li><span class="syarat-num gold-num">1</span><span>Memiliki akun pada portal <strong>pst.bps.go.id</strong></span></li>
+                      <li><span class="syarat-num gold-num">2</span><span>Mengajukan permintaan konsultasi melalui portal pst.bps.go.id</span></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- ===== PANEL: SOP ===== -->
-      <div id="panel-sop" class="content-panel">
-        <div class="section-box">
-          <div class="section-head">
-            <div class="section-head-icon"><i class="bi bi-diagram-3"></i></div>
-            <div>
-              <p class="section-head-title">SOP &amp; Prosedur</p>
-              <p class="section-head-sub">Alur standar operasional pelayanan konsultasi statistik</p>
-            </div>
-          </div>
-          <div class="section-body">
-            <div class="sop-flowchart">
-              <div class="flowchart-title langsung"><i class="bi bi-person-lines-fill"></i> Layanan dengan Kunjungan Langsung</div>
-              <div class="snake-grid snake-3">
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-door-open"></i></span><div class="sg-label">Berkunjung ke<br>PST BPS</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Isi Buku<br>Tamu</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-123"></i></span><div class="sg-label">Ambil Nomor<br>Antrian</div></div>
-                <div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div>
-                <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-                <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-patch-check"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-workspace"></i></span><div class="sg-label">Konsultasi<br>Petugas</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-hourglass-top"></i></span><div class="sg-label">Tunggu<br>Giliran</div></div>
-              </div>
-              <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
-              <div class="sop-steps">
-                <strong class="sop-steps-title">Detail Prosedur Kunjungan Langsung:</strong>
-                <ol>
-                  <li>Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</li>
-                  <li>Mengisi buku tamu dengan lengkap</li>
-                  <li>Mengambil nomor antrian</li>
-                  <li>Menunggu giliran sesuai nomor antrian (maksimal 10 menit)</li>
-                  <li>Menyampaikan kebutuhan konsultasi kepada petugas</li>
-                  <li>Menerima informasi dan penjelasan dari petugas BPS</li>
-                </ol>
+        <!-- SOP -->
+        <div id="section-sop" class="scroll-anchor">
+          <div class="section-box">
+            <div class="section-head">
+              <div class="section-head-icon"><i class="bi bi-diagram-3"></i></div>
+              <div>
+                <p class="section-head-title">SOP &amp; Prosedur</p>
+                <p class="section-head-sub">Alur standar operasional pelayanan konsultasi statistik</p>
               </div>
             </div>
-            <div class="sop-flowchart" style="margin-top:26px;">
-              <div class="flowchart-title online"><i class="bi bi-laptop"></i> Layanan dengan Cara Online</div>
-              <div class="snake-grid snake-4">
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-browser-chrome"></i></span><div class="sg-label">Akses<br>Portal</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Cari<br>Informasi</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box sg-decision">
-                  <span class="sg-icon" style="color:var(--bps-accent);"><i class="bi bi-question-circle"></i></span>
-                  <div class="sg-label">Informasi<br>Ditemukan?</div>
-                  <div style="display:flex;gap:4px;margin-top:6px;justify-content:center;"><span class="sg-badge-ya">✓ Ya</span><span class="sg-badge-tidak">✗ Tidak</span></div>
+            <div class="section-body">
+              <div class="sop-flowchart">
+                <div class="flowchart-title langsung"><i class="bi bi-person-lines-fill"></i> Layanan dengan Kunjungan Langsung</div>
+                <div class="snake-grid snake-3">
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-door-open"></i></span><div class="sg-label">Berkunjung ke<br>PST BPS</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Isi Buku<br>Tamu</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-123"></i></span><div class="sg-label">Ambil Nomor<br>Antrian</div></div>
+                  <div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div>
+                  <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
+                  <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-patch-check"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-workspace"></i></span><div class="sg-label">Konsultasi<br>Petugas</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-hourglass-top"></i></span><div class="sg-label">Tunggu<br>Giliran</div></div>
                 </div>
-                <div class="sg-arr sg-arr-tidak"><span>Tidak</span><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-file-earmark-plus"></i></span><div class="sg-label">Buat<br>Konsultasi</div></div>
-                <div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div>
-                <div class="sg-arr sg-down sg-ya"><i class="bi bi-arrow-down"></i><span>Ya</span></div>
-                <div class="sg-empty"></div>
-                <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-                <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-patch-check"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard2-data"></i></span><div class="sg-label">Beri<br>Rating</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-open-text"></i></span><div class="sg-label">Terima<br>Informasi</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-check"></i></span><div class="sg-label">Ajukan<br>Konsultasi</div></div>
-              </div>
-              <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
-              <div class="sop-steps online-border">
-                <strong class="sop-steps-title">Detail Prosedur Layanan Online:</strong>
-                <ol>
-                  <li>Mengakses portal pst.bps.go.id dengan akun Anda</li>
-                  <li>Mencari informasi statistik yang diinginkan melalui fitur pencarian</li>
-                  <li>Jika informasi tidak ditemukan, membuat konsultasi baru</li>
-                  <li>Mengajukan konsultasi statistik melalui portal</li>
-                  <li>Menunggu respons dari petugas BPS (maksimal 3 hari kerja)</li>
-                  <li>Menerima informasi dan penjelasan statistik melalui portal</li>
-                  <li>Memberikan penilaian (rating) terhadap kualitas pelayanan</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===== PANEL: JANGKA WAKTU ===== -->
-      <div id="panel-jangka" class="content-panel">
-        <div class="section-box">
-          <div class="section-head">
-            <div class="section-head-icon"><i class="bi bi-clock"></i></div>
-            <div>
-              <p class="section-head-title">Jangka Waktu Pelayanan</p>
-              <p class="section-head-sub">Estimasi waktu penyelesaian layanan konsultasi statistik</p>
-            </div>
-          </div>
-          <div class="section-body">
-            <div class="syarat-grid">
-              <div class="syarat-card">
-                <div class="syarat-card-header blue">
-                  <div class="sh-icon"><i class="bi bi-building"></i></div>
-                  <span class="sh-title">Kunjungan Langsung</span>
-                </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num" style="font-size:0.55rem;width:22px;height:22px;"><i class="bi bi-clock"></i></span>
-                      <span>Maksimal <strong>10 menit</strong> setelah antrian sebelumnya selesai dilayani oleh petugas BPS.</span>
-                    </li>
-                  </ul>
+                <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
+                <div class="sop-steps">
+                  <strong class="sop-steps-title">Detail Prosedur Kunjungan Langsung:</strong>
+                  <ol>
+                    <li>Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</li>
+                    <li>Mengisi buku tamu dengan lengkap</li>
+                    <li>Mengambil nomor antrian</li>
+                    <li>Menunggu giliran sesuai nomor antrian (maksimal 10 menit)</li>
+                    <li>Menyampaikan kebutuhan konsultasi kepada petugas</li>
+                    <li>Menerima informasi dan penjelasan dari petugas BPS</li>
+                  </ol>
                 </div>
               </div>
-              <div class="syarat-card">
-                <div class="syarat-card-header gold">
-                  <div class="sh-icon"><i class="bi bi-globe" style="color:var(--bps-dark);"></i></div>
-                  <span class="sh-title">Layanan Online</span>
+              <div class="sop-flowchart" style="margin-top:26px;">
+                <div class="flowchart-title online"><i class="bi bi-laptop"></i> Layanan dengan Cara Online</div>
+                <div class="snake-grid snake-4">
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-browser-chrome"></i></span><div class="sg-label">Akses<br>Portal</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Cari<br>Informasi</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
+                  <div class="sg-box sg-decision">
+                    <span class="sg-icon" style="color:var(--bps-accent);"><i class="bi bi-question-circle"></i></span>
+                    <div class="sg-label">Informasi<br>Ditemukan?</div>
+                    <div style="display:flex;gap:4px;margin-top:6px;justify-content:center;"><span class="sg-badge-ya">✓ Ya</span><span class="sg-badge-tidak">✗ Tidak</span></div>
+                  </div>
+                  <div class="sg-arr sg-arr-tidak"><span>Tidak</span><i class="bi bi-arrow-right"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-file-earmark-plus"></i></span><div class="sg-label">Buat<br>Konsultasi</div></div>
+                  <div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div>
+                  <div class="sg-arr sg-down sg-ya"><i class="bi bi-arrow-down"></i><span>Ya</span></div>
+                  <div class="sg-empty"></div>
+                  <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
+                  <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-patch-check"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard2-data"></i></span><div class="sg-label">Beri<br>Rating</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-open-text"></i></span><div class="sg-label">Terima<br>Informasi</div></div>
+                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-check"></i></span><div class="sg-label">Ajukan<br>Konsultasi</div></div>
                 </div>
-                <div class="syarat-card-body gold-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num gold-num" style="font-size:0.55rem;width:22px;height:22px;"><i class="bi bi-clock"></i></span>
-                      <span>Maksimal <strong>3 hari kerja</strong> — otomatis tertutup jika tidak ada respons dalam jangka waktu yang ditentukan.</span>
-                    </li>
-                  </ul>
+                <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
+                <div class="sop-steps online-border">
+                  <strong class="sop-steps-title">Detail Prosedur Layanan Online:</strong>
+                  <ol>
+                    <li>Mengakses portal pst.bps.go.id dengan akun Anda</li>
+                    <li>Mencari informasi statistik yang diinginkan melalui fitur pencarian</li>
+                    <li>Jika informasi tidak ditemukan, membuat konsultasi baru</li>
+                    <li>Mengajukan konsultasi statistik melalui portal</li>
+                    <li>Menunggu respons dari petugas BPS (maksimal 3 hari kerja)</li>
+                    <li>Menerima informasi dan penjelasan statistik melalui portal</li>
+                    <li>Memberikan penilaian (rating) terhadap kualitas pelayanan</li>
+                  </ol>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- ===== PANEL: BIAYA & PRODUK ===== -->
-      <div id="panel-biaya" class="content-panel">
-        <div class="syarat-grid">
+        <!-- JANGKA WAKTU -->
+        <div id="section-jangka" class="scroll-anchor">
+          <div class="section-box">
+            <div class="section-head">
+              <div class="section-head-icon"><i class="bi bi-clock"></i></div>
+              <div>
+                <p class="section-head-title">Jangka Waktu Pelayanan</p>
+                <p class="section-head-sub">Estimasi waktu penyelesaian layanan konsultasi statistik</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="syarat-grid">
+                <div class="syarat-card">
+                  <div class="syarat-card-header blue">
+                    <div class="sh-icon"><i class="bi bi-building"></i></div>
+                    <span class="sh-title">Kunjungan Langsung</span>
+                  </div>
+                  <div class="syarat-card-body">
+                    <ul class="syarat-num-list">
+                      <li>
+                        <span class="syarat-num" style="font-size:0.55rem;width:22px;height:22px;"><i class="bi bi-clock"></i></span>
+                        <span>Maksimal <strong>10 menit</strong> setelah antrian sebelumnya selesai dilayani oleh petugas BPS.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="syarat-card">
+                  <div class="syarat-card-header gold">
+                    <div class="sh-icon"><i class="bi bi-globe" style="color:var(--bps-dark);"></i></div>
+                    <span class="sh-title">Layanan Online</span>
+                  </div>
+                  <div class="syarat-card-body gold-body">
+                    <ul class="syarat-num-list">
+                      <li>
+                        <span class="syarat-num gold-num" style="font-size:0.55rem;width:22px;height:22px;"><i class="bi bi-clock"></i></span>
+                        <span>Maksimal <strong>3 hari kerja</strong> — otomatis tertutup jika tidak ada respons dalam jangka waktu yang ditentukan.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BIAYA & PRODUK -->
+        <div id="section-biaya" class="scroll-anchor">
           <!-- BIAYA -->
-          <div class="section-box" style="margin-bottom:0;">
+          <div class="section-box">
             <div class="section-head">
               <div class="section-head-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="bi bi-cash-coin"></i></div>
               <div>
@@ -619,8 +605,9 @@
               </div>
             </div>
           </div>
+
           <!-- PRODUK -->
-          <div class="section-box" style="margin-bottom:0;">
+          <div class="section-box">
             <div class="section-head">
               <div class="section-head-icon"><i class="bi bi-gift"></i></div>
               <div>
@@ -646,7 +633,8 @@
             </div>
           </div>
         </div>
-      </div>
+
+      </div><!-- /panel-info -->
 
       <!-- ===== PANEL: AJUKAN LAYANAN ===== -->
       <div id="panel-ajukan" class="content-panel">
@@ -824,44 +812,6 @@
         </div>
       </div>
 
-      <!-- ===== PANEL: CEK STATUS (sidebar shortcut) ===== -->
-      <div id="panel-cekstatus" class="content-panel">
-        <div class="pengajuan-section">
-          <div class="d-flex align-items-center gap-3 mb-4">
-            <div style="width:48px;height:48px;border-radius:12px;background:var(--bps-light);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--bps-blue);flex-shrink:0;"><i class="bi bi-search"></i></div>
-            <div>
-              <h4 class="mb-0 fw-bold" style="color:var(--bps-dark);font-size:0.97rem;">Cek Status Tiket</h4>
-              <p class="mb-0" style="font-size:0.8rem;color:#888;">Masukkan nomor tiket untuk melihat status terkini</p>
-            </div>
-          </div>
-          <div class="row justify-content-center"><div class="col-lg-8">
-            <p style="font-size:0.87rem;color:#666;margin-bottom:16px;">Masukkan nomor tiket yang Anda terima saat pengajuan untuk melihat status terkini.</p>
-            <div class="d-flex gap-2 mb-4">
-              <input type="text" class="form-control" id="input-tiket-cek2" placeholder="Contoh: BPS-2026-001" style="text-transform:uppercase;">
-              <button class="btn-submit px-4" onclick="cekStatus2()" style="border-radius:10px;white-space:nowrap;"><i class="bi bi-search"></i> Cek</button>
-            </div>
-            <div id="cek-error2" class="alert alert-danger py-2 px-3 d-none" style="font-size:0.83rem;border-radius:10px;"></div>
-            <div class="result-card" id="result-card2">
-              <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
-                <div><p class="mb-1" style="font-size:0.73rem;color:#aaa;font-weight:600;">NOMOR TIKET</p><p class="mb-0 fw-bold" style="color:var(--bps-dark);font-size:1rem;" id="res-tiket2">-</p></div>
-                <span class="status-badge" id="res-status-badge2">-</span>
-              </div>
-              <hr style="border-color:#e8edf5;">
-              <div class="result-row"><span class="result-label">Jenis Layanan</span><span class="result-value" id="res-layanan2">-</span></div>
-              <div class="result-row"><span class="result-label">Nama</span><span class="result-value" id="res-nama2">-</span></div>
-              <div class="result-row"><span class="result-label">Instansi</span><span class="result-value" id="res-instansi2">-</span></div>
-              <div class="result-row"><span class="result-label">Tanggal Pengajuan</span><span class="result-value" id="res-tanggal2">-</span></div>
-              <div class="result-row"><span class="result-label">Deskripsi</span><span class="result-value" id="res-deskripsi2">-</span></div>
-              <div id="res-hasil-box2" style="display:none;margin-top:12px;padding:13px;background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:10px;border:1.5px solid #a5d6a7;">
-                <p style="margin:0 0 8px;font-weight:700;color:#2e7d32;font-size:0.86rem;"><i class="bi bi-check-circle-fill me-2"></i>Data Tersedia</p>
-                <p style="margin:0 0 10px;font-size:0.78rem;color:#555;">Petugas BPS telah mengupload data yang Anda minta.</p>
-                <a id="res-hasil-link2" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#2e7d32;color:white;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.8rem;"><i class="bi bi-download"></i> Download Data</a>
-              </div>
-            </div>
-          </div></div>
-        </div>
-      </div>
-
     </div><!-- /content-area -->
 
     <footer class="py-4 text-center">© 2026 BPS Kota Palu</footer>
@@ -915,12 +865,67 @@
     document.querySelector('.rating-sub').style.display = '';
   }
 
+  // Scroll ke section dalam panel info
+  function scrollToSection(sectionId, sbEl) {
+    // Pastikan panel info aktif
+    const infoPanel = document.getElementById('panel-info');
+    const ajukanPanel = document.getElementById('panel-ajukan');
+
+    if (!infoPanel.classList.contains('active')) {
+      ajukanPanel.classList.remove('active');
+      infoPanel.classList.add('active');
+    }
+
+    // Update sidebar active
+    document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
+    if (sbEl) sbEl.classList.add('active');
+
+    // Sync mobile bottom nav
+    const navMap = {
+      'section-persyaratan': 'persyaratan',
+      'section-sop': 'sop',
+      'section-jangka': 'jangka',
+      'section-biaya': 'biaya'
+    };
+    document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
+    const mbnId = 'mbn-' + navMap[sectionId];
+    const mbnEl = document.getElementById(mbnId);
+    if (mbnEl) mbnEl.classList.add('active');
+
+    // Scroll setelah render
+    setTimeout(() => {
+      const target = document.getElementById(sectionId);
+      if (!target) return;
+
+      // Cek apakah desktop (sidebar ada) atau mobile
+      const mainArea = document.getElementById('main-area');
+      const isMobile = window.innerWidth <= 768;
+
+      if (isMobile) {
+        // Mobile: scroll window
+        const rect = target.getBoundingClientRect();
+        const scrollTop = window.pageYOffset + rect.top - 80;
+        window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+      } else {
+        // Desktop: scroll main-area
+        const containerRect = mainArea.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const scrollOffset = mainArea.scrollTop + (targetRect.top - containerRect.top) - 80;
+        mainArea.scrollTo({ top: scrollOffset, behavior: 'smooth' });
+      }
+    }, 50);
+  }
+
   function showPanel(id, el) {
     document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
     document.getElementById('panel-' + id).classList.add('active');
     if (el) el.classList.add('active');
-    document.querySelector('.main-area').scrollTo({ top: 0, behavior: 'smooth' });
+
+    const mainArea = document.getElementById('main-area');
+    mainArea.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     // sync mobile bottom nav
     document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
     const mbn = document.getElementById('mbn-' + id);
@@ -1043,33 +1048,24 @@
     await _fetchStatus(tiket,errEl,resultCard,{tiket:'res-tiket',layanan:'res-layanan',nama:'res-nama',instansi:'res-instansi',tanggal:'res-tanggal',deskripsi:'res-deskripsi',badge:'res-status-badge',hasilBox:'res-hasil-box',hasilLink:'res-hasil-link'});
   }
   document.getElementById('input-tiket-cek').addEventListener('keypress',e=>{if(e.key==='Enter')cekStatus();});
-
-  async function cekStatus2() {
-    const tiket=document.getElementById('input-tiket-cek2').value.trim().toUpperCase();
-    const errEl=document.getElementById('cek-error2');
-    const resultCard=document.getElementById('result-card2');
-    errEl.classList.add('d-none'); resultCard.classList.remove('show');
-    if(!tiket){errEl.textContent='Masukkan nomor tiket terlebih dahulu!';errEl.classList.remove('d-none');return;}
-    await _fetchStatus(tiket,errEl,resultCard,{tiket:'res-tiket2',layanan:'res-layanan2',nama:'res-nama2',instansi:'res-instansi2',tanggal:'res-tanggal2',deskripsi:'res-deskripsi2',badge:'res-status-badge2',hasilBox:'res-hasil-box2',hasilLink:'res-hasil-link2'});
-  }
-  document.getElementById('input-tiket-cek2').addEventListener('keypress',e=>{if(e.key==='Enter')cekStatus2();});
 </script>
+
 <!-- MOBILE BOTTOM NAV -->
 <nav class="mobile-bottom-nav">
   <div class="mbn-inner">
-    <button class="mbn-item active" id="mbn-persyaratan" onclick="showPanelMobile('persyaratan',this)">
+    <button class="mbn-item active" id="mbn-persyaratan" onclick="scrollToSectionMobile('section-persyaratan', this)">
       <i class="bi bi-clipboard-check"></i>Syarat
     </button>
-    <button class="mbn-item" id="mbn-sop" onclick="showPanelMobile('sop',this)">
+    <button class="mbn-item" id="mbn-sop" onclick="scrollToSectionMobile('section-sop', this)">
       <i class="bi bi-diagram-3"></i>SOP
     </button>
-    <button class="mbn-item" id="mbn-jangka" onclick="showPanelMobile('jangka',this)">
+    <button class="mbn-item" id="mbn-jangka" onclick="scrollToSectionMobile('section-jangka', this)">
       <i class="bi bi-clock"></i>Waktu
     </button>
-    <button class="mbn-item" id="mbn-biaya" onclick="showPanelMobile('biaya',this)">
+    <button class="mbn-item" id="mbn-biaya" onclick="scrollToSectionMobile('section-biaya', this)">
       <i class="bi bi-tag"></i>Biaya
     </button>
-    <button class="mbn-item" id="mbn-ajukan" onclick="showPanelMobile('ajukan',this)">
+    <button class="mbn-item" id="mbn-ajukan" onclick="showPanelMobile('ajukan', this)">
       <i class="bi bi-send"></i>Ajukan
     </button>
   </div>
@@ -1077,30 +1073,33 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  function showPanelMobile(id, mbnEl) {
-    // Update sidebar
-    const sbMap = { persyaratan:0, sop:1, jangka:2, biaya:3, ajukan:4 };
-    const sbLinks = document.querySelectorAll('.sb-link');
-    const idx = sbMap[id];
-    if (idx !== undefined && sbLinks[idx]) showPanel(id, sbLinks[idx]);
-    else { // fallback
-      document.querySelectorAll('.content-panel').forEach(p=>p.classList.remove('active'));
-      document.getElementById('panel-'+id).classList.add('active');
-    }
+  function scrollToSectionMobile(sectionId, mbnEl) {
     // Update mobile nav active
-    document.querySelectorAll('.mbn-item').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
     mbnEl.classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
+
+    // Update sidebar - map section to sb-link index
+    const sbMap = { 'section-persyaratan': 0, 'section-sop': 1, 'section-jangka': 2, 'section-biaya': 3 };
+    const sbLinks = document.querySelectorAll('.sb-link');
+    document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
+    const idx = sbMap[sectionId];
+    if (idx !== undefined && sbLinks[idx]) sbLinks[idx].classList.add('active');
+
+    scrollToSection(sectionId, null);
   }
 
-  // Patch showPanel to also sync mobile nav
-  const _origShowPanel = showPanel;
-  // Override after original is defined
-  window._syncMobileNav = function(id) {
-    document.querySelectorAll('.mbn-item').forEach(b=>b.classList.remove('active'));
-    const mbnEl = document.getElementById('mbn-'+id);
-    if (mbnEl) mbnEl.classList.add('active');
-  };
+  function showPanelMobile(id, mbnEl) {
+    document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
+    mbnEl.classList.add('active');
+
+    // Update sidebar
+    const sbLinks = document.querySelectorAll('.sb-link');
+    document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
+    // Ajukan adalah index 4
+    if (sbLinks[4]) sbLinks[4].classList.add('active');
+
+    showPanel(id, sbLinks[4]);
+  }
 </script>
 </body>
 </html>
