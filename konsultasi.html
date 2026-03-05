@@ -225,20 +225,83 @@
     footer { background-color:var(--bps-dark); color:rgba(255,255,255,0.8); font-size:0.85rem; flex-shrink:0; }
 
     /* ======= RESPONSIVE ======= */
+
+    /* Tablet landscape (max 1024px) */
+    @media (max-width:1024px) {
+      .sidebar { width: 200px; }
+      .sb-title { font-size: 0.82rem; }
+      .snake-4 { grid-template-columns:1fr 28px 1fr 28px 1fr 32px 1fr; }
+    }
+
+    /* Tablet portrait (max 768px) */
     @media (max-width:768px) {
       .sidebar { display:none; }
-      .hero-detail { padding:28px 18px; }
-      .content-area { padding:14px 14px 40px; }
-      .syarat-grid { grid-template-columns:1fr; }
-      .jw-grid { grid-template-columns:1fr; }
-      .snake-3 { grid-template-columns:1fr 24px 1fr 24px 1fr; }
-      .snake-4 { grid-template-columns:1fr 20px 1fr 20px 1fr 28px 1fr; }
-      .pengajuan-section { padding:20px 14px; }
-      .hero-stats { gap:14px; }
+      .page-wrapper { height: auto; overflow: visible; }
+      .main-area { overflow: visible; }
+      .hero-detail { padding: 40px 20px; }
+      .hero-title { font-size: clamp(1.3rem, 5vw, 2rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-cta { font-size: 0.88rem; padding: 11px 24px; }
+      .content-area { padding: 14px 14px 40px; }
+      .syarat-grid { grid-template-columns: 1fr; }
+      .jw-grid { grid-template-columns: 1fr; }
+      .snake-3 { grid-template-columns: 1fr 22px 1fr 22px 1fr; }
+      .snake-4 { grid-template-columns: 1fr 18px 1fr 18px 1fr 22px 1fr; }
+      .sg-label { font-size: clamp(0.52rem, 1.5vw, 0.68rem); }
+      .pengajuan-section { padding: 20px 14px; }
+      .pengajuan-tabs { flex-wrap: wrap; }
+      .pengajuan-tab { font-size: 0.8rem; padding: 8px 14px; }
+      .section-head { padding: 14px 16px; }
+      .section-body { padding: 14px 16px; }
+      .result-row { flex-direction: column; gap: 2px; }
+      .result-label { min-width: unset; }
     }
+
+    /* Mobile large (max 600px) */
+    @media (max-width:600px) {
+      .hero-detail { padding: 32px 16px; }
+      .snake-3 { grid-template-columns: 1fr 18px 1fr 18px 1fr; }
+      .snake-4 { grid-template-columns: 1fr 14px 1fr 14px 1fr 16px 1fr; }
+      .sop-steps ol { font-size: 0.78rem; line-height: 1.9; }
+      .flowchart-title { font-size: 0.8rem; padding: 9px 12px; }
+      .emoji-row { gap: 5px; }
+      .emoji-btn { min-width: 50px; padding: 9px 8px; }
+      .emoji-btn .em { font-size: 1.5rem; }
+      .tiket-number { font-size: 1.2rem; padding: 10px 16px; }
+      .row.g-3 > [class*="col-md-6"] { flex: 0 0 100%; max-width: 100%; }
+    }
+
+    /* Mobile small (max 480px) */
     @media (max-width:480px) {
-      .section-body { padding:14px; }
-      .tiket-number { font-size:1.3rem; }
+      .hero-detail { padding: 26px 14px; }
+      .hero-badge { font-size: 0.72rem; padding: 6px 14px; }
+      .hero-cta { font-size: 0.82rem; padding: 10px 20px; }
+      .section-box { border-radius: 10px; }
+      .section-body { padding: 12px; }
+      .section-head { padding: 12px 14px; gap: 10px; }
+      .section-head-title { font-size: 0.88rem; }
+      .syarat-card-body { padding: 10px 12px; }
+      .syarat-num-list li { font-size: 0.78rem; }
+      .tiket-number { font-size: 1.1rem; letter-spacing: 1px; }
+      .tiket-box { padding: 20px 14px; }
+      .pengajuan-section { border-radius: 10px; padding: 16px 12px; }
+      .btn-submit { font-size: 0.84rem; padding: 10px 22px; }
+      .snake-3 { grid-template-columns: 1fr 14px 1fr 14px 1fr; gap: 0; }
+      .snake-4 { grid-template-columns: 1fr 11px 1fr 11px 1fr 13px 1fr; }
+      .sg-box { padding: 8px 3px 7px; border-radius: 7px; }
+      .sg-icon { font-size: 1.1rem; margin-bottom: 3px; }
+      .sg-label { font-size: 0.5rem; }
+      .sg-arr { font-size: 0.8rem; }
+      .form-control, .form-select { font-size: 0.84rem; padding: 9px 11px; }
+    }
+
+    /* Very small (max 360px) */
+    @media (max-width:360px) {
+      .hero-title { font-size: 1.2rem; }
+      .snake-4 { grid-template-columns: 1fr 9px 1fr 9px 1fr 10px 1fr; }
+      .sg-label { font-size: 0.46rem; }
+      .emoji-btn { min-width: 42px; padding: 7px 5px; }
+      .emoji-btn .em { font-size: 1.3rem; }
     }
   </style>
 </head>
