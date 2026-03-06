@@ -117,18 +117,24 @@
 
     /* Snake grid — shared */
     .snake-grid { display:grid; gap:0; margin:12px 0; align-items:center; justify-items:center; width:100%; }
-    .snake-5 { grid-template-columns: 1fr 26px 1fr 26px 1fr 26px 1fr 26px 1fr; }
+    .snake-5 { grid-template-columns: 1fr 32px 1fr 32px 1fr 32px 1fr 32px 1fr; }
 
-    .sg-box { border:2px solid var(--bps-blue); border-radius:10px; padding:12px 6px 10px; text-align:center; background:white; width:100%; box-shadow:0 2px 8px rgba(0,91,170,0.08); transition:all 0.25s; box-sizing:border-box; }
+    /* Wrapper kotak + panah bawah */
+    .sg-cell { width:100%; display:flex; flex-direction:column; align-items:center; }
+
+    .sg-box { border:2px solid var(--bps-blue); border-radius:10px; padding:14px 8px 12px; text-align:center; background:white; width:100%; box-shadow:0 2px 8px rgba(0,91,170,0.08); transition:all 0.25s; box-sizing:border-box; min-height:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
     .sg-box:hover { box-shadow:0 6px 16px rgba(0,91,170,0.16); transform:translateY(-3px); }
     .sg-end { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark))!important; border-color:var(--bps-dark)!important; }
-    .sg-icon { font-size:clamp(1.1rem,2.5vw,1.6rem); color:var(--bps-blue); display:block; margin-bottom:4px; }
-    .sg-label { font-weight:600; color:var(--bps-dark); font-size:clamp(0.52rem,1.4vw,0.7rem); line-height:1.3; }
-    .sg-arr { font-size:clamp(0.8rem,2vw,1.1rem); color:var(--bps-blue); display:flex; align-items:center; justify-content:center; width:100%; }
-    .sg-turn { grid-column: 1 / -1; height: 18px; margin: 0; padding: 0; display: flex; align-items: center; color: var(--bps-blue); font-size: clamp(0.8rem,2vw,1.1rem); line-height: 1; }
-    .sg-turn.r { justify-content: flex-end; padding-right: 4px; }
-    .sg-turn.l { justify-content: flex-start; padding-left: 4px; }
-    .fc-selesai { text-align:center; color:#4caf50; font-weight:700; margin:4px 0 16px; font-size:0.88rem; }
+    .sg-icon { font-size:clamp(1.2rem,2.5vw,1.6rem); color:var(--bps-blue); display:block; margin-bottom:6px; }
+    .sg-label { font-weight:600; color:var(--bps-dark); font-size:clamp(0.55rem,1.4vw,0.72rem); line-height:1.35; }
+
+    /* Panah horizontal */
+    .sg-arr { font-size:clamp(0.8rem,1.8vw,1rem); color:var(--bps-blue); display:flex; align-items:center; justify-content:center; width:100%; padding-top:0; }
+
+    /* Panah ↓ di bawah kotak — jarak atas dan bawah simetris */
+    .sg-down { font-size:clamp(0.8rem,1.8vw,1rem); color:var(--bps-blue); display:flex; justify-content:center; align-items:center; height:32px; width:100%; }
+
+    .fc-selesai { text-align:center; color:#4caf50; font-weight:700; margin:8px 0 16px; font-size:0.88rem; }
 
     .sop-steps { padding:16px 18px; background:var(--bps-light); border-radius:10px; border-left:4px solid var(--bps-blue); }
     .sop-steps.online-border { border-left-color:var(--bps-accent); }
@@ -202,7 +208,7 @@
     @media (max-width:1024px) {
       .sidebar { width: 200px; }
       .sb-title { font-size: 0.82rem; }
-      .snake-5 { grid-template-columns: 1fr 22px 1fr 22px 1fr 22px 1fr 22px 1fr; }
+      .snake-5 { grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr 24px 1fr; }
     }
     @media (max-width:768px) {
       .sidebar { display:none; }
@@ -215,8 +221,9 @@
       .content-area { padding: 14px 14px 40px; }
       .syarat-grid { grid-template-columns: 1fr; }
       .product-grid { grid-template-columns: 1fr; }
-      .snake-5 { grid-template-columns: 1fr 16px 1fr 16px 1fr 16px 1fr 16px 1fr; }
+      .snake-5 { grid-template-columns: 1fr 18px 1fr 18px 1fr 18px 1fr 18px 1fr; }
       .sg-label { font-size: clamp(0.46rem,1.3vw,0.62rem); }
+      .sg-box { min-height: 76px; }
       .pengajuan-section { padding: 20px 14px; }
       .pengajuan-tabs { flex-wrap: wrap; }
       .pengajuan-tab { font-size: 0.8rem; padding: 8px 14px; }
@@ -228,10 +235,11 @@
     @media (max-width:600px) {
       .hero-detail { padding: 32px 16px; }
       .snake-5 { grid-template-columns: 1fr 12px 1fr 12px 1fr 12px 1fr 12px 1fr; }
-      .sg-box { padding: 8px 2px 7px; border-radius: 7px; }
+      .sg-box { padding: 8px 2px 7px; border-radius: 7px; min-height: 64px; }
       .sg-icon { font-size: 0.95rem; margin-bottom: 2px; }
       .sg-label { font-size: 0.43rem; }
       .sg-arr { font-size: 0.7rem; }
+      .sg-down { height: 22px; font-size: 0.7rem; }
       .sop-steps ol { font-size: 0.78rem; line-height: 1.9; }
       .flowchart-title { font-size: 0.8rem; padding: 9px 12px; }
       .tiket-number { font-size: 1.2rem; padding: 10px 16px; }
@@ -431,52 +439,83 @@
 
                 <div class="snake-grid snake-5">
                   <!-- ROW 1 → langkah 1–5 -->
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-building"></i></span><div class="sg-label">Berkunjung<br>ke PST BPS</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-building"></i></span><div class="sg-label">Berkunjung<br>ke PST BPS</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-book"></i></span><div class="sg-label">Isi Buku<br>Tamu</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-book"></i></span><div class="sg-label">Isi Buku<br>Tamu</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-ticket-perforated"></i></span><div class="sg-label">Ambil Nomor<br>Antrian</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-ticket-perforated"></i></span><div class="sg-label">Ambil Nomor<br>Antrian</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-hourglass-split"></i></span><div class="sg-label">Tunggu<br>Giliran</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-hourglass-split"></i></span><div class="sg-label">Tunggu<br>Giliran</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-chat-dots"></i></span><div class="sg-label">Sampaikan<br>Permintaan</div></div>
-                  <!-- TURN kanan ↓ — masuk ke langkah 6 di pojok kanan ROW 2 -->
-                  <div class="sg-turn r"><i class="bi bi-arrow-down"></i></div>
-                  <!-- ROW 2 ← langkah 6–10
-                       Masuk dari kanan (langkah 6), keluar di kiri (langkah 10)
-                       HTML kiri→kanan: langkah10 | ← | langkah9 | ← | langkah8 | ← | langkah7 | ← | langkah6 -->
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-plus"></i></span><div class="sg-label">Dampingi<br>Pengajuan</div></div>
+                  <!-- Kotak ke-5: punya panah ↓ di bawahnya -->
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-chat-dots"></i></span><div class="sg-label">Sampaikan<br>Permintaan</div></div>
+                    <div class="sg-down"><i class="bi bi-arrow-down"></i></div>
+                  </div>
+
+                  <!-- ROW 2 ← langkah 6–10 (HTML kiri→kanan = visual kiri→kanan, panah ←) -->
+                  <!-- Kotak ke-1 (Dampingi Pengajuan): punya panah ↓ di bawahnya -->
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-plus"></i></span><div class="sg-label">Dampingi<br>Pengajuan</div></div>
+                    <div class="sg-down"><i class="bi bi-arrow-down"></i></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Bantu Cari<br>Referensi</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Bantu Cari<br>Referensi</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-plus"></i></span><div class="sg-label">Buat Akun<br>&amp; Login Portal</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-plus"></i></span><div class="sg-label">Buat Akun<br>&amp; Login Portal</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-headset"></i></span><div class="sg-label">Bantu Akses<br>Portal</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-headset"></i></span><div class="sg-label">Bantu Akses<br>Portal</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-file-earmark-text"></i></span><div class="sg-label">Berikan<br>Formulir</div></div>
-                  <!-- TURN kiri ↓ — masuk ke langkah 11 di pojok kiri ROW 3 -->
-                  <div class="sg-turn l"><i class="bi bi-arrow-down"></i></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-file-earmark-text"></i></span><div class="sg-label">Berikan<br>Formulir</div></div>
+                  </div>
+
                   <!-- ROW 3 → langkah 11–15 -->
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard-check"></i></span><div class="sg-label">Periksa<br>Rancangan</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard-check"></i></span><div class="sg-label">Periksa<br>Rancangan</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-people"></i></span><div class="sg-label">Evaluasi<br>Bersama Tim</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-people"></i></span><div class="sg-label">Evaluasi<br>Bersama Tim</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Susun Naskah<br>Rekomendasi</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Susun Naskah<br>Rekomendasi</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-patch-check"></i></span><div class="sg-label">Pengesahan<br>Direktur</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-patch-check"></i></span><div class="sg-label">Pengesahan<br>Direktur</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-check"></i></span><div class="sg-label">Kirim Surat<br>via Portal</div></div>
-                  <!-- TURN kanan ↓ — turun ke langkah 16 (Beri Rating) di pojok kanan ROW 4 -->
-                  <div class="sg-turn r"><i class="bi bi-arrow-down"></i></div>
-                  <!-- ROW 4 ← langkah 16–17
-                       Masuk dari kanan: langkah 16 (Beri Rating) di kolom 5
-                       Langkah 17 (Selesai) di kolom 3
-                       Kolom 1–2 kosong tanpa panah
-                       HTML kiri→kanan: [kosong] [kosong] Selesai | ← | Beri Rating -->
+                  <!-- Kotak ke-5 (Kirim Surat): punya panah ↓ di bawahnya -->
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-check"></i></span><div class="sg-label">Kirim Surat<br>via Portal</div></div>
+                    <div class="sg-down"><i class="bi bi-arrow-down"></i></div>
+                  </div>
+
+                  <!-- ROW 4 ← langkah 16–17: Beri Rating di kanan (col9), Selesai di sebelahnya (col7), col1–6 kosong -->
                   <div style="grid-column: span 6;"></div>
-                  <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-star"></i></span><div class="sg-label">Beri<br>Rating</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-star"></i></span><div class="sg-label">Beri<br>Rating</div></div>
+                  </div>
                 </div>
 
                 <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
@@ -510,34 +549,56 @@
                 <div class="flowchart-title online"><i class="bi bi-globe"></i> Layanan dengan Cara Online</div>
 
                 <div class="snake-grid snake-5">
-                  <!-- ROW 1 → (Langkah 1–5) -->
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-globe"></i></span><div class="sg-label">Akses Portal<br>pst.bps.go.id</div></div>
+                  <!-- ROW 1 → langkah 1–5 -->
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-globe"></i></span><div class="sg-label">Akses Portal<br>pst.bps.go.id</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-check"></i></span><div class="sg-label">Login<br>Portal</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-check"></i></span><div class="sg-label">Login<br>Portal</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Cari<br>Referensi</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Cari<br>Referensi</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-plus"></i></span><div class="sg-label">Ajukan<br>Rekomendasi</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-plus"></i></span><div class="sg-label">Ajukan<br>Rekomendasi</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard-check"></i></span><div class="sg-label">Periksa<br>Rancangan</div></div>
-                  <!-- TURN kanan ↓ -->
-                  <div class="sg-turn r"><i class="bi bi-arrow-down"></i></div>
-                  <!-- ROW 2 ← (Langkah 6–10, alur masuk dari kanan, keluar di kiri)
-                       Posisi kanan = langkah 6 (Evaluasi Tim), posisi kiri = langkah 10 (Beri Rating)
-                       HTML kiri→kanan: Beri Rating | ← | Kirim Surat | ← | Pengesahan | ← | Susun Naskah | ← | Evaluasi Tim -->
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-star"></i></span><div class="sg-label">Beri<br>Rating</div></div>
+                  <!-- Kotak ke-5 (Periksa Rancangan): panah ↓ di bawahnya -->
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard-check"></i></span><div class="sg-label">Periksa<br>Rancangan</div></div>
+                    <div class="sg-down"><i class="bi bi-arrow-down"></i></div>
+                  </div>
+
+                  <!-- ROW 2 ← langkah 6–10: HTML kiri→kanan = Beri Rating(kiri) ← ... ← Evaluasi Tim(kanan) -->
+                  <!-- Kotak ke-1 (Beri Rating): panah ↓ di bawahnya -->
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-star"></i></span><div class="sg-label">Beri<br>Rating</div></div>
+                    <div class="sg-down"><i class="bi bi-arrow-down"></i></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-check"></i></span><div class="sg-label">Kirim Surat<br>via Portal</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-check"></i></span><div class="sg-label">Kirim Surat<br>via Portal</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-patch-check"></i></span><div class="sg-label">Pengesahan<br>Direktur</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-patch-check"></i></span><div class="sg-label">Pengesahan<br>Direktur</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Susun Naskah<br>Rekomendasi</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Susun Naskah<br>Rekomendasi</div></div>
+                  </div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-people"></i></span><div class="sg-label">Evaluasi<br>Bersama Tim</div></div>
-                  <!-- TURN kiri ↓ -->
-                  <div class="sg-turn l"><i class="bi bi-arrow-down"></i></div>
-                  <!-- ROW 3 → partial (Langkah 11): Selesai di kiri, sisa span kosong -->
-                  <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
+                  <div class="sg-cell">
+                    <div class="sg-box"><span class="sg-icon"><i class="bi bi-people"></i></span><div class="sg-label">Evaluasi<br>Bersama Tim</div></div>
+                  </div>
+
+                  <!-- ROW 3 → langkah 11: Selesai di kiri (col1), sisa kosong -->
+                  <div class="sg-cell">
+                    <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
+                  </div>
                   <div style="grid-column: span 8;"></div>
                 </div>
 
