@@ -138,11 +138,12 @@
     .sop-steps strong.sop-steps-title { color:var(--bps-dark); display:block; margin-bottom:10px; font-size:0.84rem; }
     .sop-steps ol { margin:0; padding-left:18px; font-size:0.81rem; line-height:2; color:#555; }
 
-    /* ======= BIAYA & PRODUK ======= */
-    .free-badge { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg,#e8f5e9,#f1f8e9); border: 1.5px solid #a5d6a7; border-radius: 10px; padding: 16px 20px; }
-    .free-badge-icon { font-size: 1.8rem; color: #4caf50; flex-shrink: 0; }
-    .free-badge-title { font-weight: 700; color: #2e7d32; font-size: 0.95rem; margin-bottom: 3px; }
-    .free-badge-sub { font-size: 0.79rem; color: #555; }
+    /* ======= PRODUCT CARDS (dari rekomendasi) ======= */
+    .product-card { border: 2px solid var(--bps-blue); border-radius: 12px; padding: 18px; background: white; transition: all 0.25s; }
+    .product-card:hover { box-shadow: 0 6px 20px rgba(0,91,170,0.15); transform: translateY(-4px); }
+    .product-card-icon { width: 40px; height: 40px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 12px; background: rgba(0,91,170,0.1); color: var(--bps-blue); }
+    .product-card-title { font-weight: 700; color: var(--bps-dark); font-size: 0.85rem; margin-bottom: 6px; }
+    .product-card-sub { font-size: 0.77rem; color: #666; line-height: 1.65; }
 
     /* ======= PENGAJUAN FORM ======= */
     .pengajuan-section { background:white; border-radius:14px; padding:30px; box-shadow:0 2px 14px rgba(0,0,0,0.07); border:1px solid rgba(0,91,170,0.08); }
@@ -181,10 +182,7 @@
     .result-value { color:#333; }
 
     /* ======= RATING EMOJI ======= */
-    .rating-section { margin-top:20px; padding:20px; background:white; border-radius:14px; border:1.5px solid #e0eaf5; text-align:center; animation:fadeInUp 0.4s ease; }
     @keyframes fadeInUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-    .rating-title { font-weight:700; font-size:0.9rem; color:var(--bps-dark); margin-bottom:5px; }
-    .rating-sub { font-size:0.77rem; color:#888; margin-bottom:14px; }
     .emoji-row { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
     .emoji-btn { display:flex; flex-direction:column; align-items:center; gap:5px; background:#f4f6f9; border:2px solid transparent; border-radius:12px; padding:11px 12px; cursor:pointer; transition:all 0.2s; font-family:'Plus Jakarta Sans',sans-serif; min-width:58px; }
     .emoji-btn:hover { background:var(--bps-light); border-color:var(--bps-blue); transform:translateY(-3px) scale(1.06); }
@@ -195,11 +193,6 @@
     .btn-kirim-rating { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark)); color:white; border:none; border-radius:50px; padding:9px 26px; font-weight:700; font-size:0.84rem; cursor:pointer; margin-top:12px; transition:all 0.25s; font-family:'Plus Jakarta Sans',sans-serif; display:inline-flex; align-items:center; gap:7px; }
     .btn-kirim-rating:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,91,170,0.3); }
     .btn-kirim-rating:disabled { opacity:0.55; cursor:not-allowed; }
-    .rating-done { display:none; padding:14px; background:linear-gradient(135deg,rgba(76,175,80,0.08),transparent); border-radius:12px; border:1.5px solid #a5d6a7; animation:fadeInUp 0.35s ease; }
-    .rating-done.show { display:block; }
-    .rating-done-emoji { font-size:2rem; margin-bottom:5px; }
-    .rating-done-text { font-weight:700; color:#2e7d32; font-size:0.88rem; }
-    .rating-done-sub { font-size:0.75rem; color:#555; margin-top:4px; }
 
     /* ======= SCROLL ANCHOR OFFSET ======= */
     .scroll-anchor { scroll-margin-top: 80px; }
@@ -565,7 +558,7 @@
           </div>
         </div>
 
-        <!-- BIAYA & PRODUK -->
+        <!-- BIAYA & PRODUK — UI disamakan dengan halaman rekomendasi -->
         <div id="section-biaya" class="scroll-anchor">
           <div class="section-box">
             <div class="section-head">
@@ -576,22 +569,18 @@
               </div>
             </div>
             <div class="section-body">
-              <div class="syarat-card">
-                <div class="syarat-card-header green">
-                  <div class="sh-icon"><i class="bi bi-cash-coin"></i></div>
-                  <span class="sh-title">Tarif Layanan</span>
+              <div style="background:#f0fff4; border-left:4px solid #4caf50; border-radius:10px; padding:18px 20px; display:flex; align-items:flex-start; gap:16px;">
+                <div style="width:42px; height:42px; border-radius:10px; background:#c8e6c9; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <i class="bi bi-cash-coin" style="font-size:1.3rem; color:#2e7d32;"></i>
                 </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num" style="background:#4caf50;"><i class="bi bi-check-lg" style="font-size:0.6rem;"></i></span>
-                      <span><strong>Tidak Dipungut Biaya</strong> — Semua layanan konsultasi statistik disediakan secara <strong>gratis</strong> untuk seluruh lapisan masyarakat.</span>
-                    </li>
-                  </ul>
+                <div>
+                  <p style="font-weight:700; color:#2e7d32; font-size:0.95rem; margin:0 0 8px;">Tidak Dipungut Biaya (Gratis)</p>
+                  <p style="font-size:0.84rem; color:#444; line-height:1.7; margin:0;">Semua layanan konsultasi statistik disediakan secara <strong>gratis</strong> untuk seluruh lapisan masyarakat tanpa dipungut biaya apapun.</p>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="section-box">
             <div class="section-head">
               <div class="section-head-icon"><i class="bi bi-gift"></i></div>
@@ -601,18 +590,11 @@
               </div>
             </div>
             <div class="section-body">
-              <div class="syarat-card">
-                <div class="syarat-card-header blue">
-                  <div class="sh-icon"><i class="bi bi-gift"></i></div>
-                  <span class="sh-title">Produk Pelayanan</span>
-                </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num">1</span>
-                      <span><strong>Jasa Konsultasi Statistik</strong> — Konsultasi informasi data, metadata, dan klasifikasi statistik dari berbagai sumber data resmi BPS Kota Palu.</span>
-                    </li>
-                  </ul>
+              <div style="display:flex; flex-direction:column; gap:14px;">
+                <div class="product-card">
+                  <div class="product-card-icon"><i class="bi bi-bar-chart-steps"></i></div>
+                  <div class="product-card-title">Jasa Konsultasi Statistik</div>
+                  <div class="product-card-sub">Konsultasi informasi data, metadata, dan klasifikasi statistik dari berbagai sumber data resmi BPS Kota Palu.</div>
                 </div>
               </div>
             </div>
@@ -652,7 +634,7 @@
               <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;">
                 <i class="bi bi-shield-check" style="color:var(--bps-accent);font-size:1.1rem;flex-shrink:0;margin-top:1px;"></i>
                 <div>
-                  <div style="color:#fff;font-weight:700;font-size:0.78rem;margin-bottom:2px;">Gratis & Resmi</div>
+                  <div style="color:#fff;font-weight:700;font-size:0.78rem;margin-bottom:2px;">Gratis &amp; Resmi</div>
                   <div style="color:rgba(255,255,255,0.65);font-size:0.72rem;line-height:1.5;">Layanan ini tidak dipungut biaya dan dikelola langsung oleh BPS</div>
                 </div>
               </div>
@@ -686,7 +668,7 @@
               <div style="text-align:center;padding:16px 10px;border-radius:12px;background:#f8fafd;border:1px solid #e8eef8;">
                 <div style="width:32px;height:32px;border-radius:50%;background:var(--bps-blue);color:white;font-size:0.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">3</div>
                 <i class="bi bi-send-check" style="font-size:1.4rem;color:var(--bps-blue);display:block;margin-bottom:7px;"></i>
-                <div style="font-weight:700;color:var(--bps-dark);font-size:0.78rem;margin-bottom:4px;">Kirim & Simpan Tiket</div>
+                <div style="font-weight:700;color:var(--bps-dark);font-size:0.78rem;margin-bottom:4px;">Kirim &amp; Simpan Tiket</div>
                 <div style="font-size:0.7rem;color:#888;line-height:1.5;">Kirim pengajuan dan simpan nomor tiket yang diberikan sistem</div>
               </div>
               <div style="text-align:center;padding:16px 10px;border-radius:12px;background:#f8fafd;border:1px solid #e8eef8;">
@@ -774,7 +756,7 @@
                   <a id="res-hasil-link" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#2e7d32;color:white;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.8rem;"><i class="bi bi-download"></i> Download Data</a>
                 </div>
 
-                <!-- RATING — muncul hanya saat Selesai & data tersedia & belum pernah rating -->
+                <!-- RATING — logika sama persis dengan halaman rekomendasi (localRatingCache) -->
                 <div id="res-rating-box" style="display:none;margin-top:16px;">
                   <!-- Belum rating -->
                   <div id="res-rating-form">
@@ -839,50 +821,43 @@
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsamhheWZtZnNyZHRwbWxxbHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMzc5NTcsImV4cCI6MjA4NzkxMzk1N30.1Iyu5DYkQyqnmu9eLT1Kcf7ybOI4V4-bXHr7b7NyR7c';
   const JENIS_LAYANAN = 'Pelayanan Konsultasi Statistik';
 
+  /*
+   * Cache rating lokal per tiket (sama dengan halaman rekomendasi).
+   * Menyimpan { score, emoji } agar tidak bergantung pada respons Supabase
+   * saat pengguna menekan Cek lagi setelah submit rating.
+   */
+  const localRatingCache = {}; // { [nomorTiket]: { score, emoji } }
+
   let currentTiket = '';
 
   /* ============================================================
-     PANEL SWITCH — instant, tanpa scroll
-     Dipakai untuk: Ajukan Layanan (sidebar & mobile nav)
+     PANEL SWITCH
   ============================================================ */
   function showPanel(id, el) {
-    // Sembunyikan semua panel, tampilkan yang dituju
     document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-' + id).classList.add('active');
-
-    // Update sidebar active state
     document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
     if (el) el.classList.add('active');
-
-    // Reset posisi scroll ke atas — INSTAN (tidak smooth)
     const mainArea = document.getElementById('main-area');
-    mainArea.scrollTop = 0;        // desktop: scroll container
-    window.scrollTo(0, 0);         // mobile: scroll window
-
-    // Sync mobile bottom nav
+    mainArea.scrollTop = 0;
+    window.scrollTo(0, 0);
     document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
     const mbn = document.getElementById('mbn-' + id);
     if (mbn) mbn.classList.add('active');
   }
 
   /* ============================================================
-     SCROLL TO SECTION — khusus panel info (Syarat/SOP/Waktu/Biaya)
-     Tetap pakai smooth scroll karena satu halaman
+     SCROLL TO SECTION
   ============================================================ */
   function scrollToSection(sectionId, sbEl) {
-    // Pastikan panel info aktif
     const infoPanel   = document.getElementById('panel-info');
     const ajukanPanel = document.getElementById('panel-ajukan');
     if (!infoPanel.classList.contains('active')) {
       ajukanPanel.classList.remove('active');
       infoPanel.classList.add('active');
     }
-
-    // Update sidebar active
     document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
     if (sbEl) sbEl.classList.add('active');
-
-    // Sync mobile bottom nav
     const navMap = {
       'section-persyaratan': 'persyaratan',
       'section-sop':         'sop',
@@ -892,18 +867,14 @@
     document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
     const mbnEl = document.getElementById('mbn-' + navMap[sectionId]);
     if (mbnEl) mbnEl.classList.add('active');
-
-    // Scroll setelah render
     setTimeout(() => {
       const target   = document.getElementById(sectionId);
       if (!target) return;
       const mainArea = document.getElementById('main-area');
       const isMobile = window.innerWidth <= 768;
-
       if (isMobile) {
-        const rect      = target.getBoundingClientRect();
-        const scrollTop = window.pageYOffset + rect.top - 80;
-        window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+        const rect = target.getBoundingClientRect();
+        window.scrollTo({ top: window.pageYOffset + rect.top - 80, behavior: 'smooth' });
       } else {
         const containerRect = mainArea.getBoundingClientRect();
         const targetRect    = target.getBoundingClientRect();
@@ -919,30 +890,25 @@
   function scrollToSectionMobile(sectionId, mbnEl) {
     document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
     mbnEl.classList.add('active');
-
     const sbMap   = { 'section-persyaratan': 0, 'section-sop': 1, 'section-jangka': 2, 'section-biaya': 3 };
     const sbLinks = document.querySelectorAll('.sb-link');
     document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
     const idx = sbMap[sectionId];
     if (idx !== undefined && sbLinks[idx]) sbLinks[idx].classList.add('active');
-
     scrollToSection(sectionId, null);
   }
 
   function showPanelMobile(id, mbnEl) {
     document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
     mbnEl.classList.add('active');
-
     const sbLinks = document.querySelectorAll('.sb-link');
     document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
-    // "Ajukan Layanan" adalah sb-link index ke-4 (0-based)
     if (sbLinks[4]) sbLinks[4].classList.add('active');
-
     showPanel(id, sbLinks[4] || null);
   }
 
   /* ============================================================
-     TAB SWITCH (Form / Cek Status)
+     TAB SWITCH
   ============================================================ */
   function switchTab(tab, el) {
     document.querySelectorAll('.pengajuan-tab').forEach(t => t.classList.remove('active'));
@@ -981,7 +947,7 @@
   });
 
   /* ============================================================
-     EMOJI RATING — untuk tab Cek Status (muncul setelah Selesai)
+     EMOJI RATING — tab Cek Status
   ============================================================ */
   let cekSelectedRating = null, cekSelectedEmoji = '', cekCurrentTiket = '';
 
@@ -1004,8 +970,16 @@
         headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Prefer': 'return=minimal' },
         body:    JSON.stringify({ rating: cekSelectedRating, rating_emoji: cekSelectedEmoji })
       });
-    } catch(e) {}
-    // Tampilkan konfirmasi
+    } catch(e) {
+      // Tetap lanjut tampilkan konfirmasi meski request gagal
+    }
+
+    // Simpan ke cache lokal SEBELUM mengubah tampilan
+    localRatingCache[cekCurrentTiket] = {
+      score: cekSelectedRating,
+      emoji: cekSelectedEmoji
+    };
+
     document.getElementById('res-rating-done-emoji').textContent = cekSelectedEmoji;
     document.getElementById('res-rating-form').style.display = 'none';
     document.getElementById('res-rating-done').style.display = 'block';
@@ -1102,54 +1076,89 @@
   }
 
   /* ============================================================
-     CEK STATUS
+     CEK STATUS — logika rating sama dengan halaman rekomendasi
   ============================================================ */
-  async function _fetchStatus(tiket, errEl, resultCard, ids) {
+  async function cekStatus() {
+    const tiket      = document.getElementById('input-tiket-cek').value.trim().toUpperCase();
+    const errEl      = document.getElementById('cek-error');
+    const resultCard = document.getElementById('result-card');
+    errEl.classList.add('d-none');
+    resultCard.classList.remove('show');
+
+    if (!tiket) {
+      errEl.textContent = 'Masukkan nomor tiket terlebih dahulu!';
+      errEl.classList.remove('d-none');
+      return;
+    }
+
     try {
       const res  = await fetch(`${SUPABASE_URL}/rest/v1/pengajuan?nomor_tiket=eq.${tiket}&select=*`, {
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
       });
       const data = await res.json();
+
       if (!data || data.length === 0) {
         errEl.textContent = 'Nomor tiket tidak ditemukan. Pastikan nomor tiket sudah benar.';
         errEl.classList.remove('d-none');
         return;
       }
+
       const d = data[0];
-      const statusMap = { 'Menunggu Verifikasi': 'status-menunggu', 'Sedang Diproses': 'status-diproses', 'Selesai': 'status-selesai', 'Ditolak': 'status-ditolak' };
-      document.getElementById(ids.tiket).textContent    = d.nomor_tiket;
-      document.getElementById(ids.layanan).textContent  = d.jenis_layanan;
-      document.getElementById(ids.nama).textContent     = d.nama;
-      document.getElementById(ids.instansi).textContent = d.instansi || '-';
-      document.getElementById(ids.deskripsi).textContent= d.deskripsi;
-      document.getElementById(ids.tanggal).textContent  = new Date(d.created_at).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' });
-      const badge = document.getElementById(ids.badge);
+      const statusMap = {
+        'Menunggu Verifikasi': 'status-menunggu',
+        'Sedang Diproses':     'status-diproses',
+        'Selesai':             'status-selesai',
+        'Ditolak':             'status-ditolak'
+      };
+
+      document.getElementById('res-tiket').textContent    = d.nomor_tiket;
+      document.getElementById('res-layanan').textContent  = d.jenis_layanan;
+      document.getElementById('res-nama').textContent     = d.nama;
+      document.getElementById('res-instansi').textContent = d.instansi || '-';
+      document.getElementById('res-deskripsi').textContent= d.deskripsi;
+      document.getElementById('res-tanggal').textContent  = new Date(d.created_at).toLocaleDateString('id-ID', {
+        day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      });
+
+      const badge = document.getElementById('res-status-badge');
       badge.textContent = d.status;
       badge.className   = 'status-badge ' + (statusMap[d.status] || 'status-menunggu');
 
-      // Tampilkan hasil download jika ada
-      const hasilBox = document.getElementById(ids.hasilBox);
-      if (d.url_hasil) { document.getElementById(ids.hasilLink).href = d.url_hasil; hasilBox.style.display = 'block'; }
-      else hasilBox.style.display = 'none';
+      // Tampilkan download jika hasil tersedia
+      const hasilBox = document.getElementById('res-hasil-box');
+      if (d.url_hasil) {
+        document.getElementById('res-hasil-link').href = d.url_hasil;
+        hasilBox.style.display = 'block';
+      } else {
+        hasilBox.style.display = 'none';
+      }
 
-      // Tampilkan rating hanya jika ada url_hasil (data sudah diberikan)
+      // Rating — muncul hanya jika url_hasil ada
       const ratingBox = document.getElementById('res-rating-box');
       if (d.url_hasil) {
         cekCurrentTiket = d.nomor_tiket;
         ratingBox.style.display = 'block';
 
-        // Selalu tampilkan form rating (bisa re-rating)
-        document.getElementById('res-rating-form').style.display = 'block';
-        document.getElementById('res-rating-done').style.display = 'none';
+        // Cek cache lokal terlebih dahulu, baru cek database
+        const cachedRating = localRatingCache[d.nomor_tiket];
+        const sudahRating  = cachedRating || (d.rating && d.rating_emoji);
 
-        // Reset pilihan emoji dulu
-        document.querySelectorAll('#res-emoji-row .emoji-btn').forEach(b => b.classList.remove('selected'));
-        cekSelectedRating = null; cekSelectedEmoji = '';
-        const kirimBtn = document.getElementById('res-btn-kirim-rating');
-        kirimBtn.disabled = true;
-        kirimBtn.innerHTML = '<i class="bi bi-send"></i> Kirim Penilaian';
-
-        // Selalu fresh — tidak pre-select walaupun sudah pernah rating
+        if (sudahRating) {
+          const emojiToShow = cachedRating ? cachedRating.emoji : d.rating_emoji;
+          document.getElementById('res-rating-done-emoji').textContent = emojiToShow;
+          document.getElementById('res-rating-form').style.display = 'none';
+          document.getElementById('res-rating-done').style.display = 'block';
+        } else {
+          // Belum pernah rating — tampilkan form rating kosong
+          document.getElementById('res-rating-form').style.display = 'block';
+          document.getElementById('res-rating-done').style.display = 'none';
+          document.querySelectorAll('#res-emoji-row .emoji-btn').forEach(b => b.classList.remove('selected'));
+          cekSelectedRating = null;
+          cekSelectedEmoji  = '';
+          const kirimBtn = document.getElementById('res-btn-kirim-rating');
+          kirimBtn.disabled = true;
+          kirimBtn.innerHTML = '<i class="bi bi-send"></i> Kirim Penilaian';
+        }
       } else {
         ratingBox.style.display = 'none';
       }
@@ -1161,21 +1170,9 @@
     }
   }
 
-  async function cekStatus() {
-    const tiket      = document.getElementById('input-tiket-cek').value.trim().toUpperCase();
-    const errEl      = document.getElementById('cek-error');
-    const resultCard = document.getElementById('result-card');
-    errEl.classList.add('d-none');
-    resultCard.classList.remove('show');
-    if (!tiket) { errEl.textContent = 'Masukkan nomor tiket terlebih dahulu!'; errEl.classList.remove('d-none'); return; }
-    await _fetchStatus(tiket, errEl, resultCard, {
-      tiket:    'res-tiket',    layanan:  'res-layanan',
-      nama:     'res-nama',    instansi: 'res-instansi',
-      tanggal:  'res-tanggal', deskripsi:'res-deskripsi',
-      badge:    'res-status-badge', hasilBox:'res-hasil-box', hasilLink:'res-hasil-link'
-    });
-  }
-  document.getElementById('input-tiket-cek').addEventListener('keypress', e => { if (e.key === 'Enter') cekStatus(); });
+  document.getElementById('input-tiket-cek').addEventListener('keypress', e => {
+    if (e.key === 'Enter') cekStatus();
+  });
 </script>
 </body>
 </html>
