@@ -114,10 +114,10 @@
     .flowchart-title { font-weight: 700; color: white; font-size: 0.88rem; margin-bottom: 16px; padding: 11px 16px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .flowchart-title.langsung { background: linear-gradient(135deg, #0056b3, #003f7f); }
     .flowchart-title.online   { background: linear-gradient(135deg, var(--bps-accent), #ff9800); }
-    .snake-grid { display:grid; gap:0; margin:12px 0; align-items:center; justify-items:center; width:100%; }
+    .snake-grid { display:grid; gap:0; margin:12px 0; align-items:center; justify-items:stretch; width:100%; }
     .snake-3 { grid-template-columns:1fr 32px 1fr 32px 1fr; }
-    .snake-4 { grid-template-columns:1fr 32px 1fr 32px 1fr 40px 1fr; }
-    .sg-box { border:2px solid var(--bps-blue); border-radius:10px; padding:12px 6px 10px; text-align:center; background:white; width:100%; box-shadow:0 2px 8px rgba(0,91,170,0.08); transition:all 0.25s; box-sizing:border-box; }
+    .snake-4 { grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr; }
+    .sg-box { border:2px solid var(--bps-blue); border-radius:10px; padding:12px 6px 10px; text-align:center; background:white; width:100%; min-width:0; align-self:stretch; justify-self:stretch; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,91,170,0.08); transition:all 0.25s; box-sizing:border-box; }
     .sg-box:hover { box-shadow:0 6px 16px rgba(0,91,170,0.16); transform:translateY(-3px); }
     .sg-end { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark))!important; border-color:var(--bps-dark)!important; }
     .sg-decision { border:2px dashed var(--bps-accent)!important; background:linear-gradient(135deg,rgba(244,167,0,0.04),white)!important; }
@@ -204,7 +204,7 @@
     @media (max-width:1024px) {
       .sidebar { width: 200px; }
       .sb-title { font-size: 0.82rem; }
-      .snake-4 { grid-template-columns:1fr 28px 1fr 28px 1fr 32px 1fr; }
+      .snake-4 { grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr; }
     }
     @media (max-width:768px) {
       .sidebar { display:none; }
@@ -217,7 +217,7 @@
       .content-area { padding: 14px 14px 40px; }
       .syarat-grid { grid-template-columns: 1fr; }
       .snake-3 { grid-template-columns: 1fr 22px 1fr 22px 1fr; }
-      .snake-4 { grid-template-columns: 1fr 18px 1fr 18px 1fr 22px 1fr; }
+      .snake-4 { grid-template-columns: 1fr 18px 1fr 18px 1fr 18px 1fr; }
       .sg-label { font-size: clamp(0.52rem, 1.5vw, 0.68rem); }
       .pengajuan-section { padding: 20px 14px; }
       .pengajuan-tabs { flex-wrap: wrap; }
@@ -230,7 +230,7 @@
     @media (max-width:600px) {
       .hero-detail { padding: 32px 16px; }
       .snake-3 { grid-template-columns: 1fr 18px 1fr 18px 1fr; }
-      .snake-4 { grid-template-columns: 1fr 14px 1fr 14px 1fr 16px 1fr; }
+      .snake-4 { grid-template-columns: 1fr 14px 1fr 14px 1fr 14px 1fr; }
       .sop-steps ol { font-size: 0.78rem; line-height: 1.9; }
       .flowchart-title { font-size: 0.8rem; padding: 9px 12px; }
       .emoji-row { gap: 5px; }
@@ -254,7 +254,7 @@
       .pengajuan-section { border-radius: 10px; padding: 16px 12px; }
       .btn-submit { font-size: 0.84rem; padding: 10px 22px; }
       .snake-3 { grid-template-columns: 1fr 14px 1fr 14px 1fr; gap: 0; }
-      .snake-4 { grid-template-columns: 1fr 11px 1fr 11px 1fr 13px 1fr; }
+      .snake-4 { grid-template-columns: 1fr 11px 1fr 11px 1fr 11px 1fr; }
       .sg-box { padding: 8px 3px 7px; border-radius: 7px; }
       .sg-icon { font-size: 1.1rem; margin-bottom: 3px; }
       .sg-label { font-size: 0.5rem; }
@@ -263,7 +263,7 @@
     }
     @media (max-width:360px) {
       .hero-title { font-size: 1.2rem; }
-      .snake-4 { grid-template-columns: 1fr 9px 1fr 9px 1fr 10px 1fr; }
+      .snake-4 { grid-template-columns: 1fr 9px 1fr 9px 1fr 9px 1fr; }
       .sg-label { font-size: 0.46rem; }
       .emoji-btn { min-width: 42px; padding: 7px 5px; }
       .emoji-btn .em { font-size: 1.3rem; }
@@ -491,7 +491,7 @@
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
                   <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard2-data"></i></span><div class="sg-label">Beri<br>Rating</div></div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-open-text"></i></span><div class="sg-label">Terima<br>Informasi</div></div>
+                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-inbox-fill"></i></span><div class="sg-label">Terima<br>Informasi</div></div>
                   <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
                   <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-check"></i></span><div class="sg-label">Ajukan<br>Konsultasi</div></div>
                 </div>
