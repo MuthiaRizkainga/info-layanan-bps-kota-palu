@@ -6,942 +6,1054 @@
   <title>Pelayanan Konsultasi Statistik - BPS Kota Palu</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bps-blue:   #005baa;
-      --bps-dark:   #003f7f;
-      --bps-light:  #e8f1fb;
+      --bps-blue: #005baa;
+      --bps-dark: #003f7f;
+      --bps-light: #e8f1fb;
       --bps-accent: #f4a700;
-      --sb-bg:      #003f7f;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f0f4f9; display: flex; flex-direction: column; }
-
-    /* ======= NAVBAR ======= */
-    .navbar { background-color: var(--bps-blue) !important; padding: 0; min-height: 56px; position: relative; }
-    .btn-back {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px;
-      background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35);
-      border-radius: 8px; color: #fff; font-size: 1rem; text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s;
-      position: absolute; top: 50%; left: 16px; transform: translateY(-50%);
-    }
-    .btn-back:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); color: #fff; transform: translateY(-50%) translateX(-2px); }
-
-    /* ======= PAGE WRAPPER ======= */
-    .page-wrapper { display: flex; flex: 1; overflow: hidden; height: calc(100vh - 56px); }
-
-    /* ======= SIDEBAR ======= */
-    .sidebar {
-      width: 230px; flex-shrink: 0; background: var(--sb-bg);
-      display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
-      border-right: 1px solid rgba(255,255,255,0.08);
-    }
-    .sb-identity { padding: 20px 16px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .sb-icon-box { width: 42px; height: 42px; border-radius: 10px; background: var(--bps-accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--bps-dark); margin-bottom: 12px; }
-    .sb-title { font-size: 0.9rem; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 4px; }
-    .sb-sub { font-size: 0.67rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
-    .sb-group { padding: 14px 12px 6px; }
-    .sb-group-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px; padding-left: 8px; }
-    .sb-link { display: flex; align-items: center; gap: 9px; width: 100%; padding: 9px 10px 9px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.6); background: none; border: none; text-align: left; cursor: pointer; transition: all 0.15s; margin-bottom: 2px; }
-    .sb-link .sb-ico { font-size: 0.9rem; flex-shrink: 0; }
-    .sb-link .sb-arr { margin-left: auto; font-size: 0.6rem; color: var(--bps-accent); opacity: 0; transition: opacity 0.15s; flex-shrink: 0; }
-    .sb-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
-    .sb-link.active { background: rgba(255,255,255,0.13); color: #fff; border-left: 3px solid var(--bps-accent); padding-left: 9px; }
-    .sb-link.active .sb-ico { color: var(--bps-accent); }
-    .sb-link.active .sb-arr { opacity: 1; }
-    .sb-footer { margin-top: auto; padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.62rem; color: rgba(255,255,255,0.3); }
-
-    /* ======= MAIN AREA ======= */
-    .main-area { flex: 1; display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; min-width: 0; }
-
-    /* ======= HERO ======= */
-    .hero-detail {
-      background: linear-gradient(135deg, var(--bps-dark) 0%, var(--bps-blue) 60%, #1a7fd4 100%);
-      color: white; padding: 100px 20px;
-      position: relative; overflow: hidden; flex-shrink: 0;
-      text-align: center;
-    }
-    .hero-detail::before { content:''; position:absolute; top:-80px; right:-80px; width:350px; height:350px; border-radius:50%; background:rgba(255,255,255,0.05); pointer-events:none; }
-    .hero-detail::after  { content:''; position:absolute; bottom:-100px; left:-60px; width:280px; height:280px; border-radius:50%; background:rgba(255,255,255,0.04); pointer-events:none; }
-    .hero-inner { position: relative; z-index: 1; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--bps-accent); color: var(--bps-dark); font-size: 0.8rem; font-weight: 600; padding: 7px 18px; border-radius: 50px; margin-bottom: 24px; }
-    .hero-title { font-size: clamp(1.6rem, 3.5vw, 2.8rem); font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 32px; line-height: 1.65; max-width: 560px; margin-left: auto; margin-right: auto; }
-    .hero-cta { display: inline-flex; align-items: center; gap: 9px; background: var(--bps-accent); color: var(--bps-dark); font-size: 0.95rem; font-weight: 700; padding: 13px 32px; border-radius: 50px; text-decoration: none; transition: all 0.25s; }
-    .hero-cta:hover { background: #ffc107; color: var(--bps-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,167,0,0.45); }
-
-    /* ======= CONTENT PANELS ======= */
-    .content-area { padding: 22px 22px 48px; flex: 1; }
-    .content-panel { display: none; }
-    .content-panel.active { display: block; animation: fadeIn 0.2s ease; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-
-    /* ======= SECTION BOX ======= */
-    .section-box { background: white; border-radius: 14px; box-shadow: 0 2px 14px rgba(0,0,0,0.07); margin-bottom: 18px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
-    .section-head { display: flex; align-items: center; gap: 12px; padding: 16px 22px; border-bottom: 1px solid #eef2f8; background: linear-gradient(to right, #fafcff, #fff); }
-    .section-head-icon { width: 36px; height: 36px; border-radius: 9px; background: var(--bps-light); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--bps-blue); flex-shrink: 0; }
-    .section-head-title { font-weight: 800; color: var(--bps-dark); font-size: 0.98rem; margin: 0; }
-    .section-head-sub { font-size: 0.72rem; color: #888; font-weight: 500; margin: 0; }
-    .section-body { padding: 20px 22px; }
-
-    /* ======= PERSYARATAN CARDS ======= */
-    .syarat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .syarat-card { border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.07); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .syarat-card-header { display: flex; align-items: center; gap: 10px; padding: 13px 16px; }
-    .syarat-card-header.blue { background: var(--bps-blue); }
-    .syarat-card-header.gold { background: var(--bps-accent); }
-    .syarat-card-header.green { background: linear-gradient(135deg, #2e7d32, #388e3c); }
-    .syarat-card-header .sh-icon { width: 30px; height: 30px; border-radius: 7px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: white; flex-shrink: 0; }
-    .syarat-card-header.gold .sh-icon { color: var(--bps-dark); }
-    .syarat-card-header .sh-title { font-weight: 700; font-size: 0.87rem; color: white; }
-    .syarat-card-header.gold .sh-title { color: var(--bps-dark); }
-    .syarat-card-body { padding: 14px 16px; background: #fafcff; }
-    .syarat-card-body.gold-body { background: #fffdf5; }
-    .syarat-num-list { list-style: none; padding: 0; margin: 0; }
-    .syarat-num-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.81rem; color: #444; line-height: 1.5; }
-    .syarat-num-list li:last-child { border-bottom: none; padding-bottom: 0; }
-    .syarat-num { width: 20px; height: 20px; border-radius: 50%; background: var(--bps-blue); color: white; font-size: 0.63rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-    .syarat-num.gold-num { background: var(--bps-accent); color: var(--bps-dark); }
-
-    /* ======= SOP FLOWCHART ======= */
-    .sop-flowchart { margin-bottom: 26px; }
-    .sop-flowchart:last-child { margin-bottom: 0; }
-    .flowchart-title { font-weight: 700; color: white; font-size: 0.88rem; margin-bottom: 16px; padding: 11px 16px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .flowchart-title.langsung { background: linear-gradient(135deg, #0056b3, #003f7f); }
-    .flowchart-title.online   { background: linear-gradient(135deg, var(--bps-accent), #ff9800); }
-    .snake-grid { display:grid; gap:0; margin:12px 0; align-items:center; justify-items:center; width:100%; }
-    .snake-3 { grid-template-columns:1fr 32px 1fr 32px 1fr; }
-    .snake-4 { grid-template-columns:1fr 32px 1fr 32px 1fr 40px 1fr; }
-    .sg-box { border:2px solid var(--bps-blue); border-radius:10px; padding:12px 6px 10px; text-align:center; background:white; width:100%; box-shadow:0 2px 8px rgba(0,91,170,0.08); transition:all 0.25s; box-sizing:border-box; }
-    .sg-box:hover { box-shadow:0 6px 16px rgba(0,91,170,0.16); transform:translateY(-3px); }
-    .sg-end { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark))!important; border-color:var(--bps-dark)!important; }
-    .sg-decision { border:2px dashed var(--bps-accent)!important; background:linear-gradient(135deg,rgba(244,167,0,0.04),white)!important; }
-    .sg-icon { font-size:clamp(1.3rem,3vw,1.8rem); color:var(--bps-blue); display:block; margin-bottom:5px; }
-    .sg-label { font-weight:600; color:var(--bps-dark); font-size:clamp(0.58rem,1.7vw,0.76rem); line-height:1.3; }
-    .sg-arr { font-size:clamp(0.9rem,2.5vw,1.3rem); color:var(--bps-blue); display:flex; align-items:center; justify-content:center; width:100%; }
-    .sg-arr-tidak { flex-direction:column; }
-    .sg-arr-tidak span { font-size:clamp(0.5rem,1.4vw,0.62rem); font-weight:700; color:#b87800; display:block; text-align:center; margin-bottom:2px; }
-    .sg-down { flex-direction:column; align-self:stretch; justify-content:center; padding:2px 0; }
-    .sg-ya { color:#2e7d32!important; }
-    .sg-ya span { font-size:clamp(0.5rem,1.4vw,0.62rem); font-weight:700; color:#2e7d32; display:block; text-align:center; margin-top:2px; }
-    .sg-empty { width:100%; }
-    .sg-badge-ya { font-size:clamp(0.5rem,1.4vw,0.62rem); font-weight:700; background:rgba(76,175,80,0.1); color:#2e7d32; border:1px solid rgba(76,175,80,0.4); border-radius:4px; padding:2px 5px; }
-    .sg-badge-tidak { font-size:clamp(0.5rem,1.4vw,0.62rem); font-weight:700; background:rgba(244,167,0,0.12); color:#b87800; border:1px solid rgba(244,167,0,0.4); border-radius:4px; padding:2px 5px; }
-    .fc-selesai { text-align:center; color:#4caf50; font-weight:700; margin:4px 0 16px; font-size:0.88rem; }
-    .sop-steps { padding:16px 18px; background:var(--bps-light); border-radius:10px; border-left:4px solid var(--bps-blue); }
-    .sop-steps.online-border { border-left-color:var(--bps-accent); }
-    .sop-steps strong.sop-steps-title { color:var(--bps-dark); display:block; margin-bottom:10px; font-size:0.84rem; }
-    .sop-steps ol { margin:0; padding-left:18px; font-size:0.81rem; line-height:2; color:#555; }
-
-    /* ======= JANGKA WAKTU ======= */
-    .jw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .jw-card { border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.07); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .jw-header { display: flex; align-items: center; gap: 10px; padding: 13px 16px; }
-    .jw-header.blue { background: var(--bps-blue); }
-    .jw-header.gold { background: var(--bps-accent); }
-    .jw-header .jw-icon { width: 30px; height: 30px; border-radius: 7px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: white; flex-shrink: 0; }
-    .jw-header.gold .jw-icon { color: var(--bps-dark); }
-    .jw-header .jw-title { font-weight: 700; font-size: 0.87rem; color: white; }
-    .jw-header.gold .jw-title { color: var(--bps-dark); }
-    .jw-body { padding: 18px 16px; background: #fafcff; }
-    .jw-body.gold-body { background: #fffdf5; }
-    .jw-time { font-size: 1.7rem; font-weight: 800; color: var(--bps-blue); line-height: 1; margin-bottom: 6px; }
-    .jw-time.gold-time { color: #b87800; }
-    .jw-desc { font-size: 0.79rem; color: #666; line-height: 1.55; }
-
-    /* ======= BIAYA & PRODUK ======= */
-    .free-badge { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg,#e8f5e9,#f1f8e9); border: 1.5px solid #a5d6a7; border-radius: 10px; padding: 16px 20px; }
-    .free-badge-icon { font-size: 1.8rem; color: #4caf50; flex-shrink: 0; }
-    .free-badge-title { font-weight: 700; color: #2e7d32; font-size: 0.95rem; margin-bottom: 3px; }
-    .free-badge-sub { font-size: 0.79rem; color: #555; }
-    .produk-item { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; background: var(--bps-light); border-left: 4px solid var(--bps-blue); }
-    .produk-item-icon { font-size: 1.2rem; color: var(--bps-blue); flex-shrink: 0; margin-top: 1px; }
-    .produk-item-title { font-weight: 700; color: var(--bps-dark); font-size: 0.88rem; margin-bottom: 4px; }
-    .produk-item-desc { font-size: 0.79rem; color: #555; line-height: 1.6; }
-
-    /* ======= PENGAJUAN FORM ======= */
-    .pengajuan-section { background:white; border-radius:14px; padding:30px; box-shadow:0 2px 14px rgba(0,0,0,0.07); border:1px solid rgba(0,91,170,0.08); }
-    .pengajuan-tabs { display:flex; gap:8px; margin-bottom:26px; border-bottom:2px solid #eef2f8; }
-    .pengajuan-tab { padding:9px 22px; border-radius:8px 8px 0 0; font-weight:700; font-size:0.87rem; cursor:pointer; border:none; background:transparent; color:#888; margin-bottom:-2px; border-bottom:2px solid transparent; transition:all 0.2s; font-family:'Plus Jakarta Sans',sans-serif; }
-    .pengajuan-tab.active { color:var(--bps-blue); border-bottom:2px solid var(--bps-blue); background:var(--bps-light); }
-    .pengajuan-tab:hover:not(.active) { color:var(--bps-blue); background:#f4f6f9; }
-    .tab-content-panel { display:none; }
-    .tab-content-panel.active { display:block; }
-    .form-label { font-weight:600; font-size:0.84rem; color:var(--bps-dark); margin-bottom:5px; }
-    .form-control, .form-select { border:1.5px solid #e0eaf5; border-radius:10px; padding:10px 14px; font-size:0.88rem; transition:border-color 0.2s; font-family:'Plus Jakarta Sans',sans-serif; }
-    .form-control:focus, .form-select:focus { border-color:var(--bps-blue); box-shadow:0 0 0 3px rgba(0,91,170,0.1); }
-    .upload-area { border:2px dashed #c8dff5; border-radius:12px; padding:26px; text-align:center; cursor:pointer; transition:all 0.2s; background:#f8fafd; position:relative; }
-    .upload-area:hover, .upload-area.dragover { border-color:var(--bps-blue); background:var(--bps-light); }
-    .upload-area input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
-    .upload-icon { font-size:2rem; color:var(--bps-blue); margin-bottom:8px; }
-    .upload-text { font-size:0.85rem; color:#666; }
-    .upload-hint { font-size:0.75rem; color:#aaa; margin-top:4px; }
-    .upload-filename { font-size:0.82rem; color:var(--bps-blue); font-weight:600; margin-top:8px; }
-    .btn-submit { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark)); color:white; border:none; border-radius:50px; padding:11px 32px; font-weight:700; font-size:0.9rem; cursor:pointer; transition:all 0.25s; display:inline-flex; align-items:center; gap:8px; font-family:'Plus Jakarta Sans',sans-serif; }
-    .btn-submit:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,91,170,0.3); }
-    .btn-submit:disabled { opacity:0.7; cursor:not-allowed; }
-    .tiket-box { background:linear-gradient(135deg,#e8f5e9,#f1f8e9); border:2px solid #a5d6a7; border-radius:16px; padding:30px; text-align:center; display:none; }
-    .tiket-box.show { display:block; }
-    .tiket-number { font-size:1.8rem; font-weight:800; color:#2e7d32; letter-spacing:2px; margin:12px 0; padding:13px 22px; background:white; border-radius:12px; border:2px dashed #a5d6a7; display:inline-block; }
-    .tiket-warning { font-size:0.79rem; color:#666; margin-top:10px; }
-    .status-badge { display:inline-block; padding:6px 16px; border-radius:20px; font-weight:700; font-size:0.82rem; }
-    .status-menunggu { background:#fff3cd; color:#856404; }
-    .status-diproses { background:#cff4fc; color:#055160; }
-    .status-selesai  { background:#d1e7dd; color:#0a3622; }
-    .status-ditolak  { background:#f8d7da; color:#842029; }
-    .result-card { background:#f8fafd; border:1px solid #e0eaf5; border-radius:12px; padding:20px; display:none; }
-    .result-card.show { display:block; }
-    .result-row { display:flex; gap:12px; margin-bottom:8px; font-size:0.84rem; }
-    .result-label { color:#888; min-width:130px; font-weight:600; }
-    .result-value { color:#333; }
-
-    /* ======= RATING EMOJI ======= */
-    .rating-section { margin-top:20px; padding:20px; background:white; border-radius:14px; border:1.5px solid #e0eaf5; text-align:center; animation:fadeInUp 0.4s ease; }
-    @keyframes fadeInUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-    .rating-title { font-weight:700; font-size:0.9rem; color:var(--bps-dark); margin-bottom:5px; }
-    .rating-sub { font-size:0.77rem; color:#888; margin-bottom:14px; }
-    .emoji-row { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
-    .emoji-btn { display:flex; flex-direction:column; align-items:center; gap:5px; background:#f4f6f9; border:2px solid transparent; border-radius:12px; padding:11px 12px; cursor:pointer; transition:all 0.2s; font-family:'Plus Jakarta Sans',sans-serif; min-width:58px; }
-    .emoji-btn:hover { background:var(--bps-light); border-color:var(--bps-blue); transform:translateY(-3px) scale(1.06); }
-    .emoji-btn.selected { background:var(--bps-light); border-color:var(--bps-blue); box-shadow:0 4px 14px rgba(0,91,170,0.18); transform:translateY(-3px) scale(1.08); }
-    .emoji-btn .em { font-size:1.8rem; line-height:1; }
-    .emoji-btn .em-label { font-size:0.61rem; font-weight:700; color:#666; }
-    .emoji-btn.selected .em-label { color:var(--bps-blue); }
-    .btn-kirim-rating { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark)); color:white; border:none; border-radius:50px; padding:9px 26px; font-weight:700; font-size:0.84rem; cursor:pointer; margin-top:12px; transition:all 0.25s; font-family:'Plus Jakarta Sans',sans-serif; display:inline-flex; align-items:center; gap:7px; }
-    .btn-kirim-rating:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,91,170,0.3); }
-    .btn-kirim-rating:disabled { opacity:0.55; cursor:not-allowed; }
-    .rating-done { display:none; padding:14px; background:linear-gradient(135deg,rgba(76,175,80,0.08),transparent); border-radius:12px; border:1.5px solid #a5d6a7; animation:fadeInUp 0.35s ease; }
-    .rating-done.show { display:block; }
-    .rating-done-emoji { font-size:2rem; margin-bottom:5px; }
-    .rating-done-text { font-weight:700; color:#2e7d32; font-size:0.88rem; }
-    .rating-done-sub { font-size:0.75rem; color:#555; margin-top:4px; }
-
-    /* ======= FOOTER ======= */
-    footer { background-color:var(--bps-dark); color:rgba(255,255,255,0.8); font-size:0.85rem; flex-shrink:0; }
-
-    /* ======= RESPONSIVE ======= */
-
-    /* Tablet landscape (max 1024px) */
-    @media (max-width:1024px) {
-      .sidebar { width: 200px; }
-      .sb-title { font-size: 0.82rem; }
-      .snake-4 { grid-template-columns:1fr 28px 1fr 28px 1fr 32px 1fr; }
+      --surface: #ffffff;
+      --bg: #f0f4f9;
+      --border: #dce6f4;
+      --text-primary: #0d1f3c;
+      --text-secondary: #4a6080;
+      --text-muted: #8399b5;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
     }
 
-    /* Tablet portrait (max 768px) */
-    @media (max-width:768px) {
-      .sidebar { display:none; }
-      .page-wrapper { height: auto; overflow: visible; }
-      .main-area { overflow: visible; }
-      .hero-detail { padding: 40px 20px; }
-      .hero-title { font-size: clamp(1.3rem, 5vw, 2rem); }
-      .hero-sub { font-size: 0.95rem; }
-      .hero-cta { font-size: 0.88rem; padding: 11px 24px; }
-      .content-area { padding: 14px 14px 40px; }
-      .syarat-grid { grid-template-columns: 1fr; }
-      .jw-grid { grid-template-columns: 1fr; }
-      .snake-3 { grid-template-columns: 1fr 22px 1fr 22px 1fr; }
-      .snake-4 { grid-template-columns: 1fr 18px 1fr 18px 1fr 22px 1fr; }
-      .sg-label { font-size: clamp(0.52rem, 1.5vw, 0.68rem); }
-      .pengajuan-section { padding: 20px 14px; }
-      .pengajuan-tabs { flex-wrap: wrap; }
-      .pengajuan-tab { font-size: 0.8rem; padding: 8px 14px; }
-      .section-head { padding: 14px 16px; }
-      .section-body { padding: 14px 16px; }
-      .result-row { flex-direction: column; gap: 2px; }
-      .result-label { min-width: unset; }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
     }
 
-    /* Mobile large (max 600px) */
-    @media (max-width:600px) {
-      .hero-detail { padding: 32px 16px; }
-      .snake-3 { grid-template-columns: 1fr 18px 1fr 18px 1fr; }
-      .snake-4 { grid-template-columns: 1fr 14px 1fr 14px 1fr 16px 1fr; }
-      .sop-steps ol { font-size: 0.78rem; line-height: 1.9; }
-      .flowchart-title { font-size: 0.8rem; padding: 9px 12px; }
-      .emoji-row { gap: 5px; }
-      .emoji-btn { min-width: 50px; padding: 9px 8px; }
-      .emoji-btn .em { font-size: 1.5rem; }
-      .tiket-number { font-size: 1.2rem; padding: 10px 16px; }
-      .row.g-3 > [class*="col-md-6"] { flex: 0 0 100%; max-width: 100%; }
-    }
-
-    /* Mobile small (max 480px) */
-    @media (max-width:480px) {
-      .hero-detail { padding: 26px 14px; }
-      .hero-badge { font-size: 0.72rem; padding: 6px 14px; }
-      .hero-cta { font-size: 0.82rem; padding: 10px 20px; }
-      .section-box { border-radius: 10px; }
-      .section-body { padding: 12px; }
-      .section-head { padding: 12px 14px; gap: 10px; }
-      .section-head-title { font-size: 0.88rem; }
-      .syarat-card-body { padding: 10px 12px; }
-      .syarat-num-list li { font-size: 0.78rem; }
-      .tiket-number { font-size: 1.1rem; letter-spacing: 1px; }
-      .tiket-box { padding: 20px 14px; }
-      .pengajuan-section { border-radius: 10px; padding: 16px 12px; }
-      .btn-submit { font-size: 0.84rem; padding: 10px 22px; }
-      .snake-3 { grid-template-columns: 1fr 14px 1fr 14px 1fr; gap: 0; }
-      .snake-4 { grid-template-columns: 1fr 11px 1fr 11px 1fr 13px 1fr; }
-      .sg-box { padding: 8px 3px 7px; border-radius: 7px; }
-      .sg-icon { font-size: 1.1rem; margin-bottom: 3px; }
-      .sg-label { font-size: 0.5rem; }
-      .sg-arr { font-size: 0.8rem; }
-      .form-control, .form-select { font-size: 0.84rem; padding: 9px 11px; }
-    }
-
-    /* Very small (max 360px) */
-    @media (max-width:360px) {
-      .hero-title { font-size: 1.2rem; }
-      .snake-4 { grid-template-columns: 1fr 9px 1fr 9px 1fr 10px 1fr; }
-      .sg-label { font-size: 0.46rem; }
-      .emoji-btn { min-width: 42px; padding: 7px 5px; }
-      .emoji-btn .em { font-size: 1.3rem; }
-    }
-
-    /* ======= MOBILE BOTTOM NAV ======= */
-    .mobile-bottom-nav {
-      display: none;
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: var(--bps-dark);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      z-index: 1000;
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background-color: var(--bps-dark);
       padding: 0;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
+      height: 58px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .mbn-inner {
-      display: flex;
-      align-items: stretch;
-      justify-content: space-around;
-      height: 60px;
-    }
-    .mbn-item {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      flex: 1; gap: 3px; background: none; border: none; cursor: pointer;
-      color: rgba(255,255,255,0.5); font-size: 0.56rem; font-weight: 700;
-      font-family: 'Plus Jakarta Sans', sans-serif; padding: 6px 2px;
-      border-top: 2px solid transparent; transition: all 0.18s;
-      text-transform: uppercase; letter-spacing: 0.4px;
-    }
-    .mbn-item i { font-size: 1.15rem; display: block; }
-    .mbn-item:hover { color: rgba(255,255,255,0.8); }
-    .mbn-item.active { color: var(--bps-accent); border-top-color: var(--bps-accent); }
-    .mbn-item.active i { color: var(--bps-accent); }
 
-    @media (max-width:768px) {
-      .mobile-bottom-nav { display: block; }
-      .main-area { padding-bottom: 60px; }
-      .content-area { padding-bottom: 80px; }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 16px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: all 0.2s;
     }
-    @media (max-width:768px) {
-      .info-banner-grid { grid-template-columns: 1fr !important; }
-      .cara-grid { grid-template-columns: 1fr 1fr !important; }
+    .btn-back:hover { background: rgba(255,255,255,0.18); color: #fff; }
+
+    .navbar-brand-label {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
     }
-    @media (max-width:480px) {
-      .cara-grid { grid-template-columns: 1fr 1fr !important; }
-      .info-banner-grid { grid-template-columns: 1fr !important; }
+
+    /* ===== HERO ===== */
+    .hero-detail {
+      background: var(--bps-dark);
+      position: relative;
+      overflow: hidden;
+      padding: 70px 24px 60px;
     }
-    @media (max-width:360px) {
-      .cara-grid { grid-template-columns: 1fr !important; }
+
+    .hero-detail::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,91,170,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-detail::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 10%;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244,167,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244,167,0,0.15);
+      border: 1px solid rgba(244,167,0,0.3);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--bps-accent);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--bps-accent);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { padding: 52px 0 60px; }
+
+    /* ===== SECTION CARD ===== */
+    .section-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 20px rgba(0,63,127,0.06);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, rgba(0,91,170,0.025), transparent);
+    }
+
+    .section-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--bps-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      color: var(--bps-blue);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin: 0;
+      letter-spacing: -0.2px;
+    }
+
+    .section-body { padding: 32px; }
+
+    /* ===== PERSYARATAN ===== */
+    .req-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) { .req-grid { grid-template-columns: 1fr; } }
+
+    .req-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .req-card-head {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .req-card-head.langsung { background: var(--bps-dark); }
+    .req-card-head.online   { background: linear-gradient(135deg, #c87f00, var(--bps-accent)); }
+    .req-card-head i { font-size: 1.1rem; color: #fff; }
+    .req-card-head span { font-weight: 600; font-size: 0.88rem; color: #fff; letter-spacing: 0.2px; }
+
+    .req-list { padding: 20px; margin: 0; list-style: none; }
+    .req-list li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 0.875rem; color: var(--text-secondary);
+      padding-bottom: 10px; margin-bottom: 10px;
+      border-bottom: 1px solid #f0f4f9;
+    }
+    .req-list li:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+    .req-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bps-blue); margin-top: 7px; flex-shrink: 0; }
+    .req-dot.accent { background: var(--bps-accent); }
+
+    /* ===== FLOWCHART ===== */
+    .fc-wrapper { margin-bottom: 36px; }
+    .fc-wrapper:last-child { margin-bottom: 0; }
+
+    .fc-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 28px;
+    }
+    .fc-label.langsung { background: var(--bps-dark); color: #fff; }
+    .fc-label.online   { background: linear-gradient(135deg, #c87f00, var(--bps-accent)); color: #fff; }
+
+    .fc-node {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 10px 14px;
+      text-align: center;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+      flex: 1;
+    }
+    .fc-node:hover { box-shadow: 0 8px 24px rgba(0,91,170,0.13); transform: translateY(-2px); }
+    .fc-node.terminal { background: var(--bps-dark); border-color: var(--bps-dark); }
+    .fc-node.decision { background: linear-gradient(135deg, #fffbf0, #fff9e6); border-color: var(--bps-accent); border-style: dashed; }
+
+    .fc-node-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--bps-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--bps-blue);
+      margin: 0 auto 10px;
+    }
+    .fc-node.terminal .fc-node-icon { background: rgba(255,255,255,0.15); color: #fff; }
+    .fc-node.decision .fc-node-icon { background: rgba(244,167,0,0.12); color: var(--bps-accent); }
+
+    .fc-node-label { font-size: 0.72rem; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+    .fc-node.terminal .fc-node-label { color: rgba(255,255,255,0.9); }
+
+    .fc-step-num {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--bps-blue); color: #fff;
+      font-size: 0.6rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      position: absolute; top: -9px; left: 50%;
+      transform: translateX(-50%);
+      border: 2px solid var(--bg);
+    }
+
+    .fc-arr {
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; width: 28px;
+      color: var(--text-muted); font-size: 0.8rem;
+      padding-top: 4px;
+    }
+
+    .fc-row { display: flex; align-items: center; gap: 0; }
+
+    .fc-decision-row { display: flex; justify-content: center; gap: 6px; margin-top: 8px; }
+    .fc-badge { font-size: 0.62rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+    .fc-badge.yes { background: rgba(76,175,80,0.12); color: #2e7d32; border: 1px solid rgba(76,175,80,0.3); }
+    .fc-badge.no  { background: rgba(244,167,0,0.12); color: #a37100; border: 1px solid rgba(244,167,0,0.3); }
+
+    .fc-end-label {
+      text-align: center; margin-top: 20px;
+      font-size: 0.8rem; font-weight: 700; color: #4caf50;
+      letter-spacing: 1px; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    .proc-detail { margin-top: 24px; border-radius: var(--radius-md); border: 1px solid var(--border); overflow: hidden; }
+    .proc-detail-head {
+      padding: 14px 20px; background: #f8fafd; border-bottom: 1px solid var(--border);
+      font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .proc-steps-list { margin: 0; padding: 0; list-style: none; }
+    .proc-step-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 14px 20px; border-bottom: 1px solid #f0f4f9;
+      transition: background 0.15s;
+    }
+    .proc-step-item:last-child { border-bottom: none; }
+    .proc-step-item:hover { background: #f8fafd; }
+    .proc-step-num {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: var(--bps-dark); color: #fff;
+      font-size: 0.7rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .proc-step-num.accent { background: linear-gradient(135deg, #c87f00, var(--bps-accent)); }
+    .proc-step-text { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .sop-divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+    /* ===== JANGKA WAKTU ===== */
+    .jw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .jw-grid { grid-template-columns: 1fr; } }
+
+    .jw-item { border-radius: var(--radius-md); border: 1px solid var(--border); overflow: hidden; display: flex; }
+    .jw-accent-bar { width: 4px; flex-shrink: 0; }
+    .jw-accent-bar.langsung { background: var(--bps-dark); }
+    .jw-accent-bar.online   { background: var(--bps-accent); }
+    .jw-content { padding: 22px; flex: 1; }
+    .jw-icon-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .jw-icon { font-size: 1.1rem; }
+    .jw-icon.langsung { color: var(--bps-blue); }
+    .jw-icon.online   { color: var(--bps-accent); }
+    .jw-title { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); }
+    .jw-desc  { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+    .jw-highlight { font-weight: 700; color: var(--text-primary); }
+
+    /* ===== BIAYA ===== */
+    .biaya-card {
+      border-radius: var(--radius-md); border: 1px solid rgba(76,175,80,0.25);
+      background: linear-gradient(135deg, #f1fdf4, #ffffff);
+      padding: 28px; display: flex; align-items: flex-start; gap: 18px;
+    }
+    .biaya-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(76,175,80,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: #4caf50; flex-shrink: 0;
+    }
+    .biaya-title { font-weight: 700; font-size: 1.05rem; color: #2e7d32; margin-bottom: 4px; }
+    .biaya-desc  { font-size: 0.875rem; color: var(--text-secondary); margin: 0; }
+
+    /* ===== PRODUK ===== */
+    .produk-card {
+      border-radius: var(--radius-md); border: 1px solid var(--border);
+      padding: 26px; display: flex; align-items: flex-start; gap: 18px;
+      background: linear-gradient(to right, rgba(0,91,170,0.02), transparent);
+    }
+    .produk-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--bps-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--bps-blue); flex-shrink: 0;
+    }
+    .produk-title { font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 6px; }
+    .produk-desc  { font-size: 0.875rem; color: var(--text-secondary); margin: 0; line-height: 1.7; }
+
+    /* ===== FORM ===== */
+    .form-section {
+      background: var(--surface); border-radius: var(--radius-lg);
+      border: 1px solid var(--border); overflow: hidden;
+      box-shadow: 0 2px 20px rgba(0,63,127,0.06); margin-bottom: 0;
+    }
+    .form-section-header { padding: 28px 32px 0; border-bottom: 1px solid var(--border); }
+    .form-header-top { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .form-header-icon {
+      width: 48px; height: 48px; border-radius: 12px; background: var(--bps-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: #fff; flex-shrink: 0;
+    }
+    .form-header-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--text-primary); margin-bottom: 3px; }
+    .form-header-sub   { font-size: 0.82rem; color: var(--text-muted); }
+
+    .form-tabs { display: flex; gap: 0; }
+    .form-tab {
+      padding: 12px 24px; background: transparent; border: none;
+      font-size: 0.85rem; font-weight: 600; color: var(--text-muted);
+      cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -1px; transition: all 0.2s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .form-tab:hover { color: var(--bps-blue); }
+    .form-tab.active { color: var(--bps-blue); border-bottom-color: var(--bps-blue); }
+
+    .form-body { padding: 32px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .field-label { font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 7px; display: block; }
+    .field-label .req { color: #e53e3e; }
+    .field-label .opt { color: var(--text-muted); font-weight: 400; }
+
+    .field-input {
+      width: 100%; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      padding: 10px 14px; font-size: 0.875rem; font-family: 'DM Sans', sans-serif;
+      color: var(--text-primary); background: #fff; transition: all 0.2s; outline: none;
+    }
+    .field-input:focus { border-color: var(--bps-blue); box-shadow: 0 0 0 3px rgba(0,91,170,0.08); }
+    .field-input::placeholder { color: var(--text-muted); }
+    .field-group { margin-bottom: 20px; }
+
+    .upload-zone {
+      border: 2px dashed var(--border); border-radius: var(--radius-md);
+      padding: 32px 20px; text-align: center; background: #f8fafd;
+      cursor: pointer; transition: all 0.2s; position: relative;
+    }
+    .upload-zone:hover, .upload-zone.dragover { border-color: var(--bps-blue); background: var(--bps-light); }
+    .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .upload-zone-icon { font-size: 1.8rem; color: var(--bps-blue); margin-bottom: 10px; }
+    .upload-zone-text { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
+    .upload-zone-hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+    .upload-zone-name { font-size: 0.82rem; color: var(--bps-blue); font-weight: 600; margin-top: 8px; }
+
+    .btn-kirim {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--bps-dark); color: #fff; border: none;
+      border-radius: 100px; padding: 12px 32px;
+      font-size: 0.88rem; font-weight: 700; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; letter-spacing: 0.3px; transition: all 0.25s;
+    }
+    .btn-kirim:hover:not(:disabled) { background: var(--bps-blue); box-shadow: 0 6px 20px rgba(0,91,170,0.28); transform: translateY(-1px); }
+    .btn-kirim:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .tiket-success { text-align: center; padding: 40px 20px; display: none; }
+    .tiket-success.show { display: block; }
+    .tiket-check {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(76,175,80,0.1); border: 2px solid rgba(76,175,80,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: #4caf50; margin: 0 auto 20px;
+    }
+    .tiket-heading { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--text-primary); margin-bottom: 8px; }
+    .tiket-sub { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 24px; }
+    .tiket-code-box {
+      display: inline-block; background: #f8fafd;
+      border: 2px dashed rgba(76,175,80,0.4); border-radius: var(--radius-md);
+      padding: 18px 36px; font-size: 1.6rem; font-weight: 700;
+      color: var(--text-primary); letter-spacing: 3px;
+      font-family: 'DM Serif Display', serif; margin-bottom: 12px;
+    }
+    .tiket-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 24px; }
+
+    .cek-desc { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 20px; }
+    .cek-input-row { display: flex; gap: 10px; margin-bottom: 20px; }
+    .cek-input-row .field-input { flex: 1; text-transform: uppercase; }
+
+    .btn-cek {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--bps-dark); color: #fff; border: none;
+      border-radius: var(--radius-sm); padding: 10px 22px;
+      font-size: 0.85rem; font-weight: 700; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; white-space: nowrap; transition: all 0.2s;
+    }
+    .btn-cek:hover { background: var(--bps-blue); }
+
+    .result-panel { border-radius: var(--radius-md); border: 1px solid var(--border); overflow: hidden; display: none; }
+    .result-panel.show { display: block; }
+    .result-panel-head { padding: 16px 22px; background: var(--bps-dark); display: flex; align-items: center; justify-content: space-between; }
+    .res-tiket-code { font-size: 1rem; font-weight: 700; color: #fff; letter-spacing: 1px; }
+    .res-tiket-sub  { font-size: 0.72rem; color: rgba(255,255,255,0.5); }
+
+    .status-chip { padding: 5px 14px; border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3px; }
+    .chip-menunggu { background: rgba(255,193,7,0.2); color: #b7860b; border: 1px solid rgba(255,193,7,0.4); }
+    .chip-diproses  { background: rgba(3,169,244,0.15); color: #0277bd; border: 1px solid rgba(3,169,244,0.3); }
+    .chip-selesai   { background: rgba(76,175,80,0.15); color: #2e7d32; border: 1px solid rgba(76,175,80,0.3); }
+    .chip-ditolak   { background: rgba(244,67,54,0.12); color: #c62828; border: 1px solid rgba(244,67,54,0.25); }
+
+    .result-body { padding: 22px; }
+    .res-row { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f0f4f9; font-size: 0.86rem; }
+    .res-row:last-child { border-bottom: none; }
+    .res-key { min-width: 140px; color: var(--text-muted); font-weight: 500; flex-shrink: 0; }
+    .res-val { color: var(--text-primary); }
+
+    .download-row { margin-top: 16px; padding: 16px; background: linear-gradient(135deg, #f1fdf4, #fff); border-radius: var(--radius-sm); border: 1px solid rgba(76,175,80,0.25); }
+    .download-row-title { font-size: 0.82rem; font-weight: 700; color: #2e7d32; margin-bottom: 10px; }
+    .btn-download { display: inline-flex; align-items: center; gap: 8px; background: #2e7d32; color: #fff; border-radius: var(--radius-sm); padding: 9px 20px; font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: all 0.2s; }
+    .btn-download:hover { background: #1b5e20; color: #fff; }
+
+    .form-alert { padding: 10px 16px; border-radius: var(--radius-sm); font-size: 0.83rem; margin-bottom: 16px; display: none; }
+    .form-alert.show { display: block; }
+    .form-alert.error { background: #fff0f0; border: 1px solid #fcc; color: #c62828; }
+
+    footer { background: var(--bps-dark); color: rgba(255,255,255,0.45); font-size: 0.8rem; text-align: center; padding: 20px; letter-spacing: 0.3px; }
+
+    @media (max-width: 576px) {
+      .section-header { padding: 18px 20px; }
+      .section-body   { padding: 20px; }
+      .form-body      { padding: 20px; }
+      .cek-input-row  { flex-direction: column; }
+      .hero-detail    { padding: 50px 16px 44px; }
     }
   </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-  <div class="container">
-    <a class="btn-back" href="index.html" title="Kembali">
+<nav class="navbar sticky-top">
+  <div class="container d-flex align-items-center justify-content-between" style="height:58px;">
+    <a class="btn-back" href="index.html">
       <i class="bi bi-arrow-left"></i>
+      Kembali
     </a>
+    <span class="navbar-brand-label">BPS Kota Palu</span>
   </div>
 </nav>
 
-<div class="page-wrapper">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sb-identity">
-      <div class="sb-icon-box"><i class="bi bi-bar-chart-steps"></i></div>
-      <div class="sb-title">Konsultasi Statistik</div>
-      <div class="sb-sub">BPS Kota Palu — Pelayanan Terpadu Statistik</div>
+<!-- HERO -->
+<section class="hero-detail text-center">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-eyebrow" style="display:inline-flex;width:fit-content;margin:0 auto 20px;">
+      <i class="bi bi-bar-chart-line"></i>
+      Layanan Statistik
     </div>
-    <div class="sb-group">
-      <div class="sb-group-label">Informasi Layanan</div>
-      <button class="sb-link active" onclick="showPanel('persyaratan',this)">
-        <i class="bi bi-clipboard-check sb-ico"></i> Persyaratan
-        <i class="bi bi-chevron-right sb-arr"></i>
-      </button>
-      <button class="sb-link" onclick="showPanel('sop',this)">
-        <i class="bi bi-diagram-3 sb-ico"></i> SOP &amp; Prosedur
-        <i class="bi bi-chevron-right sb-arr"></i>
-      </button>
-      <button class="sb-link" onclick="showPanel('jangka',this)">
-        <i class="bi bi-clock sb-ico"></i> Jangka Waktu
-        <i class="bi bi-chevron-right sb-arr"></i>
-      </button>
-      <button class="sb-link" onclick="showPanel('biaya',this)">
-        <i class="bi bi-tag sb-ico"></i> Biaya &amp; Produk
-        <i class="bi bi-chevron-right sb-arr"></i>
-      </button>
+    <h1 class="hero-title">Pelayanan Konsultasi<br>Statistik</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle mx-auto">Layanan konsultasi data, metadata, dan klasifikasi statistik</p>
+  </div>
+</section>
+
+<div class="container main-content">
+
+  <!-- ===== PERSYARATAN ===== -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="bi bi-clipboard-check"></i></div>
+      <h2 class="section-title">Persyaratan</h2>
     </div>
-    <div class="sb-group">
-      <div class="sb-group-label">Pengajuan</div>
-      <button class="sb-link" onclick="showPanel('ajukan',this)">
-        <i class="bi bi-send sb-ico"></i> Ajukan Layanan
-        <i class="bi bi-chevron-right sb-arr"></i>
-      </button>
+    <div class="section-body">
+      <div class="req-grid">
+        <div class="req-card">
+          <div class="req-card-head langsung">
+            <i class="bi bi-building"></i>
+            <span>Kunjungan Langsung</span>
+          </div>
+          <ul class="req-list">
+            <li><div class="req-dot"></div><span>Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</span></li>
+            <li><div class="req-dot"></div><span>Memiliki alamat email aktif</span></li>
+            <li><div class="req-dot"></div><span>Mengisi buku tamu</span></li>
+            <li><div class="req-dot"></div><span>Mengajukan permintaan konsultasi statistik kepada petugas</span></li>
+          </ul>
+        </div>
+        <div class="req-card">
+          <div class="req-card-head online">
+            <i class="bi bi-globe"></i>
+            <span>Layanan Online</span>
+          </div>
+          <ul class="req-list">
+            <li><div class="req-dot accent"></div><span>Memiliki akun pada portal pst.bps.go.id</span></li>
+            <li><div class="req-dot accent"></div><span>Mengajukan permintaan konsultasi melalui portal pst.bps.go.id</span></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="sb-footer">© 2026 BPS Kota Palu</div>
-  </aside>
+  </div>
 
-  <!-- MAIN AREA -->
-  <div class="main-area">
+  <!-- ===== SOP ===== -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="bi bi-diagram-3"></i></div>
+      <h2 class="section-title">SOP</h2>
+    </div>
+    <div class="section-body">
 
-    <!-- HERO -->
-    <section class="hero-detail">
-      <div class="hero-inner">
-        <div class="hero-badge"><i class="bi bi-patch-check-fill"></i> Layanan Resmi Pemerintah</div>
-        <h1 class="hero-title">Pelayanan Konsultasi Statistik</h1>
-        <p class="hero-sub">Layanan Konsultasi data, metadata, dan klasifikasi statistik</p>
-        <a class="hero-cta" href="#" onclick="showPanel('persyaratan', document.querySelector('.sb-link')); return false;">
-          <i class="bi bi-grid-fill"></i> Jelajahi Informasi Layanan
-        </a>
-      </div>
-    </section>
+      <!-- FLOWCHART: KUNJUNGAN LANGSUNG -->
+      <div class="fc-wrapper">
+        <div class="fc-label langsung">
+          <i class="bi bi-building"></i>
+          Layanan dengan Kunjungan Langsung
+        </div>
 
-    <div class="content-area">
+        <div style="overflow-x:auto; padding-bottom:12px;">
+          <div style="min-width:520px;">
 
-      <!-- ===== PANEL: PERSYARATAN ===== -->
-      <div id="panel-persyaratan" class="content-panel active">
-        <div class="section-box">
-          <div class="section-head">
-            <div class="section-head-icon"><i class="bi bi-clipboard-check"></i></div>
-            <div>
-              <p class="section-head-title">Persyaratan</p>
-              <p class="section-head-sub">Ketentuan yang diperlukan untuk mengakses layanan</p>
-            </div>
-          </div>
-          <div class="section-body">
-            <div class="syarat-grid">
-              <div class="syarat-card">
-                <div class="syarat-card-header blue">
-                  <div class="sh-icon"><i class="bi bi-building"></i></div>
-                  <span class="sh-title">Kunjungan Langsung</span>
-                </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li><span class="syarat-num">1</span><span>Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</span></li>
-                    <li><span class="syarat-num">2</span><span>Memiliki alamat email aktif</span></li>
-                    <li><span class="syarat-num">3</span><span>Mengisi buku tamu</span></li>
-                    <li><span class="syarat-num">4</span><span>Mengajukan permintaan konsultasi statistik kepada petugas</span></li>
-                  </ul>
-                </div>
+            <!-- Row 1 →→→ -->
+            <div class="fc-row">
+              <div class="fc-node" style="position:relative;">
+                <div class="fc-step-num">1</div>
+                <div class="fc-node-icon"><i class="bi bi-building"></i></div>
+                <div class="fc-node-label">Berkunjung ke<br>PST BPS</div>
               </div>
-              <div class="syarat-card">
-                <div class="syarat-card-header gold">
-                  <div class="sh-icon"><i class="bi bi-globe" style="color:var(--bps-dark);"></i></div>
-                  <span class="sh-title">Layanan Online</span>
-                </div>
-                <div class="syarat-card-body gold-body">
-                  <ul class="syarat-num-list">
-                    <li><span class="syarat-num gold-num">1</span><span>Memiliki akun pada portal <strong>pst.bps.go.id</strong></span></li>
-                    <li><span class="syarat-num gold-num">2</span><span>Mengajukan permintaan konsultasi melalui portal pst.bps.go.id</span></li>
-                  </ul>
-                </div>
+              <div class="fc-arr"><i class="bi bi-arrow-right"></i></div>
+              <div class="fc-node" style="position:relative;">
+                <div class="fc-step-num">2</div>
+                <div class="fc-node-icon"><i class="bi bi-book"></i></div>
+                <div class="fc-node-label">Isi Buku<br>Tamu</div>
+              </div>
+              <div class="fc-arr"><i class="bi bi-arrow-right"></i></div>
+              <div class="fc-node" style="position:relative;">
+                <div class="fc-step-num">3</div>
+                <div class="fc-node-icon"><i class="bi bi-ticket-perforated"></i></div>
+                <div class="fc-node-label">Ambil Nomor<br>Antrian</div>
+              </div>
+              <div style="width:28px; display:flex; align-items:flex-end; padding-bottom:22px; justify-content:center; flex-shrink:0;">
+                <i class="bi bi-arrow-down" style="color:var(--text-muted); font-size:0.75rem;"></i>
               </div>
             </div>
+
+            <div style="height:16px; display:flex;">
+              <div style="flex:1;"></div><div style="flex:1;"></div><div style="flex:1;"></div>
+              <div style="width:28px; flex-shrink:0;"></div>
+            </div>
+
+            <!-- Row 2 ←←← -->
+            <div class="fc-row" style="flex-direction:row-reverse;">
+              <div class="fc-node" style="position:relative;">
+                <div class="fc-step-num">4</div>
+                <div class="fc-node-icon"><i class="bi bi-hourglass-split"></i></div>
+                <div class="fc-node-label">Tunggu<br>Giliran</div>
+              </div>
+              <div class="fc-arr"><i class="bi bi-arrow-left"></i></div>
+              <div class="fc-node" style="position:relative;">
+                <div class="fc-step-num">5</div>
+                <div class="fc-node-icon"><i class="bi bi-chat-dots"></i></div>
+                <div class="fc-node-label">Konsultasi<br>Petugas</div>
+              </div>
+              <div class="fc-arr"><i class="bi bi-arrow-left"></i></div>
+              <div class="fc-node terminal" style="position:relative;">
+                <div class="fc-step-num" style="background:var(--bps-accent);">6</div>
+                <div class="fc-node-icon"><i class="bi bi-check-circle"></i></div>
+                <div class="fc-node-label">Selesai<br>Layanan</div>
+              </div>
+              <div style="width:28px; flex-shrink:0;"></div>
+            </div>
+
           </div>
+        </div>
+
+        <div class="fc-end-label">
+          <i class="bi bi-check-circle-fill"></i> SELESAI
+        </div>
+
+        <div class="proc-detail">
+          <div class="proc-detail-head">Detail Prosedur — Kunjungan Langsung</div>
+          <ul class="proc-steps-list">
+            <li class="proc-step-item"><div class="proc-step-num">1</div><div class="proc-step-text">Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</div></li>
+            <li class="proc-step-item"><div class="proc-step-num">2</div><div class="proc-step-text">Mengisi buku tamu dengan lengkap</div></li>
+            <li class="proc-step-item"><div class="proc-step-num">3</div><div class="proc-step-text">Mengambil nomor antrian</div></li>
+            <li class="proc-step-item"><div class="proc-step-num">4</div><div class="proc-step-text">Menunggu giliran sesuai nomor antrian (maksimal 10 menit)</div></li>
+            <li class="proc-step-item"><div class="proc-step-num">5</div><div class="proc-step-text">Menyampaikan kebutuhan konsultasi kepada petugas</div></li>
+            <li class="proc-step-item"><div class="proc-step-num">6</div><div class="proc-step-text">Menerima informasi dan penjelasan dari petugas BPS</div></li>
+          </ul>
         </div>
       </div>
 
-      <!-- ===== PANEL: SOP ===== -->
-      <div id="panel-sop" class="content-panel">
-        <div class="section-box">
-          <div class="section-head">
-            <div class="section-head-icon"><i class="bi bi-diagram-3"></i></div>
-            <div>
-              <p class="section-head-title">SOP &amp; Prosedur</p>
-              <p class="section-head-sub">Alur standar operasional pelayanan konsultasi statistik</p>
-            </div>
-          </div>
-          <div class="section-body">
-            <div class="sop-flowchart">
-              <div class="flowchart-title langsung"><i class="bi bi-person-lines-fill"></i> Layanan dengan Kunjungan Langsung</div>
-              <div class="snake-grid snake-3">
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-door-open"></i></span><div class="sg-label">Berkunjung ke<br>PST BPS</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-pencil-square"></i></span><div class="sg-label">Isi Buku<br>Tamu</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-123"></i></span><div class="sg-label">Ambil Nomor<br>Antrian</div></div>
-                <div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div>
-                <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-                <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-patch-check"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-person-workspace"></i></span><div class="sg-label">Konsultasi<br>Petugas</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-hourglass-top"></i></span><div class="sg-label">Tunggu<br>Giliran</div></div>
+      <hr class="sop-divider">
+
+      <!-- FLOWCHART: LAYANAN ONLINE -->
+      <div class="fc-wrapper">
+        <div class="fc-label online">
+          <i class="bi bi-globe"></i>
+          Layanan dengan Cara Online
+        </div>
+
+        <div style="overflow-x:auto; padding-bottom:12px;">
+          <div style="min-width:620px;">
+
+            <!-- Row 1 →→→→ -->
+            <div class="fc-row">
+              <div class="fc-node" style="position:relative; border-color:rgba(244,167,0,0.4);">
+                <div class="fc-step-num" style="background:var(--bps-accent);">1</div>
+                <div class="fc-node-icon" style="background:rgba(244,167,0,0.1); color:var(--bps-accent);"><i class="bi bi-globe"></i></div>
+                <div class="fc-node-label">Akses<br>Portal</div>
               </div>
-              <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
-              <div class="sop-steps">
-                <strong class="sop-steps-title">Detail Prosedur Kunjungan Langsung:</strong>
-                <ol>
-                  <li>Berkunjung ke unit Pelayanan Terpadu Statistik (PST) BPS</li>
-                  <li>Mengisi buku tamu dengan lengkap</li>
-                  <li>Mengambil nomor antrian</li>
-                  <li>Menunggu giliran sesuai nomor antrian (maksimal 10 menit)</li>
-                  <li>Menyampaikan kebutuhan konsultasi kepada petugas</li>
-                  <li>Menerima informasi dan penjelasan dari petugas BPS</li>
-                </ol>
+              <div class="fc-arr"><i class="bi bi-arrow-right"></i></div>
+              <div class="fc-node" style="position:relative; border-color:rgba(244,167,0,0.4);">
+                <div class="fc-step-num" style="background:var(--bps-accent);">2</div>
+                <div class="fc-node-icon" style="background:rgba(244,167,0,0.1); color:var(--bps-accent);"><i class="bi bi-search"></i></div>
+                <div class="fc-node-label">Cari<br>Informasi</div>
               </div>
-            </div>
-            <div class="sop-flowchart" style="margin-top:26px;">
-              <div class="flowchart-title online"><i class="bi bi-laptop"></i> Layanan dengan Cara Online</div>
-              <div class="snake-grid snake-4">
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-browser-chrome"></i></span><div class="sg-label">Akses<br>Portal</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-search"></i></span><div class="sg-label">Cari<br>Informasi</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box sg-decision">
-                  <span class="sg-icon" style="color:var(--bps-accent);"><i class="bi bi-question-circle"></i></span>
-                  <div class="sg-label">Informasi<br>Ditemukan?</div>
-                  <div style="display:flex;gap:4px;margin-top:6px;justify-content:center;"><span class="sg-badge-ya">✓ Ya</span><span class="sg-badge-tidak">✗ Tidak</span></div>
+              <div class="fc-arr"><i class="bi bi-arrow-right"></i></div>
+              <div class="fc-node decision" style="position:relative;">
+                <div class="fc-step-num" style="background:var(--bps-accent);">3</div>
+                <div class="fc-node-icon"><i class="bi bi-question-circle"></i></div>
+                <div class="fc-node-label">Informasi<br>Ditemukan?</div>
+                <div class="fc-decision-row">
+                  <span class="fc-badge yes">Ya</span>
+                  <span class="fc-badge no">Tidak</span>
                 </div>
-                <div class="sg-arr sg-arr-tidak"><span>Tidak</span><i class="bi bi-arrow-right"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-file-earmark-plus"></i></span><div class="sg-label">Buat<br>Konsultasi</div></div>
-                <div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div>
-                <div class="sg-arr sg-down sg-ya"><i class="bi bi-arrow-down"></i><span>Ya</span></div>
-                <div class="sg-empty"></div>
-                <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-                <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-patch-check"></i></span><div class="sg-label" style="color:white;">Selesai<br>Layanan</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-clipboard2-data"></i></span><div class="sg-label">Beri<br>Rating</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-envelope-open-text"></i></span><div class="sg-label">Terima<br>Informasi</div></div>
-                <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                <div class="sg-box"><span class="sg-icon"><i class="bi bi-send-check"></i></span><div class="sg-label">Ajukan<br>Konsultasi</div></div>
               </div>
-              <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
-              <div class="sop-steps online-border">
-                <strong class="sop-steps-title">Detail Prosedur Layanan Online:</strong>
-                <ol>
-                  <li>Mengakses portal pst.bps.go.id dengan akun Anda</li>
-                  <li>Mencari informasi statistik yang diinginkan melalui fitur pencarian</li>
-                  <li>Jika informasi tidak ditemukan, membuat konsultasi baru</li>
-                  <li>Mengajukan konsultasi statistik melalui portal</li>
-                  <li>Menunggu respons dari petugas BPS (maksimal 3 hari kerja)</li>
-                  <li>Menerima informasi dan penjelasan statistik melalui portal</li>
-                  <li>Memberikan penilaian (rating) terhadap kualitas pelayanan</li>
-                </ol>
+              <div style="width:36px; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; padding-top:4px;">
+                <span style="font-size:0.58rem; font-weight:700; color:var(--bps-accent);">TIDAK</span>
+                <i class="bi bi-arrow-right" style="color:var(--bps-accent); font-size:0.8rem;"></i>
+              </div>
+              <div class="fc-node" style="position:relative; border-color:rgba(244,167,0,0.4);">
+                <div class="fc-step-num" style="background:var(--bps-accent);">4</div>
+                <div class="fc-node-icon" style="background:rgba(244,167,0,0.1); color:var(--bps-accent);"><i class="bi bi-file-text"></i></div>
+                <div class="fc-node-label">Buat<br>Konsultasi</div>
               </div>
             </div>
+
+            <!-- Down arrows -->
+            <div style="display:flex; height:26px;">
+              <div style="flex:1;"></div>
+              <div style="width:28px;"></div>
+              <div style="flex:1;"></div>
+              <div style="width:28px;"></div>
+              <!-- node 3 col -->
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:1px; padding-bottom:1px;">
+                <span style="font-size:0.58rem; font-weight:700; color:#2e7d32;">YA</span>
+                <i class="bi bi-arrow-down" style="color:#2e7d32; font-size:0.75rem;"></i>
+              </div>
+              <div style="width:36px;"></div>
+              <!-- node 4 col -->
+              <div style="flex:1; display:flex; justify-content:center; align-items:flex-end;">
+                <i class="bi bi-arrow-down" style="color:var(--text-muted); font-size:0.75rem;"></i>
+              </div>
+            </div>
+
+            <!-- Row 2 ←←←← -->
+            <div class="fc-row" style="flex-direction:row-reverse;">
+              <div class="fc-node" style="position:relative; border-color:rgba(244,167,0,0.4);">
+                <div class="fc-step-num" style="background:var(--bps-accent);">5</div>
+                <div class="fc-node-icon" style="background:rgba(244,167,0,0.1); color:var(--bps-accent);"><i class="bi bi-send"></i></div>
+                <div class="fc-node-label">Ajukan<br>Konsultasi</div>
+              </div>
+              <div class="fc-arr"><i class="bi bi-arrow-left"></i></div>
+              <div class="fc-node" style="position:relative; border-color:rgba(244,167,0,0.4);">
+                <div class="fc-step-num" style="background:var(--bps-accent);">6</div>
+                <div class="fc-node-icon" style="background:rgba(244,167,0,0.1); color:var(--bps-accent);"><i class="bi bi-chat-left-text"></i></div>
+                <div class="fc-node-label">Terima<br>Informasi</div>
+              </div>
+              <div class="fc-arr"><i class="bi bi-arrow-left"></i></div>
+              <div class="fc-node" style="position:relative; border-color:rgba(244,167,0,0.4);">
+                <div class="fc-step-num" style="background:var(--bps-accent);">7</div>
+                <div class="fc-node-icon" style="background:rgba(244,167,0,0.1); color:var(--bps-accent);"><i class="bi bi-star"></i></div>
+                <div class="fc-node-label">Beri<br>Rating</div>
+              </div>
+              <div class="fc-arr"><i class="bi bi-arrow-left"></i></div>
+              <div class="fc-node terminal" style="position:relative;">
+                <div class="fc-step-num" style="background:var(--bps-accent);">8</div>
+                <div class="fc-node-icon"><i class="bi bi-check-circle"></i></div>
+                <div class="fc-node-label">Selesai<br>Layanan</div>
+              </div>
+            </div>
+
           </div>
+        </div>
+
+        <div class="fc-end-label">
+          <i class="bi bi-check-circle-fill"></i> SELESAI
+        </div>
+
+        <div class="proc-detail">
+          <div class="proc-detail-head">Detail Prosedur — Layanan Online</div>
+          <ul class="proc-steps-list">
+            <li class="proc-step-item"><div class="proc-step-num accent">1</div><div class="proc-step-text">Mengakses portal pst.bps.go.id dengan akun Anda</div></li>
+            <li class="proc-step-item"><div class="proc-step-num accent">2</div><div class="proc-step-text">Mencari informasi statistik yang diinginkan melalui fitur pencarian</div></li>
+            <li class="proc-step-item"><div class="proc-step-num accent">3</div><div class="proc-step-text">Jika informasi tidak ditemukan, membuat konsultasi baru</div></li>
+            <li class="proc-step-item"><div class="proc-step-num accent">4</div><div class="proc-step-text">Mengajukan konsultasi statistik melalui portal</div></li>
+            <li class="proc-step-item"><div class="proc-step-num accent">5</div><div class="proc-step-text">Menunggu respons dari petugas BPS (maksimal 3 hari kerja)</div></li>
+            <li class="proc-step-item"><div class="proc-step-num accent">6</div><div class="proc-step-text">Menerima informasi dan penjelasan statistik melalui portal</div></li>
+            <li class="proc-step-item"><div class="proc-step-num accent">7</div><div class="proc-step-text">Memberikan penilaian (rating) terhadap kualitas pelayanan</div></li>
+          </ul>
         </div>
       </div>
 
-      <!-- ===== PANEL: JANGKA WAKTU ===== -->
-      <div id="panel-jangka" class="content-panel">
-        <div class="section-box">
-          <div class="section-head">
-            <div class="section-head-icon"><i class="bi bi-clock"></i></div>
-            <div>
-              <p class="section-head-title">Jangka Waktu Pelayanan</p>
-              <p class="section-head-sub">Estimasi waktu penyelesaian layanan konsultasi statistik</p>
+    </div>
+  </div>
+
+  <!-- ===== JANGKA WAKTU ===== -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="bi bi-clock"></i></div>
+      <h2 class="section-title">Jangka Waktu Pelayanan</h2>
+    </div>
+    <div class="section-body">
+      <div class="jw-grid">
+        <div class="jw-item">
+          <div class="jw-accent-bar langsung"></div>
+          <div class="jw-content">
+            <div class="jw-icon-row">
+              <i class="bi bi-building jw-icon langsung"></i>
+              <span class="jw-title">Kunjungan Langsung</span>
             </div>
+            <p class="jw-desc">Maksimal <span class="jw-highlight">10 menit</span> setelah antrian sebelumnya selesai dilayani.</p>
           </div>
-          <div class="section-body">
-            <div class="syarat-grid">
-              <div class="syarat-card">
-                <div class="syarat-card-header blue">
-                  <div class="sh-icon"><i class="bi bi-building"></i></div>
-                  <span class="sh-title">Kunjungan Langsung</span>
-                </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num" style="font-size:0.55rem;width:22px;height:22px;"><i class="bi bi-clock"></i></span>
-                      <span>Maksimal <strong>10 menit</strong> setelah antrian sebelumnya selesai dilayani oleh petugas BPS.</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="syarat-card">
-                <div class="syarat-card-header gold">
-                  <div class="sh-icon"><i class="bi bi-globe" style="color:var(--bps-dark);"></i></div>
-                  <span class="sh-title">Layanan Online</span>
-                </div>
-                <div class="syarat-card-body gold-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num gold-num" style="font-size:0.55rem;width:22px;height:22px;"><i class="bi bi-clock"></i></span>
-                      <span>Maksimal <strong>3 hari kerja</strong> — otomatis tertutup jika tidak ada respons dalam jangka waktu yang ditentukan.</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+        </div>
+        <div class="jw-item">
+          <div class="jw-accent-bar online"></div>
+          <div class="jw-content">
+            <div class="jw-icon-row">
+              <i class="bi bi-globe jw-icon online"></i>
+              <span class="jw-title">Layanan Online</span>
             </div>
+            <p class="jw-desc">Maksimal <span class="jw-highlight">3 hari kerja</span> (otomatis tertutup jika tidak ada respons).</p>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- ===== PANEL: BIAYA & PRODUK ===== -->
-      <div id="panel-biaya" class="content-panel">
-        <div class="syarat-grid">
-          <!-- BIAYA -->
-          <div class="section-box" style="margin-bottom:0;">
-            <div class="section-head">
-              <div class="section-head-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="bi bi-cash-coin"></i></div>
-              <div>
-                <p class="section-head-title">Biaya / Tarif</p>
-                <p class="section-head-sub">Informasi biaya penggunaan layanan</p>
+  <!-- ===== BIAYA ===== -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="bi bi-tag"></i></div>
+      <h2 class="section-title">Biaya / Tarif</h2>
+    </div>
+    <div class="section-body">
+      <div class="biaya-card">
+        <div class="biaya-icon"><i class="bi bi-check-circle-fill"></i></div>
+        <div>
+          <div class="biaya-title">Tidak Dipungut Biaya</div>
+          <p class="biaya-desc">Semua layanan konsultasi statistik disediakan secara gratis untuk publik</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PRODUK PELAYANAN ===== -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="bi bi-gift"></i></div>
+      <h2 class="section-title">Produk Pelayanan</h2>
+    </div>
+    <div class="section-body">
+      <div class="produk-card">
+        <div class="produk-icon"><i class="bi bi-bar-chart-steps"></i></div>
+        <div>
+          <div class="produk-title">Jasa Konsultasi Statistik</div>
+          <p class="produk-desc">Konsultasi informasi data, metadata, dan klasifikasi statistik dari berbagai sumber data resmi BPS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PENGAJUAN FORM ===== -->
+  <script>
+    const SUPABASE_URL = 'https://rljhayfmfsrdtpmlqltp.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsamhheWZtZnNyZHRwbWxxbHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMzc5NTcsImV4cCI6MjA4NzkxMzk1N30.1Iyu5DYkQyqnmu9eLT1Kcf7ybOI4V4-bXHr7b7NyR7c';
+    const JENIS_LAYANAN = 'Pelayanan Konsultasi Statistik';
+  </script>
+
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-header-top">
+        <div class="form-header-icon"><i class="bi bi-send-fill"></i></div>
+        <div>
+          <div class="form-header-title">Ajukan Permintaan Layanan</div>
+          <div class="form-header-sub">Isi form di bawah untuk mengajukan permintaan secara online</div>
+        </div>
+      </div>
+      <div class="form-tabs">
+        <button class="form-tab active" onclick="switchTab('form', this)">
+          <i class="bi bi-file-earmark-text"></i> Form Pengajuan
+        </button>
+        <button class="form-tab" onclick="switchTab('cek', this)">
+          <i class="bi bi-search"></i> Cek Status
+        </button>
+      </div>
+    </div>
+
+    <div class="form-body">
+
+      <!-- TAB: FORM -->
+      <div id="tab-form" class="tab-panel active">
+
+        <div class="tiket-success" id="tiket-box">
+          <div class="tiket-check"><i class="bi bi-check-lg"></i></div>
+          <div class="tiket-heading">Pengajuan Berhasil Dikirim</div>
+          <p class="tiket-sub">Simpan nomor tiket berikut untuk memantau status pengajuan Anda.</p>
+          <div class="tiket-code-box" id="tiket-number">-</div>
+          <p class="tiket-note"><i class="bi bi-exclamation-circle me-1"></i>Simpan nomor tiket ini untuk mengecek status pengajuan.</p>
+          <button class="btn-kirim" onclick="resetForm()">
+            <i class="bi bi-plus-circle"></i> Ajukan Permintaan Baru
+          </button>
+        </div>
+
+        <div id="form-pengajuan">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Nama Lengkap <span class="req">*</span></label>
+                <input type="text" class="field-input" id="input-nama" placeholder="Masukkan nama lengkap">
               </div>
             </div>
-            <div class="section-body">
-              <div class="syarat-card">
-                <div class="syarat-card-header green">
-                  <div class="sh-icon"><i class="bi bi-cash-coin"></i></div>
-                  <span class="sh-title">Tarif Layanan</span>
-                </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num" style="background:#4caf50;"><i class="bi bi-check-lg" style="font-size:0.6rem;"></i></span>
-                      <span><strong>Tidak Dipungut Biaya</strong> — Semua layanan konsultasi statistik disediakan secara <strong>gratis</strong> untuk seluruh lapisan masyarakat.</span>
-                    </li>
-                  </ul>
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Email Aktif <span class="req">*</span></label>
+                <input type="email" class="field-input" id="input-email" placeholder="contoh@email.com">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Nomor Telepon <span class="req">*</span></label>
+                <input type="tel" class="field-input" id="input-telepon" placeholder="08xxxxxxxxxx">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Instansi / Universitas <span class="opt">(opsional)</span></label>
+                <input type="text" class="field-input" id="input-instansi" placeholder="Nama instansi atau universitas">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Jenis Kelamin <span class="req">*</span></label>
+                <select class="field-input" id="input-jenis-kelamin">
+                  <option value="">Pilih Jenis Kelamin</option>
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Usia <span class="req">*</span></label>
+                <input type="number" class="field-input" id="input-usia" placeholder="Contoh: 22" min="10" max="100">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Kategori Pengguna <span class="req">*</span></label>
+                <select class="field-input" id="input-kategori">
+                  <option value="">Pilih Kategori</option>
+                  <option value="Mahasiswa">Mahasiswa</option>
+                  <option value="Pelajar (SD/SMP/SMA)">Pelajar (SD/SMP/SMA)</option>
+                  <option value="Dosen / Peneliti">Dosen / Peneliti</option>
+                  <option value="ASN / Instansi Pemerintah">ASN / Instansi Pemerintah</option>
+                  <option value="Swasta / Pelaku Usaha">Swasta / Pelaku Usaha</option>
+                  <option value="Media / Jurnalis">Media / Jurnalis</option>
+                  <option value="Umum / Masyarakat">Umum / Masyarakat</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Tingkat Pendidikan <span class="req">*</span></label>
+                <select class="field-input" id="input-pendidikan">
+                  <option value="">Pilih Pendidikan</option>
+                  <option value="SD / Sederajat">SD / Sederajat</option>
+                  <option value="SMP / Sederajat">SMP / Sederajat</option>
+                  <option value="SMA / Sederajat">SMA / Sederajat</option>
+                  <option value="Diploma (D1/D2/D3)">Diploma (D1/D2/D3)</option>
+                  <option value="Sarjana (S1)">Sarjana (S1)</option>
+                  <option value="Pascasarjana (S2/S3)">Pascasarjana (S2/S3)</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field-group">
+                <label class="field-label">Kabupaten / Kota <span class="req">*</span></label>
+                <select class="field-input" id="input-kabkota">
+                  <option value="">Pilih Kabupaten/Kota</option>
+                  <option value="Kota Palu">Kota Palu</option>
+                  <option value="Banggai">Banggai</option>
+                  <option value="Banggai Kepulauan">Banggai Kepulauan</option>
+                  <option value="Banggai Laut">Banggai Laut</option>
+                  <option value="Buol">Buol</option>
+                  <option value="Donggala">Donggala</option>
+                  <option value="Morowali">Morowali</option>
+                  <option value="Morowali Utara">Morowali Utara</option>
+                  <option value="Parigi Moutong">Parigi Moutong</option>
+                  <option value="Poso">Poso</option>
+                  <option value="Sigi">Sigi</option>
+                  <option value="Tojo Una-Una">Tojo Una-Una</option>
+                  <option value="Tolitoli">Tolitoli</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="field-group">
+                <label class="field-label">Deskripsi Kebutuhan Data <span class="req">*</span></label>
+                <textarea class="field-input" id="input-deskripsi" rows="4" placeholder="Jelaskan data apa yang Anda butuhkan, untuk keperluan apa, dan periode data yang diinginkan..."></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="field-group">
+                <label class="field-label">Upload Surat / KTP <span class="req">*</span></label>
+                <div class="upload-zone" id="upload-area">
+                  <input type="file" id="input-dokumen" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileChange(this)">
+                  <div class="upload-zone-icon"><i class="bi bi-cloud-arrow-up"></i></div>
+                  <div class="upload-zone-text">Klik atau seret file ke sini</div>
+                  <div class="upload-zone-hint">Format: PDF, JPG, PNG &nbsp;•&nbsp; Maks. 5MB</div>
+                  <div class="upload-zone-name" id="upload-filename"></div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- PRODUK -->
-          <div class="section-box" style="margin-bottom:0;">
-            <div class="section-head">
-              <div class="section-head-icon"><i class="bi bi-gift"></i></div>
-              <div>
-                <p class="section-head-title">Produk Pelayanan</p>
-                <p class="section-head-sub">Hasil layanan yang diberikan kepada pengguna</p>
-              </div>
+            <div class="col-12">
+              <div class="form-alert error" id="form-error"></div>
             </div>
-            <div class="section-body">
-              <div class="syarat-card">
-                <div class="syarat-card-header blue">
-                  <div class="sh-icon"><i class="bi bi-gift"></i></div>
-                  <span class="sh-title">Produk Pelayanan</span>
-                </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num">1</span>
-                      <span><strong>Jasa Konsultasi Statistik</strong> — Konsultasi informasi data, metadata, dan klasifikasi statistik dari berbagai sumber data resmi BPS Kota Palu.</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div class="col-12 d-flex justify-content-end">
+              <button class="btn-kirim" id="btn-submit" onclick="submitPengajuan()">
+                <i class="bi bi-send"></i> Kirim Pengajuan
+              </button>
             </div>
           </div>
         </div>
+
       </div>
 
-      <!-- ===== PANEL: AJUKAN LAYANAN ===== -->
-      <div id="panel-ajukan" class="content-panel">
-
-        <!-- INFO BANNER -->
-        <div style="background:linear-gradient(135deg,var(--bps-dark) 0%,var(--bps-blue) 100%);border-radius:14px;padding:28px 28px 24px;margin-bottom:18px;position:relative;overflow:hidden;">
-          <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05);pointer-events:none;"></div>
-          <div style="position:absolute;bottom:-50px;left:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.04);pointer-events:none;"></div>
-          <div style="position:relative;z-index:1;">
-            <div style="display:inline-flex;align-items:center;gap:7px;background:var(--bps-accent);color:var(--bps-dark);font-size:0.72rem;font-weight:700;padding:5px 14px;border-radius:50px;margin-bottom:16px;">
-              <i class="bi bi-info-circle-fill"></i> Informasi Layanan
+      <!-- TAB: CEK STATUS -->
+      <div id="tab-cek" class="tab-panel">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <p class="cek-desc">Masukkan nomor tiket yang Anda terima saat pengajuan untuk melihat status terkini.</p>
+            <div class="cek-input-row">
+              <input type="text" class="field-input" id="input-tiket-cek" placeholder="Contoh: BPS-2026-001">
+              <button class="btn-cek" onclick="cekStatus()"><i class="bi bi-search"></i> Cek</button>
             </div>
-            <h5 style="color:#fff;font-weight:800;font-size:1rem;margin-bottom:10px;line-height:1.4;">Ajukan Permintaan Layanan Tanpa Harus Hadir Langsung ke BPS</h5>
-            <p style="color:rgba(255,255,255,0.85);font-size:0.84rem;line-height:1.75;margin-bottom:20px;">Melalui fitur ini, masyarakat dapat mengajukan permintaan <strong style="color:#fff;">Konsultasi Statistik</strong> secara daring tanpa perlu datang langsung ke kantor BPS Kota Palu. Petugas kami akan memproses permintaan Anda dan memberikan respons melalui sistem ini.</p>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" class="info-banner-grid">
-              <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;">
-                <i class="bi bi-house-check" style="color:var(--bps-accent);font-size:1.1rem;flex-shrink:0;margin-top:1px;"></i>
+            <div class="form-alert error" id="cek-error"></div>
+            <div class="result-panel" id="result-card">
+              <div class="result-panel-head">
                 <div>
-                  <div style="color:#fff;font-weight:700;font-size:0.78rem;margin-bottom:2px;">Dari Mana Saja</div>
-                  <div style="color:rgba(255,255,255,0.65);font-size:0.72rem;line-height:1.5;">Ajukan permintaan kapan saja tanpa perlu hadir ke kantor BPS</div>
+                  <div class="res-tiket-code" id="res-tiket">-</div>
+                  <div class="res-tiket-sub">Nomor Tiket Pengajuan</div>
                 </div>
+                <span class="status-chip" id="res-status-badge">-</span>
               </div>
-              <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;">
-                <i class="bi bi-clock-history" style="color:var(--bps-accent);font-size:1.1rem;flex-shrink:0;margin-top:1px;"></i>
-                <div>
-                  <div style="color:#fff;font-weight:700;font-size:0.78rem;margin-bottom:2px;">Respons 3 Hari Kerja</div>
-                  <div style="color:rgba(255,255,255,0.65);font-size:0.72rem;line-height:1.5;">Petugas akan merespons pengajuan Anda dalam 3 hari kerja</div>
-                </div>
-              </div>
-              <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;">
-                <i class="bi bi-shield-check" style="color:var(--bps-accent);font-size:1.1rem;flex-shrink:0;margin-top:1px;"></i>
-                <div>
-                  <div style="color:#fff;font-weight:700;font-size:0.78rem;margin-bottom:2px;">Gratis & Resmi</div>
-                  <div style="color:rgba(255,255,255,0.65);font-size:0.72rem;line-height:1.5;">Layanan ini tidak dipungut biaya dan dikelola langsung oleh BPS</div>
+              <div class="result-body">
+                <div class="res-row"><span class="res-key">Jenis Layanan</span><span class="res-val" id="res-layanan">-</span></div>
+                <div class="res-row"><span class="res-key">Nama</span><span class="res-val" id="res-nama">-</span></div>
+                <div class="res-row"><span class="res-key">Instansi</span><span class="res-val" id="res-instansi">-</span></div>
+                <div class="res-row"><span class="res-key">Tanggal Pengajuan</span><span class="res-val" id="res-tanggal">-</span></div>
+                <div class="res-row"><span class="res-key">Deskripsi</span><span class="res-val" id="res-deskripsi">-</span></div>
+                <div id="res-hasil-box" style="display:none;" class="download-row">
+                  <div class="download-row-title"><i class="bi bi-check-circle-fill me-2"></i>Data Tersedia</div>
+                  <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Petugas BPS telah mengupload data yang Anda minta.</p>
+                  <a id="res-hasil-link" href="#" target="_blank" class="btn-download">
+                    <i class="bi bi-download"></i> Download Data
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- CARA PENGAJUAN -->
-        <div style="background:white;border-radius:14px;border:1px solid rgba(0,0,0,0.05);box-shadow:0 2px 14px rgba(0,0,0,0.07);margin-bottom:18px;overflow:hidden;">
-          <div style="padding:14px 22px;border-bottom:1px solid #eef2f8;background:linear-gradient(to right,#fafcff,#fff);display:flex;align-items:center;gap:12px;">
-            <div style="width:36px;height:36px;border-radius:9px;background:var(--bps-light);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--bps-blue);flex-shrink:0;"><i class="bi bi-list-ol"></i></div>
-            <div>
-              <p style="font-weight:800;color:var(--bps-dark);font-size:0.95rem;margin:0;">Cara Mengajukan Permohonan</p>
-              <p style="font-size:0.72rem;color:#888;font-weight:500;margin:0;">Ikuti langkah berikut untuk mengajukan layanan konsultasi statistik</p>
-            </div>
-          </div>
-          <div style="padding:18px 22px;">
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;" class="cara-grid">
-              <div style="text-align:center;padding:16px 10px;border-radius:12px;background:#f8fafd;border:1px solid #e8eef8;position:relative;">
-                <div style="width:32px;height:32px;border-radius:50%;background:var(--bps-blue);color:white;font-size:0.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">1</div>
-                <i class="bi bi-person-vcard" style="font-size:1.4rem;color:var(--bps-blue);display:block;margin-bottom:7px;"></i>
-                <div style="font-weight:700;color:var(--bps-dark);font-size:0.78rem;margin-bottom:4px;">Isi Formulir</div>
-                <div style="font-size:0.7rem;color:#888;line-height:1.5;">Lengkapi data diri dan deskripsi kebutuhan data Anda</div>
-              </div>
-              <div style="text-align:center;padding:16px 10px;border-radius:12px;background:#f8fafd;border:1px solid #e8eef8;">
-                <div style="width:32px;height:32px;border-radius:50%;background:var(--bps-blue);color:white;font-size:0.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">2</div>
-                <i class="bi bi-paperclip" style="font-size:1.4rem;color:var(--bps-blue);display:block;margin-bottom:7px;"></i>
-                <div style="font-weight:700;color:var(--bps-dark);font-size:0.78rem;margin-bottom:4px;">Upload Dokumen</div>
-                <div style="font-size:0.7rem;color:#888;line-height:1.5;">Lampirkan surat permohonan atau KTP sebagai identitas</div>
-              </div>
-              <div style="text-align:center;padding:16px 10px;border-radius:12px;background:#f8fafd;border:1px solid #e8eef8;">
-                <div style="width:32px;height:32px;border-radius:50%;background:var(--bps-blue);color:white;font-size:0.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">3</div>
-                <i class="bi bi-send-check" style="font-size:1.4rem;color:var(--bps-blue);display:block;margin-bottom:7px;"></i>
-                <div style="font-weight:700;color:var(--bps-dark);font-size:0.78rem;margin-bottom:4px;">Kirim & Simpan Tiket</div>
-                <div style="font-size:0.7rem;color:#888;line-height:1.5;">Kirim pengajuan dan simpan nomor tiket yang diberikan sistem</div>
-              </div>
-              <div style="text-align:center;padding:16px 10px;border-radius:12px;background:#f8fafd;border:1px solid #e8eef8;">
-                <div style="width:32px;height:32px;border-radius:50%;background:var(--bps-blue);color:white;font-size:0.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">4</div>
-                <i class="bi bi-envelope-open-text" style="font-size:1.4rem;color:var(--bps-blue);display:block;margin-bottom:7px;"></i>
-                <div style="font-weight:700;color:var(--bps-dark);font-size:0.78rem;margin-bottom:4px;">Pantau Respons</div>
-                <div style="font-size:0.7rem;color:#888;line-height:1.5;">Gunakan nomor tiket untuk memantau status dan hasil konsultasi</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pengajuan-section">
-          <div class="d-flex align-items-center gap-3 mb-4">
-            <div style="width:48px;height:48px;border-radius:12px;background:var(--bps-light);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--bps-blue);flex-shrink:0;"><i class="bi bi-send-fill"></i></div>
-            <div>
-              <h4 class="mb-0 fw-bold" style="color:var(--bps-dark);font-size:0.97rem;">Ajukan Permintaan Layanan</h4>
-              <p class="mb-0" style="font-size:0.8rem;color:#888;">Isi form di bawah untuk mengajukan permintaan secara online</p>
-            </div>
-          </div>
-          <div class="pengajuan-tabs">
-            <button class="pengajuan-tab active" onclick="switchTab('form',this)"><i class="bi bi-file-earmark-text me-2"></i>Form Pengajuan</button>
-            <button class="pengajuan-tab" onclick="switchTab('cek',this)"><i class="bi bi-search me-2"></i>Cek Status</button>
-          </div>
-          <!-- TAB FORM -->
-          <div id="tab-form" class="tab-content-panel active">
-            <div class="tiket-box" id="tiket-box">
-              <i class="bi bi-check-circle-fill" style="font-size:2.4rem;color:#4caf50;"></i>
-              <p class="fw-bold mt-3 mb-1" style="font-size:1.05rem;color:#2e7d32;">Pengajuan Berhasil Dikirim!</p>
-              <p style="font-size:0.83rem;color:#555;">Simpan nomor tiket berikut untuk memantau status pengajuan Anda:</p>
-              <div class="tiket-number" id="tiket-number">-</div>
-              <p class="tiket-warning"><i class="bi bi-exclamation-triangle me-1"></i>Simpan nomor tiket ini! Anda membutuhkannya untuk cek status pengajuan.</p>
-              <!-- RATING EMOJI -->
-              <div class="rating-section" id="rating-section">
-                <div class="rating-title">⭐ Bagaimana pengalaman Anda menggunakan layanan ini?</div>
-                <div class="rating-sub">Berikan penilaian untuk membantu kami meningkatkan kualitas layanan</div>
-                <div class="emoji-row" id="emoji-row">
-                  <button class="emoji-btn" onclick="selectEmoji(this,1,'😠','Sangat Buruk')"><span class="em">😠</span><span class="em-label">Sangat Buruk</span></button>
-                  <button class="emoji-btn" onclick="selectEmoji(this,2,'😕','Kurang Baik')"><span class="em">😕</span><span class="em-label">Kurang Baik</span></button>
-                  <button class="emoji-btn" onclick="selectEmoji(this,3,'😐','Cukup')"><span class="em">😐</span><span class="em-label">Cukup</span></button>
-                  <button class="emoji-btn" onclick="selectEmoji(this,4,'😊','Baik')"><span class="em">😊</span><span class="em-label">Baik</span></button>
-                  <button class="emoji-btn" onclick="selectEmoji(this,5,'🤩','Sangat Baik')"><span class="em">🤩</span><span class="em-label">Sangat Baik</span></button>
-                </div>
-                <div><button class="btn-kirim-rating" id="btn-kirim-rating" disabled onclick="kirimRating()"><i class="bi bi-send"></i> Kirim Penilaian</button></div>
-                <div class="rating-done" id="rating-done">
-                  <div class="rating-done-emoji" id="rating-done-emoji">🤩</div>
-                  <div class="rating-done-text">Terima kasih atas penilaian Anda!</div>
-                  <div class="rating-done-sub">Masukan Anda sangat berarti bagi peningkatan layanan BPS Kota Palu.</div>
-                </div>
-              </div>
-              <button class="btn-submit mt-3" onclick="resetForm()"><i class="bi bi-plus-circle"></i> Ajukan Permintaan Baru</button>
-            </div>
-            <div id="form-pengajuan">
-              <div class="row g-3">
-                <div class="col-md-6"><label class="form-label">Nama Lengkap <span class="text-danger">*</span></label><input type="text" class="form-control" id="input-nama" placeholder="Masukkan nama lengkap"></div>
-                <div class="col-md-6"><label class="form-label">Email Aktif <span class="text-danger">*</span></label><input type="email" class="form-control" id="input-email" placeholder="contoh@email.com"></div>
-                <div class="col-md-6"><label class="form-label">Nomor Telepon <span class="text-danger">*</span></label><input type="tel" class="form-control" id="input-telepon" placeholder="08xxxxxxxxxx"></div>
-                <div class="col-md-6"><label class="form-label">Instansi / Universitas <span style="color:#aaa;font-weight:400;">(opsional)</span></label><input type="text" class="form-control" id="input-instansi" placeholder="Nama instansi atau universitas"></div>
-                <div class="col-md-6"><label class="form-label">Jenis Kelamin <span class="text-danger">*</span></label><select class="form-control" id="input-jenis-kelamin"><option value="">Pilih Jenis Kelamin</option><option value="Laki-laki">Laki-laki</option><option value="Perempuan">Perempuan</option></select></div>
-                <div class="col-md-6"><label class="form-label">Usia <span class="text-danger">*</span></label><input type="number" class="form-control" id="input-usia" placeholder="Contoh: 22" min="10" max="100"></div>
-                <div class="col-md-6"><label class="form-label">Kategori Pengguna <span class="text-danger">*</span></label><select class="form-control" id="input-kategori"><option value="">Pilih Kategori</option><option value="Mahasiswa">Mahasiswa</option><option value="Pelajar (SD/SMP/SMA)">Pelajar (SD/SMP/SMA)</option><option value="Dosen / Peneliti">Dosen / Peneliti</option><option value="ASN / Instansi Pemerintah">ASN / Instansi Pemerintah</option><option value="Swasta / Pelaku Usaha">Swasta / Pelaku Usaha</option><option value="Media / Jurnalis">Media / Jurnalis</option><option value="Umum / Masyarakat">Umum / Masyarakat</option></select></div>
-                <div class="col-md-6"><label class="form-label">Tingkat Pendidikan <span class="text-danger">*</span></label><select class="form-control" id="input-pendidikan"><option value="">Pilih Pendidikan</option><option value="SD / Sederajat">SD / Sederajat</option><option value="SMP / Sederajat">SMP / Sederajat</option><option value="SMA / Sederajat">SMA / Sederajat</option><option value="Diploma (D1/D2/D3)">Diploma (D1/D2/D3)</option><option value="Sarjana (S1)">Sarjana (S1)</option><option value="Pascasarjana (S2/S3)">Pascasarjana (S2/S3)</option></select></div>
-                <div class="col-md-6"><label class="form-label">Kabupaten / Kota <span class="text-danger">*</span></label><select class="form-control" id="input-kabkota"><option value="">Pilih Kabupaten/Kota</option><option value="Kota Palu">Kota Palu</option><option value="Banggai">Banggai</option><option value="Banggai Kepulauan">Banggai Kepulauan</option><option value="Banggai Laut">Banggai Laut</option><option value="Buol">Buol</option><option value="Donggala">Donggala</option><option value="Morowali">Morowali</option><option value="Morowali Utara">Morowali Utara</option><option value="Parigi Moutong">Parigi Moutong</option><option value="Poso">Poso</option><option value="Sigi">Sigi</option><option value="Tojo Una-Una">Tojo Una-Una</option><option value="Tolitoli">Tolitoli</option></select></div>
-                <div class="col-12"><label class="form-label">Deskripsi Kebutuhan Data <span class="text-danger">*</span></label><textarea class="form-control" id="input-deskripsi" rows="4" placeholder="Jelaskan data apa yang Anda butuhkan, untuk keperluan apa, dan periode data yang diinginkan..."></textarea></div>
-                <div class="col-12">
-                  <label class="form-label">Upload Surat / KTP <span class="text-danger">*</span></label>
-                  <div class="upload-area" id="upload-area">
-                    <input type="file" id="input-dokumen" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileChange(this)">
-                    <div class="upload-icon"><i class="bi bi-cloud-arrow-up"></i></div>
-                    <div class="upload-text">Klik atau seret file ke sini</div>
-                    <div class="upload-hint">Format: PDF, JPG, PNG • Maks. 5MB</div>
-                    <div class="upload-filename" id="upload-filename"></div>
-                  </div>
-                </div>
-                <div class="col-12"><div id="form-error" class="alert alert-danger py-2 px-3 d-none" style="font-size:0.83rem;border-radius:10px;"></div></div>
-                <div class="col-12 text-end"><button class="btn-submit" id="btn-submit" onclick="submitPengajuan()"><i class="bi bi-send"></i> Kirim Pengajuan</button></div>
-              </div>
-            </div>
-          </div>
-          <!-- TAB CEK STATUS -->
-          <div id="tab-cek" class="tab-content-panel">
-            <div class="row justify-content-center"><div class="col-lg-8">
-              <p style="font-size:0.87rem;color:#666;margin-bottom:16px;">Masukkan nomor tiket yang Anda terima saat pengajuan untuk melihat status terkini.</p>
-              <div class="d-flex gap-2 mb-4">
-                <input type="text" class="form-control" id="input-tiket-cek" placeholder="Contoh: BPS-2026-001" style="text-transform:uppercase;">
-                <button class="btn-submit px-4" onclick="cekStatus()" style="border-radius:10px;white-space:nowrap;"><i class="bi bi-search"></i> Cek</button>
-              </div>
-              <div id="cek-error" class="alert alert-danger py-2 px-3 d-none" style="font-size:0.83rem;border-radius:10px;"></div>
-              <div class="result-card" id="result-card">
-                <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
-                  <div><p class="mb-1" style="font-size:0.73rem;color:#aaa;font-weight:600;">NOMOR TIKET</p><p class="mb-0 fw-bold" style="color:var(--bps-dark);font-size:1rem;" id="res-tiket">-</p></div>
-                  <span class="status-badge" id="res-status-badge">-</span>
-                </div>
-                <hr style="border-color:#e8edf5;">
-                <div class="result-row"><span class="result-label">Jenis Layanan</span><span class="result-value" id="res-layanan">-</span></div>
-                <div class="result-row"><span class="result-label">Nama</span><span class="result-value" id="res-nama">-</span></div>
-                <div class="result-row"><span class="result-label">Instansi</span><span class="result-value" id="res-instansi">-</span></div>
-                <div class="result-row"><span class="result-label">Tanggal Pengajuan</span><span class="result-value" id="res-tanggal">-</span></div>
-                <div class="result-row"><span class="result-label">Deskripsi</span><span class="result-value" id="res-deskripsi">-</span></div>
-                <div id="res-hasil-box" style="display:none;margin-top:12px;padding:13px;background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:10px;border:1.5px solid #a5d6a7;">
-                  <p style="margin:0 0 8px;font-weight:700;color:#2e7d32;font-size:0.86rem;"><i class="bi bi-check-circle-fill me-2"></i>Data Tersedia</p>
-                  <p style="margin:0 0 10px;font-size:0.78rem;color:#555;">Petugas BPS telah mengupload data yang Anda minta.</p>
-                  <a id="res-hasil-link" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#2e7d32;color:white;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.8rem;"><i class="bi bi-download"></i> Download Data</a>
-                </div>
-              </div>
-            </div></div>
           </div>
         </div>
       </div>
 
-      <!-- ===== PANEL: CEK STATUS (sidebar shortcut) ===== -->
-      <div id="panel-cekstatus" class="content-panel">
-        <div class="pengajuan-section">
-          <div class="d-flex align-items-center gap-3 mb-4">
-            <div style="width:48px;height:48px;border-radius:12px;background:var(--bps-light);display:flex;align-items:center;justify-content:center;font-size:1.35rem;color:var(--bps-blue);flex-shrink:0;"><i class="bi bi-search"></i></div>
-            <div>
-              <h4 class="mb-0 fw-bold" style="color:var(--bps-dark);font-size:0.97rem;">Cek Status Tiket</h4>
-              <p class="mb-0" style="font-size:0.8rem;color:#888;">Masukkan nomor tiket untuk melihat status terkini</p>
-            </div>
-          </div>
-          <div class="row justify-content-center"><div class="col-lg-8">
-            <p style="font-size:0.87rem;color:#666;margin-bottom:16px;">Masukkan nomor tiket yang Anda terima saat pengajuan untuk melihat status terkini.</p>
-            <div class="d-flex gap-2 mb-4">
-              <input type="text" class="form-control" id="input-tiket-cek2" placeholder="Contoh: BPS-2026-001" style="text-transform:uppercase;">
-              <button class="btn-submit px-4" onclick="cekStatus2()" style="border-radius:10px;white-space:nowrap;"><i class="bi bi-search"></i> Cek</button>
-            </div>
-            <div id="cek-error2" class="alert alert-danger py-2 px-3 d-none" style="font-size:0.83rem;border-radius:10px;"></div>
-            <div class="result-card" id="result-card2">
-              <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
-                <div><p class="mb-1" style="font-size:0.73rem;color:#aaa;font-weight:600;">NOMOR TIKET</p><p class="mb-0 fw-bold" style="color:var(--bps-dark);font-size:1rem;" id="res-tiket2">-</p></div>
-                <span class="status-badge" id="res-status-badge2">-</span>
-              </div>
-              <hr style="border-color:#e8edf5;">
-              <div class="result-row"><span class="result-label">Jenis Layanan</span><span class="result-value" id="res-layanan2">-</span></div>
-              <div class="result-row"><span class="result-label">Nama</span><span class="result-value" id="res-nama2">-</span></div>
-              <div class="result-row"><span class="result-label">Instansi</span><span class="result-value" id="res-instansi2">-</span></div>
-              <div class="result-row"><span class="result-label">Tanggal Pengajuan</span><span class="result-value" id="res-tanggal2">-</span></div>
-              <div class="result-row"><span class="result-label">Deskripsi</span><span class="result-value" id="res-deskripsi2">-</span></div>
-              <div id="res-hasil-box2" style="display:none;margin-top:12px;padding:13px;background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:10px;border:1.5px solid #a5d6a7;">
-                <p style="margin:0 0 8px;font-weight:700;color:#2e7d32;font-size:0.86rem;"><i class="bi bi-check-circle-fill me-2"></i>Data Tersedia</p>
-                <p style="margin:0 0 10px;font-size:0.78rem;color:#555;">Petugas BPS telah mengupload data yang Anda minta.</p>
-                <a id="res-hasil-link2" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#2e7d32;color:white;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.8rem;"><i class="bi bi-download"></i> Download Data</a>
-              </div>
-            </div>
-          </div></div>
-        </div>
-      </div>
+    </div>
+  </div>
 
-    </div><!-- /content-area -->
+</div>
 
-    <footer class="py-4 text-center">© 2026 BPS Kota Palu</footer>
+<footer>© 2026 BPS Kota Palu</footer>
 
-  </div><!-- /main-area -->
-</div><!-- /page-wrapper -->
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  const SUPABASE_URL = 'https://rljhayfmfsrdtpmlqltp.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsamhheWZtZnNyZHRwbWxxbHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMzc5NTcsImV4cCI6MjA4NzkxMzk1N30.1Iyu5DYkQyqnmu9eLT1Kcf7ybOI4V4-bXHr7b7NyR7c';
-  const JENIS_LAYANAN = 'Pelayanan Konsultasi Statistik';
-
-  let selectedRating = null, selectedEmoji = '', currentTiket = '';
-
-  function selectEmoji(btn, score, emoji, label) {
-    document.querySelectorAll('#emoji-row .emoji-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    selectedRating = score; selectedEmoji = emoji;
-    document.getElementById('btn-kirim-rating').disabled = false;
-  }
-
-  async function kirimRating() {
-    if (!selectedRating || !currentTiket) return;
-    const btnRating = document.getElementById('btn-kirim-rating');
-    btnRating.disabled = true;
-    btnRating.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Mengirim...';
-    try {
-      await fetch(`${SUPABASE_URL}/rest/v1/pengajuan?nomor_tiket=eq.${currentTiket}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`,'Prefer':'return=minimal' },
-        body: JSON.stringify({ rating: selectedRating, rating_emoji: selectedEmoji })
-      });
-    } catch(e) {}
-    document.getElementById('emoji-row').style.display = 'none';
-    btnRating.style.display = 'none';
-    document.getElementById('rating-done-emoji').textContent = selectedEmoji;
-    document.getElementById('rating-done').classList.add('show');
-    document.querySelector('.rating-title').style.display = 'none';
-    document.querySelector('.rating-sub').style.display = 'none';
-  }
-
-  function resetRating() {
-    selectedRating = null; selectedEmoji = '';
-    document.querySelectorAll('#emoji-row .emoji-btn').forEach(b => b.classList.remove('selected'));
-    document.getElementById('btn-kirim-rating').disabled = true;
-    document.getElementById('btn-kirim-rating').style.display = 'inline-flex';
-    document.getElementById('btn-kirim-rating').innerHTML = '<i class="bi bi-send"></i> Kirim Penilaian';
-    document.getElementById('emoji-row').style.display = 'flex';
-    document.getElementById('rating-done').classList.remove('show');
-    document.querySelector('.rating-title').style.display = '';
-    document.querySelector('.rating-sub').style.display = '';
-  }
-
-  function showPanel(id, el) {
-    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
-    document.getElementById('panel-' + id).classList.add('active');
-    if (el) el.classList.add('active');
-    document.querySelector('.main-area').scrollTo({ top: 0, behavior: 'smooth' });
-    // sync mobile bottom nav
-    document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
-    const mbn = document.getElementById('mbn-' + id);
-    if (mbn) mbn.classList.add('active');
-  }
-
   function switchTab(tab, el) {
-    document.querySelectorAll('.pengajuan-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-content-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
     document.getElementById('tab-' + tab).classList.add('active');
   }
 
   function handleFileChange(input) {
     const file = input.files[0];
-    const filename = document.getElementById('upload-filename');
+    const el = document.getElementById('upload-filename');
     if (file) {
-      if (file.size > 5*1024*1024) { showError('Ukuran file maksimal 5MB!'); input.value=''; filename.textContent=''; return; }
-      filename.textContent = '✓ ' + file.name;
+      if (file.size > 5 * 1024 * 1024) { showError('Ukuran file maksimal 5MB!'); input.value = ''; el.textContent = ''; return; }
+      el.textContent = '✓ ' + file.name;
     }
   }
+
   const uploadArea = document.getElementById('upload-area');
   uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
   uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
@@ -956,26 +1068,23 @@
     return `BPS-${now.getFullYear()}-${String(Math.floor(Math.random()*900)+100)}${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
   }
 
-  function showError(msg) {
-    const el = document.getElementById('form-error');
-    el.textContent = msg; el.classList.remove('d-none');
-    setTimeout(() => el.classList.add('d-none'), 5000);
+  function showError(msg, elId = 'form-error') {
+    const el = document.getElementById(elId);
+    el.textContent = msg; el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 5000);
   }
 
   async function submitPengajuan() {
-    const nama=document.getElementById('input-nama').value.trim();
-    const email=document.getElementById('input-email').value.trim();
-    const telepon=document.getElementById('input-telepon').value.trim();
-    const instansi=document.getElementById('input-instansi').value.trim();
-    const jenisKelamin=document.getElementById('input-jenis-kelamin').value;
-    const usia=document.getElementById('input-usia').value.trim();
-    const kategori=document.getElementById('input-kategori').value;
-    const pendidikan=document.getElementById('input-pendidikan').value;
-    const kabkota=document.getElementById('input-kabkota').value;
-    const deskripsi=document.getElementById('input-deskripsi').value.trim();
-    const dokumen=document.getElementById('input-dokumen').files[0];
+    const g = id => document.getElementById(id).value.trim();
+    const nama = g('input-nama'), email = g('input-email'), telepon = g('input-telepon'),
+          instansi = g('input-instansi'), jenisKelamin = g('input-jenis-kelamin'),
+          usia = g('input-usia'), kategori = g('input-kategori'),
+          pendidikan = g('input-pendidikan'), kabkota = g('input-kabkota'),
+          deskripsi = g('input-deskripsi');
+    const dokumen = document.getElementById('input-dokumen').files[0];
+
     if (!nama) return showError('Nama lengkap wajib diisi!');
-    if (!email||!email.includes('@')) return showError('Email tidak valid!');
+    if (!email || !email.includes('@')) return showError('Email tidak valid!');
     if (!telepon) return showError('Nomor telepon wajib diisi!');
     if (!jenisKelamin) return showError('Jenis kelamin wajib dipilih!');
     if (!usia) return showError('Usia wajib diisi!');
@@ -984,123 +1093,77 @@
     if (!kabkota) return showError('Kabupaten/Kota wajib dipilih!');
     if (!deskripsi) return showError('Deskripsi kebutuhan data wajib diisi!');
     if (!dokumen) return showError('Dokumen surat / KTP wajib diupload!');
-    const btn=document.getElementById('btn-submit');
-    btn.disabled=true; btn.innerHTML='<span class="spinner-border spinner-border-sm me-2"></span>Mengirim...';
+
+    const btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" style="width:14px;height:14px;"></span>Mengirim...';
+
     try {
-      const fileExt=dokumen.name.split('.').pop();
-      const fileName=`konsultasi/${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const uploadRes=await fetch(`${SUPABASE_URL}/storage/v1/object/dokumen/${fileName}`,{method:'POST',headers:{'Authorization':`Bearer ${SUPABASE_KEY}`,'Content-Type':dokumen.type,'x-upsert':'true'},body:dokumen});
+      const fileExt = dokumen.name.split('.').pop();
+      const fileName = `konsultasi/${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/dokumen/${fileName}`, {
+        method: 'POST', headers: { 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': dokumen.type, 'x-upsert': 'true' }, body: dokumen
+      });
       if (!uploadRes.ok) throw new Error('Gagal upload dokumen');
-      const urlDokumen=`${SUPABASE_URL}/storage/v1/object/public/dokumen/${fileName}`;
-      const nomorTiket=generateTiket();
-      const insertRes=await fetch(`${SUPABASE_URL}/rest/v1/pengajuan`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`,'Prefer':'return=minimal'},body:JSON.stringify({nomor_tiket:nomorTiket,jenis_layanan:JENIS_LAYANAN,nama,email,no_telepon:telepon,instansi:instansi||'-',jenis_kelamin:jenisKelamin,usia:parseInt(usia),kategori_pengguna:kategori,tingkat_pendidikan:pendidikan,kabupaten_kota:kabkota,deskripsi,nama_dokumen:dokumen.name,url_dokumen:urlDokumen})});
+      const urlDokumen = `${SUPABASE_URL}/storage/v1/object/public/dokumen/${fileName}`;
+      const nomorTiket = generateTiket();
+      const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/pengajuan`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ nomor_tiket: nomorTiket, jenis_layanan: JENIS_LAYANAN, nama, email, no_telepon: telepon, instansi: instansi||'-', jenis_kelamin: jenisKelamin, usia: parseInt(usia), kategori_pengguna: kategori, tingkat_pendidikan: pendidikan, kabupaten_kota: kabkota, deskripsi, nama_dokumen: dokumen.name, url_dokumen: urlDokumen })
+      });
       if (!insertRes.ok) throw new Error('Gagal menyimpan pengajuan');
-      currentTiket=nomorTiket;
-      document.getElementById('form-pengajuan').style.display='none';
-      document.getElementById('tiket-number').textContent=nomorTiket;
-      resetRating();
+      document.getElementById('form-pengajuan').style.display = 'none';
+      document.getElementById('tiket-number').textContent = nomorTiket;
       document.getElementById('tiket-box').classList.add('show');
-    } catch(err) { showError('Terjadi kesalahan: '+err.message+'. Silakan coba lagi.'); }
-    finally { btn.disabled=false; btn.innerHTML='<i class="bi bi-send"></i> Kirim Pengajuan'; }
+    } catch (err) {
+      showError('Terjadi kesalahan: ' + err.message + '. Silakan coba lagi.');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-send"></i> Kirim Pengajuan';
+    }
   }
 
   function resetForm() {
-    document.getElementById('form-pengajuan').style.display='block';
+    document.getElementById('form-pengajuan').style.display = 'block';
     document.getElementById('tiket-box').classList.remove('show');
-    ['input-nama','input-email','input-telepon','input-instansi','input-deskripsi'].forEach(id=>document.getElementById(id).value='');
-    document.getElementById('input-dokumen').value='';
-    document.getElementById('upload-filename').textContent='';
-    currentTiket=''; resetRating();
-  }
-
-  async function _fetchStatus(tiket,errEl,resultCard,ids) {
-    try {
-      const res=await fetch(`${SUPABASE_URL}/rest/v1/pengajuan?nomor_tiket=eq.${tiket}&select=*`,{headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}});
-      const data=await res.json();
-      if (!data||data.length===0){errEl.textContent='Nomor tiket tidak ditemukan. Pastikan nomor tiket sudah benar.';errEl.classList.remove('d-none');return;}
-      const d=data[0];
-      const statusMap={'Menunggu Verifikasi':'status-menunggu','Sedang Diproses':'status-diproses','Selesai':'status-selesai','Ditolak':'status-ditolak'};
-      document.getElementById(ids.tiket).textContent=d.nomor_tiket;
-      document.getElementById(ids.layanan).textContent=d.jenis_layanan;
-      document.getElementById(ids.nama).textContent=d.nama;
-      document.getElementById(ids.instansi).textContent=d.instansi||'-';
-      document.getElementById(ids.deskripsi).textContent=d.deskripsi;
-      document.getElementById(ids.tanggal).textContent=new Date(d.created_at).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
-      const badge=document.getElementById(ids.badge);
-      badge.textContent=d.status; badge.className='status-badge '+(statusMap[d.status]||'status-menunggu');
-      const hasilBox=document.getElementById(ids.hasilBox);
-      if(d.url_hasil){document.getElementById(ids.hasilLink).href=d.url_hasil;hasilBox.style.display='block';}else hasilBox.style.display='none';
-      resultCard.classList.add('show');
-    } catch(err){errEl.textContent='Terjadi kesalahan saat mengambil data. Silakan coba lagi.';errEl.classList.remove('d-none');}
+    ['input-nama','input-email','input-telepon','input-instansi','input-deskripsi'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('input-dokumen').value = '';
+    document.getElementById('upload-filename').textContent = '';
   }
 
   async function cekStatus() {
-    const tiket=document.getElementById('input-tiket-cek').value.trim().toUpperCase();
-    const errEl=document.getElementById('cek-error');
-    const resultCard=document.getElementById('result-card');
-    errEl.classList.add('d-none'); resultCard.classList.remove('show');
-    if(!tiket){errEl.textContent='Masukkan nomor tiket terlebih dahulu!';errEl.classList.remove('d-none');return;}
-    await _fetchStatus(tiket,errEl,resultCard,{tiket:'res-tiket',layanan:'res-layanan',nama:'res-nama',instansi:'res-instansi',tanggal:'res-tanggal',deskripsi:'res-deskripsi',badge:'res-status-badge',hasilBox:'res-hasil-box',hasilLink:'res-hasil-link'});
-  }
-  document.getElementById('input-tiket-cek').addEventListener('keypress',e=>{if(e.key==='Enter')cekStatus();});
-
-  async function cekStatus2() {
-    const tiket=document.getElementById('input-tiket-cek2').value.trim().toUpperCase();
-    const errEl=document.getElementById('cek-error2');
-    const resultCard=document.getElementById('result-card2');
-    errEl.classList.add('d-none'); resultCard.classList.remove('show');
-    if(!tiket){errEl.textContent='Masukkan nomor tiket terlebih dahulu!';errEl.classList.remove('d-none');return;}
-    await _fetchStatus(tiket,errEl,resultCard,{tiket:'res-tiket2',layanan:'res-layanan2',nama:'res-nama2',instansi:'res-instansi2',tanggal:'res-tanggal2',deskripsi:'res-deskripsi2',badge:'res-status-badge2',hasilBox:'res-hasil-box2',hasilLink:'res-hasil-link2'});
-  }
-  document.getElementById('input-tiket-cek2').addEventListener('keypress',e=>{if(e.key==='Enter')cekStatus2();});
-</script>
-<!-- MOBILE BOTTOM NAV -->
-<nav class="mobile-bottom-nav">
-  <div class="mbn-inner">
-    <button class="mbn-item active" id="mbn-persyaratan" onclick="showPanelMobile('persyaratan',this)">
-      <i class="bi bi-clipboard-check"></i>Syarat
-    </button>
-    <button class="mbn-item" id="mbn-sop" onclick="showPanelMobile('sop',this)">
-      <i class="bi bi-diagram-3"></i>SOP
-    </button>
-    <button class="mbn-item" id="mbn-jangka" onclick="showPanelMobile('jangka',this)">
-      <i class="bi bi-clock"></i>Waktu
-    </button>
-    <button class="mbn-item" id="mbn-biaya" onclick="showPanelMobile('biaya',this)">
-      <i class="bi bi-tag"></i>Biaya
-    </button>
-    <button class="mbn-item" id="mbn-ajukan" onclick="showPanelMobile('ajukan',this)">
-      <i class="bi bi-send"></i>Ajukan
-    </button>
-  </div>
-</nav>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  function showPanelMobile(id, mbnEl) {
-    // Update sidebar
-    const sbMap = { persyaratan:0, sop:1, jangka:2, biaya:3, ajukan:4 };
-    const sbLinks = document.querySelectorAll('.sb-link');
-    const idx = sbMap[id];
-    if (idx !== undefined && sbLinks[idx]) showPanel(id, sbLinks[idx]);
-    else { // fallback
-      document.querySelectorAll('.content-panel').forEach(p=>p.classList.remove('active'));
-      document.getElementById('panel-'+id).classList.add('active');
+    const tiket = document.getElementById('input-tiket-cek').value.trim().toUpperCase();
+    const errEl = document.getElementById('cek-error');
+    const resultCard = document.getElementById('result-card');
+    errEl.classList.remove('show'); resultCard.classList.remove('show');
+    if (!tiket) { showError('Masukkan nomor tiket terlebih dahulu!', 'cek-error'); return; }
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/pengajuan?nomor_tiket=eq.${tiket}&select=*`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      });
+      const data = await res.json();
+      if (!data || data.length === 0) { showError('Nomor tiket tidak ditemukan. Pastikan nomor tiket sudah benar.', 'cek-error'); return; }
+      const d = data[0];
+      const chipMap = { 'Menunggu Verifikasi': 'chip-menunggu', 'Sedang Diproses': 'chip-diproses', 'Selesai': 'chip-selesai', 'Ditolak': 'chip-ditolak' };
+      document.getElementById('res-tiket').textContent = d.nomor_tiket;
+      document.getElementById('res-layanan').textContent = d.jenis_layanan;
+      document.getElementById('res-nama').textContent = d.nama;
+      document.getElementById('res-instansi').textContent = d.instansi || '-';
+      document.getElementById('res-deskripsi').textContent = d.deskripsi;
+      document.getElementById('res-tanggal').textContent = new Date(d.created_at).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const badge = document.getElementById('res-status-badge');
+      badge.textContent = d.status; badge.className = 'status-chip ' + (chipMap[d.status] || 'chip-menunggu');
+      const hasilBox = document.getElementById('res-hasil-box');
+      if (d.url_hasil) { document.getElementById('res-hasil-link').href = d.url_hasil; hasilBox.style.display = 'block'; } else { hasilBox.style.display = 'none'; }
+      resultCard.classList.add('show');
+    } catch (err) {
+      showError('Terjadi kesalahan saat mengambil data. Silakan coba lagi.', 'cek-error');
     }
-    // Update mobile nav active
-    document.querySelectorAll('.mbn-item').forEach(b=>b.classList.remove('active'));
-    mbnEl.classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
   }
 
-  // Patch showPanel to also sync mobile nav
-  const _origShowPanel = showPanel;
-  // Override after original is defined
-  window._syncMobileNav = function(id) {
-    document.querySelectorAll('.mbn-item').forEach(b=>b.classList.remove('active'));
-    const mbnEl = document.getElementById('mbn-'+id);
-    if (mbnEl) mbnEl.classList.add('active');
-  };
+  document.getElementById('input-tiket-cek').addEventListener('keypress', e => { if (e.key === 'Enter') cekStatus(); });
 </script>
+
 </body>
 </html>
