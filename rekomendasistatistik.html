@@ -116,23 +116,23 @@
     .flowchart-title.online   { background: linear-gradient(135deg, var(--bps-accent), #ff9800); }
 
     /* Snake grid — shared */
-    .snake-grid { display:grid; gap:0; margin:12px 0; align-items:center; justify-items:center; width:100%; }
+    .snake-grid { display:grid; gap:0; margin:12px 0; align-items:start; justify-items:stretch; width:100%; }
     .snake-5 { grid-template-columns: 1fr 32px 1fr 32px 1fr 32px 1fr 32px 1fr; }
 
-    /* Wrapper kotak + panah bawah */
+    /* Wrapper kotak + panah bawah — stretch penuh agar semua sel sama tinggi */
     .sg-cell { width:100%; display:flex; flex-direction:column; align-items:center; }
 
-    .sg-box { border:2px solid var(--bps-blue); border-radius:10px; padding:14px 8px 12px; text-align:center; background:white; width:100%; box-shadow:0 2px 8px rgba(0,91,170,0.08); transition:all 0.25s; box-sizing:border-box; min-height:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .sg-box { border:2px solid var(--bps-blue); border-radius:10px; padding:14px 8px 12px; text-align:center; background:white; width:100%; box-shadow:0 2px 8px rgba(0,91,170,0.08); transition:all 0.25s; box-sizing:border-box; height:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
     .sg-box:hover { box-shadow:0 6px 16px rgba(0,91,170,0.16); transform:translateY(-3px); }
     .sg-end { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark))!important; border-color:var(--bps-dark)!important; }
-    .sg-icon { font-size:clamp(1.2rem,2.5vw,1.6rem); color:var(--bps-blue); display:block; margin-bottom:6px; }
+    .sg-icon { font-size:clamp(1.2rem,2.5vw,1.6rem); color:var(--bps-blue); display:block; margin-bottom:6px; flex-shrink:0; }
     .sg-label { font-weight:600; color:var(--bps-dark); font-size:clamp(0.55rem,1.4vw,0.72rem); line-height:1.35; }
 
-    /* Panah horizontal */
-    .sg-arr { font-size:clamp(0.8rem,1.8vw,1rem); color:var(--bps-blue); display:flex; align-items:center; justify-content:center; width:100%; padding-top:0; }
+    /* Panah horizontal — tingginya sama dengan sg-box agar vertikal center */
+    .sg-arr { font-size:clamp(0.8rem,1.8vw,1rem); color:var(--bps-blue); display:flex; align-items:center; justify-content:center; width:100%; height:90px; }
 
-    /* Panah ↓ di bawah kotak — jarak atas dan bawah simetris */
-    .sg-down { font-size:clamp(0.8rem,1.8vw,1rem); color:var(--bps-blue); display:flex; justify-content:center; align-items:center; height:32px; width:100%; }
+    /* Panah ↓ di bawah kotak tertentu */
+    .sg-down { font-size:clamp(0.8rem,1.8vw,1rem); color:var(--bps-blue); display:flex; justify-content:center; align-items:center; height:28px; width:100%; }
 
     .fc-selesai { text-align:center; color:#4caf50; font-weight:700; margin:8px 0 16px; font-size:0.88rem; }
 
@@ -223,7 +223,8 @@
       .product-grid { grid-template-columns: 1fr; }
       .snake-5 { grid-template-columns: 1fr 18px 1fr 18px 1fr 18px 1fr 18px 1fr; }
       .sg-label { font-size: clamp(0.46rem,1.3vw,0.62rem); }
-      .sg-box { min-height: 76px; }
+      .sg-box { height: 76px; padding: 10px 4px 8px; }
+      .sg-arr { height: 76px; }
       .pengajuan-section { padding: 20px 14px; }
       .pengajuan-tabs { flex-wrap: wrap; }
       .pengajuan-tab { font-size: 0.8rem; padding: 8px 14px; }
@@ -235,11 +236,11 @@
     @media (max-width:600px) {
       .hero-detail { padding: 32px 16px; }
       .snake-5 { grid-template-columns: 1fr 12px 1fr 12px 1fr 12px 1fr 12px 1fr; }
-      .sg-box { padding: 8px 2px 7px; border-radius: 7px; min-height: 64px; }
+      .sg-box { padding: 8px 2px 7px; border-radius: 7px; height: 64px; }
+      .sg-arr { height: 64px; font-size: 0.7rem; }
       .sg-icon { font-size: 0.95rem; margin-bottom: 2px; }
       .sg-label { font-size: 0.43rem; }
-      .sg-arr { font-size: 0.7rem; }
-      .sg-down { height: 22px; font-size: 0.7rem; }
+      .sg-down { height: 20px; font-size: 0.7rem; }
       .sop-steps ol { font-size: 0.78rem; line-height: 1.9; }
       .flowchart-title { font-size: 0.8rem; padding: 9px 12px; }
       .tiket-number { font-size: 1.2rem; padding: 10px 16px; }
@@ -654,25 +655,20 @@
         <div id="section-biaya" class="scroll-anchor">
           <div class="section-box">
             <div class="section-head">
-              <div class="section-head-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="bi bi-cash-coin"></i></div>
+              <div class="section-head-icon" style="background:#fff8e1;color:#f4a700;"><i class="bi bi-cash-coin"></i></div>
               <div>
                 <p class="section-head-title">Biaya / Tarif</p>
                 <p class="section-head-sub">Informasi biaya penggunaan layanan</p>
               </div>
             </div>
             <div class="section-body">
-              <div class="syarat-card">
-                <div class="syarat-card-header green">
-                  <div class="sh-icon"><i class="bi bi-cash-coin"></i></div>
-                  <span class="sh-title">Tarif Layanan</span>
+              <div style="background:#fffdf0; border-left:4px solid var(--bps-accent); border-radius:10px; padding:18px 20px; display:flex; align-items:flex-start; gap:16px;">
+                <div style="width:42px; height:42px; border-radius:10px; background:#fff3cd; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <i class="bi bi-cash-coin" style="font-size:1.3rem; color:var(--bps-accent);"></i>
                 </div>
-                <div class="syarat-card-body">
-                  <ul class="syarat-num-list">
-                    <li>
-                      <span class="syarat-num" style="background:#4caf50;"><i class="bi bi-check-lg" style="font-size:0.6rem;"></i></span>
-                      <span><strong>Tidak Dipungut Biaya</strong> — Layanan rekomendasi kegiatan statistik tidak dikenakan biaya apapun kepada pengguna layanan.</span>
-                    </li>
-                  </ul>
+                <div>
+                  <p style="font-weight:700; color:var(--bps-accent); font-size:0.95rem; margin:0 0 8px;">Berbayar (PNBP)</p>
+                  <p style="font-size:0.84rem; color:#444; line-height:1.7; margin:0;">Tarif layanan dikenakan sesuai <strong>Peraturan Pemerintah Nomor 13 Tahun 2024</strong> tentang Jenis dan Tarif atas Jenis Penerimaan Negara Bukan Pajak (PNBP) yang berlaku pada Badan Pusat Statistik.</p>
                 </div>
               </div>
             </div>
