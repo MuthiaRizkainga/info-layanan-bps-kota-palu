@@ -110,7 +110,11 @@
     .stat-highlight { background: linear-gradient(135deg, var(--bps-blue), var(--bps-dark)); border-radius: 12px; padding: 20px; text-align: center; color: white; }
     .stat-highlight .num { font-size: 2rem; font-weight: 800; line-height: 1; }
     .stat-highlight .lbl { font-size: 0.75rem; opacity: 0.85; margin-top: 4px; }
-    @media (max-width: 576px) { .stat-pub-grid { grid-template-columns: 1fr; } .stat-highlight-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { 
+      .stat-pub-grid { grid-template-columns: 1fr; } 
+      .stat-highlight-grid { grid-template-columns: 1fr; }
+      .statistik-section { padding: 20px 16px; }
+    }
 
     /* FOOTER */
     footer { background-color: var(--bps-dark); color: rgba(255,255,255,0.8); font-size: 0.88rem; }
@@ -403,6 +407,7 @@
   </script>
 </body>
 </html>
+
 
 
 
