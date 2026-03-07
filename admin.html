@@ -502,6 +502,7 @@ ALTER TABLE pengajuan ADD COLUMN IF NOT EXISTS rating_emoji text;</pre>
       const data = await res.json();
       if (!res.ok || !data.access_token) throw new Error('Email atau password salah');
       accessToken = data.access_token;
+      sessionStorage.setItem('admin_token', accessToken);
       document.getElementById('login-page').style.display = 'none';
       document.getElementById('dashboard-page').style.display = 'block';
       loadData();
@@ -519,6 +520,7 @@ ALTER TABLE pengajuan ADD COLUMN IF NOT EXISTS rating_emoji text;</pre>
   // ============================================================
   function doLogout() {
     accessToken = null;
+    sessionStorage.removeItem('admin_token');
     document.getElementById('dashboard-page').style.display = 'none';
     document.getElementById('login-page').style.display = 'flex';
     document.getElementById('login-password').value = '';
@@ -914,6 +916,14 @@ ALTER TABLE pengajuan ADD COLUMN IF NOT EXISTS rating_emoji text;</pre>
     });
     document.body.appendChild(input);
   });
+  // Cek session saat halaman dibuka
+  const savedToken = sessionStorage.getItem('admin_token');
+  if (savedToken) {
+    accessToken = savedToken;
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('dashboard-page').style.display = 'block';
+    loadData();
+  }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
