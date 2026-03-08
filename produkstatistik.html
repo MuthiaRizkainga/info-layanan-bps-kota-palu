@@ -91,25 +91,52 @@
     .flowchart-title { font-weight:700; color:white; font-size:.88rem; margin-bottom:16px; padding:11px 16px; border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; }
     .flowchart-title.langsung { background:linear-gradient(135deg,#0056b3,#003f7f); }
     .flowchart-title.online   { background:linear-gradient(135deg,var(--bps-accent),#ff9800); }
-    .snake-grid { display:grid; gap:0; margin:12px 0; align-items:center; justify-items:center; width:100%; }
-    .snake-3 { grid-template-columns:1fr 32px 1fr 32px 1fr; }
-    .snake-4 { grid-template-columns:1fr 32px 1fr 32px 1fr 40px 1fr; }
-    .snake-5 { grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr 28px 1fr; }
-    .sg-box { border:2px solid var(--bps-blue); border-radius:10px; padding:12px 6px 10px; text-align:center; background:white; width:100%; box-shadow:0 2px 8px rgba(0,91,170,.08); transition:all .25s; box-sizing:border-box; }
-    .sg-box:hover { box-shadow:0 6px 16px rgba(0,91,170,.16); transform:translateY(-3px); }
-    .sg-end { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark))!important; border-color:var(--bps-dark)!important; }
-    .sg-decision { border:2px dashed var(--bps-accent)!important; background:linear-gradient(135deg,rgba(244,167,0,.04),white)!important; }
-    .sg-icon { font-size:clamp(1.3rem,3vw,1.8rem); color:var(--bps-blue); display:block; margin-bottom:5px; }
-    .sg-label { font-weight:600; color:var(--bps-dark); font-size:clamp(.58rem,1.7vw,.76rem); line-height:1.3; }
-    .sg-arr { font-size:clamp(.9rem,2.5vw,1.3rem); color:var(--bps-blue); display:flex; align-items:center; justify-content:center; width:100%; }
-    .sg-arr-tidak { flex-direction:column; }
-    .sg-arr-tidak span { font-size:clamp(.5rem,1.4vw,.62rem); font-weight:700; color:#b87800; display:block; text-align:center; margin-bottom:2px; }
-    .sg-down { flex-direction:column; align-self:stretch; justify-content:center; padding:2px 0; }
-    .sg-ya { color:#2e7d32!important; }
-    .sg-ya span { font-size:clamp(.5rem,1.4vw,.62rem); font-weight:700; color:#2e7d32; display:block; text-align:center; margin-top:2px; }
-    .sg-empty { width:100%; }
-    .sg-badge-ya { font-size:clamp(.5rem,1.4vw,.62rem); font-weight:700; background:rgba(76,175,80,.1); color:#2e7d32; border:1px solid rgba(76,175,80,.4); border-radius:4px; padding:2px 5px; }
-    .sg-badge-tidak { font-size:clamp(.5rem,1.4vw,.62rem); font-weight:700; background:rgba(244,167,0,.12); color:#b87800; border:1px solid rgba(244,167,0,.4); border-radius:4px; padding:2px 5px; }
+
+    /* ======= VERTICAL FLOWCHART ======= */
+    .vflow { display:flex; flex-direction:column; align-items:center; gap:0; width:100%; }
+    .vflow-row { display:flex; align-items:stretch; width:100%; gap:0; }
+    .vflow-row.reverse { flex-direction:row-reverse; }
+    .vflow-cell { flex:1; display:flex; flex-direction:column; align-items:center; }
+    .vf-box {
+      border:2px solid var(--bps-blue); border-radius:10px; padding:10px 8px 9px;
+      text-align:center; background:white; width:100%;
+      box-shadow:0 2px 8px rgba(0,91,170,.08); transition:all .25s; box-sizing:border-box;
+    }
+    .vf-box:hover { box-shadow:0 6px 16px rgba(0,91,170,.16); transform:translateY(-2px); }
+    .vf-box.end { background:linear-gradient(135deg,var(--bps-blue),var(--bps-dark))!important; border-color:var(--bps-dark)!important; }
+    .vf-box.decision { border:2px dashed var(--bps-accent)!important; background:linear-gradient(135deg,rgba(244,167,0,.04),white)!important; }
+    .vf-icon { font-size:1.5rem; color:var(--bps-blue); display:block; margin-bottom:4px; }
+    .vf-icon.white { color:white; }
+    .vf-icon.gold { color:var(--bps-accent); }
+    .vf-label { font-weight:600; color:var(--bps-dark); font-size:.72rem; line-height:1.35; }
+    .vf-label.white { color:white; }
+    .vf-sublabel { font-size:.62rem; color:#888; margin-top:3px; line-height:1.3; }
+    .vf-num { display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; background:var(--bps-blue); color:white; font-size:.58rem; font-weight:700; margin-bottom:5px; }
+    .vf-num.gold { background:var(--bps-accent); color:var(--bps-dark); }
+
+    /* arrows between boxes */
+    .vf-arrow-down { display:flex; align-items:center; justify-content:center; color:var(--bps-blue); font-size:1.1rem; padding:2px 0; min-height:22px; }
+    .vf-arrow-right { display:flex; align-items:center; justify-content:center; color:var(--bps-blue); font-size:1.1rem; min-width:28px; flex-shrink:0; }
+    .vf-arrow-left { display:flex; align-items:center; justify-content:center; color:var(--bps-blue); font-size:1.1rem; min-width:28px; flex-shrink:0; }
+
+    /* row connector: turn arrow at end of row */
+    .vf-turn { display:flex; align-items:center; justify-content:center; color:var(--bps-blue); font-size:1.1rem; min-width:28px; flex-shrink:0; }
+
+    /* grid layout for rows */
+    .vf-grid { display:grid; gap:6px; width:100%; align-items:center; }
+    .vf-grid-3 { grid-template-columns: 1fr 26px 1fr 26px 1fr; }
+    .vf-grid-4 { grid-template-columns: 1fr 26px 1fr 26px 1fr 26px 1fr; }
+    .vf-grid-3r { grid-template-columns: 1fr 26px 1fr 26px 1fr; }
+    .vf-grid-4r { grid-template-columns: 1fr 26px 1fr 26px 1fr 26px 1fr; }
+    .vf-grid-2 { grid-template-columns: 1fr 26px 1fr; }
+    .vf-grid-1 { grid-template-columns: 1fr; }
+
+    .vf-section { width:100%; margin-bottom:6px; }
+    .vf-down-row { display:flex; justify-content:flex-end; padding-right:0; width:100%; }
+    .vf-down-row.left { justify-content:flex-start; }
+    .vf-down-row.center { justify-content:center; }
+    .vf-down-cell { display:flex; flex-direction:column; align-items:center; }
+
     .fc-selesai { text-align:center; color:#4caf50; font-weight:700; margin:4px 0 16px; font-size:.88rem; }
     .sop-steps { padding:16px 18px; background:var(--bps-light); border-radius:10px; border-left:4px solid var(--bps-blue); }
     .sop-steps.online-border { border-left-color:var(--bps-accent); }
@@ -216,15 +243,15 @@
       .hero-detail{padding:40px 20px} .hero-title{font-size:clamp(1.3rem,5vw,2rem)} .hero-sub{font-size:.95rem}
       .hero-cta{font-size:.88rem;padding:11px 24px} .content-area{padding:14px 14px 40px}
       .syarat-grid{grid-template-columns:1fr} .jw-grid{grid-template-columns:1fr} .product-grid{grid-template-columns:1fr}
-      .snake-5{grid-template-columns:1fr 22px 1fr 22px 1fr 22px 1fr 22px 1fr}
-      .sg-label{font-size:clamp(.52rem,1.5vw,.68rem)} .pengajuan-section{padding:20px 14px}
+      .vf-grid-4{grid-template-columns:1fr 22px 1fr 22px 1fr 22px 1fr}
+      .vf-label{font-size:.66rem} .pengajuan-section{padding:20px 14px}
       .pengajuan-tabs{flex-wrap:wrap} .pengajuan-tab{font-size:.8rem;padding:8px 14px}
       .section-head{padding:14px 16px} .section-body{padding:14px 16px}
       .result-row{flex-direction:column;gap:2px} .result-label{min-width:unset}
     }
     @media(max-width:600px) {
       .hero-detail{padding:32px 16px}
-      .snake-5{grid-template-columns:1fr 16px 1fr 16px 1fr 16px 1fr 16px 1fr}
+      .vf-grid-4{grid-template-columns:1fr 18px 1fr 18px 1fr 18px 1fr}
       .flowchart-title{font-size:.8rem;padding:9px 12px}
       .emoji-row{gap:5px} .emoji-btn{min-width:50px;padding:9px 8px} .emoji-btn .em{font-size:1.5rem}
       .tiket-number{font-size:1.2rem;padding:10px 16px}
@@ -236,10 +263,12 @@
       .section-head-title{font-size:.88rem} .syarat-card-body{padding:10px 12px} .syarat-num-list li{font-size:.78rem}
       .tiket-number{font-size:1.1rem;letter-spacing:1px} .tiket-box{padding:20px 14px}
       .pengajuan-section{border-radius:10px;padding:16px 12px} .btn-submit{font-size:.84rem;padding:10px 22px}
-      .sg-box{padding:8px 3px 7px;border-radius:7px} .sg-icon{font-size:1.1rem;margin-bottom:3px}
-      .sg-label{font-size:.5rem} .sg-arr{font-size:.8rem} .form-control,.form-select{font-size:.84rem;padding:9px 11px}
+      .vf-box{padding:7px 3px 6px;border-radius:7px} .vf-icon{font-size:1.1rem;margin-bottom:2px}
+      .vf-label{font-size:.58rem} .form-control,.form-select{font-size:.84rem;padding:9px 11px}
+      .vf-grid-3{grid-template-columns:1fr 18px 1fr 18px 1fr}
+      .vf-grid-4{grid-template-columns:1fr 16px 1fr 16px 1fr 16px 1fr}
     }
-    @media(max-width:360px) { .hero-title{font-size:1.2rem} .sg-label{font-size:.46rem} .emoji-btn{min-width:42px;padding:7px 5px} .emoji-btn .em{font-size:1.3rem} }
+    @media(max-width:360px) { .hero-title{font-size:1.2rem} .vf-label{font-size:.52rem} .emoji-btn{min-width:42px;padding:7px 5px} .emoji-btn .em{font-size:1.3rem} }
 
     /* ======= MOBILE BOTTOM NAV ======= */
     .mobile-bottom-nav { display:none; position:fixed; bottom:0; left:0; right:0; background:var(--bps-dark); border-top:1px solid rgba(255,255,255,.1); z-index:1000; padding:0; box-shadow:0 -4px 20px rgba(0,0,0,.25); }
@@ -313,7 +342,6 @@
             </div>
             <div class="section-body">
               <div class="syarat-grid">
-                <!-- Kunjungan Langsung -->
                 <div class="syarat-card">
                   <div class="syarat-card-header blue"><div class="sh-icon"><i class="bi bi-building"></i></div><span class="sh-title">Kunjungan Langsung</span></div>
                   <div class="syarat-card-body">
@@ -327,7 +355,6 @@
                     </ul>
                   </div>
                 </div>
-                <!-- Layanan Online -->
                 <div class="syarat-card">
                   <div class="syarat-card-header gold"><div class="sh-icon"><i class="bi bi-globe" style="color:var(--bps-dark);"></i></div><span class="sh-title">Layanan Online</span></div>
                   <div class="syarat-card-body gold-body">
@@ -354,35 +381,32 @@
             </div>
             <div class="section-body">
 
-              <!-- Flowchart Kunjungan Langsung -->
+              <!-- ===== FLOWCHART KUNJUNGAN LANGSUNG ===== -->
               <div class="sop-flowchart">
                 <div class="flowchart-title langsung"><i class="bi bi-building"></i> Layanan dengan Kunjungan Langsung</div>
-                <!-- Row 1: 5 steps -->
-                <div class="snake-grid snake-5">
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-building"></i></span><div class="sg-label">Berkunjung ke<br>PST BPS</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-book"></i></span><div class="sg-label">Isi Buku<br>Tamu</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-ticket-perforated"></i></span><div class="sg-label">Ambil Nomor<br>Antrian</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-hourglass-split"></i></span><div class="sg-label">Tunggu<br>Giliran</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-chat-dots"></i></span><div class="sg-label">Sampaikan<br>Permintaan</div></div>
-                  <!-- Turn -->
-                  <div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div><div class="sg-empty"></div>
-                  <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-                  <!-- Row 3 -->
-                  <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="sg-label" style="color:white;">Selesai &amp;<br>Rating</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-download"></i></span><div class="sg-label">Unduh<br>Produk</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-receipt"></i></span><div class="sg-label">Terima<br>Kuitansi</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-credit-card"></i></span><div class="sg-label">Bayar via<br>Kode Billing</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-file-earmark-text"></i></span><div class="sg-label">Cek Invoice<br>&amp; Setujui</div></div>
+
+                <!-- Baris 1: 3 kotak (kiri ke kanan) -->
+                <div class="vf-grid vf-grid-3" style="margin-bottom:0;">
+                  <div class="vf-box"><span class="vf-icon"><i class="bi bi-building"></i></span><div class="vf-label">Kunjungi PST BPS, Isi Buku Tamu &amp; Ambil Antrian</div></div>
+                  <div class="vf-arrow-right"><i class="bi bi-arrow-right"></i></div>
+                  <div class="vf-box"><span class="vf-icon"><i class="bi bi-chat-dots"></i></span><div class="vf-label">Sampaikan Permintaan &amp; Setujui Ketentuan PNBP</div></div>
+                  <div class="vf-arrow-right"><i class="bi bi-arrow-right"></i></div>
+                  <div class="vf-box"><span class="vf-icon"><i class="bi bi-file-earmark-text"></i></span><div class="vf-label">Petugas Buat Invoice &amp; Siapkan Produk</div></div>
                 </div>
-                <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
+                <!-- Panah turun di kanan -->
+                <div style="display:flex;justify-content:flex-end;padding-right:calc(100%/6 - 13px);"><div class="vf-arrow-down"><i class="bi bi-arrow-down"></i></div></div>
+
+                <!-- Baris 2: 3 kotak (kanan ke kiri) -->
+                <div class="vf-grid vf-grid-3" style="margin-bottom:0;">
+                  <div class="vf-box end"><span class="vf-icon white"><i class="bi bi-star-fill"></i></span><div class="vf-label white">Selesai &amp; Beri Rating Pelayanan</div></div>
+                  <div class="vf-arrow-left"><i class="bi bi-arrow-left"></i></div>
+                  <div class="vf-box"><span class="vf-icon"><i class="bi bi-download"></i></span><div class="vf-label">Terima Kuitansi &amp; Unduh Produk, Cek Kesesuaian</div></div>
+                  <div class="vf-arrow-left"><i class="bi bi-arrow-left"></i></div>
+                  <div class="vf-box"><span class="vf-icon"><i class="bi bi-credit-card"></i></span><div class="vf-label">Bayar via Kode Billing &amp; Serahkan Dokumen Perjanjian</div></div>
+                </div>
+
+                <div class="fc-selesai mt-3"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
+
                 <div class="sop-steps">
                   <strong class="sop-steps-title">Detail Prosedur Kunjungan Langsung:</strong>
                   <ol>
@@ -408,33 +432,32 @@
                 </div>
               </div>
 
-              <!-- Flowchart Layanan Online -->
+              <!-- ===== FLOWCHART LAYANAN ONLINE ===== -->
               <div class="sop-flowchart" style="margin-top:26px;">
                 <div class="flowchart-title online"><i class="bi bi-globe"></i> Layanan dengan Cara Online</div>
-                <div class="snake-grid snake-4">
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-globe"></i></span><div class="sg-label">Akses Portal<br>pst.bps.go.id</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-grid-3x3-gap"></i></span><div class="sg-label">Pilih<br>Produk</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box sg-decision"><span class="sg-icon" style="color:var(--bps-accent);"><i class="bi bi-question-circle"></i></span><div class="sg-label">Data Mikro /<br>Peta Digital?</div><div style="display:flex;gap:4px;margin-top:6px;justify-content:center;"><span class="sg-badge-ya">✓ Ya</span><span class="sg-badge-tidak">✗ Tidak</span></div></div>
-                  <div class="sg-arr sg-arr-tidak"><span>Tidak</span><i class="bi bi-arrow-right"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-file-earmark-fill"></i></span><div class="sg-label">Lengkapi<br>Formulir</div></div>
-                  <!-- Turn -->
-                  <div class="sg-empty"></div><div class="sg-empty"></div>
-                  <div class="sg-empty"></div><div class="sg-empty"></div>
-                  <div class="sg-arr sg-down sg-ya"><i class="bi bi-arrow-down"></i><span>Ya</span></div>
-                  <div class="sg-empty"></div>
-                  <div class="sg-arr sg-down"><i class="bi bi-arrow-down"></i></div>
-                  <!-- Row 3 -->
-                  <div class="sg-box sg-end"><span class="sg-icon" style="color:white;"><i class="bi bi-check-circle"></i></span><div class="sg-label" style="color:white;">Selesai &amp;<br>Rating</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-download"></i></span><div class="sg-label">Terima<br>Produk</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-receipt"></i></span><div class="sg-label">Verifikasi<br>Kuitansi</div></div>
-                  <div class="sg-arr"><i class="bi bi-arrow-left"></i></div>
-                  <div class="sg-box"><span class="sg-icon"><i class="bi bi-credit-card"></i></span><div class="sg-label">Lakukan<br>Pembayaran</div></div>
+
+                <!-- Baris 1: 3 kotak (kiri ke kanan) -->
+                <div class="vf-grid vf-grid-3" style="margin-bottom:0;">
+                  <div class="vf-box"><span class="vf-icon gold"><i class="bi bi-globe"></i></span><div class="vf-label">Akses Portal, Pilih Produk &amp; Lengkapi Formulir</div></div>
+                  <div class="vf-arrow-right" style="color:var(--bps-accent);"><i class="bi bi-arrow-right"></i></div>
+                  <div class="vf-box" style="border:2px dashed var(--bps-accent);"><span class="vf-icon gold"><i class="bi bi-pen"></i></span><div class="vf-label">Isi Abstraksi &amp; Perjanjian, Petugas Verifikasi <em>(Khusus Data Mikro/Peta)</em></div></div>
+                  <div class="vf-arrow-right" style="color:var(--bps-accent);"><i class="bi bi-arrow-right"></i></div>
+                  <div class="vf-box"><span class="vf-icon gold"><i class="bi bi-file-earmark-text"></i></span><div class="vf-label">Petugas Siapkan Produk &amp; Kirim Invoice</div></div>
                 </div>
-                <div class="fc-selesai"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
+                <!-- Panah turun di kanan -->
+                <div style="display:flex;justify-content:flex-end;padding-right:calc(100%/6 - 13px);"><div class="vf-arrow-down" style="color:var(--bps-accent);"><i class="bi bi-arrow-down"></i></div></div>
+
+                <!-- Baris 2: 3 kotak (kanan ke kiri) -->
+                <div class="vf-grid vf-grid-3" style="margin-bottom:0;">
+                  <div class="vf-box end"><span class="vf-icon white"><i class="bi bi-star-fill"></i></span><div class="vf-label white">Selesai &amp; Beri Rating Pelayanan</div></div>
+                  <div class="vf-arrow-left" style="color:var(--bps-accent);"><i class="bi bi-arrow-left"></i></div>
+                  <div class="vf-box"><span class="vf-icon gold"><i class="bi bi-download"></i></span><div class="vf-label">Terima Kuitansi &amp; Produk via Portal, Cek Kesesuaian</div></div>
+                  <div class="vf-arrow-left" style="color:var(--bps-accent);"><i class="bi bi-arrow-left"></i></div>
+                  <div class="vf-box"><span class="vf-icon gold"><i class="bi bi-credit-card"></i></span><div class="vf-label">Cek Invoice, Bayar &amp; Unggah Dokumen Perjanjian</div></div>
+                </div>
+
+                <div class="fc-selesai mt-3"><i class="bi bi-check-circle-fill me-2"></i>SELESAI</div>
+
                 <div class="sop-steps online-border">
                   <strong class="sop-steps-title">Detail Prosedur Layanan Online:</strong>
                   <ol>
@@ -518,7 +541,6 @@
             </div>
             <div class="section-body">
               <div class="product-grid">
-                <!-- Kunjungan Langsung -->
                 <div class="product-card">
                   <div class="product-card-header blue"><div class="pc-icon"><i class="bi bi-building"></i></div><span class="pc-title">Kunjungan Langsung</span></div>
                   <div class="product-card-body">
@@ -529,7 +551,6 @@
                     </ul>
                   </div>
                 </div>
-                <!-- Layanan Online -->
                 <div class="product-card">
                   <div class="product-card-header gold"><div class="pc-icon"><i class="bi bi-globe" style="color:var(--bps-dark);"></i></div><span class="pc-title">Layanan Online</span></div>
                   <div class="product-card-body gold-body">
@@ -707,9 +728,7 @@
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsamhheWZtZnNyZHRwbWxxbHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMzc5NTcsImV4cCI6MjA4NzkxMzk1N30.1Iyu5DYkQyqnmu9eLT1Kcf7ybOI4V4-bXHr7b7NyR7c';
   const JENIS_LAYANAN = 'Pelayanan Produk Statistik Berbayar';
 
-  /* ====== PERBAIKAN RATING: tambah localRatingCache ====== */
   const localRatingCache = {};
-
   let cekSelectedRating=null, cekSelectedEmoji='', cekCurrentTiket='';
 
   function showPanel(id,el) {
@@ -774,7 +793,6 @@
     document.getElementById('res-btn-kirim-rating').disabled=false;
   }
 
-  /* ====== PERBAIKAN RATING: simpan ke cache, hapus setTimeout reset ====== */
   async function kirimRatingCek() {
     if(!cekSelectedRating||!cekCurrentTiket) return;
     const btn=document.getElementById('res-btn-kirim-rating');
@@ -852,7 +870,6 @@
       const rb=document.getElementById('res-rating-box');
       if(d.url_hasil){
         cekCurrentTiket=d.nomor_tiket; rb.style.display='block';
-        /* ====== PERBAIKAN RATING: logika cache-first ====== */
         const cachedRating=localRatingCache[d.nomor_tiket];
         const sudahRating=cachedRating||(d.rating&&d.rating_emoji);
         if(sudahRating){
