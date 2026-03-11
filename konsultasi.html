@@ -115,7 +115,7 @@
     .vf-badge-row { display:flex; gap:4px; justify-content:center; margin-top:6px; }
     .vf-badge-ya { font-size:.6rem; font-weight:700; background:rgba(76,175,80,.1); color:#2e7d32; border:1px solid rgba(76,175,80,.4); border-radius:4px; padding:2px 5px; }
     .vf-badge-tidak { font-size:.6rem; font-weight:700; background:rgba(244,167,0,.12); color:#b87800; border:1px solid rgba(244,167,0,.4); border-radius:4px; padding:2px 5px; }
-    .vf-conn { display:grid; height:28px; }
+    .vf-conn { display:grid; height:36px; align-items:center; }
     .vf-conn-3 { grid-template-columns:1fr 28px 1fr 28px 1fr; }
     .vf-conn-4 { grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr; }
     .vf-conn .vf-down { display:flex; justify-content:center; align-items:center; font-size:.95rem; color:var(--bps-blue); flex-direction:column; gap:2px; }
@@ -439,14 +439,14 @@
                     <div class="vf-box"><span class="vf-icon gold"><i class="bi bi-search"></i></span><div class="vf-label">Cari Informasi Statistik</div><div class="vf-sublabel">Gunakan fitur pencarian</div></div>
                     <div class="vf-arr gold"><i class="bi bi-arrow-right"></i></div>
                     <div class="vf-box vf-decision"><span class="vf-icon gold"><i class="bi bi-question-circle"></i></span><div class="vf-label">Informasi Ditemukan?</div><div class="vf-badge-row"><span class="vf-badge-ya">✓ Ya</span><span class="vf-badge-tidak">✗ Tidak</span></div></div>
-                    <div class="vf-arr gold"><i class="bi bi-arrow-right"></i></div>
+                    <div class="vf-arr gold" style="flex-direction:column;gap:2px;"><span style="font-size:.58rem;font-weight:700;color:var(--bps-accent);">Tidak</span><i class="bi bi-arrow-right"></i></div>
                     <div class="vf-box"><span class="vf-icon gold"><i class="bi bi-file-earmark-plus"></i></span><div class="vf-label">Buat &amp; Ajukan Konsultasi</div><div class="vf-sublabel">Jika tidak ditemukan</div></div>
                   </div>
                   <div class="vf-conn vf-conn-4">
-                    <div></div><div></div><div></div>
-                    <div class="vf-down green"><i class="bi bi-arrow-down"></i><span class="vf-down-label">Ya</span></div>
-                    <div></div><div></div>
-                    <div class="vf-down gold"><i class="bi bi-arrow-down"></i></div>
+                    <div></div><div></div><div></div><div></div>
+                    <div class="vf-down green" style="flex-direction:row;gap:4px;"><span class="vf-down-label">Ya</span><i class="bi bi-arrow-down"></i></div>
+                    <div></div>
+                    <div class="vf-down gold" style="display:flex;align-items:center;justify-content:center;"><i class="bi bi-arrow-down"></i></div>
                   </div>
                   <div class="vf-row-4">
                     <div class="vf-box vf-end"><span class="vf-icon white"><i class="bi bi-check-circle"></i></span><div class="vf-label white">Selesai Layanan</div></div>
