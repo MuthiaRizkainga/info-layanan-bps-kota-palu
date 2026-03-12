@@ -15,24 +15,14 @@
       --bps-light: #e8f1fb;
       --bps-accent: #f4a700;
     }
-
     html { scroll-behavior: smooth; }
     * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f4f6f9;
-      overflow-x: hidden;
-    }
-
-    /* NAVBAR */
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f4f6f9; overflow-x: hidden; }
     .navbar { background-color: var(--bps-blue) !important; box-shadow: 0 2px 12px rgba(0,91,170,0.3); }
     .navbar-brand { font-weight: 800; font-size: 1.2rem; }
     .navbar-brand span { color: var(--bps-accent); }
     .nav-link { font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
     .nav-link:hover, .nav-link.active { color: var(--bps-accent) !important; }
-
-    /* NAV DROPDOWN (sama persis seperti konsultasi.html) */
     .nav-links-home { display:flex; align-items:center; gap:4px; }
     .nav-link-home { display:inline-flex; align-items:center; gap:6px; font-size:.8rem; font-weight:700; color:rgba(255,255,255,.75); text-decoration:none; padding:6px 14px; border-radius:7px; white-space:nowrap; transition:background .18s,color .18s; }
     .nav-link-home:hover { background:rgba(255,255,255,.15); color:#fff; }
@@ -52,79 +42,27 @@
     .snd-icon { width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0; background:var(--bps-light); color:var(--bps-blue); }
     .snd-text-title { font-size:.8rem; font-weight:700; color:var(--bps-dark); line-height:1.3; }
     .snd-text-sub { font-size:.68rem; color:#999; line-height:1.3; }
-
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, var(--bps-dark) 0%, var(--bps-blue) 60%, #1a7fd4 100%);
-      color: white;
-      padding: 100px 20px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute;
-      top: -80px; right: -80px;
-      width: 350px; height: 350px;
-      border-radius: 50%; background: rgba(255,255,255,0.05);
-    }
-    .hero::after {
-      content: ''; position: absolute;
-      bottom: -100px; left: -60px;
-      width: 280px; height: 280px;
-      border-radius: 50%; background: rgba(255,255,255,0.04);
-    }
+    .hero { background: linear-gradient(135deg, var(--bps-dark) 0%, var(--bps-blue) 60%, #1a7fd4 100%); color: white; padding: 100px 20px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 350px; height: 350px; border-radius: 50%; background: rgba(255,255,255,0.05); }
+    .hero::after { content: ''; position: absolute; bottom: -100px; left: -60px; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,0.04); }
     .hero h1 { font-weight: 800; font-size: 2.8rem; margin-bottom: 16px; }
     .hero p { font-size: 1.05rem; opacity: 0.85; max-width: 560px; margin: 0 auto 32px; }
-
-    .btn-hero {
-      background-color: var(--bps-accent);
-      color: #003f7f; font-weight: 700;
-      padding: 13px 32px; border-radius: 50px;
-      text-decoration: none; transition: all 0.25s; display: inline-block;
-    }
-    .btn-hero:hover {
-      background-color: #ffc107; color: #003f7f;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(244,167,0,0.45);
-    }
-
-    /* STATS BAR */
+    .btn-hero { background-color: var(--bps-accent); color: #003f7f; font-weight: 700; padding: 13px 32px; border-radius: 50px; text-decoration: none; transition: all 0.25s; display: inline-block; }
+    .btn-hero:hover { background-color: #ffc107; color: #003f7f; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,167,0,0.45); }
     .stats-bar { background: white; border-top: 1px solid #e8edf5; border-bottom: 1px solid #e8edf5; }
     .stat-item { text-align: center; padding: 28px 20px; }
     .stat-number { font-size: 2rem; font-weight: 800; color: var(--bps-blue); line-height: 1; }
     .stat-label { font-size: 0.82rem; color: #888; margin-top: 4px; }
     .stat-divider { border-right: 1px solid #e0e7f0; }
-
-    /* SECTION */
     .section-title { font-weight: 800; color: var(--bps-dark); font-size: 1.7rem; margin-bottom: 6px; }
     .section-divider { width: 50px; height: 4px; background: var(--bps-accent); border-radius: 4px; margin: 0 auto 40px; }
-
-    /* PREVIEW CARD */
-    .preview-card {
-      position: relative;  
-      background: white; border-radius: 14px;
-      padding: 32px 24px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
-      border: 1px solid rgba(0,91,170,0.08);
-      transition: all 0.3s ease; height: 100%; text-align: center;
-    }
+    .preview-card { position: relative; background: white; border-radius: 14px; padding: 32px 24px; box-shadow: 0 4px 18px rgba(0,0,0,0.07); border: 1px solid rgba(0,91,170,0.08); transition: all 0.3s ease; height: 100%; text-align: center; }
     .preview-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,91,170,0.15); }
-    .card-icon {
-      width: 64px; height: 64px; border-radius: 16px;
-      background: var(--bps-light);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 18px; font-size: 1.7rem; color: var(--bps-blue); transition: all 0.3s;
-    }
+    .card-icon { width: 64px; height: 64px; border-radius: 16px; background: var(--bps-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 1.7rem; color: var(--bps-blue); transition: all 0.3s; }
     .preview-card:hover .card-icon { background: var(--bps-blue); color: white; }
     .preview-card h5 { font-weight: 700; color: var(--bps-dark); font-size: 1rem; margin-bottom: 16px; }
-    .btn-detail {
-      font-size: 0.82rem; font-weight: 600; color: var(--bps-blue);
-      text-decoration: none; border: 1.5px solid var(--bps-blue);
-      padding: 6px 18px; border-radius: 50px; transition: all 0.2s; display: inline-block;
-    }
+    .btn-detail { font-size: 0.82rem; font-weight: 600; color: var(--bps-blue); text-decoration: none; border: 1.5px solid var(--bps-blue); padding: 6px 18px; border-radius: 50px; transition: all 0.2s; display: inline-block; }
     .btn-detail:hover { background: var(--bps-blue); color: white; }
-
-    /* STATISTIK PUBLIK */
     .statistik-section { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 18px rgba(0,0,0,0.07); border: 1px solid rgba(0,91,170,0.08); }
     .stat-pub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
     .stat-pub-card { background: #f8fafd; border-radius: 12px; padding: 20px; border: 1px solid #e0eaf5; }
@@ -135,92 +73,12 @@
     .stat-highlight { background: linear-gradient(135deg, var(--bps-blue), var(--bps-dark)); border-radius: 12px; padding: 20px; text-align: center; color: white; }
     .stat-highlight .num { font-size: 2rem; font-weight: 800; line-height: 1; }
     .stat-highlight .lbl { font-size: 0.75rem; opacity: 0.85; margin-top: 4px; }
-
-    /* FOOTER */
     footer { background-color: var(--bps-dark); color: rgba(255,255,255,0.8); font-size: 0.88rem; }
-
-    /* ===================== RESPONSIVE ===================== */
-
-    /* Tablet (max 992px) */
-    @media (max-width: 992px) {
-      .hero h1 { font-size: 2.2rem; }
-      .hero { padding: 80px 20px; }
-      .stat-highlight .num { font-size: 1.6rem; }
-      .stat-highlight-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* Tablet kecil (max 768px) */
-    @media (max-width: 768px) {
-      .hero { padding: 60px 16px; }
-      .hero h1 { font-size: 1.8rem; }
-      .hero p { font-size: 0.95rem; }
-      .btn-hero { padding: 11px 24px; font-size: 0.9rem; }
-
-      .stat-divider { border-right: none; border-bottom: 1px solid #e0e7f0; }
-      .stat-item { padding: 18px 12px; }
-      .stat-number { font-size: 1.6rem; }
-
-      .section-title { font-size: 1.4rem; }
-      .preview-card { padding: 20px 14px; }
-
-      .stat-pub-grid { grid-template-columns: 1fr; }
-      .stat-highlight-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .statistik-section { padding: 20px 16px; }
-      .stat-highlight .num { font-size: 1.5rem; }
-      .stat-highlight .lbl { font-size: 0.7rem; }
-
-      .chart-wrap-pub { height: 220px; }
-      footer p { font-size: 0.8rem; }
-
-      .nav-links-home { display: none; }
-    }
-
-    /* Mobile (max 576px) */
-    @media (max-width: 576px) {
-      .hero { padding: 48px 14px; }
-      .hero h1 { font-size: 1.6rem; }
-      .hero p { font-size: 0.9rem; }
-      .btn-hero { font-size: 0.86rem; padding: 10px 22px; }
-
-      .stat-highlight-grid { grid-template-columns: 1fr; gap: 8px; }
-      .stat-highlight .num { font-size: 1.6rem; }
-
-      .preview-card { padding: 20px 14px; }
-      .preview-card h5 { font-size: 0.92rem; }
-      .card-icon { width: 54px; height: 54px; font-size: 1.4rem; }
-
-      .section-title { font-size: 1.25rem; }
-      .section-divider { margin-bottom: 28px; }
-
-      .stat-pub-card { padding: 14px 12px; }
-      .chart-wrap-pub { height: 200px; }
-    }
-
-    /* Small mobile (max 480px) */
-    @media (max-width: 480px) {
-      .navbar-brand { font-size: 1rem; }
-      .navbar-brand img { height: 28px; }
-      .stat-number { font-size: 1.4rem; }
-      .stat-label { font-size: 0.76rem; }
-      .stat-item { padding: 14px 8px; }
-      .preview-card { padding: 16px 12px; }
-      .preview-card h5 { font-size: 0.9rem; }
-      .statistik-section { border-radius: 12px; }
-      footer p { font-size: 0.78rem; line-height: 1.7; }
-    }
-
-    /* Extra small (max 360px) */
-    @media (max-width: 360px) {
-      .hero h1 { font-size: 1.3rem; }
-      .hero p { font-size: 0.82rem; }
-      .btn-hero { font-size: 0.8rem; padding: 9px 18px; }
-      .navbar-brand { font-size: 0.88rem; }
-      .navbar-brand img { height: 24px; }
-      .section-title { font-size: 1.1rem; }
-      .stat-number { font-size: 1.2rem; }
-      .preview-card h5 { font-size: 0.85rem; }
-      .card-icon { width: 46px; height: 46px; font-size: 1.2rem; }
-    }
+    @media (max-width: 992px) { .hero h1 { font-size: 2.2rem; } .hero { padding: 80px 20px; } }
+    @media (max-width: 768px) { .hero { padding: 60px 16px; } .hero h1 { font-size: 1.8rem; } .hero p { font-size: 0.95rem; } .btn-hero { padding: 11px 24px; font-size: 0.9rem; } .stat-divider { border-right: none; border-bottom: 1px solid #e0e7f0; } .stat-item { padding: 18px 12px; } .stat-number { font-size: 1.6rem; } .section-title { font-size: 1.4rem; } .preview-card { padding: 20px 14px; } .stat-pub-grid { grid-template-columns: 1fr; } .stat-highlight-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .statistik-section { padding: 20px 16px; } .chart-wrap-pub { height: 220px; } .nav-links-home { display: none; } }
+    @media (max-width: 576px) { .hero { padding: 48px 14px; } .hero h1 { font-size: 1.6rem; } .stat-highlight-grid { grid-template-columns: 1fr; gap: 8px; } .section-title { font-size: 1.25rem; } }
+    @media (max-width: 480px) { .navbar-brand { font-size: 1rem; } .navbar-brand img { height: 28px; } .stat-number { font-size: 1.4rem; } .stat-item { padding: 14px 8px; } .preview-card { padding: 16px 12px; } }
+    @media (max-width: 360px) { .hero h1 { font-size: 1.3rem; } .navbar-brand { font-size: 0.88rem; } .navbar-brand img { height: 24px; } }
   </style>
 </head>
 <body>
@@ -236,66 +94,26 @@
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto">
-          <!-- Mobile menu (tampil saat collapse terbuka) -->
-          <li class="nav-item d-lg-none">
-            <a class="nav-link text-white" href="index.html"><i class="bi bi-house-fill me-1"></i> Beranda</a>
-          </li>
-          <li class="nav-item d-lg-none">
-            <a class="nav-link text-white" href="konsultasi.html"><i class="bi bi-bar-chart-steps me-1"></i> Konsultasi Statistik</a>
-          </li>
-          <li class="nav-item d-lg-none">
-            <a class="nav-link text-white" href="perpustakaan.html"><i class="bi bi-book-fill me-1"></i> Perpustakaan BPS</a>
-          </li>
-          <li class="nav-item d-lg-none">
-            <a class="nav-link text-white" href="produkstatistik.html"><i class="bi bi-shop me-1"></i> Produk Statistik Berbayar</a>
-          </li>
-          <li class="nav-item d-lg-none">
-            <a class="nav-link text-white" href="rekomendasistatistik.html"><i class="bi bi-file-earmark-check-fill me-1"></i> Rekomendasi Statistik</a>
-          </li>
+          <li class="nav-item d-lg-none"><a class="nav-link text-white" href="index.html"><i class="bi bi-house-fill me-1"></i> Beranda</a></li>
+          <li class="nav-item d-lg-none"><a class="nav-link text-white" href="konsultasi.html"><i class="bi bi-bar-chart-steps me-1"></i> Konsultasi Statistik</a></li>
+          <li class="nav-item d-lg-none"><a class="nav-link text-white" href="perpustakaan.html"><i class="bi bi-book-fill me-1"></i> Perpustakaan BPS</a></li>
+          <li class="nav-item d-lg-none"><a class="nav-link text-white" href="produkstatistik.html"><i class="bi bi-shop me-1"></i> Produk Statistik Berbayar</a></li>
+          <li class="nav-item d-lg-none"><a class="nav-link text-white" href="rekomendasistatistik.html"><i class="bi bi-file-earmark-check-fill me-1"></i> Rekomendasi Statistik</a></li>
         </ul>
       </div>
-      <!-- Desktop nav links (kanan navbar, sembunyikan di mobile) -->
       <div class="nav-links-home">
-        <a class="nav-link-home" href="index.html">
-          <i class="bi bi-house-fill"></i> Beranda
-        </a>
+        <a class="nav-link-home" href="index.html"><i class="bi bi-house-fill"></i> Beranda</a>
         <span class="nav-sep"><i class="bi bi-chevron-right"></i></span>
         <div class="nav-dropdown" id="layanan-dropdown">
           <button class="nav-dropdown-trigger" onclick="toggleDropdown()">
-            <i class="bi bi-grid-3x3-gap-fill"></i>
-            Jenis Layanan
-            <i class="bi bi-chevron-down caret"></i>
+            <i class="bi bi-grid-3x3-gap-fill"></i> Jenis Layanan <i class="bi bi-chevron-down caret"></i>
           </button>
           <div class="nav-dropdown-panel">
             <div class="snd-group-label">Jenis Layanan</div>
-            <a class="snd-item" href="konsultasi.html">
-              <div class="snd-icon"><i class="bi bi-bar-chart-steps"></i></div>
-              <div>
-                <div class="snd-text-title">Konsultasi Statistik</div>
-                <div class="snd-text-sub">Konsultasi data, metadata &amp; klasifikasi statistik</div>
-              </div>
-            </a>
-            <a class="snd-item" href="perpustakaan.html">
-              <div class="snd-icon"><i class="bi bi-book-fill"></i></div>
-              <div>
-                <div class="snd-text-title">Perpustakaan BPS</div>
-                <div class="snd-text-sub">Akses koleksi publikasi &amp; referensi statistik</div>
-              </div>
-            </a>
-            <a class="snd-item" href="produkstatistik.html">
-              <div class="snd-icon"><i class="bi bi-shop"></i></div>
-              <div>
-                <div class="snd-text-title">Produk Statistik Berbayar</div>
-                <div class="snd-text-sub">Publikasi, data mikro, dan peta digital statistik</div>
-              </div>
-            </a>
-            <a class="snd-item" href="rekomendasistatistik.html">
-              <div class="snd-icon"><i class="bi bi-file-earmark-check-fill"></i></div>
-              <div>
-                <div class="snd-text-title">Rekomendasi Statistik</div>
-                <div class="snd-text-sub">Permohonan surat rekomendasi kegiatan statistik</div>
-              </div>
-            </a>
+            <a class="snd-item" href="konsultasi.html"><div class="snd-icon"><i class="bi bi-bar-chart-steps"></i></div><div><div class="snd-text-title">Konsultasi Statistik</div><div class="snd-text-sub">Konsultasi data, metadata &amp; klasifikasi statistik</div></div></a>
+            <a class="snd-item" href="perpustakaan.html"><div class="snd-icon"><i class="bi bi-book-fill"></i></div><div><div class="snd-text-title">Perpustakaan BPS</div><div class="snd-text-sub">Akses koleksi publikasi &amp; referensi statistik</div></div></a>
+            <a class="snd-item" href="produkstatistik.html"><div class="snd-icon"><i class="bi bi-shop"></i></div><div><div class="snd-text-title">Produk Statistik Berbayar</div><div class="snd-text-sub">Publikasi, data mikro, dan peta digital statistik</div></div></a>
+            <a class="snd-item" href="rekomendasistatistik.html"><div class="snd-icon"><i class="bi bi-file-earmark-check-fill"></i></div><div><div class="snd-text-title">Rekomendasi Statistik</div><div class="snd-text-sub">Permohonan surat rekomendasi kegiatan statistik</div></div></a>
           </div>
         </div>
       </div>
@@ -338,25 +156,79 @@
     </div>
   </div>
 
-  <!-- SENSUS EKONOMI 2026 -->
+  <!-- SENSUS EKONOMI 2026 - SECTION POSTER -->
+  <section style="background:linear-gradient(135deg,#ff6b00 0%,#f4a700 50%,#ffca28 100%);padding:52px 0;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-90px;left:-90px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,0.07);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-110px;right:-70px;width:380px;height:380px;border-radius:50%;background:rgba(0,0,0,0.07);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,0.04) 40px,rgba(255,255,255,0.04) 80px);pointer-events:none;"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="row align-items-center g-4">
+
+        <!-- POSTER KIRI -->
+        <div class="col-lg-3 col-md-4 d-none d-md-flex justify-content-center">
+          <div style="width:100%;max-width:195px;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,0.28);transform:rotate(-2.5deg);transition:transform 0.3s ease;" onmouseover="this.style.transform='rotate(0deg) scale(1.04)'" onmouseout="this.style.transform='rotate(-2.5deg)'">
+            <img src="img/poster_se_kepala.png" alt="Poster SE 2026 Kepala BPS" style="width:100%;display:block;" onerror="this.closest('div[style*=border-radius]').style.display='none'">
+          </div>
+        </div>
+
+        <!-- TEKS TENGAH -->
+        <div class="col-lg-6 col-md-4 text-center">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,0.18);color:white;font-size:0.7rem;font-weight:800;padding:6px 18px;border-radius:50px;margin-bottom:16px;letter-spacing:1.2px;text-transform:uppercase;backdrop-filter:blur(10px);">
+            <i class="bi bi-megaphone-fill"></i> Program Nasional BPS
+          </div>
+          <div style="font-size:clamp(0.7rem,1.4vw,0.88rem);font-weight:800;color:rgba(255,255,255,0.88);letter-spacing:3.5px;text-transform:uppercase;margin-bottom:2px;">Sukseskan</div>
+          <h2 style="font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:800;color:white;line-height:1;margin:0;text-shadow:0 3px 16px rgba(0,0,0,0.18);">SENSUS EKONOMI</h2>
+          <h2 style="font-size:clamp(2.8rem,7vw,4.6rem);font-weight:800;color:#003f7f;line-height:1;margin:2px 0 12px;text-shadow:0 2px 8px rgba(0,0,0,0.12);">2026</h2>
+          <div style="font-size:0.87rem;font-style:italic;color:rgba(255,255,255,0.92);margin-bottom:20px;font-weight:600;">#MencatatEkonomiIndonesia</div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:24px;">
+            <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(0,0,0,0.18);color:white;font-size:0.78rem;font-weight:700;padding:7px 18px;border-radius:50px;backdrop-filter:blur(10px);">
+              <i class="bi bi-calendar-event-fill"></i> 01 Mei &ndash; 31 Juli 2026
+            </div>
+            <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(0,0,0,0.18);color:white;font-size:0.78rem;font-weight:700;padding:7px 18px;border-radius:50px;backdrop-filter:blur(10px);">
+              <i class="bi bi-geo-alt-fill"></i> Kota Palu &bull; Sulteng
+            </div>
+          </div>
+          <a href="https://sensus.bps.go.id/se2026/" target="_blank" style="display:inline-flex;align-items:center;gap:9px;background:white;color:#cc4e00;font-size:0.88rem;font-weight:800;padding:13px 30px;border-radius:50px;text-decoration:none;box-shadow:0 6px 22px rgba(0,0,0,0.22);transition:all 0.25s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='';this.style.boxShadow='0 6px 22px rgba(0,0,0,0.22)'">
+            <i class="bi bi-arrow-right-circle-fill"></i> Pelajari Sensus Ekonomi 2026
+          </a>
+        </div>
+
+        <!-- POSTER KANAN -->
+        <div class="col-lg-3 col-md-4 d-none d-md-flex justify-content-center">
+          <div style="width:100%;max-width:195px;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,0.28);transform:rotate(2.5deg);transition:transform 0.3s ease;" onmouseover="this.style.transform='rotate(0deg) scale(1.04)'" onmouseout="this.style.transform='rotate(2.5deg)'">
+            <img src="img/poster_se_walikota.png" alt="Poster SE 2026 Walikota" style="width:100%;display:block;" onerror="this.closest('div[style*=border-radius]').style.display='none'">
+          </div>
+        </div>
+
+        <!-- MOBILE: kedua poster berdampingan -->
+        <div class="col-12 d-flex d-md-none justify-content-center gap-3">
+          <div style="width:145px;border-radius:13px;overflow:hidden;box-shadow:0 8px 26px rgba(0,0,0,0.22);">
+            <img src="img/poster_se_kepala.png" alt="Poster 1" style="width:100%;display:block;" onerror="this.parentElement.style.display='none'">
+          </div>
+          <div style="width:145px;border-radius:13px;overflow:hidden;box-shadow:0 8px 26px rgba(0,0,0,0.22);">
+            <img src="img/poster_se_walikota.png" alt="Poster 2" style="width:100%;display:block;" onerror="this.parentElement.style.display='none'">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+    <!-- SENSUS EKONOMI 2026 SPANDUK -->
   <section class="py-4" style="background:#f4f6f9;">
     <div class="container">
-  
       <div class="text-center mb-3">
         <span style="display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#f4a700,#ff9800);color:#003f7f;font-size:0.78rem;font-weight:700;padding:6px 18px;border-radius:50px;">
           <i class="bi bi-megaphone-fill"></i> Pengumuman Resmi BPS Kota Palu
         </span>
       </div>
-  
       <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
         <img src="img/spandukbps.png" alt="Ayo Sukseskan Sensus Ekonomi 2026" style="width:100%;display:block;">
-  
-        <!-- Info bar -->
         <div style="background:white;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border:1px solid rgba(0,0,0,0.07);border-top:none;">
           <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
             <div style="display:flex;align-items:center;gap:7px;">
               <i class="bi bi-calendar-event-fill" style="color:#f4a700;"></i>
-              <span style="font-size:0.83rem;font-weight:700;color:#003f7f;">01 Mei – 31 Juli 2026</span>
+              <span style="font-size:0.83rem;font-weight:700;color:#003f7f;">01 Mei &ndash; 31 Juli 2026</span>
             </div>
             <div style="width:1px;height:20px;background:#e0e7f0;"></div>
             <div style="display:flex;align-items:center;gap:7px;">
@@ -369,7 +241,6 @@
           </a>
         </div>
       </div>
-  
     </div>
   </section>
 
@@ -410,32 +281,16 @@
           </div>
         </div>
       </div>
-      <!-- LAYANAN LAINNYA -->
       <div class="text-center mt-5 mb-2">
         <h2 class="section-title">Layanan Lainnya</h2>
         <p style="color:#888; font-size:0.92rem; margin-top:6px;">Layanan digital BPS yang dapat diakses secara online</p>
       </div>
       <div class="section-divider"></div>
       <div class="row g-4 justify-content-center">
-      <div class="col-sm-6 col-lg-4">
-        <div class="preview-card">
-          <div class="card-icon"><i class="bi bi-code-slash"></i></div>
-          <h5>Web API BPS</h5>
-        </div>
+        <div class="col-sm-6 col-lg-4"><div class="preview-card"><div class="card-icon"><i class="bi bi-code-slash"></i></div><h5>Web API BPS</h5></div></div>
+        <div class="col-sm-6 col-lg-4"><div class="preview-card"><div class="card-icon"><i class="bi bi-bar-chart-steps"></i></div><h5>BPS StatInaLab</h5></div></div>
+        <div class="col-sm-6 col-lg-4"><div class="preview-card"><div class="card-icon"><i class="bi bi-arrow-left-right"></i></div><h5>Transdata</h5></div></div>
       </div>
-      <div class="col-sm-6 col-lg-4">
-        <div class="preview-card">
-          <div class="card-icon"><i class="bi bi-bar-chart-steps"></i></div>
-          <h5>BPS StatInaLab</h5>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-4">
-        <div class="preview-card">
-          <div class="card-icon"><i class="bi bi-arrow-left-right"></i></div>
-          <h5>Transdata</h5>
-        </div>
-      </div>
-    </div>
     </div>
   </section>
 
@@ -448,22 +303,11 @@
       </div>
       <div class="section-divider"></div>
       <div class="statistik-section">
-        <!-- Highlight numbers -->
         <div class="stat-highlight-grid">
-          <div class="stat-highlight">
-            <div class="num" id="pub-total">-</div>
-            <div class="lbl">Total Pengajuan</div>
-          </div>
-          <div class="stat-highlight" style="background: linear-gradient(135deg, #f4a700, #e09000);">
-            <div class="num" id="pub-kategori-top">-</div>
-            <div class="lbl">Kategori Terbanyak</div>
-          </div>
-          <div class="stat-highlight" style="background: linear-gradient(135deg, #2e7d32, #1b5e20);">
-            <div class="num" id="pub-kab-top">-</div>
-            <div class="lbl">Asal Daerah Terbanyak</div>
-          </div>
+          <div class="stat-highlight"><div class="num" id="pub-total">-</div><div class="lbl">Total Pengajuan</div></div>
+          <div class="stat-highlight" style="background: linear-gradient(135deg, #f4a700, #e09000);"><div class="num" id="pub-kategori-top">-</div><div class="lbl">Kategori Terbanyak</div></div>
+          <div class="stat-highlight" style="background: linear-gradient(135deg, #2e7d32, #1b5e20);"><div class="num" id="pub-kab-top">-</div><div class="lbl">Asal Daerah Terbanyak</div></div>
         </div>
-        <!-- Charts -->
         <div class="stat-pub-grid">
           <div class="stat-pub-card">
             <h6><i class="bi bi-pie-chart-fill"></i> Kategori Pengguna</h6>
@@ -485,15 +329,14 @@
         <img src="img/logoBPS.png" alt="Logo BPS" height="35" class="me-2">
         <strong class="text-white">BPS Kota Palu</strong>
       </div>
-      <p class="mb-0">© 2026 Badan Pusat Statistik Kota Palu &nbsp;|&nbsp;
-        <i class="bi bi-clock me-1"></i> Senin – Kamis: 08.00 – 16.00 WITA<br>Jumat: 08.00 – 16.30 WITA
+      <p class="mb-0">&copy; 2026 Badan Pusat Statistik Kota Palu &nbsp;|&nbsp;
+        <i class="bi bi-clock me-1"></i> Senin &ndash; Kamis: 08.00 &ndash; 16.00 WITA<br>Jumat: 08.00 &ndash; 16.30 WITA
       </p>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Dropdown toggle
     function toggleDropdown() {
       const dd = document.getElementById('layanan-dropdown');
       dd.classList.toggle('open');
@@ -505,7 +348,7 @@
 
     const SUPABASE_URL = 'https://rljhayfmfsrdtpmlqltp.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsamhheWZtZnNyZHRwbWxxbHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMzc5NTcsImV4cCI6MjA4NzkxMzk1N30.1Iyu5DYkQyqnmu9eLT1Kcf7ybOI4V4-bXHr7b7NyR7c';
-  
+
     async function loadStatistik() {
       try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/pengajuan?select=kategori_pengguna,tingkat_pendidikan,kabupaten_kota`, {
@@ -513,54 +356,31 @@
         });
         const data = await res.json();
         if (!data || data.length === 0) return;
-  
-        // Highlight numbers
         document.getElementById('pub-total').textContent = data.length;
-  
         const kategoriCount = {};
         data.forEach(d => { if (d.kategori_pengguna) kategoriCount[d.kategori_pengguna] = (kategoriCount[d.kategori_pengguna] || 0) + 1; });
         const topKategori = Object.entries(kategoriCount).sort((a,b) => b[1]-a[1])[0];
         if (topKategori) document.getElementById('pub-kategori-top').textContent = topKategori[0].split('/')[0].trim();
-  
         const kabCount = {};
         data.forEach(d => { if (d.kabupaten_kota) kabCount[d.kabupaten_kota] = (kabCount[d.kabupaten_kota] || 0) + 1; });
         const topKab = Object.entries(kabCount).sort((a,b) => b[1]-a[1])[0];
         if (topKab) document.getElementById('pub-kab-top').textContent = topKab[0];
-  
         const accents = ['#005baa','#f4a700','#e05c2a','#2e7d32','#7b1fa2','#0097a7','#c62828'];
         const bpsBlues = ['#005baa','#1a7fd4','#4da3e8','#003f7f','#7ec0f5','#c8dff5','#002d5a'];
-  
-        // Chart kategori
         new Chart(document.getElementById('pub-chart-kategori'), {
           type: 'doughnut',
-          data: {
-            labels: Object.keys(kategoriCount),
-            datasets: [{ data: Object.values(kategoriCount), backgroundColor: accents, borderWidth: 2 }]
-          },
-          options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12 } } }
-          }
+          data: { labels: Object.keys(kategoriCount), datasets: [{ data: Object.values(kategoriCount), backgroundColor: accents, borderWidth: 2 }] },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12 } } } }
         });
-  
-        // Chart pendidikan
         const pendidikanCount = {};
         data.forEach(d => { if (d.tingkat_pendidikan) pendidikanCount[d.tingkat_pendidikan] = (pendidikanCount[d.tingkat_pendidikan] || 0) + 1; });
         new Chart(document.getElementById('pub-chart-pendidikan'), {
           type: 'doughnut',
-          data: {
-            labels: Object.keys(pendidikanCount),
-            datasets: [{ data: Object.values(pendidikanCount), backgroundColor: bpsBlues, borderWidth: 2 }]
-          },
-          options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12 } } }
-          }
+          data: { labels: Object.keys(pendidikanCount), datasets: [{ data: Object.values(pendidikanCount), backgroundColor: bpsBlues, borderWidth: 2 }] },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12 } } } }
         });
-  
       } catch (err) { console.log('Statistik tidak tersedia'); }
     }
-  
     loadStatistik();
   </script>
 </body>
