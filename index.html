@@ -98,35 +98,20 @@
       object-position: top center;
       transition: transform .4s cubic-bezier(.22,.68,0,1.1), filter .4s;
       filter: brightness(1) saturate(1.05);
-      /* hanya fade bawah — biar gambar tetap jelas */
-      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
     }
 
-    /* Poster kiri: sisi kanan (dekat teks) fade tipis */
+    /* Poster kiri: fade hanya sisi kanan (dekat teks) & sisi kiri luar */
     .poster-left img {
       object-position: top right;
-      -webkit-mask-image:
-        linear-gradient(to bottom, black 55%, transparent 100%),
-        linear-gradient(to right, rgba(0,0,0,0.5) 0%, black 20%, black 70%, transparent 100%);
-      -webkit-mask-composite: source-in;
-      mask-image:
-        linear-gradient(to bottom, black 55%, transparent 100%),
-        linear-gradient(to right, rgba(0,0,0,0.5) 0%, black 20%, black 70%, transparent 100%);
-      mask-composite: intersect;
+      -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, black 20%, black 70%, transparent 100%);
+      mask-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, black 20%, black 70%, transparent 100%);
     }
 
-    /* Poster kanan: sisi kiri (dekat teks) fade tipis */
+    /* Poster kanan: fade hanya sisi kiri (dekat teks) & sisi kanan luar */
     .poster-right img {
       object-position: top left;
-      -webkit-mask-image:
-        linear-gradient(to bottom, black 55%, transparent 100%),
-        linear-gradient(to right, transparent 0%, black 30%, black 80%, rgba(0,0,0,0.5) 100%);
-      -webkit-mask-composite: source-in;
-      mask-image:
-        linear-gradient(to bottom, black 55%, transparent 100%),
-        linear-gradient(to right, transparent 0%, black 30%, black 80%, rgba(0,0,0,0.5) 100%);
-      mask-composite: intersect;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 80%, rgba(0,0,0,0.5) 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 30%, black 80%, rgba(0,0,0,0.5) 100%);
     }
 
     .poster-fade-wrap:hover img {
