@@ -180,50 +180,62 @@
       .section-title { font-size: 1.1rem; }
     }
 
-    /* ===== POSTER SLIDE KIRI-KANAN ===== */
-    .hero { position: relative; overflow: hidden; }
+    /* ===== HERO BACKGROUND SLIDESHOW (OPSI B) ===== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 20px;
+    }
 
-    .poster-slot {
+    /* Slide background */
+    .hero-bg-slide {
       position: absolute;
-      top: 0; bottom: 0;
-      width: 260px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      pointer-events: none;
+      inset: 0;
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.4s ease;
       z-index: 0;
     }
-    .poster-slot-left  { left: 0; }
-    .poster-slot-right { right: 0; }
+    .hero-bg-slide.active { opacity: 1; }
 
-    .poster-slide {
+    /* Overlay gelap di atas foto agar teks tetap terbaca */
+    .hero-bg-slide::after {
+      content: '';
       position: absolute;
-      bottom: 0;
-      width: 100%;
-      max-width: 220px;
-      opacity: 0;
-      transition: opacity 1.2s ease;
-    }
-    .poster-slide.active { opacity: 1; }
-
-    .poster-slide img {
-      width: 100%;
-      display: block;
-      -webkit-mask-image:
-        linear-gradient(to bottom, black 30%, transparent 100%),
-        linear-gradient(to right,  transparent 0%, black 25%, black 75%, transparent 100%);
-      -webkit-mask-composite: source-in;
-      mask-image:
-        linear-gradient(to bottom, black 30%, transparent 100%),
-        linear-gradient(to right,  transparent 0%, black 25%, black 75%, transparent 100%);
-      mask-composite: intersect;
-      filter: brightness(0.88) saturate(1.05);
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0,31,63,0.82) 0%,
+        rgba(0,63,127,0.72) 50%,
+        rgba(0,91,170,0.65) 100%
+      );
     }
 
-    /* Sembunyikan di layar kecil */
-    @media (max-width: 1100px) { .poster-slot { width: 200px; } .poster-slide { max-width: 180px; } }
-    @media (max-width: 900px)  { .poster-slot { width: 150px; } .poster-slide { max-width: 140px; } }
-    @media (max-width: 768px)  { .poster-slot { display: none; } }
+    /* Dot indicators bawah hero */
+    .hero-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      padding: 0;
+    }
+    .hero-dot.active {
+      background: var(--bps-accent);
+      width: 24px;
+      border-radius: 4px;
+    }
 
   </style>
 </head>
@@ -266,20 +278,14 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO (OPSI B: FULL BACKGROUND SLIDESHOW) -->
   <section class="hero text-center">
 
-    <!-- POSTER KIRI -->
-    <div class="poster-slot poster-slot-left">
-      <div class="poster-slide active" id="poster-left-1">
-        <img src="img/poster_se_kepala.png" alt="Poster SE 2026 Kepala BPS">
-      </div>
-      <div class="poster-slide" id="poster-left-2">
-        <img src="img/poster_se_walikota.png" alt="Poster SE 2026 Walikota">
-      </div>
-    </div>
+    <!-- Background slides (foto poster jadi bg) -->
+    <div class="hero-bg-slide active" id="bg-slide-1" style="background-image:url('img/poster_se_kepala.png');"></div>
+    <div class="hero-bg-slide"        id="bg-slide-2" style="background-image:url('img/poster_se_walikota.png');"></div>
 
-    <!-- TEKS UTAMA -->
+    <!-- Teks tengah -->
     <div class="container position-relative" style="z-index:1;">
       <div class="mb-3">
         <span class="badge bg-warning text-dark fw-semibold px-3 py-2 rounded-pill" style="font-size:0.8rem;">
@@ -291,15 +297,11 @@
       <a href="#layanan-utama" class="btn-hero">
         <i class="bi bi-grid-fill me-2"></i>Jelajahi Layanan Kami
       </a>
-    </div>
 
-    <!-- POSTER KANAN -->
-    <div class="poster-slot poster-slot-right">
-      <div class="poster-slide active" id="poster-right-1">
-        <img src="img/poster_se_walikota.png" alt="Poster SE 2026 Walikota">
-      </div>
-      <div class="poster-slide" id="poster-right-2">
-        <img src="img/poster_se_kepala.png" alt="Poster SE 2026 Kepala BPS">
+      <!-- Dot navigator -->
+      <div class="hero-dots">
+        <button class="hero-dot active" onclick="goSlide(0)" id="dot-0"></button>
+        <button class="hero-dot"        onclick="goSlide(1)" id="dot-1"></button>
       </div>
     </div>
 
@@ -464,20 +466,27 @@
     }
     loadStatistik();
 
-    // ===== POSTER AUTO-ROTATE =====
+    // ===== HERO BACKGROUND SLIDESHOW (OPSI B) =====
     (function() {
-      const pairs = [
-        ['poster-left-1',  'poster-left-2'],
-        ['poster-right-1', 'poster-right-2'],
-      ];
-      let current = 0;
-      setInterval(function() {
-        current = current === 0 ? 1 : 0;
-        pairs.forEach(function(pair) {
-          document.getElementById(pair[0]).classList.toggle('active', current === 0);
-          document.getElementById(pair[1]).classList.toggle('active', current === 1);
-        });
-      }, 3500);
+      const slides = ['bg-slide-1', 'bg-slide-2'];
+      const dots   = ['dot-0', 'dot-1'];
+      let current  = 0;
+      let timer;
+
+      function goSlide(n) {
+        document.getElementById(slides[current]).classList.remove('active');
+        document.getElementById(dots[current]).classList.remove('active');
+        current = n;
+        document.getElementById(slides[current]).classList.add('active');
+        document.getElementById(dots[current]).classList.add('active');
+        clearInterval(timer);
+        timer = setInterval(next, 4000);
+      }
+
+      function next() { goSlide((current + 1) % slides.length); }
+
+      window.goSlide = goSlide;
+      timer = setInterval(next, 4000);
     })();
 
   </script>
