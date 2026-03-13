@@ -179,6 +179,52 @@
       .navbar-brand img { height: 24px; }
       .section-title { font-size: 1.1rem; }
     }
+
+    /* ===== POSTER SLIDE KIRI-KANAN ===== */
+    .hero { position: relative; overflow: hidden; }
+
+    .poster-slot {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 260px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .poster-slot-left  { left: 0; }
+    .poster-slot-right { right: 0; }
+
+    .poster-slide {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      max-width: 220px;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .poster-slide.active { opacity: 1; }
+
+    .poster-slide img {
+      width: 100%;
+      display: block;
+      -webkit-mask-image:
+        linear-gradient(to bottom, black 30%, transparent 100%),
+        linear-gradient(to right,  transparent 0%, black 25%, black 75%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image:
+        linear-gradient(to bottom, black 30%, transparent 100%),
+        linear-gradient(to right,  transparent 0%, black 25%, black 75%, transparent 100%);
+      mask-composite: intersect;
+      filter: brightness(0.88) saturate(1.05);
+    }
+
+    /* Sembunyikan di layar kecil */
+    @media (max-width: 1100px) { .poster-slot { width: 200px; } .poster-slide { max-width: 180px; } }
+    @media (max-width: 900px)  { .poster-slot { width: 150px; } .poster-slide { max-width: 140px; } }
+    @media (max-width: 768px)  { .poster-slot { display: none; } }
+
   </style>
 </head>
 <body>
@@ -222,6 +268,18 @@
 
   <!-- HERO -->
   <section class="hero text-center">
+
+    <!-- POSTER KIRI -->
+    <div class="poster-slot poster-slot-left">
+      <div class="poster-slide active" id="poster-left-1">
+        <img src="img/poster_se_kepala.png" alt="Poster SE 2026 Kepala BPS">
+      </div>
+      <div class="poster-slide" id="poster-left-2">
+        <img src="img/poster_se_walikota.png" alt="Poster SE 2026 Walikota">
+      </div>
+    </div>
+
+    <!-- TEKS UTAMA -->
     <div class="container position-relative" style="z-index:1;">
       <div class="mb-3">
         <span class="badge bg-warning text-dark fw-semibold px-3 py-2 rounded-pill" style="font-size:0.8rem;">
@@ -234,6 +292,17 @@
         <i class="bi bi-grid-fill me-2"></i>Jelajahi Layanan Kami
       </a>
     </div>
+
+    <!-- POSTER KANAN -->
+    <div class="poster-slot poster-slot-right">
+      <div class="poster-slide active" id="poster-right-1">
+        <img src="img/poster_se_walikota.png" alt="Poster SE 2026 Walikota">
+      </div>
+      <div class="poster-slide" id="poster-right-2">
+        <img src="img/poster_se_kepala.png" alt="Poster SE 2026 Kepala BPS">
+      </div>
+    </div>
+
   </section>
 
   <!-- STATS BAR -->
@@ -394,6 +463,23 @@
       } catch (err) { console.log('Statistik tidak tersedia'); }
     }
     loadStatistik();
+
+    // ===== POSTER AUTO-ROTATE =====
+    (function() {
+      const pairs = [
+        ['poster-left-1',  'poster-left-2'],
+        ['poster-right-1', 'poster-right-2'],
+      ];
+      let current = 0;
+      setInterval(function() {
+        current = current === 0 ? 1 : 0;
+        pairs.forEach(function(pair) {
+          document.getElementById(pair[0]).classList.toggle('active', current === 0);
+          document.getElementById(pair[1]).classList.toggle('active', current === 1);
+        });
+      }, 3500);
+    })();
+
   </script>
 </body>
 </html>
